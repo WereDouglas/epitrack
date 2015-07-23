@@ -14,7 +14,14 @@ class Welcome extends CI_Controller {
     }
 
     public function index() {
+        $this->load->view('home');
+    }
+   
+    public function student() {
         $this->load->view('private');
+    }
+    public function management() {
+        $this->load->view('management');
     }
 
     public function projects() {

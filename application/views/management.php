@@ -1,15 +1,18 @@
 <?php require_once(APPPATH . 'views/header.php'); ?>
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/fullcalendar.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
-<div class="main-content">
+
     <style>
 .form-horizontal .controls {
-    margin-left: 82px;
+    margin-left: 12px;
 }
 </style>
-
-    <div class="page-content">
-        <div class="row-fluid">          
+<div class="page-content">
+    
+        <div class="row-fluid"> 
+            <iframe id="frame" name="frame" frameborder="no" border="0" scrolling="no" height="750" width="450" class="span12" src="<?php echo base_url() . "index.php/management/"; ?>"> </iframe>
+            
+            
             <div class="row-fluid">
                
                     
@@ -572,7 +575,7 @@
                 </div>
 
 
-            </div>
+           
 
 
         </div>

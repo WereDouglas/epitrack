@@ -167,7 +167,7 @@ data: dataString,
 cache: false,
 success: function(html)
 {
-$("#cohort_"+ID).html(cohort);
+$("#cohort_"+ID).html(name);
 
 }
 });

@@ -373,29 +373,15 @@
                                         </div>
                    </div>
                 </a>
-                 <a href="#collapseOne" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
-                                          <div class="infobox infobox-grey infobox-small infobox-dark">
-                                   
-                                      <div class="infobox-icon">
-                                             <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/student.png" alt="account" />
-                      
-                                        </div>
-
-                                        <div class="infobox-data">
-                                            <div class="infobox-content">Add Student</div>
-                                          
-                                        </div>
-                   </div>
-                </a>
-                   <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
-     <div class="infobox infobox-grey infobox-small infobox-dark">
+               
+             <a href="<?php echo base_url() . "index.php/management/student"; ?>" target="frame">     <div class="infobox infobox-grey infobox-small infobox-dark">
                                    
                                       <div class="infobox-icon">
                                               <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/students.png" alt="account" />
                           </div>
 
                                         <div class="infobox-data">
-                                            <div class="infobox-content">List Students</div>
+                                            <div class="infobox-content">Students</div>
                                             
                                             
                                         </div>

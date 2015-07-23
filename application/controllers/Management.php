@@ -103,6 +103,7 @@ class Management extends CI_Controller {
 
             $name = $this->input->post('name');
             $id = $this->input->post('id');
+            
             $cohort = array('name' => $name);
             $this->MD->update($id, $cohort, 'cohort');
         }
@@ -151,6 +152,82 @@ class Management extends CI_Controller {
             }
 
             $this->load->view('cohort', $data);
+        }
+    }
+    
+    
+    
+      public function student() {
+
+        $this->load->helper(array('form', 'url'));
+        $action = $this->uri->segment(3);
+
+        if ($action == 'delete') {
+            $id = $this->uri->segment(4);
+            $query = $this->MD->delete($id, 'cohort');
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                                 Cohort deleted	</strong>									
+						</div>');
+
+            redirect('/management/tracks', 'refresh');
+        }
+        if ($action == 'update') {
+
+            $this->load->helper(array('form', 'url'));
+
+            $name = $this->input->post('name');
+            $id = $this->input->post('id');
+            
+            $cohort = array('name' => $name);
+            $this->MD->update($id, $cohort, 'cohort');
+        }
+
+
+        $this->load->helper(array('form', 'url'));
+
+        $name = $this->input->post('name');
+        if ($name != "") {
+            $track = $this->input->post('track');
+            $startyear = $this->input->post('year');
+            
+            $get_result = $this->MD->check($name, 'name', 'cohort');
+
+            if (!$get_result) {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                                 cohort already registered	</strong>									
+						</div>');
+                redirect('/management/cohort', 'refresh');
+            }
+            $cohort = array('name' => $name,'track' => $track ,'year' => $startyear,'created' => date('Y-m-d'));
+            $this->MD->save($cohort, 'cohort');
+            $this->session->set_flashdata('msg', '<div class="alert alert-success">
+                                                   
+                                                <strong>
+                                                 cohort saved</strong>									
+						</div>');
+
+            redirect('/management/cohort', 'refresh');
+        } else {
+            $query = $this->MD->show('cohort');
+            //  var_dump($query);
+            if ($query) {
+                $data['cohorts'] = $query;
+            } else {
+                $data['cohorts'] = array();
+            }
+             $query = $this->MD->show('track');
+            //  var_dump($query);
+            if ($query) {
+                $data['tracks'] = $query;
+            } else {
+                $data['tracks'] = array();
+            }
+
+            $this->load->view('add-student', $data);
         }
     }
     

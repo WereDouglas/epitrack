@@ -164,11 +164,11 @@ class Management extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'cohort');
+            $query = $this->MD->delete($id, 'student');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
-                                                 Cohort deleted	</strong>									
+                                                 student deleted	</strong>									
 						</div>');
 
             redirect('/management/tracks', 'refresh');
@@ -177,41 +177,84 @@ class Management extends CI_Controller {
 
             $this->load->helper(array('form', 'url'));
 
-            $name = $this->input->post('name');
+            $fname = $this->input->post('fname');
+             $lname = $this->input->post('lname');
             $id = $this->input->post('id');
             
-            $cohort = array('name' => $name);
-            $this->MD->update($id, $cohort, 'cohort');
+            $student = array('fname' => $fname,'lname'=>$lname);
+            $this->MD->update($id, $student, 'student');
         }
 
 
         $this->load->helper(array('form', 'url'));
 
-        $name = $this->input->post('name');
-        if ($name != "") {
-            $track = $this->input->post('track');
-            $startyear = $this->input->post('year');
+        $fname = $this->input->post('fname');
+        $lname = $this->input->post('lname');
+        $password =$this->input->post('password1');
+       
+        
+        if ($fname != "" && $lname!="") {
             
-            $get_result = $this->MD->check($name, 'name', 'cohort');
+          
+            $email = $this->input->post('email');            
+             $password =$password;
+             $key =$email;
+
+            $password = $this->encrypt->encode($password, $key);
+            
+            $get_result = $this->MD->check($email, 'email', 'student');
 
             if (!$get_result) {
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
-                                                 cohort already registered	</strong>									
+                                                 Email already in use	</strong>									
 						</div>');
-                redirect('/management/cohort', 'refresh');
+                redirect('/management/student', 'refresh');
             }
-            $cohort = array('name' => $name,'track' => $track ,'year' => $startyear,'created' => date('Y-m-d'));
-            $this->MD->save($cohort, 'cohort');
+     
+       
+         $file_element_name = 'userfile';
+         
+         
+         
+        $config['upload_path'] = 'uploads/';
+         // $config['upload_path'] = '/uploads/';
+        $config['allowed_types'] = '*';
+        $config['encrypt_name'] = FALSE;
+             
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload($file_element_name))
+        {
+            $status = 'error';
+         echo   $msg = $this->upload->display_errors('', '');
+        }
+        else
+        {
+       
+        $data = $this->upload->data();            
+         $other = $this->input->post('other');
+        $gender = $this->input->post('gender');
+        $dob = $this->input->post('dob');
+        $country = $this->input->post('country');
+        $contact = $this->input->post('contact'); 
+         $cohort = $this->input->post('cohort'); 
+        $submitted = date('Y-m-d');  
+        $file = $data['file_name'];
+        $email = $this->input->post('email');   
+        
+        $student = array('image' => $file, 'fname' => $fname,'lname' => $lname, 'other' => $other,'email' => $email,'gender' => $gender, 'dob' => $dob,'country'=>$country,'password'=>$password,'contact'=>$contact,'cohort'=>$cohort,'submitted' => date('Y-m-d H:i:s'),'status'=>'active');
+        $file_id= $this->MD->save($student, 'student');;
             $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
-                                                 cohort saved</strong>									
+                                                 information saved</strong>									
 						</div>');
 
-            redirect('/management/cohort', 'refresh');
-        } else {
+            redirect('/management/student', 'refresh');
+        }
+        
+        }
             $query = $this->MD->show('cohort');
             //  var_dump($query);
             if ($query) {
@@ -226,9 +269,16 @@ class Management extends CI_Controller {
             } else {
                 $data['tracks'] = array();
             }
+             $query = $this->MD->show('student');
+            //  var_dump($query);
+            if ($query) {
+                $data['students'] = $query;
+            } else {
+                $data['students'] = array();
+            }
 
             $this->load->view('add-student', $data);
-        }
+        
     }
     
 

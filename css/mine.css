@@ -28,3 +28,29 @@ padding:4px;
 background:url(edit.png) right no-repeat #80C8E5;
 cursor:pointer;
 }
+.grid-wrapper {
+  // border: solid red 5px;
+   overflow: scroll;
+   height: 70%;
+}
+.widget-main {
+    padding:0px;
+}
+.accordion-inner {
+    padding: 0px 0px;
+    border-top: 0px solid #E5E5E5;
+}
+.login-layout .widget-box {
+    visibility: hidden;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    border-bottom: 0px none;
+    box-shadow: none;
+    padding: 0px;
+    background-color: #394557;
+    transform: scale(0, 1) translate(-150px);
+}
+.login-layout {
+    background: #21409A  none repeat scroll 0% 0%;
+}

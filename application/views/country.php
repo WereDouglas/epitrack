@@ -25,71 +25,8 @@
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/daterangepicker.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/colorpicker.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
-<script>
-    // This example displays an address form, using the autocomplete feature
-// of the Google Places API to help users fill in the information.
 
-    var placeSearch, autocomplete;
-    var componentForm = {
-        street_number: 'short_name',
-        route: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
-    };
-
-    function initialize() {
-        // Create the autocomplete object, restricting the search
-        // to geographical location types.
-        autocomplete = new google.maps.places.Autocomplete(
-                /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
-                {types: ['geocode']});
-        // When the user selects an address from the dropdown,
-        // populate the address fields in the form.
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            fillInAddress();
-        });
-    }
-
-// [START region_fillform]
-    function fillInAddress() {
-        // Get the place details from the autocomplete object.
-        var place = autocomplete.getPlace();
-
-        for (var component in componentForm) {
-            document.getElementById(component).value = '';
-            document.getElementById(component).disabled = false;
-        }
-
-        // Get each component of the address from the place details
-        // and fill the corresponding field on the form.
-        for (var i = 0; i < place.address_components.length; i++) {
-            var addressType = place.address_components[i].types[0];
-            if (componentForm[addressType]) {
-                var val = place.address_components[i][componentForm[addressType]];
-                document.getElementById(addressType).value = val;
-            }
-        }
-    }
-
-    function geolocate() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var geolocation = new google.maps.LatLng(
-                        position.coords.latitude, position.coords.longitude);
-                var circle = new google.maps.Circle({
-                    center: geolocation,
-                    radius: position.coords.accuracy
-                });
-                autocomplete.setBounds(circle.getBounds());
-            });
-        }
-    }
-// [END region_geolocation]
-
-</script>
-<body onload="initialize()">
+<body >
     <div class="main-content">
         <style>
             .form-horizontal .controls {
@@ -112,7 +49,7 @@
                                         <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
 
                                             <button class="btn btn-small btn-success">
-                                            <i class="icon-save bigger-125"></i>
+                                                <i class="icon-adn bigger-110"></i>
                                                 Add
                                             </button></a>
                                         <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
@@ -166,7 +103,7 @@
 
                                         <div class="accordion-body collapse" id="collapseTwo">
                                             <div class="accordion-inner">
-                                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/student/'  method="post">            
+                                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/country/'  method="post">            
 
                                                     <div class="alert alert-block alert-info span6">   
 
@@ -179,94 +116,16 @@
                                                                 <span class="lbl"> Allow only images</span>
                                                             </label>
                                                         </div>
-                                                        <div class="control-group">
-                                                            Select track :
-                                                            <select id="cohort" name="cohort" >                                                            
-                                                                <?php
-                                                                if (is_array($cohorts) && count($cohorts)) {
-                                                                    foreach ($cohorts as $loop) {
-                                                                        ?>                        
-                                                                        <option value="<?= $loop->name ?>" /><?= $loop->name ?>
-                                                                    <?php
-                                                                    }
-                                                                }
-                                                                ?>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="control-group">
-                                                            
-                                                            <div class="controls">
-                                                                <span class="span12 align-right">First name:<input type="text" class="span6"  id="fname" name="fname" placeholder="First name"  /></span>
-                                                                <span class="span12 align-right">Last name:<input class="input-small span6"  type="text" id="lname" name="lname" placeholder="Last Name"  /></span>
-                                                               <span class="span12 align-right">Other name:<input class="input-small span6"  type="text" id="other" name="other" placeholder="Other name"  /></span>
-                                                            <span class="span12 align-right"> Primary e-mail:<input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
-                                                     <span class="span12 align-right"> Primary contact <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
-                                                         <span class="span12 align-right">  Gender: <select  data-placeholder="Choose a sex..." name="gender" id="gender">
-
-                                                                    <option value="male" />male
-                                                                    <option value="female" />female
-
-                                                                  </select></span> 
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
                                                        
-                                                    <div class="alert alert-block alert-info span6">
 
                                                         <div class="control-group">
-                                                              <div class="controls">
-                                                              
+                                                            <label class="control-label" for="form-field-username">Country name</label>
 
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div class="control-group">
-                                                           
                                                             <div class="controls">
-                                                                <span class="span12 align-right">  Date of Birth:   <input class="date-picker" id="dob" name="dob" type="text" data-date-format="dd-mm-yyyy" /></span>
-
+                                                                <input type="text" class="span12" id="name" name="name" placeholder="name"  />
                                                             </div>
                                                         </div>
-                                                        <div class="control-group">
-                                                              <div class="controls" id="locationField">
-                                                                  <span class="span12 align-right">  Location:<input  id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group">
-                                                                                                                    <div class="controls">
-                                                                <div class="controls" id="address">
-                                                                    <span class="span12 align-right">      Country: <input id="country" name="country" type="text" /></span>
-                                                                    <input class="field" id="street_number" type="hidden" disabled="true"></input>
-                                                                    <input class="field" id="route"type="hidden"  disabled="true"></input>
-                                                                    <input class="field" id="locality" type="hidden"     disabled="true"></input>
-                                                                    <input class="field" type="hidden" id="administrative_area_level_1" disabled="true"></input>
-                                                                    <input class="field" type="hidden" id="postal_code"></input>
-
-
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div class="control-group">
-                                                           
-                                                            <div class="controls">
-                                                                <span class="span12 align-right">   Password:<input type="password" id="password1" class="span6" name="password1" /></span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="control-group">
-                                                           <div class="controls">
-                                                               <span class="span12 align-right">    Confirm Password: <input type="password" class="span6" id="password2" name="password2" /></span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="">
+                                                             <div class="">
                                                             <button class="btn btn-info" type="submit">
                                                                 <i class="icon-ok bigger-110"></i>
                                                                 Submit
@@ -277,7 +136,9 @@
                                                                 Reset
                                                             </button>
                                                         </div>
-                                                    </div>
+
+                                                   </div>
+                                                  
 
 
 
@@ -307,31 +168,19 @@
                                                                     </label>
                                                                 </th>
                                                                 <th></th>
-                                                                <th>First name</th>
-                                                                <th>last name</th>
-                                                                <th>Other</th>   
-                                                                <th>email</th>   
-                                                                 <th>Gender</th>   
-                                                                  <th>Age</th>
-                                                                   <th>Country</th>  
-                                                                    <th>Contact</th> 
-                                                                     <th>Cohort</th>
-                                                                      <th>Status</th>   
-                                                                <th>Created</th>
+                                                                <th>Country name</th>
+                                                                  
+                                                               
                                                                 <th></th>
                                                             </tr>
                                                         </thead>
 
                                                         <tbody>
                                                             <?php
-                                                            if (is_array($students) && count($students)) {
-                                                                foreach ($students as $loop) {
-                                                                    $fname = $loop->fname;
-                                                                    $lname = $loop->lname;
-                                                                     $other = $loop->other;
-                                                                      $email = $loop->email;
-                                                                           $contact = $loop->contact;
-
+                                                            if (is_array($countries) && count($countries)) {
+                                                                foreach ($countries as $loop) {
+                                                                    $name = $loop->name;
+                                                                    
                                                                     $id = $loop->id;
                                                                     ?>  
 
@@ -343,43 +192,18 @@
                                                                             </label>
                                                                         </td>
                                                                         <td>
-                                                                            <div class="profile-activity">
-                                                                                <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>"  alt="<?php echo $fname; ?>" />
-                                                                            </div>
-                                                                        </td>
+                                                                          
+                                                                                <img class=""  src="<?= base_url(); ?>flags/<?= $loop->image ?>"  alt="<?php echo $name; ?>" />
+                                                                            </td>
                                                                         <td class="edit_td">
-                                                                            <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
-                                                                            <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"
+                                                                            <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
+                                                                            <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
                                                                         </td>
-                                                                        <td class="edit_td">
-                                                                            <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
-                                                                            <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"
-                                                                        </td>
-                                                                         <td class="edit_td">
-                                                                            <span id="other_<?php echo $id; ?>" class="text"><?php echo $other; ?></span>
-                                                                            <input type="text" value="<?php echo $other; ?>" class="editbox" id="other_input_<?php echo $id; ?>"
-                                                                        </td>
-                                                                         <td class="edit_td">
-                                                                            <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
-                                                                            <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"
-                                                                        </td>
-                                                                      
                                                                         
-                                                                          <td><?= $loop->gender ?></td>
-                                                                            <td><?= $loop->dob ?></td>
-                                                                              <td><?= $loop->country ?></td>
-                                                                                
-                                                                              <td class="edit_td">
-                                                                            <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
-                                                                            <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
-                                                                        </td>
-                                                                        <td><?= $loop->cohort ?></td>
-                                                                        <td><?= $loop->status ?></td>
-                                                                        <td><?= $loop->submitted ?></td>
 
                                                                         <td class="td-actions">
 
-                                                                            <a href="<?php echo base_url() . "index.php/management/student/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                            <a href="<?php echo base_url() . "index.php/management/country/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                                                 <span class="red">
                                                                                     <i class="icon-trash bigger-120"></i>
                                                                                 </span>

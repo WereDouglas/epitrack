@@ -47,37 +47,53 @@
     <link rel="stylesheet" href="<?= base_url(); ?>css/home.css" />
 
 
-
-
-
-
 </head>
 
-<body>
+<body style="background: #21409A;">
 
 
 
 
 
-    <div class="page-content">
+    <div class="page-content" style="background: #FFF;">
         <div class="row-fluid">
             <div class="span12">
 
-                <div class="well center twitter-panel" style="background-color: #21409A;" >
+                
                     <a href="#" class="brand">
                         <small>
-                            <img  height="600px" width="600px" class="nav-user-photo" src="<?= base_url(); ?>images/log.png" alt="User's Photo" />
+                            <img  height="400px" width="300px" class="nav-user-photo" src="<?= base_url(); ?>images/logos.png" alt="User's Photo" />
 
                         </small>
                     </a><!--/.brand-->
 
-                </div><!--/.row-fluid-->
+                    <div class="span12"></div>
 
                 <div class="row-fluid">
                     <div class="col-lg-12">
+                          
 
                         <! -- 1st ROW OF PANELS -->
                         <div class="row-fluid">
+                            
+                              <div class="col-lg-4 col-md-4 col-sm-4 mb span4">
+                             <div class="steps pn ">
+
+                                    <a href="<?php echo base_url() . "index.php/welcome/register"; ?>"> <div class="green-header">
+                                           <label class="green-header"><img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/man.png" alt="account" /> MY ACCOUNT</label>
+                                        </div></a>
+                                   <a href="<?php echo base_url() . "index.php/welcome/register"; ?>"> <div class="green-header">
+                                           <label class="green-header"><img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/User.png" alt="account" /> USERS</label>
+                                        </div></a>
+                                  <a href="<?php echo base_url() . "index.php/welcome/register"; ?>"> <div class="green-header">
+                                           <label class="green-header"><img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/pub.png" alt="account" /> PUBLISH</label>
+                                        </div></a>
+                                  <a href="<?php echo base_url() . "index.php/welcome/register"; ?>"> <div class="green-header">
+                                           <label class="green-header"><img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/gps.png" alt="account" /> LOCATIONS</label>
+                                        </div></a>
+
+                                </div>
+                             </div>
                             <!-- TWITTER PANEL -->
                             <div class="col-lg-4 col-md-4 col-sm-4 mb span4">
                                 <div class="green-panel pn">
@@ -111,24 +127,48 @@
                             </div><! -- /col-md-4 -->
 
                             <div class="col-lg-4 col-md-4 col-sm-4 mb span4">
-                                <div class="steps pn">
-
-                                    <a href="<?php echo base_url() . "index.php/welcome/student"; ?>"> <div class="green-header">
-                                           <label class="green-header"><img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/man.png" alt="account" /> MY ACCOUNT</label>
-                                        </div></a>
-
-                                    <a href="<?php echo base_url() . "index.php/welcome/management"; ?>">  <label for='op1'><img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/globe.png" alt="account" />TRACKING</label></a>
-
-
-                                    <a href="#">  <label for='op3'><img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/UgandaFlagColors.PNG" alt="account" />COUNTRIES</label></a>
-
-                                </div>
+                           
                             </div><! --/col-md-4 -->
                         </div><! --/END 1ST ROW OF PANELS -->
 
 
                         <! -- 3RD ROW OF PANELS -->
+   <div class="row-fluid">
+                            
+                           <div class="col-lg-4 col-md-4 col-sm-4 mb span4">
+                                <div class="green-panel pn">
+                                    <div class=" green-header">
+                                        <h5>REPORTS</h5>
+                                    </div>
+                                    <p class="user">  <img  height="200px" width="200px" class="nav-user-photo" src="<?= base_url(); ?>images/chart.png" alt="partner" />
+                                    </p>
+                                </div>
+                            </div><!-- /col-md-4 -->
+                            <!-- TWITTER PANEL -->
+                            <div class="col-lg-4 col-md-4 col-sm-4 mb span4">
+                                <div class="green-panel pn">
+                                    <div class=" green-header">
+                                        <h5>GLOBAL CENTERS</h5>
+                                    </div>
+                                    <p class="user">  <img  height="200px" width="200px" class="nav-user-photo" src="<?= base_url(); ?>images/localization.png" alt="partner" />
+                                    </p>
+                                </div>
+                            </div><!-- /col-md-4 -->
+                           <div class="col-lg-4 col-md-4 col-sm-4 mb span4">
+                                <div class="green-panel pn">
+                                    <div class=" green-header">
+                                        <h5>HELP</h5>
+                                    </div>
+                                    <p class="user">  <img  height="200px" width="200px" class="nav-user-photo" src="<?= base_url(); ?>images/help.png" alt="partner" />
+                                    </p>
+                                </div>
+                            </div><!-- /col-md-4 -->
+                    
 
+                            <div class="col-lg-4 col-md-4 col-sm-4 mb span4">
+                           
+                            </div><! --/col-md-4 -->
+                        </div><! --/END 1ST ROW OF PANELS -->
 
                         <! -- 5TH ROW OF PANELS -->
                         <div class="row">
@@ -159,3 +199,42 @@
 
 </body>
 </html>
+	<script src="<?= base_url(); ?>assets/js/jquery-2.0.3.min.js"></script>
+
+		<!--<![endif]-->
+
+		<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
+
+		<!--[if !IE]>-->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='<?= base_url(); ?>assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!--<![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='<?= base_url(); ?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="<?= base_url(); ?>assets/js/bootstrap.min.js"></script>
+
+		<!--page specific plugin scripts-->
+
+		<!--ace scripts-->
+
+		<script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
+		<script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
+<script type="text/javascript">
+			function show_box(id) {
+			 $('.widget-box.visible').removeClass('visible');
+			 $('#'+id).addClass('visible');
+			}
+		</script>

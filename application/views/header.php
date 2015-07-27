@@ -258,10 +258,9 @@
 
                         <li class="light-blue">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <img class="nav-user-photo" src="<?= base_url(); ?>assets/avatars/user.jpg" alt="Jason's Photo" />
-                                <span class="user-info">
+                                 <span class="user-info">
                                     <small>Welcome,</small>
-                                    Jason
+                                     <?php echo $this -> session -> userdata('name'); ?>
                                 </span>
 
                                 <i class="icon-caret-down"></i>
@@ -374,7 +373,8 @@
                    </div>
                 </a>
                
-             <a href="<?php echo base_url() . "index.php/management/student"; ?>" target="frame">     <div class="infobox infobox-grey infobox-small infobox-dark">
+             <a href="<?php echo base_url() . "index.php/management/student"; ?>" target="frame"> 
+                 <div class="infobox infobox-grey infobox-small infobox-dark">
                                    
                                       <div class="infobox-icon">
                                               <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/students.png" alt="account" />
@@ -388,9 +388,10 @@
                    </div>
                 </a>
             
-              <a href="#collapseCountry" data-parent="#accordionCountry" data-toggle="collapse" class="accordion-toggle collapsed">
+                 <a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame">  
+                     <div class="infobox infobox-grey infobox-small infobox-dark">
                                   
-                   <div class="infobox infobox-grey infobox-small infobox-dark">
+               
                                          <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/flag.png" alt="account" />
                       </div>
@@ -401,7 +402,7 @@
                                         </div>
                    </div>
                 </a>
- <a href="#collapseUser" data-parent="#accordionUser" data-toggle="collapse" class="accordion-toggle collapsed">
+  <a href="<?php echo base_url() . "index.php/management/user"; ?>" target="frame">
                                    
                    <div class="infobox infobox-grey infobox-small infobox-dark">
                                        <div class="infobox-icon">
@@ -414,37 +415,27 @@
                                         </div>
                    </div>
                 </a>
-                <a href="#">
-                  <div class="infobox infobox-grey infobox-small infobox-dark">
-                                        <div class="infobox-icon">
-                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/files.png" alt="account" />
-                          </div>
-
-                                        <div class="infobox-data">
-                                            <div class="infobox-content">Files</div>
-                                            <div class="infobox-content">1,205</div>
-                                        </div>
-                  </div></a>
-                    <a href="#collapseAdverts" data-parent="#accordionAdverts" data-toggle="collapse" class="accordion-toggle collapsed">
-                                         <div class="infobox infobox-grey infobox-small infobox-dark">
+           
+                    <a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame">  
+                        <div class="infobox infobox-grey infobox-small infobox-dark">
                                       <div class="infobox-icon">
                                             <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/advert.png" alt="account" />
                       </div>   
 
                                         <div class="infobox-data">
-                                            <div class="infobox-content">Events</div>
+                                            <div class="infobox-content">Events & Updates</div>
                                             <div class="infobox-content"></div>
                                         </div>
                    </div>
                 </a>
-                    <a href="#collapseAdverts" data-parent="#accordionAdverts" data-toggle="collapse" class="accordion-toggle collapsed">
-                                         <div class="infobox infobox-grey infobox-small infobox-dark">
+                    <a href="<?php echo base_url() . "index.php/management/advert"; ?>" target="frame">  
+                                           <div class="infobox infobox-grey infobox-small infobox-dark">
                                       <div class="infobox-icon">
                                             <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/advert.png" alt="account" />
                       </div>   
 
                                         <div class="infobox-data">
-                                            <div class="infobox-content">Adverts</div>
+                                            <div class="infobox-content">Advertisement</div>
                                             <div class="infobox-content"></div>
                                         </div>
                    </div>

@@ -256,12 +256,12 @@
                             </ul>
                         </li>
 
-                        <li class="light-blue">
+                        <li class="" style="background-color: none;">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <img class="nav-user-photo" src="<?= base_url(); ?>assets/avatars/user.jpg" alt="Jason's Photo" />
+                                <img class="nav-user-photo" src="<?php echo base_url(); ?>uploads/<?php echo $this -> session -> userdata('image'); ?>" alt=" <?php echo $this -> session -> userdata('image'); ?>" />
                                 <span class="user-info">
                                     <small>Welcome,</small>
-                                    Jason
+                                    <?php echo $this -> session -> userdata('name'); ?>
                                 </span>
 
                                 <i class="icon-caret-down"></i>
@@ -285,7 +285,7 @@
                                 <li class="divider"></li>
 
                                 <li>
-                                    <a href="<?php echo base_url() . "index.php/welcome/"; ?>">
+                                    <a href="<?php echo base_url() . "index.php/welcome/logout"; ?>">
                                         <i class="icon-off"></i>
                                         Logout
                                     </a>
@@ -304,8 +304,8 @@
 
             <div class="sidebar" id="sidebar">
                 
-               <a href="#collapseOne" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
-                                 <div class="infobox infobox-grey infobox-small infobox-dark">
+              <a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame">
+                     <div class="infobox infobox-grey infobox-small infobox-dark">
                      <div class="infobox-icon">
                                             <i class="icon-home"></i>
                                         </div>
@@ -315,8 +315,8 @@
                         <div class="infobox-content"></div>
                     </div>
                 </div> </a>
-                    <a href="#collapseBio" data-parent="#accordionBio" data-toggle="collapse" class="accordion-toggle collapsed">
-                                 <div class="infobox infobox-grey infobox-small infobox-dark">
+                   <a href="<?php echo base_url() . "index.php/student/bio"; ?>" target="frame">
+                             <div class="infobox infobox-grey infobox-small infobox-dark">
                      <div class="infobox-icon">
                                               <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/Teacher.png" alt="account" />
                                         </div>
@@ -326,8 +326,8 @@
                         <div class="infobox-content"></div>
                     </div>
                 </div> </a>
-                <a href="#collapseContact" data-parent="#accordionContact" data-toggle="collapse" class="accordion-toggle collapsed">
-                                                           
+                 <a href="<?php echo base_url() . "index.php/student/contact"; ?>" target="frame">
+                                                              
                    <div class="infobox infobox-grey infobox-small infobox-dark">
                                          <div class="infobox-icon">
                                           <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/contact.png" alt="account" />
@@ -339,8 +339,8 @@
                                         </div>
                    </div>
                 </a>
-                 <a href="#collapseRecords" data-parent="#Records" data-toggle="collapse" class="accordion-toggle collapsed">
-                                                           
+                 <a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame">
+                                                          
                    <div class="infobox infobox-grey infobox-small infobox-dark">
                                          <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/work.png" alt="account" />

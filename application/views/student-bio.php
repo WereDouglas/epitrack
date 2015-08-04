@@ -52,7 +52,7 @@
                             ?>
                             <div class="span3 center">
                             <span class="profile-picture">
-                                <img id="avatar" class="editable" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
+                                <img id="avatar" height="100px" width="120px" class="editable" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
                             </span>
                             </div>
                               <div class="span9 center">

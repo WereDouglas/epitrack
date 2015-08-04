@@ -364,7 +364,7 @@
                                         </div>
                    </div>
                 </a>
-                <a href="#collapsePublication" data-parent="#accordionPublication" data-toggle="collapse" class="accordion-toggle collapsed">
+                 <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
                                          <div class="infobox infobox-grey infobox-small infobox-dark">
                                          <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/publish.png" alt="account" />
@@ -376,8 +376,8 @@
                                         </div>
                    </div>
                 </a>
- <a href="#collapseStudies" data-parent="#accordionStudies" data-toggle="collapse" class="accordion-toggle collapsed">
-                                                         <div class="infobox infobox-grey infobox-small infobox-dark">
+  <a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame">
+                                                                      <div class="infobox infobox-grey infobox-small infobox-dark">
                                        <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/study.png" alt="account" />
                                       </div>
@@ -399,8 +399,8 @@
                                            
                                         </div>
                   </div></a>
-                    <a href="#collapseOut" data-parent="#accordionOut" data-toggle="collapse" class="accordion-toggle collapsed">
-                                     <div class="infobox infobox-grey infobox-small infobox-dark">
+                   <a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame">
+                     <div class="infobox infobox-grey infobox-small infobox-dark">
                                         <div class="infobox-icon">
                                           <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/outbreak.png" alt="account" />
                                          </div>
@@ -410,8 +410,8 @@
                                            
                                         </div>
                   </div></a>
-                <a href="#collapsePresentation" data-parent="#accordionPresentation" data-toggle="collapse" class="accordion-toggle collapsed">
-                                       <div class="infobox infobox-grey infobox-small infobox-dark">
+               <a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame">
+                                        <div class="infobox infobox-grey infobox-small infobox-dark">
                                         <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/present.png" alt="account" />
                                            </div>
@@ -421,7 +421,7 @@
                                            
                                         </div>
                   </div></a>
-                  <a href="#collapseCourses" data-parent="#accordionCourses" data-toggle="collapse" class="accordion-toggle collapsed">
+                <a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame">
                                           <div class="infobox infobox-grey infobox-small infobox-dark">
                                         <div class="infobox-icon">
                                          <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/courses.png" alt="account" />

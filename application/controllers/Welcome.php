@@ -8,7 +8,7 @@ class Welcome extends CI_Controller {
 
         parent::__construct();
         // error_reporting(E_PARSE);
-        $this->load->model('MD');
+        $this->load->model('Md');
         $this->load->library('session');
         $this->load->library('encrypt');
     }
@@ -30,13 +30,29 @@ class Welcome extends CI_Controller {
     public function login() {
         $this->load->helper(array('form', 'url'));
         if ($this->session->userdata('name') != null) {
-              $query = $this->MD->show('event');
-                    //  var_dump($query);
-                    if ($query) {
-                        $data['events'] = $query;
-                    } else {
-                        $data['events'] = array();
-                    }
+              
+                    $query = $this->Md->show('event');
+        //  var_dump($query);
+        if ($query) {
+            $data['events'] = $query;
+        } else {
+            $data['events'] = array();
+        }
+          $query = $this->Md->show('student');
+        //  var_dump($query);
+        if ($query) {
+            $data['students'] = $query;
+        } else {
+            $data['students'] = array();
+        }
+         $sender = $this -> session -> userdata('name');
+        $query = $this->Md->get('reciever',$sender,'chat');
+        //  var_dump($query);
+        if ($query) {
+            $data['chats'] = $query;
+        } else {
+            $data['chats'] = array();
+        }
 
             $this->load->view('private');
             return;
@@ -59,11 +75,11 @@ class Welcome extends CI_Controller {
         $key = $email;
 
 
-        $get_result = $this->MD->check($email, 'email', 'student');
+        $get_result = $this->Md->check($email, 'email', 'student');
         if (!$get_result) {
             //$this->session->set_flashdata('msg', 'Welcome'.$email);
             //get($field,$value,$table)
-            $result = $this->MD->get('email', $email, 'student');
+            $result = $this->Md->get('email', $email, 'student');
             // var_dump($result);
             foreach ($result as $res) {
                 $key = $email;
@@ -84,13 +100,27 @@ class Welcome extends CI_Controller {
 
                     $this->session->set_userdata($newdata);
 
-                    $query = $this->MD->show('event');
+                    $query = $this->Md->show('event');
                     //  var_dump($query);
                     if ($query) {
                         $data['events'] = $query;
                     } else {
                         $data['events'] = array();
                     }
+                    $query = $this->Md->show('event');
+        //  var_dump($query);
+        if ($query) {
+            $data['events'] = $query;
+        } else {
+            $data['events'] = array();
+        }
+          $query = $this->Md->show('student');
+        //  var_dump($query);
+        if ($query) {
+            $data['students'] = $query;
+        } else {
+            $data['students'] = array();
+        }
 
                     $this->load->view('private', $data);
                 } else {
@@ -119,11 +149,11 @@ class Welcome extends CI_Controller {
         $key = $email;
 
 
-        $get_result = $this->MD->check($email, 'email', 'user');
+        $get_result = $this->Md->check($email, 'email', 'user');
         if (!$get_result) {
             //$this->session->set_flashdata('msg', 'Welcome'.$email);
             //get($field,$value,$table)
-            $result = $this->MD->get('email', $email, 'user');
+            $result = $this->Md->get('email', $email, 'user');
             // var_dump($result);
             foreach ($result as $res) {
                 $key = $email;
@@ -176,7 +206,7 @@ class Welcome extends CI_Controller {
 
     public function projects() {
 
-        $query = $this->MD->show('project');
+        $query = $this->Md->show('project');
         if ($query) {
             $data['projects'] = $query;
         } else {
@@ -189,7 +219,7 @@ class Welcome extends CI_Controller {
 
     public function services() {
 
-        $query = $this->MD->show('service');
+        $query = $this->Md->show('service');
         if ($query) {
             $data['services'] = $query;
         } else {
@@ -200,7 +230,7 @@ class Welcome extends CI_Controller {
 
     public function profile() {
 
-        $query = $this->MD->show('profile');
+        $query = $this->Md->show('profile');
         if ($query) {
             $data['profiles'] = $query;
         } else {

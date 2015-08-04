@@ -8,23 +8,40 @@ class Student extends CI_Controller {
 
         parent::__construct();
         // error_reporting(E_PARSE);
-        $this->load->model('MD');
+        $this->load->model('Md');
         $this->load->library('session');
         $this->load->library('encrypt');
         date_default_timezone_set("Africa/Nairobi");
     }
 
     public function index() {
-        // $query = $this->MD->show('metar');
+        // $query = $this->Md->show('metar');
         //  var_dump($query);
 
 
-        $query = $this->MD->show('event');
+        $query = $this->Md->show('event');
         //  var_dump($query);
         if ($query) {
             $data['events'] = $query;
         } else {
             $data['events'] = array();
+        }
+          $query = $this->Md->show('student');
+        //  var_dump($query);
+        if ($query) {
+            $data['students'] = $query;
+        } else {
+            $data['students'] = array();
+        }
+        $sender = $this -> session -> userdata('name');
+        //$query = $this->Md->get('reciever',$sender,'chat');
+        $query = $this->Md->show('chat');
+        
+        //  var_dump($query);
+        if ($query) {
+            $data['chats'] = $query;
+        } else {
+            $data['chats'] = array();
         }
 
         $this->load->view('student-home', $data);
@@ -37,30 +54,30 @@ class Student extends CI_Controller {
     }
 
     public function bio() {
-         //get($field,$value,$table)
-        $query = $this->MD->show('event');
+        //get($field,$value,$table)
+        $query = $this->Md->show('event');
         //  var_dump($query);
         if ($query) {
             $data['events'] = $query;
         } else {
             $data['events'] = array();
         }
-        $studentID = $this -> session -> userdata('id');
-         $query = $this->MD->get('id',$studentID,'student');
+        $studentID = $this->session->userdata('id');
+        $query = $this->Md->get('id', $studentID, 'student');
         //  var_dump($query);
         if ($query) {
             $data['bio'] = $query;
         } else {
             $data['bio'] = array();
         }
-        $query = $this->MD->show('country');
+        $query = $this->Md->show('country');
         //  var_dump($query);
         if ($query) {
             $data['countries'] = $query;
         } else {
             $data['countries'] = array();
         }
-          $query = $this->MD->show('cohort');
+        $query = $this->Md->show('cohort');
         //  var_dump($query);
         if ($query) {
             $data['cohorts'] = $query;
@@ -70,15 +87,16 @@ class Student extends CI_Controller {
 
         $this->load->view('student-bio', $data);
     }
-     public function contact() {
+
+    public function contact() {
 
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
-        $studentID = $this -> session -> userdata('id');
+        $studentID = $this->session->userdata('id');
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'contact');
+            $query = $this->Md->delete($id, 'contact');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
@@ -96,7 +114,7 @@ class Student extends CI_Controller {
 
 
             $contact = array('contact' => $contact);
-            $this->MD->update($id, $contact, 'contact');
+            $this->Md->update($id, $contact, 'contact');
         }
 
 
@@ -105,8 +123,8 @@ class Student extends CI_Controller {
         $contact = $this->input->post('contact');
         if ($contact != "") {
             $type = $this->input->post('type');
-            
-            $get_result = $this->MD->check($contact, 'contact', 'contact');
+
+            $get_result = $this->Md->check($contact, 'contact', 'contact');
 
             if (!$get_result) {
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -116,9 +134,9 @@ class Student extends CI_Controller {
 						</div>');
                 redirect('/student/contact', 'refresh');
             }
-             
-            $contact = array('contact' => $contact, 'studentID'=>$studentID, 'type' => $type,'created' => date('Y-m-d'));
-            $this->MD->save($contact, 'contact');
+
+            $contact = array('contact' => $contact, 'studentID' => $studentID, 'type' => $type, 'created' => date('Y-m-d'));
+            $this->Md->save($contact, 'contact');
             $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
@@ -127,15 +145,15 @@ class Student extends CI_Controller {
 
             redirect('/student/contact', 'refresh');
         } else {
-            //$query = $this->MD->get('id', $id, 'profile');
-            $query = $this->MD->get('studentID',$studentID,'contact');
+            //$query = $this->Md->get('id', $id, 'profile');
+            $query = $this->Md->get('studentID', $studentID, 'contact');
             //  var_dump($query);
             if ($query) {
                 $data['contacts'] = $query;
             } else {
                 $data['contacts'] = array();
             }
-            $query = $this->MD->show('track');
+            $query = $this->Md->show('track');
             //  var_dump($query);
             if ($query) {
                 $data['tracks'] = $query;
@@ -146,23 +164,24 @@ class Student extends CI_Controller {
             $this->load->view('student-contact', $data);
         }
     }
+
     public function employment() {
- 
+
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
-        $studentID = $this -> session -> userdata('id');
-       
-        
+        $studentID = $this->session->userdata('id');
+
+
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'employment');
+            $query = $this->Md->delete($id, 'employment');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
                                                  employment record  deleted	</strong>									
 						</div>');
 
-           redirect('/student/employment', 'refresh');
+            redirect('/student/employment', 'refresh');
         }
         if ($action == 'update') {
 
@@ -173,40 +192,40 @@ class Student extends CI_Controller {
             $country = $this->input->post('country');
             $location = $this->input->post('location');
             $sector = $this->input->post('sector');
-            $contact = $this->input->post('contact');            
-
-            $employment = array('organisation' => $organisation,'location'=>$location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact,'created'=>  date('Y-m-d'));
-            $this->MD->update($id, $employment, 'employment');
-        }
- 
-
-            $organisation = $this->input->post('organisation');
-            $position = $this->input->post('position');          
-            $country = $this->input->post('country');
-            $location = $this->input->post('location');
-            $sector = $this->input->post('sector');
             $contact = $this->input->post('contact');
 
-           
+            $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
+            $this->Md->update($id, $employment, 'employment');
+        }
+
+
+        $organisation = $this->input->post('organisation');
+        $position = $this->input->post('position');
+        $country = $this->input->post('country');
+        $location = $this->input->post('location');
+        $sector = $this->input->post('sector');
+        $contact = $this->input->post('contact');
+
+
         if ($this->input->post('organisation') != "" && $id == "") {
-               $employment = array('organisation' => $organisation,'studentID'=>$studentID ,'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact,'created'=>  date('Y-m-d'));
-                $this->MD->save($employment, 'employment');
-               
-                $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
+            $employment = array('organisation' => $organisation, 'studentID' => $studentID, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
+            $this->Md->save($employment, 'employment');
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
                                                Employment information saved</strong>									
 						</div>');
 
-         redirect('/student/employment', 'refresh');
+            redirect('/student/employment', 'refresh');
         }
-        
-         $query = $this->MD->get('studentID',$studentID,'employment');
+
+        $query = $this->Md->get('studentID', $studentID, 'employment');
         if ($query) {
             $data['records'] = $query;
         } else {
             $data['records'] = array();
         }
-     
-        $query = $this->MD->show('student');
+
+        $query = $this->Md->show('student');
         //  var_dump($query);
         if ($query) {
             $data['students'] = $query;
@@ -215,6 +234,59 @@ class Student extends CI_Controller {
         }
 
         $this->load->view('student-employment', $data);
+    }
+    
+    public function chat() {      
+        $this->load->helper(array('form', 'url'));
+        //{reciever: reciever, message: message}
+        $sender = $this -> session -> userdata('name');
+        $receiver = $this->input->post('reciever');
+        $message = $this->input->post('message');  
+       // echo $receiver.' ',$sender.''.$message;
+
+      if ($sender != "" && $receiver != "") {
+            $chat = array('sender' => $sender, 'reciever' => $receiver, 'message' => $message,'datetimes' => date('Y-m-d H:i:s'));
+            $this->Md->save($chat, 'chat');
+            $get_result = $this->Md->get('reciever',$receiver,'chat');
+            if ($get_result) {  
+        
+            if (is_array($get_result) && count($get_result)) {
+                                            foreach ($get_result as $loop) {
+                                              
+                        echo ' <div class="itemdiv dialogdiv">
+                                        <div class="user">
+                                           
+                                        </div>
+
+                                        <div class="body">
+                                            <div class="time">
+                                                <i class="icon-time"></i>
+                                                <span class="blue">38 sec</span>
+                                            </div>
+
+                                            <div class="name">
+                                                <a href="#">'.$loop->reciever.'</a>
+                                            </div>
+                                            <div class="text">'.$loop->message.'</div>
+
+                                            <div class="tools">
+                                                <a href="#" class="btn btn-minier btn-info">
+                                                    <i class="icon-only icon-share-alt"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div> ';
+                                      
+                                      }}
+
+                  
+        } else {
+          
+           echo ' no values ';
+        
+            
+        }
+        }
     }
 
     public function upload() {
@@ -225,7 +297,7 @@ class Student extends CI_Controller {
         $title = $this->input->post('title');
         $description = $this->input->post('description');
 
-        $get_result = $this->MD->check($title, 'title', 'profile');
+        $get_result = $this->Md->check($title, 'title', 'profile');
         if ($get_result) {
 
             if (!empty($_FILES)) {
@@ -239,7 +311,7 @@ class Student extends CI_Controller {
             }
 
             $profile = array('title' => $title, 'description' => $description, 'image' => $name, 'submitted' => date('Y-m-d H:m:s'));
-            $this->MD->save($profile, 'profile');
+            $this->Md->save($profile, 'profile');
             $this->session->set_flashdata('msg', '<div class="alert alert-info">
                                                    
                                                 <strong>
@@ -263,7 +335,7 @@ class Student extends CI_Controller {
         $id = $this->uri->segment(3);
 
 
-        $query = $this->MD->get('id', $id, 'profile');
+        $query = $this->Md->get('id', $id, 'profile');
 
         if ($query) {
             $data['profile'] = $query;
@@ -272,6 +344,363 @@ class Student extends CI_Controller {
         }
 
         $this->load->view('admin/edit-profile', $data);
+    }
+
+    public function publication() {
+
+        $this->load->helper(array('form', 'url'));
+        $action = $this->uri->segment(3);
+        $studentID = $this->session->userdata('id');
+
+        if ($action == 'delete') {
+            $id = $this->uri->segment(4);
+            $query = $this->Md->delete($id, 'advert');
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                                 advert deleted	</strong>									
+						</div>');
+
+            redirect('/student/publication', 'refresh');
+        }
+        if ($action == 'update') {
+
+            $this->load->helper(array('form', 'url'));
+
+            $title = $this->input->post('title');
+
+            $advert = array('title' => $title);
+            $this->Md->update($id, $advert, 'advert');
+        }
+
+
+        $title = $this->input->post('title');
+        $abstract = $this->input->post('abstract');
+        $country = $this->input->post('country');
+        $link = $this->input->post('link');
+
+
+
+        if ($title != "") {
+            $file_element_name = 'userfile';
+            $config['upload_path'] = 'publications/';
+            // $config['upload_path'] = '/uploads/';
+            $config['allowed_types'] = '*';
+            $config['encrypt_name'] = FALSE;
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload($file_element_name)) {
+                $status = 'error';
+                echo $msg = $this->upload->display_errors('', '');
+            } else {
+                $data = $this->upload->data();
+                $title = $this->input->post('title');
+                $file = $data['file_name'];
+                $publication = array('file' => $file, 'title' => $title, 'dos' => date('y-m-d'), 'accepted' => 'no', 'reviewed' => 'no', 'link' => $link, 'abstract' => $abstract, 'country' => $country, 'studentID' => $studentID);
+                $file_id = $this->Md->save($publication, 'publication');
+                $this->session->set_flashdata('msg', '<div class="alert alert-success"><strong>
+                                              publication information saved</strong>									
+						</div>');
+
+                redirect('/student/publication', 'refresh');
+            }
+        }
+        $query = $this->Md->get('studentID', $studentID, 'publication');
+        //  var_dump($query);
+        if ($query) {
+            $data['publications'] = $query;
+        } else {
+            $data['publications'] = array();
+        }
+
+        $this->load->view('student-publication', $data);
+    }
+
+    public function presentation() {
+
+        $this->load->helper(array('form', 'url'));
+        $action = $this->uri->segment(3);
+        $studentID = $this->session->userdata('id');
+
+        if ($action == 'delete') {
+            $id = $this->uri->segment(4);
+            $query = $this->Md->delete($id, 'presentation');
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                                 presentation deleted	</strong>									
+						</div>');
+
+            redirect('/student/presentation', 'refresh');
+        }
+        if ($action == 'update') {
+
+            $this->load->helper(array('form', 'url'));
+
+            $title = $this->input->post('title');
+
+            $advert = array('title' => $title);
+            $this->Md->update($id, $advert, 'advert');
+        }
+
+
+        $title = $this->input->post('title');
+        $country = $this->input->post('country');
+        $event = $this->input->post('eventName');
+        $eventType = $this->input->post('eventType');
+        $presentationType = $this->input->post('presentationType');
+        $location = $this->input->post('location');
+        $date = $this->input->post('date');
+        $summary = $this->input->post('summary');
+
+
+        if ($title != "") {
+            $file_element_name = 'userfile';
+            $config['upload_path'] = 'publications/';
+            // $config['upload_path'] = '/uploads/';
+            $config['allowed_types'] = '*';
+            $config['encrypt_name'] = FALSE;
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload($file_element_name)) {
+                $status = 'error';
+                echo $msg = $this->upload->display_errors('', '');
+            } else {
+                $data = $this->upload->data();
+                $title = $this->input->post('title');
+                $file = $data['file_name'];
+                $presentation = array('file' => $file, 'eventNAme' => $title, 'summary' => $summary, 'title' => $title, 'dos' => date('Y-m-d'), 'submissionDate' => date('Y-m-d'), 'date' => $date, 'accepted' => 'no', 'country' => $country, 'location' => $location, 'eventType' => $eventType, 'presentationType' => $presentationType, 'studentID' => $studentID);
+                $file_id = $this->Md->save($presentation, 'presentation');
+                $this->session->set_flashdata('msg', '<div class="alert alert-success"><strong>
+                                              presentation information saved</strong>									
+						</div>');
+
+                redirect('/student/presentation', 'refresh');
+            }
+        }
+        $query = $this->Md->get('studentID', $studentID, 'presentation');
+        //  var_dump($query);
+        if ($query) {
+            $data['presentations'] = $query;
+        } else {
+            $data['presentations'] = array();
+        }
+
+        $this->load->view('student-presentation', $data);
+    }
+
+    public function study() {
+
+        $this->load->helper(array('form', 'url'));
+        $action = $this->uri->segment(3);
+        $studentID = $this->session->userdata('id');
+
+
+        if ($action == 'delete') {
+            $id = $this->uri->segment(4);
+            $query = $this->Md->delete($id, 'employment');
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                                 employment record  deleted	</strong>									
+						</div>');
+
+            redirect('/student/study', 'refresh');
+        }
+        if ($action == 'update') {
+
+            $this->load->helper(array('form', 'url'));
+            $organisation = $this->input->post('organisation');
+            $position = $this->input->post('position');
+            $id = $this->input->post('id');
+            $country = $this->input->post('country');
+            $location = $this->input->post('location');
+            $sector = $this->input->post('sector');
+            $contact = $this->input->post('contact');
+
+            $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
+            $this->Md->update($id, $employment, 'employment');
+        }
+
+
+        $name = $this->input->post('name');
+        $onset = strtotime($this->input->post('onset'));
+        $dissemination = strtotime($this->input->post('dissemination'));
+        $findings = $this->input->post('findings');
+
+        if ($this->input->post('name') != "" && $studentID != "") {
+            $study = array('name' => $name, 'studentID' => $studentID, 'onset' => $onset, 'dissemination' => $dissemination, 'findings' => $findings, 'dos' => date('Y-m-d'));
+            $this->Md->save($study, 'study');
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
+                                               Study information saved</strong>									
+						</div>');
+
+            redirect('/student/study', 'refresh');
+        }
+
+        $query = $this->Md->get('studentID', $studentID, 'study');
+        if ($query) {
+            $data['study'] = $query;
+        } else {
+            $data['study'] = array();
+        }
+
+        $query = $this->Md->show('study');
+        //  var_dump($query);
+        if ($query) {
+            $data['study'] = $query;
+        } else {
+            $data['study'] = array();
+        }
+
+        $this->load->view('student-study', $data);
+    }
+
+    public function outbreak() {
+
+        $this->load->helper(array('form', 'url'));
+        $action = $this->uri->segment(3);
+        $studentID = $this->session->userdata('id');
+
+
+        if ($action == 'delete') {
+            $id = $this->uri->segment(4);
+            $query = $this->Md->delete($id, 'outbreak');
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                                 employment record  deleted	</strong>									
+						</div>');
+
+            redirect('/student/outbreak', 'refresh');
+        }
+        if ($action == 'update') {
+
+            $this->load->helper(array('form', 'url'));
+            $organisation = $this->input->post('organisation');
+            $position = $this->input->post('position');
+            $id = $this->input->post('id');
+            $country = $this->input->post('country');
+            $location = $this->input->post('location');
+            $sector = $this->input->post('sector');
+            $contact = $this->input->post('contact');
+
+            $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
+            $this->Md->update($id, $employment, 'employment');
+        }
+
+        $name = $this->input->post('name');
+        $country = $this->input->post('country');
+        $region = $this->input->post('region');
+        $min = $this->input->post('min');
+        $max = $this->input->post('max');
+        $onset = strtotime($this->input->post('onset'));
+        $dates = $this->input->post('dates');
+        $lab = $this->input->post('lab');
+        $confirm = $this->input->post('confirm');
+
+        $etiology = $this->input->post('etiology');
+        $findings = $this->input->post('findings');
+
+        if ($this->input->post('name') != "" && $studentID != "") {
+            $outbreak = array('name' => $name, 'studentID' => $studentID, 'onset' => $onset, 'country' => $country, 'max' => $max,'min' => $min,'dates' => $dates,'lab' => $lab, 'confirm' => $confirm, 'etiology' => $etiology,'region' => $region, 'findings' => $findings, 'dos' => date('Y-m-d'));
+            $this->Md->save($outbreak, 'outbreak');
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
+                                               outbreak information saved</strong>									
+						</div>');
+
+            redirect('/student/outbreak', 'refresh');
+        }
+
+        $query = $this->Md->get('studentID', $studentID, 'outbreak');
+        if ($query) {
+            $data['out'] = $query;
+        } else {
+            $data['out'] = array();
+        }
+
+        $query = $this->Md->show('country');
+        //  var_dump($query);
+        if ($query) {
+            $data['country'] = $query;
+        } else {
+            $data['country'] = array();
+        }
+
+        $this->load->view('outbreak', $data);
+    }
+    
+    
+     public function course() {
+
+        $this->load->helper(array('form', 'url'));
+        $action = $this->uri->segment(3);
+        $studentID = $this->session->userdata('id');
+
+
+        if ($action == 'delete') {
+            $id = $this->uri->segment(4);
+            $query = $this->Md->delete($id, 'outbreak');
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                                 employment record  deleted	</strong>									
+						</div>');
+
+            redirect('/student/course', 'refresh');
+        }
+        if ($action == 'update') {
+
+            $this->load->helper(array('form', 'url'));
+            $organisation = $this->input->post('organisation');
+            $position = $this->input->post('position');
+            $id = $this->input->post('id');
+            $country = $this->input->post('country');
+            $location = $this->input->post('location');
+            $sector = $this->input->post('sector');
+            $contact = $this->input->post('contact');
+
+            $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
+            $this->Md->update($id, $employment, 'employment');
+        }
+
+        $name = $this->input->post('name');
+        $start = strtotime($this->input->post('start'));
+        $end = strtotime($this->input->post('end'));
+        $participants = $this->input->post('participants');
+        $objective = $this->input->post('objective');
+        $role = $this->input->post('role');
+        $description = $this->input->post('description');
+
+        if ($this->input->post('name') != "" && $studentID != "") {
+            $course = array('name' => $name, 'studentID' => $studentID, 'start' => $start, 'end' => $end, 'participants' => $participants,'objective' => $objective,'role' => $role, 'description' => $description, 'dos' => date('Y-m-d'));
+            $this->Md->save($course, 'course');
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
+                                               Course information saved</strong>									
+						</div>');
+
+            redirect('/student/course', 'refresh');
+        }
+
+        $query = $this->Md->get('studentID', $studentID, 'course');
+        if ($query) {
+            $data['out'] = $query;
+        } else {
+            $data['out'] = array();
+        }
+
+        $query = $this->Md->show('country');
+        //  var_dump($query);
+        if ($query) {
+            $data['country'] = $query;
+        } else {
+            $data['country'] = array();
+        }
+
+        $this->load->view('student-course', $data);
     }
 
     public function update() {
@@ -283,7 +712,7 @@ class Student extends CI_Controller {
 
         // function update($id, $data,$table)
         $profile = array('title' => $title, 'description' => $description);
-        $this->MD->update($id, $profile, 'profile');
+        $this->Md->update($id, $profile, 'profile');
         $this->session->set_flashdata('msg', '<div class="alert alert-info"> <strong>
                                                   Information updated	</strong>									
 						</div>');
@@ -296,11 +725,11 @@ class Student extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $id = $this->uri->segment(3);
 
-        $this->MD->remove_table($id, 'profile', 'image');
+        $this->Md->remove_table($id, 'profile', 'image');
         //delete($id,$table);
         //remove($id,$table,$column)
 
-        $query = $this->MD->delete($id, 'profile');
+        $query = $this->Md->delete($id, 'profile');
 
         if ($this->db->affected_rows() > 0) {
             $msg = '<span style="color:red">Information Deleted </span>';
@@ -315,8 +744,8 @@ class Student extends CI_Controller {
 
     public function image() {
         $id = $this->uri->segment(3);
-        $query = $this->MD->remove($id);
-        $query = $this->MD->delete($id, 'image');
+        $query = $this->Md->remove($id);
+        $query = $this->Md->delete($id, 'image');
 
         if ($this->db->affected_rows() > 0) {
             $msg = '<span style="color:red">Information Deleted </span>';

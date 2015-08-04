@@ -95,7 +95,7 @@
       
             
              <div class="row-fluid"> 
-            <iframe id="frame" name="frame" frameborder="no" border="0" scrolling="no" height="750" width="450" class="span12" src="<?php echo base_url() . "index.php/management/"; ?>"> </iframe>
+            <iframe id="frame" name="frame" frameborder="no" border="0" scrolling="no" height="750" width="450" class="span12" src="<?php echo base_url() . "index.php/student/"; ?>"> </iframe>
              </div>
 
         

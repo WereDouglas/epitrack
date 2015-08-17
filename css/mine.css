@@ -7,6 +7,10 @@
    line-height: 28px;
     width: 10%!important;
 }
+.highcharts-background{
+    background-color: '';
+    
+}
 .editbox
 {
 display:none

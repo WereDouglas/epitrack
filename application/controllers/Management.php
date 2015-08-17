@@ -241,7 +241,7 @@ class Management extends CI_Controller {
                 $data = $this->upload->data();
                 $other = $this->input->post('other');
                 $gender = $this->input->post('gender');
-                $j =  date('Y-m-d', strtotime($this->input->post('dob')));
+                $dob =  date('Y-m-d', strtotime($this->input->post('dob')));
                 $country = $this->input->post('country');
                 $contact = $this->input->post('contact');
                 $cohort = $this->input->post('cohort');
@@ -453,6 +453,13 @@ class Management extends CI_Controller {
             $data['users'] = $query;
         } else {
             $data['users'] = array();
+        }
+         $query = $this->MD->show('country');
+      //  var_dump($query);
+        if ($query) {
+             $data['country'] = $query;
+        } else {
+            $data['country'] = array();
         }
 
 

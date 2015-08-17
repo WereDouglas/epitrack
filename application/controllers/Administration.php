@@ -29,6 +29,7 @@ class Administration extends CI_Controller {
         } else {
             $data['roles'] = array();
         }
+        
 
         $this->load->view('user', $data);
 			}

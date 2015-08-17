@@ -98,11 +98,20 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="form-field-username">Country</label>
+                                                    <label class="control-label" for="form-field-username">Country of presentation</label>
+ <div class="controls">
+                                                     
+                                                            <select class="span6 align-right" id="country" name="country" >                                                            
+                                                                <?php
+                                                                if (is_array($country) && count($country)) {
+                                                                    foreach ($country as $loop) {
+                                                                        ?>                        
+                                                                        <option value="<?= $loop->name ?>" /><?= $loop->name ?>
+                                                                    <?php }
+                                                                } ?>
+                                                            </select>
 
-                                                    <div class="controls">
-                                                        <input type="text" class="span12" id="title" name="country" placeholder="country"  />
-                                                    </div>
+                                                   </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <label class="control-label" for="form-field-username">Event name</label>

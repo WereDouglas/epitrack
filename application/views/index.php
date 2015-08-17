@@ -1,5 +1,6 @@
   <?php require_once(APPPATH . 'views/header.php'); ?>
 <link rel="stylesheet" href="<?= base_url();?>assets/css/fullcalendar.css" />
+
             <div class="main-content">
                
 

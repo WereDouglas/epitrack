@@ -485,6 +485,13 @@ class Student extends CI_Controller {
         } else {
             $data['presentations'] = array();
         }
+         $query = $this->Md->show('country');
+        //  var_dump($query);
+        if ($query) {
+            $data['country'] = $query;
+        } else {
+            $data['country'] = array();
+        }
 
         $this->load->view('student-presentation', $data);
     }

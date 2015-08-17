@@ -85,8 +85,8 @@
                                                 <div class="row-fluid">
                                                      <span class="span12 align-right">Title:<input type="text" class="span6"  id="title" name="title" placeholder="Event name"  /></span>
 
-                                                     <span class="span12 align-right">Country: <input id="country"  class="span6" name="country" type="text" /></span>
-  <span class="span12 align-right">Venue: <input id="venue"  class="span6" name="venue" type="text" /></span>
+                                                       <span class="span12 align-right">   Country:<input type="text" readonly="true" id="country" class="span6" name="country" value="<?=$this->session->userdata('country')?>" /></span>
+                                                       <span class="span12 align-right">Venue: <input id="venue"  class="span6" name="venue" type="text" /></span>
 
                                                        <span class="span12 align-right"> start date:<span class="add-on">
                                                         <i class="icon-calendar"></i>

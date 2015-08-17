@@ -79,17 +79,7 @@
                                                                 <i class="icon-lock"></i>
                                                             </span>
                                                         </label>
-                                                        <div class="controls" style="margin-left: 0px;">
-                                                            Login as:
-                                                           
-                                                            <input  class="span3" name="form-field-radio" type="radio" value="administrator" />
-                                                                <span class="lbl"> Administrator</span>
-                                                                <input  class="span3" name="form-field-radio" type="radio" value="student" />
-                                                                <span class="lbl">Student</span>
-                                                                                                         
-
-                                                         
-                                                        </div><br>
+                                                       <br>
                                                          <?php echo $this->session->flashdata('msg'); ?>
                                                         <div class="space"></div>
 
@@ -124,11 +114,11 @@
                                                 </div>
 
                                                 <div>
-                                                    <a href="#" onclick="show_box('signup-box');
+<!--                                                    <a href="#" onclick="show_box('signup-box');
                                                             return false;" class="user-signup-link">
                                                         I want to register
                                                         <i class="icon-arrow-right"></i>
-                                                    </a>
+                                                    </a>-->
                                                 </div>
                                             </div>
                                         </div><!--/widget-body-->

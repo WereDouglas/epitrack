@@ -21,179 +21,132 @@ class Welcome extends CI_Controller {
 
         $this->load->view('login');
     }
- public function logout() {
-          
-     $this -> session -> sess_destroy();    
-      redirect('welcome/register', 'refresh');
-    
-      }
+
+    public function logout() {
+
+        $this->session->sess_destroy();
+        redirect('welcome/register', 'refresh');
+    }
+
     public function login() {
-        $this->load->helper(array('form', 'url'));
-        if ($this->session->userdata('name') != null) {
-              
-                    $query = $this->Md->show('event');
-        //  var_dump($query);
-        if ($query) {
-            $data['events'] = $query;
-        } else {
-            $data['events'] = array();
-        }
-          $query = $this->Md->show('student');
-        //  var_dump($query);
-        if ($query) {
-            $data['students'] = $query;
-        } else {
-            $data['students'] = array();
-        }
-         $sender = $this -> session -> userdata('name');
-        $query = $this->Md->get('reciever',$sender,'chat');
-        //  var_dump($query);
-        if ($query) {
-            $data['chats'] = $query;
-        } else {
-            $data['chats'] = array();
-        }
 
-            $this->load->view('private');
-            return;
-        }
-       $user= $this->input->post('form-field-radio');
-
-       if($user==""){
-   $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
-                                                <strong>
-                                           please select the login in type</strong>									
-						</div>');
-   redirect('welcome/register', 'refresh');
-       }
-   
-   if($user=='student'){
       
+        $this->load->helper(array('form', 'url'));
         $email = $this->input->post('email');
         $password_now = $this->input->post('password');
         $key = $email;
 
+        $get_student = $this->Md->check($email, 'email', 'student');
+        $get_user = $this->Md->check($email, 'email', 'user');
 
-        $get_result = $this->Md->check($email, 'email', 'student');
-        if (!$get_result) {
-            //$this->session->set_flashdata('msg', 'Welcome'.$email);
-            //get($field,$value,$table)
-            $result = $this->Md->get('email', $email, 'student');
-            // var_dump($result);
-            foreach ($result as $res) {
-                $key = $email;
-                $password = $this->encrypt->decode($res->password, $key);
 
-                if ($password_now == $password) {
+        if (!$get_student || !$get_user) {
+            if (count($get_student) > 0) {
 
-                    $newdata = array(
-                        'id' => $res->id,
-                        'name' => $res->fname . ' ' . $res->lname . ' ' . $res->other,
-                        'email' => $res->email,
-                        'image' => $res->image,
-                        'contact' => $res->contact,
-                        'country' => $res->country,
-                        'cohort' => $res->cohort,
-                        'logged_in' => TRUE
-                    );
+                $result = $this->Md->get('email', $email, 'student');
+                // var_dump($result);
+                foreach ($result as $res) {
+                    $key = $email;
+                    $password = $this->encrypt->decode($res->password, $key);
 
-                    $this->session->set_userdata($newdata);
+                    if ($password_now == $password) {
 
-                    $query = $this->Md->show('event');
-                    //  var_dump($query);
-                    if ($query) {
-                        $data['events'] = $query;
+                        $newdata = array(
+                            'id' => $res->id,
+                            'name' => $res->fname . ' ' . $res->lname . ' ' . $res->other,
+                            'email' => $res->email,
+                            'image' => $res->image,
+                            'contact' => $res->contact,
+                            'country' => $res->country,
+                            'cohort' => $res->cohort,
+                            'logged_in' => TRUE
+                        );
+                 
+                        $this->session->set_userdata($newdata);
+                             
+                        $query = $this->Md->show('event');
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['events'] = $query;
+                        } else {
+                            $data['events'] = array();
+                        }
+                        $query = $this->Md->show('event');
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['events'] = $query;
+                        } else {
+                            $data['events'] = array();
+                        }
+                        $query = $this->Md->show('student');
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['students'] = $query;
+                        } else {
+                            $data['students'] = array();
+                        }
+                        
+                      
+                        $this->load->view('private', $data);
                     } else {
-                        $data['events'] = array();
-                    }
-                    $query = $this->Md->show('event');
-        //  var_dump($query);
-        if ($query) {
-            $data['events'] = $query;
-        } else {
-            $data['events'] = array();
-        }
-          $query = $this->Md->show('student');
-        //  var_dump($query);
-        if ($query) {
-            $data['students'] = $query;
-        } else {
-            $data['students'] = array();
-        }
-
-                    $this->load->view('private', $data);
-                } else {
-                   $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                        $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
                                                  invalid password for student</strong>									
 						</div>');
-                    redirect('welcome/register', 'refresh');
+                        redirect('welcome/register', 'refresh');
+                    }
+                }
+            }
+
+            if (count($get_user) > 0) {
+                $get_result = $this->Md->check($email, 'email', 'user');
+                if (!$get_result) {
+                    //$this->session->set_flashdata('msg', 'Welcome'.$email);
+                    //get($field,$value,$table)
+                    $result = $this->Md->get('email', $email, 'user');
+                    // var_dump($result);
+                    foreach ($result as $res) {
+                        $key = $email;
+                        $password = $this->encrypt->decode($res->password, $key);
+
+                        if ($password_now == $password) {
+
+                            $newdata = array(
+                                'id' => $res->id,
+                                'name' => $res->fname . ' ' . $res->lname . ' ',
+                                'email' => $res->email,
+                                'contact' => $res->contact,
+                                'country' => $res->country,
+                                'status' => $res->status,
+                                 'level' => $res->level,
+                                'logged_in' => TRUE
+                            );
+                            $this->session->set_userdata($newdata);
+                            
+                        if ($this->session->userdata('level')==1){
+                              redirect('country/', 'refresh');
+                              return;
+                            
+                        }
+                        if ($this->session->userdata('level')==2){
+                              redirect('welcome/management/', 'refresh');
+                              return;
+                            
+                        }
+                            
+                            redirect('welcome/management/', 'refresh');
+                        } else {
+                            $this->session->set_flashdata('msg', '<div class="alert alert-error"> <strong>! invalid password</strong></div>');
+                            redirect('welcome/register', 'refresh');
+                        }
+                    }
                 }
             }
         } else {
-           $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
-                                                <strong>
-                                            ! invalid user student	</strong>									
-						</div>');
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">  <strong>  ! invalid login credentials</div>');
             redirect('welcome/register', 'refresh');
         }
-   }
-   
-    if($user=='administrator'){
-      
-        $email = $this->input->post('email');
-        $password_now = $this->input->post('password');
-        $key = $email;
-
-
-        $get_result = $this->Md->check($email, 'email', 'user');
-        if (!$get_result) {
-            //$this->session->set_flashdata('msg', 'Welcome'.$email);
-            //get($field,$value,$table)
-            $result = $this->Md->get('email', $email, 'user');
-            // var_dump($result);
-            foreach ($result as $res) {
-                $key = $email;
-                $password = $this->encrypt->decode($res->password, $key);
-
-                if ($password_now == $password) {
-
-                    $newdata = array(
-                        'id' => $res->id,
-                        'name' => $res->fname . ' ' . $res->lname . ' ',
-                        'email' => $res->email,                      
-                        'contact' => $res->contact,
-                        'country' => $res->country,
-                         'status' => $res->status,                       
-                        'logged_in' => TRUE
-                    );
-                    $this->session->set_userdata($newdata);
-
-                  
-                    redirect('welcome/management/', 'refresh');
-                } else {
-                     $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
-                                                <strong>
-                                              ! invalid password	</strong>									
-						</div>');
-                    redirect('welcome/register', 'refresh');
-                }
-            }
-        } else {
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
-                                                <strong>
-                                                ! invalid administrative user	</strong>									
-						</div>');
-            redirect('welcome/register', 'refresh');
-        }
-   }
-   
-   
     }
 
     public function student() {

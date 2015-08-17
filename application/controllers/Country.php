@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Management extends CI_Controller {
+class Country extends CI_Controller {
 
     function __construct() {
 
@@ -22,7 +22,7 @@ class Management extends CI_Controller {
         } else {
             $data['events'] = array();
         }
-        $this->load->view('management-home',$data);
+        $this->load->view('country-home',$data);
     }
 
     public function tracks() {
@@ -285,136 +285,6 @@ class Management extends CI_Controller {
 
         $this->load->view('add-student', $data);
     }
-    
-       public function country_student() {
-
-        $this->load->helper(array('form', 'url'));
-        $action = $this->uri->segment(3);
-
-        if ($action == 'delete') {
-            $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'student');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
-                                                <strong>
-                                                 student deleted	</strong>									
-						</div>');
-
-            redirect('/management/country_student', 'refresh');
-        }
-        if ($action == 'update') {
-
-            $this->load->helper(array('form', 'url'));
-
-            $fname = $this->input->post('fname');
-            $lname = $this->input->post('lname');
-            $id = $this->input->post('id');
-            $other = $this->input->post('other');
-            $email = $this->input->post('email');
-            $contact = $this->input->post('contact');
-
-            $student = array('fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'contact' => $contact);
-            $this->MD->update($id, $student, 'student');
-        }
-
-
-        $this->load->helper(array('form', 'url'));
-
-        $fname = $this->input->post('fname');
-        $lname = $this->input->post('lname');
-        $password = $this->input->post('password1');
-
-
-        if ($fname != "" && $lname != "") {
-
-
-            $email = $this->input->post('email');
-            $password = $password;
-            $key = $email;
-
-            $password = $this->encrypt->encode($password, $key);
-
-            $get_result = $this->MD->check($email, 'email', 'student');
-
-            if (!$get_result) {
-                $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
-                                                <strong>
-                                                 Email already in use	</strong>									
-						</div>');
-                redirect('/management/country_student', 'refresh');
-            }
-
-
-            $file_element_name = 'userfile';
-
-
-
-            $config['upload_path'] = 'uploads/';
-            // $config['upload_path'] = '/uploads/';
-            $config['allowed_types'] = '*';
-            $config['encrypt_name'] = FALSE;
-
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload($file_element_name)) {
-                $status = 'error';
-                echo $msg = $this->upload->display_errors('', '');
-            } else {
-
-                $data = $this->upload->data();
-                $other = $this->input->post('other');
-                $gender = $this->input->post('gender');
-                $dob =  date('Y-m-d', strtotime($this->input->post('dob')));
-                $country = $this->input->post('country');
-                $contact = $this->input->post('contact');
-                $cohort = $this->input->post('cohort');
-                $submitted = date('Y-m-d');
-                $file = $data['file_name'];
-                $email = $this->input->post('email');
-
-                $student = array('image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'active');
-                $file_id = $this->MD->save($student, 'student');
-                ;
-                $this->session->set_flashdata('msg', '<div class="alert alert-success">
-                                                   
-                                                <strong>
-                                                 information saved</strong>									
-						</div>');
-
-                redirect('/management/country_student', 'refresh');
-            }
-        }
-        $query = $this->MD->show('cohort');
-        //  var_dump($query);
-        if ($query) {
-            $data['cohorts'] = $query;
-        } else {
-            $data['cohorts'] = array();
-        }
-        $query = $this->MD->show('track');
-        //  var_dump($query);
-        if ($query) {
-            $data['tracks'] = $query;
-        } else {
-            $data['tracks'] = array();
-        }
-          $query = $this->MD->show('country');
-        //  var_dump($query);
-        if ($query) {
-            $data['countries'] = $query;
-        } else {
-            $data['countries'] = array();
-        }
-        $query = $this->MD->show('student');
-        //  var_dump($query);
-        if ($query) {
-            $data['students'] = $query;
-        } else {
-            $data['students'] = array();
-        }
-
-        $this->load->view('country-student', $data);
-    }
 
     public function country() {
 
@@ -525,11 +395,10 @@ class Management extends CI_Controller {
             $fname = $this->input->post('fname');
             $lname = $this->input->post('lname');
             $id = $this->input->post('id');
-             $level = $this->input->post('level');
 
             $email = $this->input->post('email');
             $contact = $this->input->post('contact');
-            $user = array('fname' => $fname, 'lname' => $lname,'level' => $level, 'email' => $email, 'contact' => $contact, 'registered' => date('Y-m-d'), 'status' => 'active');
+            $user = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'contact' => $contact, 'registered' => date('Y-m-d'), 'status' => 'active');
             $this->MD->update($id, $user, 'user');
         }
 
@@ -563,13 +432,11 @@ class Management extends CI_Controller {
 
             $country = $this->input->post('country');
             $contact = $this->input->post('contact');
-            $level = $this->input->post('level');
-            
             $submitted = date('Y-m-d');
 
             $email = $this->input->post('email');
 
-            $user = array('fname' => $fname, 'lname' => $lname, 'level'=>$level,'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
+            $user = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
             $file_id = $this->MD->save($user, 'user');
             ;
             $this->session->set_flashdata('msg', '<div class="alert alert-success">
@@ -598,99 +465,7 @@ class Management extends CI_Controller {
 
         $this->load->view('user', $data);
     }
-    public function country_user() {
 
-        $this->load->helper(array('form', 'url'));
-        $action = $this->uri->segment(3);
-
-        if ($action == 'delete') {
-            $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'user');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
-                                                <strong>
-                                                 user deleted	</strong>									
-						</div>');
-
-            redirect('/management/country_user', 'refresh');
-        }
-        if ($action == 'update') {
-
-            $this->load->helper(array('form', 'url'));
-
-            $fname = $this->input->post('fname');
-            $lname = $this->input->post('lname');
-            $id = $this->input->post('id');
-
-            $email = $this->input->post('email');
-            $contact = $this->input->post('contact');
-            $user = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'contact' => $contact, 'registered' => date('Y-m-d'), 'status' => 'active');
-            $this->MD->update($id, $user, 'user');
-        }
-
-
-        $this->load->helper(array('form', 'url'));
-
-        $fname = $this->input->post('fname');
-        $lname = $this->input->post('lname');
-        $password = $this->input->post('password1');
-
-
-        if ($fname != "" && $lname != "") {
-
-
-            $email = $this->input->post('email');
-            $password = $password;
-            $key = $email;
-
-            $password = $this->encrypt->encode($password, $key);
-
-            $get_result = $this->MD->check($email, 'email', 'user');
-
-            if (!$get_result) {
-                $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
-                                                <strong>
-                                                 Email already in use	</strong>									
-						</div>');
-                redirect('/management/country_user', 'refresh');
-            }
-
-            $country = $this->input->post('country');
-            $contact = $this->input->post('contact');
-            $submitted = date('Y-m-d');
-
-            $email = $this->input->post('email');
-
-            $user = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
-            $file_id = $this->MD->save($user, 'user');
-            ;
-            $this->session->set_flashdata('msg', '<div class="alert alert-success">
-                                                   
-                                                <strong>
-                                                 user information saved</strong>									
-						</div>');
-
-            redirect('/management/country_user', 'refresh');
-        }
-        $query = $this->MD->show('user');
-        //  var_dump($query);
-        if ($query) {
-            $data['users'] = $query;
-        } else {
-            $data['users'] = array();
-        }
-         $query = $this->MD->show('country');
-      //  var_dump($query);
-        if ($query) {
-             $data['country'] = $query;
-        } else {
-            $data['country'] = array();
-        }
-
-
-        $this->load->view('country-user', $data);
-    }
   public function event() {
 
         $this->load->helper(array('form', 'url'));

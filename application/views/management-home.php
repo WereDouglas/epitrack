@@ -119,7 +119,7 @@
                                 <div class="dialogs">
                                     <div class="itemdiv dialogdiv">
                                         <div class="user">
-                                            <img alt="Alexa's Avatar" src="<?php echo base_url(); ?>uploads/shamim.jpg" />
+                                            <img alt="" src="<?php echo base_url(); ?>uploads/shamim.jpg" />
                                         </div>
 
                                         <div class="body">
@@ -143,7 +143,7 @@
 
                                     <div class="itemdiv dialogdiv">
                                         <div class="user">
-                                            <img alt="John's Avatar" src="<?php echo base_url(); ?>uploads/DSC_6320.JPG" />
+                                            <img alt=" " src="<?php echo base_url(); ?>uploads/DSC_6320.JPG" />
                                         </div>
 
                                         <div class="body">

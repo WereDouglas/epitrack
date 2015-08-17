@@ -37,7 +37,7 @@
 
     <body>
         <div class="navbar">
-            <div class="navbar-inner" style="background-color: #2E8965;">
+            <div class="navbar-inner" style="background-color:#6FB3E0;">
                 <div class="container-fluid">
                     <a href="#" class="brand">
                         <small>
@@ -47,7 +47,7 @@
                     </a><!--/.brand-->
 
                     <ul class="nav ace-nav pull-right">
-                        <li class="green">
+                        <li class="light-blue">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <i class="icon-tasks"></i>
                                 <span class="badge badge-grey">4</span>
@@ -120,7 +120,7 @@
                             </ul>
                         </li>
 
-                        <li class="green">
+                        <li class="light-blue">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <i class="icon-bell-alt icon-animated-bell"></i>
                                 <span class="badge badge-important">8</span>
@@ -184,7 +184,7 @@
                             </ul>
                         </li>
 
-                        <li class="green">
+                        <li class="light-blue">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <i class="icon-envelope icon-animated-vertical"></i>
                                 <span class="badge badge-success">5</span>
@@ -256,7 +256,7 @@
                             </ul>
                         </li>
 
-                        <li class="green">
+                        <li class="light-blue">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                                  <span class="user-info">
                                     <small>Welcome,</small>
@@ -335,7 +335,7 @@
                          
 -->
   <a href="<?php echo base_url() . "index.php/management/"; ?>" target="frame">
-                <div class="infobox infobox-grey infobox-small infobox-green">
+                <div class="infobox infobox-blue infobox-small infobox-dark">
                     <div class="infobox-chart">
                         <div class="infobox-icon">
                          <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/home.png" alt="account" />
@@ -348,7 +348,7 @@
                     </div>
                 </div> </a>
           <a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame">
-                <div class="infobox infobox-grey infobox-small infobox-green">
+                <div class="infobox infobox-blue infobox-small infobox-dark">
                     <div class="infobox-chart">
                         <div class="infobox-icon">
                                             <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/tracks.png" alt="account" />
@@ -361,7 +361,7 @@
                     </div>
                 </div> </a>
                   <a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame">
-                                    <div class="infobox infobox-grey infobox-small infobox-green">
+                                    <div class="infobox infobox-blue infobox-small infobox-dark">
                                          <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/cohort.png" alt="account" />
                           </div>
@@ -372,9 +372,9 @@
                                         </div>
                    </div>
                 </a>
-               
-             <a href="<?php echo base_url() . "index.php/management/student"; ?>" target="frame"> 
-                 <div class="infobox infobox-grey infobox-small infobox-green">
+              
+             <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"> 
+                 <div class="infobox infobox-blue infobox-small infobox-dark">
                                    
                                       <div class="infobox-icon">
                                               <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/students.png" alt="account" />
@@ -388,10 +388,23 @@
                    </div>
                 </a>
             
-                
-  <a href="<?php echo base_url() . "index.php/management/user"; ?>" target="frame">
+                 <a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame">  
+                     <div class="infobox infobox-blue infobox-small infobox-dark">
+                                  
+               
+                                         <div class="infobox-icon">
+                                           <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/flag.png" alt="account" />
+                      </div>
+
+                                        <div class="infobox-icon">
+                                            <div class="infobox-content">Countries</div>
+                                            <div class="infobox-content"></div>
+                                        </div>
+                   </div>
+                </a>
+  <a href="<?php echo base_url() . "index.php/management/country_user"; ?>" target="frame">
                                    
-                   <div class="infobox infobox-grey infobox-small infobox-green">
+                   <div class="infobox infobox-blue infobox-small infobox-dark">
                                        <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/users.png" alt="account" />
                           </div>
@@ -404,7 +417,7 @@
                 </a>
            
                     <a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame">  
-                        <div class="infobox infobox-green infobox-small infobox-green">
+                        <div class="infobox infobox-blue infobox-small infobox-dark">
                                       <div class="infobox-icon">
                                             <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/advert.png" alt="account" />
                       </div>   
@@ -415,7 +428,18 @@
                                         </div>
                    </div>
                 </a>
-                 
+                    <a href="<?php echo base_url() . "index.php/management/advert"; ?>" target="frame">  
+                                           <div class="infobox infobox-blue infobox-small infobox-dark">
+                                      <div class="infobox-icon">
+                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/advert.png" alt="account" />
+                      </div>   
+
+                                        <div class="infobox-data">
+                                            <div class="infobox-content">Advertisement</div>
+                                            <div class="infobox-content"></div>
+                                        </div>
+                   </div>
+                </a>
 
         
 

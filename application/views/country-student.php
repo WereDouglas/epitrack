@@ -103,7 +103,7 @@
             <?php echo $this->session->flashdata('msg'); ?>
             <div class="row-fluid">
                 <div class="span12 widget-container-span">
-                   
+                 
                         <div class="">
                            
     <div class="">
@@ -122,15 +122,34 @@
                                                 List
                                             </button>
                                         </a>
-                                         
                                     </div>
 
 
 
                                     <div class="btn-group">
-                                      
-<h2>Students</h2>
-                                       
+                                        <button data-toggle="dropdown" class="btn btn-small btn-grey dropdown-toggle">
+                                            <i class="icon-caret-down icon-only bigger-110"></i>
+                                        </button>
+
+                                        <ul class="dropdown-menu pull-right dropdown-purple dropdown-caret dropdown-close">
+                                            <li>
+                                                <a href="#">Action</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">Another action</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">Something else here</a>
+                                            </li>
+
+                                            <li class="divider"></li>
+
+                                            <li>
+                                                <a href="#">Separated link</a>
+                                            </li>
+                                        </ul>
                                     </div><!--/btn-group-->
                                 </div>
                             </div>
@@ -181,7 +200,14 @@
                                                                 <span class="span12 align-right">First name:<input type="text" class="span6"  id="fname" name="fname" placeholder="First name"  /></span>
                                                                 <span class="span12 align-right">Last name:<input class="input-small span6"  type="text" id="lname" name="lname" placeholder="Last Name"  /></span>
                                                                <span class="span12 align-right">Other name:<input class="input-small span6"  type="text" id="other" name="other" placeholder="Other name"  /></span>
-                                                           
+                                                            <span class="span12 align-right"> Primary e-mail:<input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
+                                                     <span class="span12 align-right"> Primary contact <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
+                                                         <span class="span12 align-right">  Gender: <select  data-placeholder="Choose a sex..." name="gender" id="gender">
+
+                                                                    <option value="male" />male
+                                                                    <option value="female" />female
+
+                                                                  </select></span> 
                                                             </div>
                                                         </div>
 
@@ -198,14 +224,7 @@
 
 
                                                         <div class="control-group">
-                                                           <span class="span12 align-right"> Primary e-mail:<input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
-                                                     <span class="span12 align-right"> Primary contact <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
-                                                         <span class="span12 align-right">  Gender: <select  data-placeholder="Choose a sex..." name="gender" id="gender">
-
-                                                                    <option value="male" />male
-                                                                    <option value="female" />female
-
-                                                                  </select></span>  
+                                                           
                                                             <div class="controls">
                                                                 <span class="span12 align-right">  Date of Birth:   <input class="date-picker" id="dob" name="dob" type="text" data-date-format="dd-mm-yyyy" /></span>
 
@@ -218,9 +237,21 @@
                                                         </div>
                                                         <div class="control-group">
                                                                                                                     <div class="controls">
-                                                                <div class="controls" id="address">
-                                                                     <span class="span12 align-right">   Country:<input type="text" readonly="true" id="country" class="span6" name="country" value="<?=$this->session->userdata('country')?>" /></span>
-                                                        <input class="field" id="street_number" type="hidden" disabled="true"></input>
+                                                                <div class="controls align-right" id="address">
+                                                                      <div class="control-grou align-rightp">
+                                                          Country :
+                                                            <select id="country" name="country" >                                                            
+                                                                <?php
+                                                                if (is_array($countries) && count($countries)) {
+                                                                    foreach ($countries as $loop) {
+                                                                        ?>                        
+                                                                        <option value="<?= $loop->name ?>" /><?= $loop->name ?>
+                                                                    <?php
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </div>          <input class="field" id="street_number" type="hidden" disabled="true"></input>
                                                                     <input class="field" id="route"type="hidden"  disabled="true"></input>
                                                                     <input class="field" id="locality" type="hidden"     disabled="true"></input>
                                                                     <input class="field" type="hidden" id="administrative_area_level_1" disabled="true"></input>
@@ -294,7 +325,7 @@
                                                                 <th>email</th>   
                                                                  <th>Gender</th>   
                                                                   <th>Age</th>
-                                                                  
+                                                                   <th>Country</th>  
                                                                     <th>Contact</th> 
                                                                      <th>Cohort</th>
                                                                       <th>Status</th>   
@@ -312,10 +343,9 @@
                                                                      $other = $loop->other;
                                                                       $email = $loop->email;
                                                                            $contact = $loop->contact;
-                                                                              $country = $loop->country;
 
                                                                     $id = $loop->id;
-                                                                    if($country==$this->session->userdata('country')){
+                                                                   
                                                                     ?>  
 
                                                                     <tr id="<?php echo $id; ?>" class="edit_tr">
@@ -350,7 +380,8 @@
                                                                         
                                                                           <td><?= $loop->gender ?></td>
                                                                             <td><?= $loop->dob ?></td>
-                                                                                 
+                                                                              <td><?= $loop->country ?></td>
+                                                                                
                                                                               <td class="edit_td">
                                                                             <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
                                                                             <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
@@ -369,7 +400,6 @@
                                                                         </td>
                                                                     </tr>
                                                                     <?php
-                                                                    }
                                                                 }
                                                             }
                                                             ?>

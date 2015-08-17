@@ -67,6 +67,7 @@
                     </div>
 
 
+
                     <div class="widget-main ">
                         <div id="accordion2" class="accordion">              
 
@@ -86,7 +87,18 @@
                                                         <span class="span12 align-right">Last name:<input class="input-small span6"  type="text" id="lname" name="lname" placeholder="Last Name"  /></span>
                                                         <span class="span12 align-right">E-mail:<input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
                                                         <span class="span12 align-right">Contact <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
+ <div class="controls  align-right">
+                                                     
+                                                           Level :
+                                                            <select class="span6 align-right" id="level" name="level" >                                                            
+                                                                                    
+                                                                        <option value="1" />Level-1
+                                                                          <option value="2" />Level-2
+                                                                          <option value="3" />Level-3
+                                                                 
+                                                            </select>
 
+                                                   </div>
                                                     </div>
                                                 </div>
 
@@ -99,12 +111,20 @@
 
                                                 <div class="control-group align-right">
                                                     <div class="controls">
-                                                        <span class="span12 align-right">   Country:<input type="text" readonly="true" id="country" class="span6" name="country" value="<?= $this->session->userdata('country') ?>" /></span>
-                                                        <input type="hidden" r id="level" class="span6" name="level" value="2" />
+                                                     
+                                                            Country :
+                                                            <select class="span6 align-right" id="country" name="country" >                                                            
+                                                                <?php
+                                                                if (is_array($country) && count($country)) {
+                                                                    foreach ($country as $loop) {
+                                                                        ?>                        
+                                                                        <option value="<?= $loop->name ?>" /><?= $loop->name ?>
+                                                                    <?php }
+                                                                } ?>
+                                                            </select>
 
-                                                    </div>
+                                                   </div>
                                                 </div>
-
 
 
 
@@ -163,8 +183,9 @@
                                                         </th>
 
                                                         <th>First name</th>
-                                                        <th>last name</th>                                                             
-                                                        <th>email</th>                                                                
+                                                        <th>Last name</th>                                                             
+                                                        <th>E-mail</th>    
+                                                           <th>Level</th>    
                                                         <th>Country</th>  
                                                         <th>Contact</th>                                                                 
                                                         <th>Status</th>   
@@ -177,62 +198,63 @@
                                                     <?php
                                                     if (is_array($users) && count($users)) {
                                                         foreach ($users as $loop) {
+                                                            $fname = $loop->fname;
+                                                            $lname = $loop->lname;
 
-                                                            if ($loop->country == $this->session->userdata('country')) {
+                                                            $email = $loop->email;
+                                                            $contact = $loop->contact;
+                                                              $level = $loop->level;
 
-                                                                $fname = $loop->fname;
-                                                                $lname = $loop->lname;
+                                                            $id = $loop->id;
+                                                            ?>  
 
-                                                                $email = $loop->email;
-                                                                $contact = $loop->contact;
-                                                                  // $level = $loop->level;
+                                                            <tr id="<?php echo $id; ?>" class="edit_tr">
+                                                                <td class="center ">
+                                                                    <label>
+                                                                        <input type="checkbox" />
+                                                                        <span class="lbl"></span>
+                                                                    </label>
+                                                                </td>
 
-                                                                $id = $loop->id;
-                                                                ?>  
+                                                                <td class="edit_td">
+                                                                    <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
+                                                                    <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"/>
+                                                                </td>
+                                                                <td class="edit_td">
+                                                                    <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
+                                                                    <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"/>
+                                                                </td>
 
-                                                                <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                                    <td class="center ">
-                                                                        <label>
-                                                                            <input type="checkbox" />
-                                                                            <span class="lbl"></span>
-                                                                        </label>
-                                                                    </td>
+                                                                <td class="edit_td">
+                                                                    <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
+                                                                    <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"/>
+                                                                </td>
+                                                                  <td class="edit_td">
+                                                                        <span id="level_<?php echo $id; ?>" class="text"><?php echo $level; ?></span>
+                                                                        <input type="text" value="<?php echo $level; ?>" class="editbox" id="level_input_<?php echo $id; ?>"/>
+                                                                 </td>
 
-                                                                    <td class="edit_td">
-                                                                        <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
-                                                                        <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"
-                                                                    </td>
-                                                                    <td class="edit_td">
-                                                                        <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
-                                                                        <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"
-                                                                    </td>
 
-                                                                    <td class="edit_td">
-                                                                        <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
-                                                                        <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"
-                                                                    </td>
-                                                                     
-                                                                    <td><?= $loop->country ?></td>
+                                                                <td><?= $loop->country ?></td>
 
-                                                                    <td class="edit_td">
-                                                                        <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
-                                                                        <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
-                                                                    </td>
+                                                                <td class="edit_td">
+                                                                    <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
+                                                                    <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"/>
+                                                                </td>
 
-                                                                    <td><?= $loop->status ?></td>
-                                                                    <td><?= $loop->registered ?></td>
+                                                                <td><?= $loop->status ?></td>
+                                                                <td><?= $loop->registered ?></td>
 
-                                                                    <td class="td-actions">
+                                                                <td class="td-actions">
 
-                                                                        <a href="<?php echo base_url() . "index.php/management/user/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                            <span class="red">
-                                                                                <i class="icon-trash bigger-120"></i>
-                                                                            </span>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                                <?php
-                                                            }
+                                                                    <a href="<?php echo base_url() . "index.php/management/user/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                        <span class="red">
+                                                                            <i class="icon-trash bigger-120"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <?php
                                                         }
                                                     }
                                                     ?>
@@ -578,6 +600,9 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
             $("#email" + ID).hide();
             $("#email_input_" + ID).show();
+            
+             $("#level" + ID).hide();
+            $("#level_input_" + ID).show();
 
 
         }).change(function ()
@@ -587,13 +612,15 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             var lname = $("#lname_input_" + ID).val();
             var contact = $("#contact_input_" + ID).val();
             var email = $("#email_input_" + ID).val();
+            var level = $("#level_input_" + ID).val();
 
 
-            var dataString = 'id=' + ID + '&fname=' + fname + '&lname=' + lname + '&contact=' + contact + '&email=' + email;
+            var dataString = 'id=' + ID + '&fname=' + fname + '&lname=' + lname + '&contact=' + contact + '&email=' + email+ '&level=' + level;
             $("#fname_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             $("#lname_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             $("#contact_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             $("#email_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#level_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
 
             if (fname.length > 0 && lname.length > 0)
             {
@@ -609,6 +636,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                         $("#lname_" + ID).html(lname);
                         $("#contact_" + ID).html(contact);
                         $("#email_" + ID).html(email);
+                         $("#level_" + ID).html(level);
 
 
                     }

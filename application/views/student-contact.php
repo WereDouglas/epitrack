@@ -32,6 +32,7 @@
                             <select id="type" name="type" >                                                            
 
                                 <option value="e-mail" />E-mail
+                                 <option value="Physical" />Physical
                                 <option value="Mobile" />Mobile phone
                                 <option value="office" />Office 
                                 <option value="landline" />Landline

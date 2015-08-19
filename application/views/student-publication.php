@@ -97,7 +97,13 @@
                                                         <input type="text" class="span12" id="title" name="title" placeholder="title"  />
                                                     </div>
                                                 </div>
-                                                <div class="control-group">
+                                           
+
+
+
+                                            </div>
+                                            <div class="alert alert-block alert-info span6">
+                                                 <div class="control-group">
                                                     <label class="control-label" for="form-field-username">Country</label>
 
                                                     <div class="controls">
@@ -110,15 +116,20 @@
                                                     <div class="controls">
                                                         <input type="text" class="span12" id="link" name="link" placeholder="link"  />
                                                     </div>
-                                                </div>
-                                                <div class="control-group">
-                                                   
-                                                    <div class="row-fluid">
-                                                        <label for="form-field-9">Abstract</label>
+                                                    <label class="control-label" for="form-field-username">Co-author</label>
 
-                                                        <textarea class="span12 limited" id="form-field-9" name="abstract" data-maxlength="50"></textarea>
+                                                    <div class="controls">
+                                                        <input type="text" class="span12" id="author" name="author" placeholder="link"  />
                                                     </div>
                                                 </div>
+                                            
+                                            </div>
+
+
+                                            <div class="alert span12">  
+                                                <label for="form-field-9">Abstract</label>
+
+                                                <textarea class="span12" id="form-field-9" name="abstract" data-maxlength="10"></textarea>
                                                 <div class="">
                                                     <button class="btn btn-info" type="submit">
                                                         <i class="icon-ok bigger-110"></i>
@@ -129,14 +140,8 @@
                                                         <i class="icon-undo bigger-110"></i>
                                                         Reset
                                                     </button>
-                                                </div>
-
+                                                </div>                                             
                                             </div>
-
-
-
-
-
 
                                         </form>	
                                     </div>
@@ -161,13 +166,13 @@
                                                                 <span class="lbl"></span>
                                                             </label>
                                                         </th>
-                                                          <th>Title</th>
+                                                        <th>Title</th>
                                                         <th>link</th>
                                                         <th>abstract</th>
                                                         <th>Reviewed</th>
                                                         <th>Accepted</th>
                                                         <th>submitted on</th>
-                                                        
+
 
 
                                                         <th></th>
@@ -179,8 +184,8 @@
                                                     if (is_array($publications) && count($publications)) {
                                                         foreach ($publications as $loop) {
                                                             $name = $loop->title;
-                                                             $link = $loop->link;
-                                                              $abstract = $loop->abstract;
+                                                            $link = $loop->link;
+                                                            $abstract = $loop->abstract;
 
                                                             $id = $loop->id;
                                                             ?>  
@@ -192,14 +197,14 @@
                                                                         <span class="lbl"></span>
                                                                     </label>
                                                                 </td>
-                                                                  <td class="edit_td">
+                                                                <td class="edit_td">
                                                                     <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                                                                     <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
                                                                 </td>
-                                                                    <td class="center ">
+                                                                <td class="center ">
                                                                     <?php echo $link ?>
                                                                 </td>
-                                                                    <td class="center ">
+                                                                <td class="center ">
                                                                     <?php echo $loop->abstract ?>
                                                                 </td>
                                                                 <td class="center ">
@@ -208,7 +213,7 @@
                                                                 <td class="center ">
                                                                     <?php echo $loop->accepted ?>
                                                                 </td>
-                                                                    <td class="center ">
+                                                                <td class="center ">
                                                                     <?php echo $loop->dos ?>
                                                                 </td>
                                                                 <td class="td-actions">
@@ -331,15 +336,6 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $('[data-rel=tooltip]').tooltip({container: 'body'});
         $('[data-rel=popover]').popover({container: 'body'});
 
-        $('textarea[class*=autosize]').autosize({append: "\n"});
-        $('textarea[class*=limited]').each(function () {
-            var limit = parseInt($(this).attr('data-maxlength')) || 100;
-            $(this).inputlimiter({
-                "limit": limit,
-                remText: '%n character%s remaining...',
-                limitText: 'max allowed : %n.'
-            });
-        });
 
         $.mask.definitions['~'] = '[+-]';
         $('.input-mask-date').mask('99/99/9999');
@@ -535,18 +531,6 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
 
 
-
-        //we could just set the data-provide="tag" of the element inside HTML, but IE8 fails!
-        var tag_input = $('#form-field-tags');
-        if (!(/msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase())))
-            tag_input.tag({placeholder: tag_input.attr('placeholder')});
-        else {
-            //display a textarea for old IE, because it doesn't support this plugin or another one I tried!
-            tag_input.after('<textarea id="' + tag_input.attr('id') + '" name="' + tag_input.attr('name') + '" rows="3">' + tag_input.val() + '</textarea>').remove();
-            //$('#form-field-tags').autosize({append: "\n"});
-        }
-
-
     });
 </script>
 <script type="text/javascript">
@@ -633,3 +617,5 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
     });
 </script>
+<script src="<?= base_url(); ?>tinymce/tinymce.min.js"></script>
+<script>tinymce.init({selector: 'textarea'});</script>

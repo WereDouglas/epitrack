@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-responsive.min.css" />
         <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
         <link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery.gritter.css" />
+      
         <!--[if lte IE 8]>
           <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
         <![endif]-->
@@ -39,15 +40,25 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="container-fluid">
-                    <a href="#" class="brand">
+                    <a href="#" class="">
                         <small>
-                            <img  height="300px" width="300px" class="nav-user-photo" src="<?= base_url(); ?>images/log.png" alt="User's Photo" />
+                            <img  height="300px" width="300px"  src="<?= base_url(); ?>images/log.png" alt="User's Photo" />
 
                         </small>
                     </a><!--/.brand-->
 
                     <ul class="nav ace-nav pull-right">
-                        <li class="grey">
+                         <li class="">
+                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                
+                                 <img  height="80px" width="80px" class="" src="<?= base_url(); ?>flags/<?php echo $this->session->userdata('flag');?>" alt="Flag" />
+
+
+                                
+                            </a>
+
+                        </li>
+                        <li class="">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <i class="icon-tasks"></i>
                                 <span class="badge badge-grey">4</span>
@@ -352,14 +363,24 @@
                                         </div>
                    </div>
                 
-                   <a href="#collapseQualification" data-parent="#accordionQualification" data-toggle="collapse" class="accordion-toggle collapsed">
-                                        <div class="infobox infobox-grey infobox-small infobox-dark">
+                <a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame">                          <div class="infobox infobox-grey infobox-small infobox-dark">
                                       <div class="infobox-icon">
                                              <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/employement.png" alt="account" />
                                        </div>
 
                                         <div class="infobox-data">
                                             <div class="infobox-content">Qualifications</div>
+                                            <div class="infobox-content"></div>
+                                        </div>
+                   </div>
+                </a>
+                        <a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame">                          <div class="infobox infobox-grey infobox-small infobox-dark">
+                                      <div class="infobox-icon">
+                                             <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/employement.png" alt="account" />
+                                       </div>
+
+                                        <div class="infobox-data">
+                                            <div class="infobox-content">Surveillance</div>
                                             <div class="infobox-content"></div>
                                         </div>
                    </div>
@@ -376,8 +397,8 @@
                                         </div>
                    </div>
                 </a>
-  <a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame">
-                                                                      <div class="infobox infobox-grey infobox-small infobox-dark">
+             <a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame">
+                                        <div class="infobox infobox-grey infobox-small infobox-dark">
                                        <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/study.png" alt="account" />
                                       </div>
@@ -387,18 +408,8 @@
                                             <div class="infobox-content"></div>
                                         </div>
                    </div>
-                </a>
-                <a href="#collapseSurv" data-parent="#accordionSurv" data-toggle="collapse" class="accordion-toggle collapsed">
-                                          <div class="infobox infobox-grey infobox-small infobox-dark">
-                                        <div class="infobox-icon">
-                                           <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/book.png" alt="account" />
-                                            </div>
-
-                                        <div class="infobox-data">
-                                            <div class="infobox-content">Surveillance data</div>
-                                           
-                                        </div>
-                  </div></a>
+               </a>
+       
                    <a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame">
                      <div class="infobox infobox-grey infobox-small infobox-dark">
                                         <div class="infobox-icon">
@@ -409,7 +420,8 @@
                                             <div class="infobox-content">Outbreaks</div>
                                            
                                         </div>
-                  </div></a>
+                  </div>
+                   </a>
                <a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame">
                                         <div class="infobox infobox-grey infobox-small infobox-dark">
                                         <div class="infobox-icon">

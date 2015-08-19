@@ -114,6 +114,8 @@
                                                        
                                                 </div>
                                                          <div class="control-group">
+                                                             
+                                                             
                                                            Choose country of outbreak:
                                                            <select class="span12" id="country" name="country" >                                                            
                                                                 <?php
@@ -132,11 +134,11 @@
                                                        
                                                 </div>
                                                      <div class="controls">
-                                                        <span class="span12 ">Max numbers:<input type="text" class="span12"  id="max" name="max" /></span>
+                                                        <span class="span12 ">Number of cases:<input type="text" class="span12"  id="max" name="max" /></span>
                                                        
                                                 </div>
                                                      <div class="controls">
-                                                        <span class="span12 ">Min numbers:<input type="text" class="span12"  id="max" name="min" /></span>
+                                                        <span class="span12 ">Number of deaths:<input type="text" class="span12"  id="max" name="min" /></span>
                                                        
                                                 </div>
                                                                <label for="id-date-picker-1">Date of Study Onset</label>
@@ -167,8 +169,19 @@
                                                  <div class="row-fluid">
                                           
                                                           <div class="controls">
-                                                        <span class="span12 ">Investigation Dates:<input type="text" class="span12"  id="dates" name="dates" /></span>
-                                                       
+                                                              <div class="row-fluid">
+                                                                  <label for="id-date-range-picker-1">Investigation Dates:</label>
+                                                              </div>
+
+                                                              <div class="control-group">
+                                                                  <div class="row-fluid input-prepend">
+                                                                      <span class="add-on">
+                                                                          <i class="icon-calendar"></i>
+                                                                      </span>
+
+                                                                      <input class="span10" type="text" name="dates" id="id-date-range-picker-1" />
+                                                                  </div>
+                                                              </div>
                                                 </div>
                                                          <div class="control-group">
                                                            Lab involvement:
@@ -240,6 +253,9 @@
                                                         <th>Dissemination</th>   
                                                         <th>Findings</th>   
                                                         <th>Date of study</th> 
+                                                        <th>Cases</th> 
+                                                        <th>Deaths</th> 
+                                                        <th>verified</th> 
                                                       
                                                         <th></th>
                                                     </tr>
@@ -275,6 +291,9 @@
                                                                 </td>                                                          
 
                                                                 <td><?= $loop->dos ?></td>
+                                                                  <td><?= $loop->max ?></td>
+                                                                    <td><?= $loop->min ?></td>
+                                                                      <td><?= $loop->verified ?></td>
 
                                                                 <td class="td-actions">
 
@@ -284,6 +303,7 @@
                                                                         </span>
                                                                     </a>
                                                                 </td>
+                                                                
                                                             </tr>
                                                             <?php
                                                         }
@@ -362,6 +382,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
 <script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
+<script type= "text/javascript" src = "<?= base_url(); ?>js/countries.js"></script>
 
 <!--inline scripts related to this page-->
 <script type="text/javascript">

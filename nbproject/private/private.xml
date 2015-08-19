@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/wamp/www/epitrack/application/views/header.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/management.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/add-student.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/controllers/Administration.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/management-home.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/country-home.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/login.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/event.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/controllers/Welcome.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/controllers/Country.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/country-header.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/controllers/Management.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/user.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/country-user.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/country-student.php</file>
+        </group>
     </open-files>
 </project-private>

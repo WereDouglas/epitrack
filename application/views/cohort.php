@@ -38,11 +38,8 @@
                                         <?php }}?>
                                                 </select>
        
-         Select the Year:<input class="span3 date-picker" id="year" name="year" value="<?php echo date('Y');?>" type="text" />
-                        <span class="add-on">
-                            <i class="icon-calendar"></i>
-                        </span>
-                                                             
+                                                                 Select the Year:   <input type="text" class="span2" id="years" name="years" placeholder="<?php echo date('Y');?>" /> 
+                                                                             
                                                         </span>
                                                     </label>
     
@@ -138,6 +135,10 @@
 
 </div><!--/.main-content-->
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/jquery-2.0.3.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/date-time/bootstrap-timepicker.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/date-time/moment.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/date-time/daterangepicker.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function()
 {
@@ -193,4 +194,7 @@ $(".text").show();
 });
 
 });
+
+
+ 
 </script>

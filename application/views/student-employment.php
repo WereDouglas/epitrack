@@ -2,16 +2,6 @@
 <link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/font-awesome.min.css" />
 
-<!--[if IE 7]>
-  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
-<![endif]-->
-
-<!--page specific plugin styles-->
-
-<!--fonts-->
-
-<!--ace styles-->
-
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-responsive.min.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
@@ -25,71 +15,8 @@
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/daterangepicker.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/colorpicker.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
-<script>
-    // This example displays an address form, using the autocomplete feature
-// of the Google Places API to help users fill in the information.
 
-    var placeSearch, autocomplete;
-    var componentForm = {
-        street_number: 'short_name',
-        route: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
-    };
-
-    function initialize() {
-        // Create the autocomplete object, restricting the search
-        // to geographical location types.
-        autocomplete = new google.maps.places.Autocomplete(
-                /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
-                {types: ['geocode']});
-        // When the user selects an address from the dropdown,
-        // populate the address fields in the form.
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            fillInAddress();
-        });
-    }
-
-// [START region_fillform]
-    function fillInAddress() {
-        // Get the place details from the autocomplete object.
-        var place = autocomplete.getPlace();
-
-        for (var component in componentForm) {
-            document.getElementById(component).value = '';
-            document.getElementById(component).disabled = false;
-        }
-
-        // Get each component of the address from the place details
-        // and fill the corresponding field on the form.
-        for (var i = 0; i < place.address_components.length; i++) {
-            var addressType = place.address_components[i].types[0];
-            if (componentForm[addressType]) {
-                var val = place.address_components[i][componentForm[addressType]];
-                document.getElementById(addressType).value = val;
-            }
-        }
-    }
-
-    function geolocate() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var geolocation = new google.maps.LatLng(
-                        position.coords.latitude, position.coords.longitude);
-                var circle = new google.maps.Circle({
-                    center: geolocation,
-                    radius: position.coords.accuracy
-                });
-                autocomplete.setBounds(circle.getBounds());
-            });
-        }
-    }
-// [END region_geolocation]
-
-</script>
-<body onload="initialize()">
+<body>
     <div class="main-content">
         <style>
             .form-horizontal .controls {
@@ -175,151 +102,178 @@
                                                     <div class="controls">
                                                         <span class="span6 ">Organisation:<input type="text" class="span6"  id="organisation" name="organisation"   /></span>
                                                         <span class="span6 ">Position:<input class="input-small span6"  type="text" id="position" name="position"   /></span>
-                                                        <span class="span6 ">Country:<input class="input-small span6"  type="text" id="country" name="country"  /></span>
-                                                        <span class="span6 "> Location:<input type="text" class="input-small span6" id="location" name="location"  /></span>
+                                                        <div class="control-group">
+
+
+                                                            Choose country of outbreak:
+                                                            <select class="span3" id="country" name="country" >                                                            
+                                                                <?php
+                                                                if (is_array($country) && count($country)) {
+                                                                    foreach ($country as $loop) {
+                                                                        ?>                        
+                                                                        <option value="<?= $loop->name ?>" /><?= $loop->name ?>
+                                                                        <?php
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </div>  <span class="span6 "> Location:<input type="text" class="input-small span6" id="location" name="location"  /></span>
                                                         <span class="span6 ">Contact: <input type="text" class="input-small span6"  id="contact" name="contact"   /></span>
                                                         <span class="span6 ">Sector: <input type="text" class="input-small span6"  id="sector" name="sector"   /></span>
-                                                        
+                                                                                  <div class="row-fluid">
+                                                    <label for="id-date-picker-1">Date of notification to MOH*</label>
+                                                </div>
+
+                                                <div class="control-group">
+                                                    <div class="row-fluid input-append">
+                                                        <input class="span10 date-picker" id="id-date-picker-1" type="text" name="notification" data-date-format="yyyy-mm-dd" />
+                                                        <span class="add-on">
+                                                            <i class="icon-calendar"></i>
+                                                        </span>
                                                     </div>
                                                 </div>
-                                                <div class="">
-                                                    <button class="btn btn-info" type="submit">
-                                                        <i class="icon-ok bigger-110"></i>
-                                                        Submit
-                                                    </button>
+                                                         
+                                                    </div>
 
-                                                    <button class="btn" type="reset">
-                                                        <i class="icon-undo bigger-110"></i>
-                                                        Reset
-                                                    </button>
                                                 </div>
+                                             
+                                                <button class="btn btn-info" type="submit">
+                                                    <i class="icon-ok bigger-110"></i>
+                                                    Submit
+                                                </button>
 
+                                                <button class="btn" type="reset">
+                                                    <i class="icon-undo bigger-110"></i>
+                                                    Reset
+                                                </button>
                                             </div>
 
-                                        </form>	
                                     </div>
+
+                                    </form>	
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="accordion-group">
-
-
-                                <div class="accordion-body collapsed" id="collapseThree">
-                                    <div class="accordion-inner">
-                                        <div class="alert alert-danger">Select a field to edit the content</div>                     
+                        <div class="accordion-group">
 
 
-                                        <div class="grid-wrapper pre-scrollable">
-                                            <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center">
-                                                            <label>
-                                                                <input type="checkbox" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </th>
+                            <div class="accordion-body collapsed" id="collapseThree">
+                                <div class="accordion-inner">
+                                    <div class="alert alert-danger">Select a field to edit the content</div>                     
 
-                                                        <th>Organisation</th>
-                                                        <th>Position</th>
-                                                        <th>Country</th>   
-                                                        <th>Location</th>   
-                                                        <th>Sector</th>   
-                                                        <th>Contact</th>
-                                                       
-                                                        <th>Created</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
 
-                                                <tbody>
-                                                    <?php
-                                                    if (is_array($records) && count($records)) {
-                                                        foreach ($records as $loop) {
-                                                            $organisation = $loop->organisation;
-                                                            $position = $loop->position;
-                                                            $country = $loop->country;
-                                                            $location = $loop->location;
-                                                            $sector = $loop->sector;
-                                                            $contact = $loop->contact;
-                                                            $created = $loop->created;
+                                    <div class="grid-wrapper pre-scrollable">
+                                        <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="center">
+                                                        <label>
+                                                            <input type="checkbox" />
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </th>
 
-                                                            $id = $loop->id;
-                                                            ?>  
+                                                    <th>Organisation</th>
+                                                    <th>Position</th>
+                                                    <th>Country</th>   
+                                                    <th>Location</th>   
+                                                    <th>Sector</th>   
+                                                    <th>Contact</th>
 
-                                                            <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                                <td class="center ">
-                                                                    <label>
-                                                                        <input type="checkbox" />
-                                                                        <span class="lbl"></span>
-                                                                    </label>
-                                                                </td>
+                                                    <th>Created</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
 
-                                                                <td class="edit_td">
-                                                                    <span id="organisation_<?php echo $id; ?>" class="text"><?php echo $organisation; ?></span>
-                                                                    <input type="text" value="<?php echo $organisation; ?>" class="editbox" id="organisation_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="position_<?php echo $id; ?>" class="text"><?php echo $position; ?></span>
-                                                                    <input type="text" value="<?php echo $position; ?>" class="editbox" id="position_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="country_<?php echo $id; ?>" class="text"><?php echo $country; ?></span>
-                                                                    <input type="text" value="<?php echo $country; ?>" class="editbox" id="country_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="location_<?php echo $id; ?>" class="text"><?php echo $location; ?></span>
-                                                                    <input type="text" value="<?php echo $location; ?>" class="editbox" id="location_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="sector_<?php echo $id; ?>" class="text"><?php echo $sector; ?></span>
-                                                                    <input type="text" value="<?php echo $sector; ?>" class="editbox" id="sector_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
-                                                                    <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
-                                                                </td>
+                                            <tbody>
+                                                <?php
+                                                if (is_array($records) && count($records)) {
+                                                    foreach ($records as $loop) {
+                                                        $organisation = $loop->organisation;
+                                                        $position = $loop->position;
+                                                        $country = $loop->country;
+                                                        $location = $loop->location;
+                                                        $sector = $loop->sector;
+                                                        $contact = $loop->contact;
+                                                        $created = $loop->created;
 
-                                                                <td><?= $loop->created ?></td>
+                                                        $id = $loop->id;
+                                                        ?>  
 
-                                                                <td class="td-actions">
+                                                        <tr id="<?php echo $id; ?>" class="edit_tr">
+                                                            <td class="center ">
+                                                                <label>
+                                                                    <input type="checkbox" />
+                                                                    <span class="lbl"></span>
+                                                                </label>
+                                                            </td>
 
-                                                                    <a href="<?php echo base_url() . "index.php/student/employment/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="icon-trash bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <?php
-                                                        }
+                                                            <td class="edit_td">
+                                                                <span id="organisation_<?php echo $id; ?>" class="text"><?php echo $organisation; ?></span>
+                                                                <input type="text" value="<?php echo $organisation; ?>" class="editbox" id="organisation_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <span id="position_<?php echo $id; ?>" class="text"><?php echo $position; ?></span>
+                                                                <input type="text" value="<?php echo $position; ?>" class="editbox" id="position_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <span id="country_<?php echo $id; ?>" class="text"><?php echo $country; ?></span>
+                                                                <input type="text" value="<?php echo $country; ?>" class="editbox" id="country_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <span id="location_<?php echo $id; ?>" class="text"><?php echo $location; ?></span>
+                                                                <input type="text" value="<?php echo $location; ?>" class="editbox" id="location_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <span id="sector_<?php echo $id; ?>" class="text"><?php echo $sector; ?></span>
+                                                                <input type="text" value="<?php echo $sector; ?>" class="editbox" id="sector_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
+                                                                <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
+                                                            </td>
+
+                                                            <td><?= $loop->created ?></td>
+
+                                                            <td class="td-actions">
+
+                                                                <a href="<?php echo base_url() . "index.php/student/employment/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                    <span class="red">
+                                                                        <i class="icon-trash bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
                                                     }
-                                                    ?>
+                                                }
+                                                ?>
 
 
 
-                                                </tbody>
-                                            </table>  
-                                        </div>
+                                            </tbody>
+                                        </table>  
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
-
-        <div class="row-fluid">
-
-
-
-        </div>                
-
-
-
     </div>
+
+    <div class="row-fluid">
+
+
+
+    </div>                
+
+
+
+</div>
 
 
 
@@ -361,20 +315,14 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 <script src="<?= base_url(); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/chosen.jquery.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/fuelux/fuelux.spinner.min.js"></script>
+
 <script src="<?= base_url(); ?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/date-time/bootstrap-timepicker.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/moment.min.js"></script>
+
 <script src="<?= base_url(); ?>assets/js/date-time/daterangepicker.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/bootstrap-colorpicker.min.js"></script>
 
 <script src="<?= base_url(); ?>assets/js/jquery.autosize-min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.maskedinput.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootstrap-tag.min.js"></script>
-
-<!--ace scripts-->
-
 <script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
 

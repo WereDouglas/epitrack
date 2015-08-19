@@ -40,13 +40,23 @@
             <div class="navbar-inner" style="background-color: #2E8965;">
                 <div class="container-fluid">
                     <a href="#" class="brand">
-                        <small>
-                            <img  height="300px" width="300px" class="nav-user-photo" src="<?= base_url(); ?>images/log.png" alt="User's Photo" />
+                    
+                            <img  height="300px" width="300px" class="nav" src="<?= base_url(); ?>images/log.png" alt="Logo" />
 
-                        </small>
                     </a><!--/.brand-->
 
                     <ul class="nav ace-nav pull-right">
+                                 <li class="green">
+                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                 <span class="user-info">
+                                 <img  height="300px" width="300px" class="" src="<?= base_url(); ?>flags/<?php echo $this->session->userdata('flag');?>" alt="Flag" />
+
+                                </span>
+
+                                
+                            </a>
+
+                        </li>
                         <li class="green">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <i class="icon-tasks"></i>
@@ -335,7 +345,7 @@
                          
 -->
   <a href="<?php echo base_url() . "index.php/management/"; ?>" target="frame">
-                <div class="infobox infobox-grey infobox-small infobox-green">
+                <div class="infobox infobox infobox-small ">
                     <div class="infobox-chart">
                         <div class="infobox-icon">
                          <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/home.png" alt="account" />

@@ -122,7 +122,7 @@ class Management extends CI_Controller {
         $name = $this->input->post('name');
         if ($name != "") {
             $track = $this->input->post('track');
-            $startyear = $this->input->post('year');
+            $startyear = $this->input->post('years');
 
             $get_result = $this->MD->check($name, 'name', 'cohort');
 

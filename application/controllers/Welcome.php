@@ -63,6 +63,13 @@ class Welcome extends CI_Controller {
                         );
                  
                         $this->session->set_userdata($newdata);
+                        
+                                   $cty= $this->session->userdata('country');                                   
+                              $country = $this->Md->get('name', $cty, 'country');
+                                foreach ($country as $res) {
+                                     $county = $res->image;
+                                }
+                            $this->session->set_userdata('flag', $county);
                              
                         $query = $this->Md->show('event');
                         //  var_dump($query);
@@ -130,6 +137,12 @@ class Welcome extends CI_Controller {
                             
                         }
                         if ($this->session->userdata('level')==2){
+                            $cty= $this->session->userdata('country');                                   
+                              $country = $this->Md->get('name', $cty, 'country');
+                                foreach ($country as $res) {
+                                     $county = $res->image;
+                                }
+                            $this->session->set_userdata('flag', $county);
                               redirect('welcome/management/', 'refresh');
                               return;
                             

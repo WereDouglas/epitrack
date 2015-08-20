@@ -344,6 +344,9 @@
 <!--              <a href="#collapseTracks" data-parent="#accordionTracks" data-toggle="collapse" class="accordion-toggle collapsed">
                          
 -->
+
+
+
   <a href="<?php echo base_url() . "index.php/management/"; ?>" target="frame">
                 <div class="infobox infobox infobox-small ">
                     <div class="infobox-chart">
@@ -357,6 +360,7 @@
                         <div class="infobox-content"></div>
                     </div>
                 </div> </a>
+
           <a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame">
                 <div class="infobox infobox-grey infobox-small infobox-green">
                     <div class="infobox-chart">

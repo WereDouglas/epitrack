@@ -162,6 +162,56 @@ class Management extends CI_Controller {
             $this->load->view('cohort', $data);
         }
     }
+      public function reports() {
+
+        $this->load->helper(array('form', 'url'));
+        $action = $this->uri->segment(3);
+
+     
+        
+            $query = $this->MD->show('cohort');
+            //  var_dump($query);
+            if ($query) {
+                $data['cohorts'] = $query;
+            } else {
+                $data['cohorts'] = array();
+            }
+            $query = $this->MD->show('track');
+            //  var_dump($query);
+            if ($query) {
+                $data['tracks'] = $query;
+            } else {
+                $data['tracks'] = array();
+            }
+
+            $this->load->view('report', $data);
+        
+    }
+      public function country_report() {
+
+        $this->load->helper(array('form', 'url'));
+        $action = $this->uri->segment(3);
+
+     
+        
+            $query = $this->MD->show('cohort');
+            //  var_dump($query);
+            if ($query) {
+                $data['cohorts'] = $query;
+            } else {
+                $data['cohorts'] = array();
+            }
+            $query = $this->MD->show('track');
+            //  var_dump($query);
+            if ($query) {
+                $data['tracks'] = $query;
+            } else {
+                $data['tracks'] = array();
+            }
+
+            $this->load->view('country-report', $data);
+        
+    }
 
     public function student() {
 

@@ -334,8 +334,8 @@
 <!--              <a href="#collapseTracks" data-parent="#accordionTracks" data-toggle="collapse" class="accordion-toggle collapsed">
                          
 -->
-  <a href="<?php echo base_url() . "index.php/management/"; ?>" target="frame">
-                <div class="infobox infobox-blue infobox-small infobox-dark">
+<a href="<?php echo base_url() . "index.php/management/reports"; ?>" target="frame">
+                <div class="infobox infobox infobox-small ">
                     <div class="infobox-chart">
                         <div class="infobox-icon">
                          <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/home.png" alt="account" />
@@ -343,12 +343,27 @@
                     </div>
 
                     <div class="infobox-data">
-                        <div class="infobox-content">Home</div>
+                        <div class="infobox-content">Reports</div>
+                        <div class="infobox-content"></div>
+                    </div>
+                </div> </a>
+
+
+  <a href="<?php echo base_url() . "index.php/management/country_report"; ?>" target="frame">
+                 <div class="infobox infobox infobox-small ">
+                    <div class="infobox-chart">
+                        <div class="infobox-icon">
+                         <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/home.png" alt="account" />
+                           </div>
+                    </div>
+
+                    <div class="infobox-data">
+                        <div class="infobox-content">Country reports</div>
                         <div class="infobox-content"></div>
                     </div>
                 </div> </a>
           <a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame">
-                <div class="infobox infobox-blue infobox-small infobox-dark">
+               <div class="infobox infobox infobox-small ">
                     <div class="infobox-chart">
                         <div class="infobox-icon">
                                             <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/tracks.png" alt="account" />
@@ -361,7 +376,7 @@
                     </div>
                 </div> </a>
                   <a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame">
-                                    <div class="infobox infobox-blue infobox-small infobox-dark">
+                                   <div class="infobox infobox infobox-small ">
                                          <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/cohort.png" alt="account" />
                           </div>
@@ -374,7 +389,7 @@
                 </a>
               
              <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"> 
-                 <div class="infobox infobox-blue infobox-small infobox-dark">
+                <div class="infobox infobox infobox-small ">
                                    
                                       <div class="infobox-icon">
                                               <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/students.png" alt="account" />
@@ -389,7 +404,7 @@
                 </a>
             
                  <a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame">  
-                     <div class="infobox infobox-blue infobox-small infobox-dark">
+                   <div class="infobox infobox infobox-small ">
                                   
                
                                          <div class="infobox-icon">
@@ -404,7 +419,7 @@
                 </a>
   <a href="<?php echo base_url() . "index.php/management/country_user"; ?>" target="frame">
                                    
-                   <div class="infobox infobox-blue infobox-small infobox-dark">
+                   <div class="infobox infobox infobox-small ">
                                        <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/users.png" alt="account" />
                           </div>
@@ -417,7 +432,7 @@
                 </a>
            
                     <a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame">  
-                        <div class="infobox infobox-blue infobox-small infobox-dark">
+                        <div class="infobox infobox infobox-small ">
                                       <div class="infobox-icon">
                                             <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/advert.png" alt="account" />
                       </div>   
@@ -429,7 +444,7 @@
                    </div>
                 </a>
                     <a href="<?php echo base_url() . "index.php/management/advert"; ?>" target="frame">  
-                                           <div class="infobox infobox-blue infobox-small infobox-dark">
+                                           <div class="infobox infobox infobox-small ">
                                       <div class="infobox-icon">
                                             <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/advert.png" alt="account" />
                       </div>   

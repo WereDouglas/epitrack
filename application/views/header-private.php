@@ -316,8 +316,7 @@
             <div class="sidebar" id="sidebar">
                 
               <a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame">
-                     <div class="infobox infobox-grey infobox-small infobox-dark">
-                     <div class="infobox-icon">
+                      <div class="infobox infobox infobox-small ">   <div class="infobox-icon">
                                             <i class="icon-home"></i>
                                         </div>
 
@@ -327,8 +326,7 @@
                     </div>
                 </div> </a>
                    <a href="<?php echo base_url() . "index.php/student/bio"; ?>" target="frame">
-                             <div class="infobox infobox-grey infobox-small infobox-dark">
-                     <div class="infobox-icon">
+                             <div class="infobox infobox infobox-small "><div class="infobox-icon">
                                               <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/Teacher.png" alt="account" />
                                         </div>
 
@@ -339,8 +337,7 @@
                 </div> </a>
                  <a href="<?php echo base_url() . "index.php/student/contact"; ?>" target="frame">
                                                               
-                   <div class="infobox infobox-grey infobox-small infobox-dark">
-                                         <div class="infobox-icon">
+                     <div class="infobox infobox infobox-small ">                         <div class="infobox-icon">
                                           <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/contact.png" alt="account" />
                                         </div>
 
@@ -352,8 +349,7 @@
                 </a>
                  <a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame">
                                                           
-                   <div class="infobox infobox-grey infobox-small infobox-dark">
-                                         <div class="infobox-icon">
+                     <div class="infobox infobox infobox-small ">                        <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/work.png" alt="account" />
                                         </div>
 
@@ -363,7 +359,8 @@
                                         </div>
                    </div>
                 
-                <a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame">                          <div class="infobox infobox-grey infobox-small infobox-dark">
+                <a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame">  
+                     <div class="infobox infobox infobox-small ">
                                       <div class="infobox-icon">
                                              <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/employement.png" alt="account" />
                                        </div>
@@ -374,8 +371,9 @@
                                         </div>
                    </div>
                 </a>
-                        <a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame">                          <div class="infobox infobox-grey infobox-small infobox-dark">
-                                      <div class="infobox-icon">
+                        <a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame">             
+                     <div class="infobox infobox infobox-small ">     
+                                         <div class="infobox-icon">
                                              <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/employement.png" alt="account" />
                                        </div>
 
@@ -386,7 +384,7 @@
                    </div>
                 </a>
                  <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
-                                         <div class="infobox infobox-grey infobox-small infobox-dark">
+                                     <div class="infobox infobox infobox-small ">     
                                          <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/publish.png" alt="account" />
                                        </div>
@@ -398,8 +396,7 @@
                    </div>
                 </a>
              <a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame">
-                                        <div class="infobox infobox-grey infobox-small infobox-dark">
-                                       <div class="infobox-icon">
+                                    <div class="infobox infobox infobox-small ">       <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/study.png" alt="account" />
                                       </div>
 
@@ -411,8 +408,8 @@
                </a>
        
                    <a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame">
-                     <div class="infobox infobox-grey infobox-small infobox-dark">
-                                        <div class="infobox-icon">
+                      <div class="infobox infobox infobox-small ">         
+                          <div class="infobox-icon">
                                           <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/outbreak.png" alt="account" />
                                          </div>
 
@@ -423,8 +420,8 @@
                   </div>
                    </a>
                <a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame">
-                                        <div class="infobox infobox-grey infobox-small infobox-dark">
-                                        <div class="infobox-icon">
+                                        <div class="infobox infobox infobox-small ">   
+                                            <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/present.png" alt="account" />
                                            </div>
 
@@ -434,8 +431,7 @@
                                         </div>
                   </div></a>
                 <a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame">
-                                          <div class="infobox infobox-grey infobox-small infobox-dark">
-                                        <div class="infobox-icon">
+                    <div class="infobox infobox infobox-small ">   <div class="infobox-icon">
                                          <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/courses.png" alt="account" />
                                           </div>
 

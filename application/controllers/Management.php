@@ -8,19 +8,27 @@ class Management extends CI_Controller {
 
         parent::__construct();
         // error_reporting(E_PARSE);
-        $this->load->model('MD');
+        $this->load->model('Md');
         $this->load->library('session');
         $this->load->library('encrypt');
     }
 
     public function index() {
         
-        $query = $this->MD->show('event');
+        $query = $this->Md->show('event');
         //  var_dump($query);
         if ($query) {
             $data['events'] = $query;
         } else {
             $data['events'] = array();
+        }
+             $query = $this->Md->show('chat');
+        
+        //  var_dump($query);
+        if ($query) {
+            $data['chats'] = $query;
+        } else {
+            $data['chats'] = array();
         }
         $this->load->view('management-home',$data);
     }

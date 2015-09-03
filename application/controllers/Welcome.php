@@ -70,6 +70,33 @@ class Welcome extends CI_Controller {
                                      $county = $res->image;
                                 }
                             $this->session->set_userdata('flag', $county);
+                            
+                        $name= $this->session->userdata('name'); 
+                        $query = $this->Md->get('reciever', $name, 'chat');
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['chats'] = $query;
+                        } else {
+                            $data['chats'] = array();
+                        }
+                         $query = $this->Md->query("SELECT * FROM outbreak where country = '". $cty."'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['outbreaks'] = $query;
+                        } else {
+                            $data['outbreaks'] = array();
+                        }
+                        
+                          $query = $this->Md->query("SELECT * FROM publication where country = '". $cty."'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['pubs'] = $query;
+                        } else {
+                            $data['pubs'] = array();
+                        }
+                            
+                            
+                            
                              
                         $query = $this->Md->show('event');
                         //  var_dump($query);
@@ -121,7 +148,7 @@ class Welcome extends CI_Controller {
 
                             $newdata = array(
                                 'id' => $res->id,
-                                'name' => $res->fname . ' ' . $res->lname . ' ',
+                                'name' => $res->fname .' '.$res->lname . ' ',
                                 'email' => $res->email,
                                 'contact' => $res->contact,
                                 'country' => $res->country,
@@ -143,6 +170,10 @@ class Welcome extends CI_Controller {
                                      $county = $res->image;
                                 }
                             $this->session->set_userdata('flag', $county);
+                            
+                            
+                            
+                            
                               redirect('welcome/management/', 'refresh');
                               return;
                             
@@ -167,7 +198,33 @@ class Welcome extends CI_Controller {
     }
 
     public function management() {
-        $this->load->view('management');
+        
+                       $cty= $this->session->userdata('country');  
+        
+                        $name= $this->session->userdata('name'); 
+                        $query = $this->Md->get('reciever', $name, 'chat');
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['chats'] = $query;
+                        } else {
+                            $data['chats'] = array();
+                        }
+                         $query = $this->Md->query("SELECT * FROM outbreak where country = '". $cty."'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['outbreaks'] = $query;
+                        } else {
+                            $data['outbreaks'] = array();
+                        }
+                        
+                          $query = $this->Md->query("SELECT * FROM publication where country = '". $cty."'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['pubs'] = $query;
+                        } else {
+                            $data['pubs'] = array();
+                        }
+        $this->load->view('management',$data);
     }
 
     public function projects() {

@@ -41,53 +41,7 @@
                     <div id="calendar"></div>
                 </div>
 
-                <div class="span3">
-                    <div class="widget-box transparent">
-                        <div class="widget-header">
-                            <h4>Your programmes</h4>
-                        </div>
-
-                        <div class="row-fluid">
-                            <div class="span7 infobox-container">
-                                <div class="infobox infobox-green  ">
-                                    <div class="infobox-icon">
-                                        <i class="icon-comments"></i>
-                                    </div>
-
-                                    <div class="infobox-data">
-                                        <span class="infobox-data-number">32</span>
-                                        <div class="infobox-content">comments + 2 reviews</div>
-                                    </div>
-                                    <div class="stat stat-success">8%</div>
-                                </div>
-
-                                <div class="infobox infobox-blue  ">
-                                    <div class="infobox-icon">
-                                        <i class="icon-twitter"></i>
-                                    </div>
-
-                                    <div class="infobox-data">
-                                        <span class="infobox-data-number">11</span>
-                                        <div class="infobox-content">new followers</div>
-                                    </div>
-
-                                    <div class="badge badge-success">
-                                        +32%
-                                        <i class="icon-arrow-up"></i>
-                                    </div>
-                                </div>
-
-
-                                <div class="space-6"></div>
-
-
-                            </div>
-
-                            <div class="vspace"></div>
-
-                        </div><!--/row-->
-                    </div>
-                </div>
+           
 
                 <div class="span3" style="overflow:scroll;">
                     <div class="widget-box ">

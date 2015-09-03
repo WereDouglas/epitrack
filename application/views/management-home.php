@@ -41,71 +41,9 @@
                     <div id="calendar"></div>
                 </div>
 
-                <div class="span3">
-                    <div class="widget-box transparent">
-                        <div class="widget-header">
-                            <h4>Your programmes</h4>
-                        </div>
+          
 
-                        <div class="row-fluid">
-                            <div class="span7 infobox-container">
-                                <div class="infobox infobox-green  ">
-                                    <div class="infobox-icon">
-                                        <i class="icon-comments"></i>
-                                    </div>
-
-                                    <div class="infobox-data">
-                                        <span class="infobox-data-number">32</span>
-                                        <div class="infobox-content">comments + 2 reviews</div>
-                                    </div>
-                                    <div class="stat stat-success">8%</div>
-                                </div>
-
-                                <div class="infobox infobox-blue  ">
-                                    <div class="infobox-icon">
-                                        <i class="icon-twitter"></i>
-                                    </div>
-
-                                    <div class="infobox-data">
-                                        <span class="infobox-data-number">11</span>
-                                        <div class="infobox-content">new followers</div>
-                                    </div>
-
-                                    <div class="badge badge-success">
-                                        +32%
-                                        <i class="icon-arrow-up"></i>
-                                    </div>
-                                </div>
-
-                                <div class="infobox infobox-pink  ">
-                                    <div class="infobox-icon">
-                                        <i class="icon-shopping-cart"></i>
-                                    </div>
-
-                                    <div class="infobox-data">
-                                        <span class="infobox-data-number">8</span>
-                                        <div class="infobox-content">new orders</div>
-                                    </div>
-                                    <div class="stat stat-important">+4%</div>
-                                </div>
-
-
-
-
-
-
-                                <div class="space-6"></div>
-
-
-                            </div>
-
-                            <div class="vspace"></div>
-
-                        </div><!--/row-->
-                    </div>
-                </div>
-
-                <div class="span3">
+                    <div class="span3" style="overflow:scroll;">
                     <div class="widget-box ">
                         <div class="widget-header">
                             <h4 class="lighter smaller">
@@ -114,24 +52,31 @@
                             </h4>
                         </div>
 
-                        <div class="widget-body">
+                        <div class="widget-body" >
                             <div class="widget-main no-padding">
                                 <div class="dialogs">
+
+                                    <span id="loading"  name ="loading"><img src="<?= base_url(); ?>images/loading.gif" alt="loading......" /></span><br>
+                                  
+  <?php
+                                        if (is_array($chats) && count($chats)) {
+                                            foreach ($chats as $loop) {
+                                                ?> 
+
                                     <div class="itemdiv dialogdiv">
                                         <div class="user">
-                                            <img alt="" src="<?php echo base_url(); ?>uploads/shamim.jpg" />
-                                        </div>
+                                           </div>
 
                                         <div class="body">
                                             <div class="time">
                                                 <i class="icon-time"></i>
-                                                <span class="green">4 sec</span>
+                                                <span class="blue"><?=$loop->datetimes?></span>
                                             </div>
 
                                             <div class="name">
-                                                <a href="#">Shamim</a>
+                                                <a href="#"><?=$loop->sender?></a>
                                             </div>
-                                            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.</div>
+                                            <div class="text"><?=$loop->message?>.</div>
 
                                             <div class="tools">
                                                 <a href="#" class="btn btn-minier btn-info">
@@ -140,41 +85,30 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="itemdiv dialogdiv">
-                                        <div class="user">
-                                            <img alt=" " src="<?php echo base_url(); ?>uploads/DSC_6320.JPG" />
-                                        </div>
-
-                                        <div class="body">
-                                            <div class="time">
-                                                <i class="icon-time"></i>
-                                                <span class="blue">38 sec</span>
-                                            </div>
-
-                                            <div class="name">
-                                                <a href="#">Richard</a>
-                                            </div>
-                                            <div class="text">Raw denim you probably haven&#39;t heard of them jean shorts Austin.</div>
-
-                                            <div class="tools">
-                                                <a href="#" class="btn btn-minier btn-info">
-                                                    <i class="icon-only icon-share-alt"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
+<?php }}?>
                                 </div>
 
-                                <form />
-                                <div class="form-actions input-append">
-                                    <input placeholder="Type your message here ..." type="text" class="width-75" name="message" />
-                                    <button class="btn btn-small btn-info no-radius" onclick="return false;">
+                                <form id="station-form" style="margin-left: 20px;" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/chat'  method="post">            
+
+
+                                    Send to:
+                                    <select class="width-100" id="reciever" name="reciever" >                                                            
+                                        <?php
+                                        if (is_array($students) && count($students)) {
+                                            foreach ($students as $loop) {
+                                                ?>                        
+                                                <option value="<?= $loop->fname ?>" /><?= $loop->fname . ' ' . $loop->lname ?>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+
+                                    <textarea rows="2" placeholder="Type your message here ..." type="text" class="width-100" id="message" name="message" ></textarea>
+                                    <button class="btn btn-small btn-info no-radius" id="send" name="send" type="submit">
                                         <i class="icon-share-alt"></i>
                                         <span class="hidden-phone">Send</span>
                                     </button>
-                                </div>
                                 </form>
                             </div><!--/widget-main-->
                         </div><!--/widget-body-->

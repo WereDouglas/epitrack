@@ -7,7 +7,7 @@ class Administration extends CI_Controller {
 
         parent::__construct();
        // error_reporting(E_PARSE);
-        $this->load->model('MD');
+        $this->load->model('Md');
         $this->load->library('session');
         $this->load->library('encrypt');
     }
@@ -22,7 +22,7 @@ class Administration extends CI_Controller {
 	}
          public function user()
 	{
-              $query = $this->MD->show('role');
+              $query = $this->Md->show('role');
       //  var_dump($query);
         if ($query) {
              $data['roles'] = $query;

@@ -40,7 +40,7 @@ class Country extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'track');
+            $query = $this->Md->delete($id, 'track');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
@@ -56,7 +56,7 @@ class Country extends CI_Controller {
             $track = $this->input->post('track');
             $id = $this->input->post('id');
             $track = array('track' => $track);
-            $this->MD->update($id, $track, 'track');
+            $this->Md->update($id, $track, 'track');
         }
 
 
@@ -64,7 +64,7 @@ class Country extends CI_Controller {
 
         $track = $this->input->post('track');
         if ($track != "") {
-            $get_result = $this->MD->check($track, 'track', 'track');
+            $get_result = $this->Md->check($track, 'track', 'track');
 
             if (!$get_result) {
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -75,7 +75,7 @@ class Country extends CI_Controller {
                 redirect('/management/tracks', 'refresh');
             }
             $tracks = array('track' => $track, 'created' => date('Y-m-d'));
-            $this->MD->save($tracks, 'track');
+            $this->Md->save($tracks, 'track');
             $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
@@ -84,7 +84,7 @@ class Country extends CI_Controller {
 
             redirect('/management/tracks', 'refresh');
         } else {
-            $query = $this->MD->show('track');
+            $query = $this->Md->show('track');
             //  var_dump($query);
             if ($query) {
                 $data['tracks'] = $query;
@@ -103,7 +103,7 @@ class Country extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'cohort');
+            $query = $this->Md->delete($id, 'cohort');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
@@ -121,7 +121,7 @@ class Country extends CI_Controller {
 
 
             $cohort = array('name' => $name);
-            $this->MD->update($id, $cohort, 'cohort');
+            $this->Md->update($id, $cohort, 'cohort');
         }
 
 
@@ -132,7 +132,7 @@ class Country extends CI_Controller {
             $track = $this->input->post('track');
             $startyear = $this->input->post('year');
 
-            $get_result = $this->MD->check($name, 'name', 'cohort');
+            $get_result = $this->Md->check($name, 'name', 'cohort');
 
             if (!$get_result) {
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -143,7 +143,7 @@ class Country extends CI_Controller {
                 redirect('/management/cohort', 'refresh');
             }
             $cohort = array('name' => $name, 'track' => $track, 'year' => $startyear, 'created' => date('Y-m-d'));
-            $this->MD->save($cohort, 'cohort');
+            $this->Md->save($cohort, 'cohort');
             $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
@@ -152,14 +152,14 @@ class Country extends CI_Controller {
 
             redirect('/management/cohort', 'refresh');
         } else {
-            $query = $this->MD->show('cohort');
+            $query = $this->Md->show('cohort');
             //  var_dump($query);
             if ($query) {
                 $data['cohorts'] = $query;
             } else {
                 $data['cohorts'] = array();
             }
-            $query = $this->MD->show('track');
+            $query = $this->Md->show('track');
             //  var_dump($query);
             if ($query) {
                 $data['tracks'] = $query;
@@ -178,7 +178,7 @@ class Country extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'student');
+            $query = $this->Md->delete($id, 'student');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
@@ -199,7 +199,7 @@ class Country extends CI_Controller {
             $contact = $this->input->post('contact');
 
             $student = array('fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'contact' => $contact);
-            $this->MD->update($id, $student, 'student');
+            $this->Md->update($id, $student, 'student');
         }
 
 
@@ -219,7 +219,7 @@ class Country extends CI_Controller {
 
             $password = $this->encrypt->encode($password, $key);
 
-            $get_result = $this->MD->check($email, 'email', 'student');
+            $get_result = $this->Md->check($email, 'email', 'student');
 
             if (!$get_result) {
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -258,7 +258,7 @@ class Country extends CI_Controller {
                 $email = $this->input->post('email');
 
                 $student = array('image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'active');
-                $file_id = $this->MD->save($student, 'student');
+                $file_id = $this->Md->save($student, 'student');
                 ;
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
@@ -269,21 +269,21 @@ class Country extends CI_Controller {
                 redirect('/management/student', 'refresh');
             }
         }
-        $query = $this->MD->show('cohort');
+        $query = $this->Md->show('cohort');
         //  var_dump($query);
         if ($query) {
             $data['cohorts'] = $query;
         } else {
             $data['cohorts'] = array();
         }
-        $query = $this->MD->show('track');
+        $query = $this->Md->show('track');
         //  var_dump($query);
         if ($query) {
             $data['tracks'] = $query;
         } else {
             $data['tracks'] = array();
         }
-        $query = $this->MD->show('student');
+        $query = $this->Md->show('student');
         //  var_dump($query);
         if ($query) {
             $data['students'] = $query;
@@ -301,7 +301,7 @@ class Country extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'country');
+            $query = $this->Md->delete($id, 'country');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
@@ -317,7 +317,7 @@ class Country extends CI_Controller {
             $name = $this->input->post('name');
 
             $country = array('name' => $name);
-            $this->MD->update($id, $country, 'country');
+            $this->Md->update($id, $country, 'country');
         }
 
 
@@ -327,7 +327,7 @@ class Country extends CI_Controller {
         if ($name != "") {
 
 
-            $get_result = $this->MD->check($name, 'name', 'country');
+            $get_result = $this->Md->check($name, 'name', 'country');
 
             if (!$get_result) {
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -359,7 +359,7 @@ class Country extends CI_Controller {
                 $file = $data['file_name'];
 
                 $country = array('image' => $file, 'name' => $name);
-                $file_id = $this->MD->save($country, 'country');
+                $file_id = $this->Md->save($country, 'country');
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
@@ -369,7 +369,7 @@ class Country extends CI_Controller {
                 redirect('/management/country', 'refresh');
             }
         }
-        $query = $this->MD->show('country');
+        $query = $this->Md->show('country');
         //  var_dump($query);
         if ($query) {
             $data['countries'] = $query;
@@ -387,7 +387,7 @@ class Country extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'user');
+            $query = $this->Md->delete($id, 'user');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
@@ -407,7 +407,7 @@ class Country extends CI_Controller {
             $email = $this->input->post('email');
             $contact = $this->input->post('contact');
             $user = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'contact' => $contact, 'registered' => date('Y-m-d'), 'status' => 'active');
-            $this->MD->update($id, $user, 'user');
+            $this->Md->update($id, $user, 'user');
         }
 
 
@@ -427,7 +427,7 @@ class Country extends CI_Controller {
 
             $password = $this->encrypt->encode($password, $key);
 
-            $get_result = $this->MD->check($email, 'email', 'user');
+            $get_result = $this->Md->check($email, 'email', 'user');
 
             if (!$get_result) {
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -445,7 +445,7 @@ class Country extends CI_Controller {
             $email = $this->input->post('email');
 
             $user = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
-            $file_id = $this->MD->save($user, 'user');
+            $file_id = $this->Md->save($user, 'user');
             ;
             $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
@@ -455,14 +455,14 @@ class Country extends CI_Controller {
 
             redirect('/management/user', 'refresh');
         }
-        $query = $this->MD->show('user');
+        $query = $this->Md->show('user');
         //  var_dump($query);
         if ($query) {
             $data['users'] = $query;
         } else {
             $data['users'] = array();
         }
-         $query = $this->MD->show('country');
+         $query = $this->Md->show('country');
       //  var_dump($query);
         if ($query) {
              $data['country'] = $query;
@@ -481,7 +481,7 @@ class Country extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'event');
+            $query = $this->Md->delete($id, 'event');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
@@ -503,7 +503,7 @@ class Country extends CI_Controller {
             $enddate = $this->input->post('enddate');
             $postedby = 'test';
             $event = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'contact' => $contact, 'registered' => date('Y-m-d'), 'status' => 'active');
-            $this->MD->update($id, $event, 'event');
+            $this->Md->update($id, $event, 'event');
         }
 
 
@@ -525,7 +525,7 @@ class Country extends CI_Controller {
           
 
             $event = array('title' => $title, 'description' => $description, 'country' => $country, 'startdate' => $startdate, 'enddate' => $enddate,'starttime'=>$starttime ,'endtime'=>$endtime,'posted' => $postedby, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
-            $file_id = $this->MD->save($event, 'event');
+            $file_id = $this->Md->save($event, 'event');
             ;
             $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
@@ -535,7 +535,7 @@ class Country extends CI_Controller {
 
             redirect('/management/event', 'refresh');
         }
-        $query = $this->MD->show('event');
+        $query = $this->Md->show('event');
         //  var_dump($query);
         if ($query) {
             $data['events'] = $query;
@@ -553,7 +553,7 @@ class Country extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->MD->delete($id, 'advert');
+            $query = $this->Md->delete($id, 'advert');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
@@ -569,7 +569,7 @@ class Country extends CI_Controller {
             $title = $this->input->post('title');
 
             $advert = array('title' => $title);
-            $this->MD->update($id, $advert, 'advert');
+            $this->Md->update($id, $advert, 'advert');
         }
 
 
@@ -593,7 +593,7 @@ class Country extends CI_Controller {
                 $file = $data['file_name'];
 
                 $advert = array('image' => $file, 'title' => $title,'submitted'=> date('y-m-d'),'status'=>'active');
-                $file_id = $this->MD->save($advert, 'advert');
+                $file_id = $this->Md->save($advert, 'advert');
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
@@ -603,7 +603,7 @@ class Country extends CI_Controller {
                 redirect('/management/advert', 'refresh');
             }
         }
-        $query = $this->MD->show('advert');
+        $query = $this->Md->show('advert');
         //  var_dump($query);
         if ($query) {
             $data['adverts'] = $query;

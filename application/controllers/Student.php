@@ -13,7 +13,7 @@ class Student extends CI_Controller {
         $this->load->library('encrypt');
         date_default_timezone_set("Africa/Nairobi");
     }
-    }
+    
 
     public function index() {
         // $query = $this->Md->show('metar');

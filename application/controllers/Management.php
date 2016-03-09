@@ -32,6 +32,11 @@ class Management extends CI_Controller {
         }
         $this->load->view('management-home',$data);
     }
+      public function news() {
+        
+       
+        $this->load->view('blank');
+    }
 
     public function tracks() {
 

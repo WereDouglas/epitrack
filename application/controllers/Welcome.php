@@ -152,6 +152,7 @@ class Welcome extends CI_Controller {
                                 'email' => $res->email,
                                 'contact' => $res->contact,
                                 'country' => $res->country,
+                                 'image' => $res->image,
                                 'status' => $res->status,
                                  'level' => $res->level,
                                 'logged_in' => TRUE

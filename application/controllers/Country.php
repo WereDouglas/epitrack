@@ -30,7 +30,8 @@ class Country extends CI_Controller {
         } else {
             $data['chats'] = array();
         }
-        $this->load->view('country-home',$data);
+       // $this->load->view('country-home',$data);
+        $this->load->view('center_page',$data);
     }
 
     public function tracks() {

@@ -241,13 +241,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image');?>" class="user-image" alt="Image" />
+                                    <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image');?>" class="user-image" alt="user" />
                                     <span class="hidden-xs"><?php echo $this -> session -> userdata('name'); ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image');?>" class="img-circle" alt="User Image" />
+                                        <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image');?>" class="img-circle" alt="user" />
                                         <p>
                                           <?php echo $this -> session -> userdata('name'); ?>
                                             <small><?php echo $this -> session -> userdata('country'); ?></small>
@@ -307,8 +307,8 @@
                                     <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                                    <li class="active"><a href="<?php echo base_url() . "index.php/management/news"; ?>" target="frame"><i class="fa fa-circle-o"></i>Home</a></li>
+                                    
                                 </ul>
                             </li>
                             <li class="treeview">
@@ -325,14 +325,14 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="pages/widgets.html">
+                                <a href="#">
                                     <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
                                 </a>
                             </li>
                             <li class="treeview">
                                 <a href="#">
                                     <i class="fa fa-pie-chart"></i>
-                                    <span>Charts</span>
+                                    <span>Options</span>
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </a>
                                 <ul class="treeview-menu">
@@ -345,16 +345,22 @@
                             <li class="treeview">
                                 <a href="#">
                                     <i class="fa fa-laptop"></i>
-                                    <span>UI Elements</span>
+                                    <span>Student</span>
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-                                    <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-                                    <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-                                    <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-                                    <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-                                    <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+                                    <li><a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame"><i class="fa fa-circle-o"></i> start</a></li>
+                                    <li><a href="<?php echo base_url() . "index.php/student/bio"; ?>" target="frame"><i class="fa fa-circle-o"></i> Bio</a></li>
+                                    <li><a href="<?php echo base_url() . "index.php/student/contact"; ?>" target="frame"><i class="fa fa-circle-o"></i> Contacts</a></li>
+                                    <li><a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame"><i class="fa fa-circle-o"></i> Employement records</a></li>
+                                    <li><a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame"><i class="fa fa-circle-o"></i> Qualification</a></li>
+                                    <li><a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame"><i class="fa fa-circle-o"></i> Surveillance</a></li>
+                                    <li><a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame"><i class="fa fa-circle-o"></i>Publications</a></li>
+                                                           <li><a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame"><i class="fa fa-circle-o"></i> Studies</a></li>
+                           <li><a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame"><i class="fa fa-circle-o"></i> Outbreaks</a></li>
+                           <li><a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame"><i class="fa fa-circle-o"></i> Presentations</a></li>
+                           <li><a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame"><i class="fa fa-circle-o"></i> Short courses</a></li>
+                           
                                 </ul>
                             </li>
                             <li class="treeview">

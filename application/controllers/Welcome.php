@@ -121,7 +121,7 @@ class Welcome extends CI_Controller {
                         }
                         
                       
-                        $this->load->view('private', $data);
+                        $this->load->view('center_page', $data);
                     } else {
                         $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Efenet-epitrack</title>
+        <title>Epitrack</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.4 -->
@@ -28,7 +28,7 @@
         <link href="<?php echo base_url(); ?>plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
         <!-- bootstrap wysihtml5 - text editor -->
         <link href="<?php echo base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
-
+        <link rel="stylesheet" href="<?= base_url(); ?>css/frame.css" />
 
     </head>
     <body class="skin-blue sidebar-mini">
@@ -241,20 +241,20 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image');?>" class="user-image" alt="user" />
-                                    <span class="hidden-xs"><?php echo $this -> session -> userdata('name'); ?></span>
+                                    <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>" class="user-image" alt="user" />
+                                    <span class="hidden-xs"><?php echo $this->session->userdata('name'); ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image');?>" class="img-circle" alt="user" />
+                                        <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>" class="img-circle" alt="user" />
                                         <p>
-                                          <?php echo $this -> session -> userdata('name'); ?>
-                                            <small><?php echo $this -> session -> userdata('country'); ?></small>
+                                            <?php echo $this->session->userdata('name'); ?>
+                                            <small><?php echo $this->session->userdata('country'); ?></small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
-                                   
+
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
@@ -275,172 +275,88 @@
                 </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
-        
-                <aside class="main-sidebar">
-                    <!-- sidebar: style can be found in sidebar.less -->
-                    <section class="sidebar">
-                        <!-- Sidebar user panel -->
-                        <div class="user-panel">
-                            <div class="pull-left image">
-                                <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image');?>" class="img-circle" alt="User Image" />
-                            </div>
-                            <div class="pull-left info">
-                                <p><?php echo $this -> session -> userdata('name'); ?></p>
-                                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                            </div>
+
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>" class="img-circle" alt="User Image" />
                         </div>
-                        <!-- search form -->
-                        <form action="#" method="get" class="sidebar-form">
-                            <div class="input-group">
-                                <input type="text" name="q" class="form-control" placeholder="Search..." />
-                                <span class="input-group-btn">
-                                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                                </span>
-                            </div>
-                        </form>
-                        <!-- /.search form -->
-                        <!-- sidebar menu: : style can be found in sidebar.less -->
-                        <ul class="sidebar-menu">
-                            <li class="header">MAIN NAVIGATION</li>
-                            <li class="active treeview">
-                                <a href="#">
-                                    <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li class="active"><a href="<?php echo base_url() . "index.php/management/news"; ?>" target="frame"><i class="fa fa-circle-o"></i>Home</a></li>
-                                    
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-files-o"></i>
-                                    <span>Country options Options</span>
-                                    <span class="label label-primary pull-right">4</span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="<?php echo base_url() . "index.php/management/country_report"; ?>" target="frame"><i class="fa fa-circle-o"></i> Country reports</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame"><i class="fa fa-circle-o"></i> Tracks</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-circle-o"></i> Cohorts</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"><i class="fa fa-circle-o"></i> Students</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
-                                </a>
-                            </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-pie-chart"></i>
-                                    <span>Options</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame"><i class="fa fa-circle-o"></i> Countries</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/management/country_user"; ?>" target="frame"><i class="fa fa-circle-o"></i> Users</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa fa-circle-o"></i> Events & Updates</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/management/advert"; ?>" target="frame"><i class="fa fa-circle-o"></i> Advertisement</a></li>
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-laptop"></i>
-                                    <span>Student</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame"><i class="fa fa-circle-o"></i> start</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/student/bio"; ?>" target="frame"><i class="fa fa-circle-o"></i> Bio</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/student/contact"; ?>" target="frame"><i class="fa fa-circle-o"></i> Contacts</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame"><i class="fa fa-circle-o"></i> Employement records</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame"><i class="fa fa-circle-o"></i> Qualification</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame"><i class="fa fa-circle-o"></i> Surveillance</a></li>
-                                    <li><a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame"><i class="fa fa-circle-o"></i>Publications</a></li>
-                                                           <li><a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame"><i class="fa fa-circle-o"></i> Studies</a></li>
-                           <li><a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame"><i class="fa fa-circle-o"></i> Outbreaks</a></li>
-                           <li><a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame"><i class="fa fa-circle-o"></i> Presentations</a></li>
-                           <li><a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame"><i class="fa fa-circle-o"></i> Short courses</a></li>
-                           
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-edit"></i> <span>Forms</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                                    <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                                    <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-table"></i> <span>Tables</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-                                    <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="pages/calendar.html">
-                                    <i class="fa fa-calendar"></i> <span>Calendar</span>
-                                    <small class="label pull-right bg-red">3</small>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pages/mailbox/mailbox.html">
-                                    <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                                    <small class="label pull-right bg-yellow">12</small>
-                                </a>
-                            </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Examples</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-                                    <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-                                    <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-                                    <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-                                    <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-                                    <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-                                    <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-share"></i> <span>Multilevel</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                                            <li>
-                                                <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
-                                                <ul class="treeview-menu">
-                                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-                            <li class="header">LABELS</li>
-                            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-                            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-                            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
-                        </ul>
-                    </section>
-                    <!-- /.sidebar -->
-                </aside>
+                        <div class="pull-left info">
+                            <p><?php echo $this->session->userdata('name'); ?></p>
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..." />
+                            <span class="input-group-btn">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <li class="active treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="<?php echo base_url() . "index.php/management/news"; ?>" target="frame"><i class="fa  fa-calendar"></i>Home</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="header">Country</li>
+
+                        <li><a href="<?php echo base_url() . "index.php/management/country_report"; ?>" target="frame"><i class="fa fa-bar-chart"></i> Country reports</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame"><i class="fa fa-road"></i> Tracks</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i> Cohorts</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"><i class="fa fa-users"></i> Students</a></li>
+
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i> <span>Calendar</span>
+                                <small class="label pull-right bg-red">3</small>
+                            </a>
+                        </li>
+                        <li class="header">Country</li>
+
+                        <li><a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame"><i class="fa fa-flag"></i> Countries</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/country_user"; ?>" target="frame"><i class="fa fa-users"></i> Users</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i> Events & Updates</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/advert"; ?>" target="frame"><i class="fa fa-circle-o"></i> Advertisement</a></li>
+
+                        <li class="header">Student</li>
+
+                        <li><a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame"><i class="fa fa-circle-o"></i> start</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/student/bio"; ?>" target="frame"><i class="fa fa-male"></i> Bio</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/student/contact"; ?>" target="frame"><i class="fa fa-phone"></i> Contacts</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame"><i class="fa fa-newspaper-o"></i> Employeement records</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame"><i class="fa fa-mortar-board"></i> Qualification</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame"><i class="fa fa-video-camera"></i> Surveillance</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame"><i class="fa fa-newspaper-o"></i>Publications</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame"><i class="fa  fa-university"></i> Studies</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame"><i class="fa fa-circle-o"></i> Outbreaks</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame"><i class="fa fa-file"></i> Presentations</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame"><i class="fa  fa-file-text"></i> Short courses</a></li>
+
+
+                        <li class="header">Country</li>
+
+                        <li><a href="<?php echo base_url() . "index.php/management/"; ?>" target="frame"><i class="fa fa-circle-o"></i> Home</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame"><i class="fa fa-road"></i>Tracks</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i>Cohorts</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/student"; ?>" target="frame"><i class="fa fa-mortar-board"></i>Students</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/user"; ?>" target="frame"><i class="fa fa-users"></i>Users</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i>Event & Updates</a></li>
+
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
 

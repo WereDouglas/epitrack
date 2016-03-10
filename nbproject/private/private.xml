@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/wamp/www/epitrack/application/views/blank.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/footer_main.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/header_main.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/center_page.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/controllers/Management.php</file>
+            <file>file:/C:/wamp/www/epitrack/application/views/contacts.php</file>
+        </group>
     </open-files>
 </project-private>

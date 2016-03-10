@@ -14,7 +14,7 @@ class Management extends CI_Controller {
     }
 
     public function index() {
-        
+
         $query = $this->Md->show('event');
         //  var_dump($query);
         if ($query) {
@@ -22,19 +22,20 @@ class Management extends CI_Controller {
         } else {
             $data['events'] = array();
         }
-             $query = $this->Md->show('chat');
-        
+        $query = $this->Md->show('chat');
+
         //  var_dump($query);
         if ($query) {
             $data['chats'] = $query;
         } else {
             $data['chats'] = array();
         }
-        $this->load->view('management-home',$data);
+        $this->load->view('management-home', $data);
     }
-      public function news() {
-        
-       
+
+    public function news() {
+
+
         $this->load->view('blank');
     }
 
@@ -45,23 +46,32 @@ class Management extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'track');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
+            if ($this->session->userdata('level') == 2) {
+                $query = $this->Md->delete($id, 'track');
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
                                                  track deleted	</strong>									
 						</div>');
 
-            redirect('/management/tracks', 'refresh');
+                redirect('/management/tracks', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action' . $this->session->userdata('level') . '	</strong>									
+						</div>');
+
+                redirect('/management/tracks', 'refresh');
+            }
         }
         if ($action == 'update') {
+            if ($this->session->userdata('level') == 2) {
+                $this->load->helper(array('form', 'url'));
 
-            $this->load->helper(array('form', 'url'));
-
-            $track = $this->input->post('track');
-            $id = $this->input->post('id');
-            $track = array('track' => $track);
-            $this->Md->update($id, $track, 'track');
+                $track = $this->input->post('track');
+                $id = $this->input->post('id');
+                $track = array('track' => $track);
+                $this->Md->update($id, $track, 'track');
+            }
         }
 
 
@@ -72,22 +82,30 @@ class Management extends CI_Controller {
             $get_result = $this->Md->check($track, 'track', 'track');
 
             if (!$get_result) {
-                $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
                                                  track already registered	</strong>									
 						</div>');
                 redirect('/management/tracks', 'refresh');
             }
             $tracks = array('track' => $track, 'created' => date('Y-m-d'));
-            $this->Md->save($tracks, 'track');
-            $this->session->set_flashdata('msg', '<div class="alert alert-success">
+            if ($this->session->userdata('level') == 2) {
+                $this->Md->save($tracks, 'track');
+                $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
                                                  track saved</strong>									
 						</div>');
 
-            redirect('/management/tracks', 'refresh');
+                redirect('/management/tracks', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot  carry out this action</strong>									
+						</div>');
+
+                redirect('/management/tracks', 'refresh');
+            }
         } else {
             $query = $this->Md->show('track');
             //  var_dump($query);
@@ -107,26 +125,36 @@ class Management extends CI_Controller {
         $action = $this->uri->segment(3);
 
         if ($action == 'delete') {
-            $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'cohort');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+            if ($this->session->userdata('level') > 0) {
+                $id = $this->uri->segment(4);
+                $query = $this->Md->delete($id, 'cohort');
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
                                                  Cohort deleted	</strong>									
 						</div>');
 
-            redirect('/management/tracks', 'refresh');
+                redirect('/management/tracks', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                redirect('/management/tracks', 'refresh');
+            }
         }
         if ($action == 'update') {
+            if ($this->session->userdata('level') > 0) {
+                $this->load->helper(array('form', 'url'));
 
-            $this->load->helper(array('form', 'url'));
-
-            $name = $this->input->post('name');
-            $id = $this->input->post('id');
+                $name = $this->input->post('name');
+                $id = $this->input->post('id');
 
 
-            $cohort = array('name' => $name);
-            $this->Md->update($id, $cohort, 'cohort');
+                $cohort = array('name' => $name);
+                $this->Md->update($id, $cohort, 'cohort');
+            }
         }
 
 
@@ -148,14 +176,28 @@ class Management extends CI_Controller {
                 redirect('/management/cohort', 'refresh');
             }
             $cohort = array('name' => $name, 'track' => $track, 'year' => $startyear, 'created' => date('Y-m-d'));
-            $this->Md->save($cohort, 'cohort');
-            $this->session->set_flashdata('msg', '<div class="alert alert-success">
-                                                   
+            if ($this->session->userdata('level') > 0) {
+                $this->Md->save($cohort, 'cohort');
+                $this->session->set_flashdata('msg', '<div class="alert alert-success">                               
                                                 <strong>
                                                  cohort saved</strong>									
 						</div>');
+                $message = "New cohort " . $name . " " . "has been created with " . $track . " on" . date('Y-m-d');
+                $subject = "Cohort creation";
+                $result = $query = $this->Md->show('user');
+                foreach ($result as $res) {
+                    $this->sendEmail($message, $res->email, $subject);
+                }
 
-            redirect('/management/cohort', 'refresh');
+                redirect('/management/cohort', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                redirect('/management/cohort', 'refresh');
+            }
         } else {
             $query = $this->Md->show('cohort');
             //  var_dump($query);
@@ -175,55 +217,95 @@ class Management extends CI_Controller {
             $this->load->view('cohort', $data);
         }
     }
-      public function reports() {
+
+    public function sendEmail($message, $to, $subject) {
 
         $this->load->helper(array('form', 'url'));
-        $action = $this->uri->segment(3);
 
-     
-        
-            $query = $this->Md->show('cohort');
-            //  var_dump($query);
-            if ($query) {
-                $data['cohorts'] = $query;
-            } else {
-                $data['cohorts'] = array();
-            }
-            $query = $this->Md->show('track');
-            //  var_dump($query);
-            if ($query) {
-                $data['tracks'] = $query;
-            } else {
-                $data['tracks'] = array();
-            }
+        $name = $this->session->userdata('name');
+        $email = $this->session->userdata('email');
+        $description = ($this->input->post('description'));
 
-            $this->load->view('report', $data);
-        
+        $message = $message;
+
+        echo $message;
+
+        $this->load->library('email');
+
+        $config['wordwrap'] = TRUE;
+        $config['charset'] = 'iso-8859-1';
+
+
+        $this->email->initialize($config);
+
+        $this->email->from($email, $name);
+        //$this->email->to('info@solarnow.eu');
+        $this->email->to($to);
+        $this->email->cc('weredouglas@gmail.com');
+        $this->email->bcc('gatamamichael@gmail.com');
+        $this->email->set_mailtype("html");
+
+        $this->email->subject($subject . $name);
+        $this->email->message($message);
+        if ($name != "" || $email != "") {
+            $this->email->send();
+        }
+
+        echo $this->email->print_debugger();
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                  
+                                                <strong> Notifications sent</strong>									
+						</div>');
     }
-      public function country_report() {
+
+    public function reports() {
 
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
 
-     
-        
-            $query = $this->Md->show('cohort');
-            //  var_dump($query);
-            if ($query) {
-                $data['cohorts'] = $query;
-            } else {
-                $data['cohorts'] = array();
-            }
-            $query = $this->Md->show('track');
-            //  var_dump($query);
-            if ($query) {
-                $data['tracks'] = $query;
-            } else {
-                $data['tracks'] = array();
-            }
 
-            $this->load->view('country-report', $data);
-        
+
+        $query = $this->Md->show('cohort');
+        //  var_dump($query);
+        if ($query) {
+            $data['cohorts'] = $query;
+        } else {
+            $data['cohorts'] = array();
+        }
+        $query = $this->Md->show('track');
+        //  var_dump($query);
+        if ($query) {
+            $data['tracks'] = $query;
+        } else {
+            $data['tracks'] = array();
+        }
+
+        $this->load->view('report', $data);
+    }
+
+    public function country_report() {
+
+        $this->load->helper(array('form', 'url'));
+        $action = $this->uri->segment(3);
+
+
+
+        $query = $this->Md->show('cohort');
+        //  var_dump($query);
+        if ($query) {
+            $data['cohorts'] = $query;
+        } else {
+            $data['cohorts'] = array();
+        }
+        $query = $this->Md->show('track');
+        //  var_dump($query);
+        if ($query) {
+            $data['tracks'] = $query;
+        } else {
+            $data['tracks'] = array();
+        }
+
+        $this->load->view('country-report', $data);
     }
 
     public function student() {
@@ -233,14 +315,23 @@ class Management extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'student');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+            if ($this->session->userdata('level') > 1) {
+                $query = $this->Md->delete($id, 'student');
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
                                                  student deleted	</strong>									
 						</div>');
 
-            redirect('/management/student', 'refresh');
+                redirect('/management/student', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                redirect('/management/student', 'refresh');
+            }
         }
         if ($action == 'update') {
 
@@ -304,7 +395,7 @@ class Management extends CI_Controller {
                 $data = $this->upload->data();
                 $other = $this->input->post('other');
                 $gender = $this->input->post('gender');
-                $dob =  date('Y-m-d', strtotime($this->input->post('dob')));
+                $dob = date('Y-m-d', strtotime($this->input->post('dob')));
                 $country = $this->input->post('country');
                 $contact = $this->input->post('contact');
                 $cohort = $this->input->post('cohort');
@@ -348,22 +439,30 @@ class Management extends CI_Controller {
 
         $this->load->view('add-student', $data);
     }
-    
-       public function country_student() {
+
+    public function country_student() {
 
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'student');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
+            if ($this->session->userdata('level') > 1) {
+                $query = $this->Md->delete($id, 'student');
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
-                                                 student deleted	</strong>									
+                                                 student deleted</strong>									
 						</div>');
 
-            redirect('/management/country_student', 'refresh');
+                redirect('/management/country_student', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                redirect('/management/country_student', 'refresh');
+            }
         }
         if ($action == 'update') {
 
@@ -427,24 +526,32 @@ class Management extends CI_Controller {
                 $data = $this->upload->data();
                 $other = $this->input->post('other');
                 $gender = $this->input->post('gender');
-                $dob =  date('Y-m-d', strtotime($this->input->post('dob')));
+                $dob = date('Y-m-d', strtotime($this->input->post('dob')));
                 $country = $this->input->post('country');
                 $contact = $this->input->post('contact');
                 $cohort = $this->input->post('cohort');
                 $submitted = date('Y-m-d');
                 $file = $data['file_name'];
                 $email = $this->input->post('email');
+                if ($this->session->userdata('level') > 1) {
+                    $student = array('image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false');
+                    $file_id = $this->Md->save($student, 'student');
 
-                $student = array('image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'active');
-                $file_id = $this->Md->save($student, 'student');
-                ;
-                $this->session->set_flashdata('msg', '<div class="alert alert-success">
+                    $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
                                                  information saved</strong>									
 						</div>');
 
-                redirect('/management/country_student', 'refresh');
+                    redirect('/management/country_student', 'refresh');
+                } else {
+                    $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                    redirect('/management/country_student', 'refresh');
+                }
             }
         }
         $query = $this->Md->show('cohort');
@@ -461,7 +568,7 @@ class Management extends CI_Controller {
         } else {
             $data['tracks'] = array();
         }
-          $query = $this->Md->show('country');
+        $query = $this->Md->show('country');
         //  var_dump($query);
         if ($query) {
             $data['countries'] = $query;
@@ -486,14 +593,24 @@ class Management extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'country');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+            if ($this->session->userdata('level') == 2) {
+
+                $query = $this->Md->delete($id, 'country');
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
                                                  country deleted	</strong>									
 						</div>');
 
-            redirect('/management/country', 'refresh');
+                redirect('/management/country', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                redirect('/management/country', 'refresh');
+            }
         }
         if ($action == 'update') {
 
@@ -572,14 +689,23 @@ class Management extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'user');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+            if ($this->session->userdata('level') == 2) {
+                $query = $this->Md->delete($id, 'user');
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
                                                  user deleted	</strong>									
 						</div>');
 
-            redirect('/management/user', 'refresh');
+                redirect('/management/user', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                redirect('/management/tracks', 'refresh');
+            }
         }
         if ($action == 'update') {
 
@@ -588,12 +714,14 @@ class Management extends CI_Controller {
             $fname = $this->input->post('fname');
             $lname = $this->input->post('lname');
             $id = $this->input->post('id');
-             $level = $this->input->post('level');
+            $level = $this->input->post('level');
 
             $email = $this->input->post('email');
             $contact = $this->input->post('contact');
-            $user = array('fname' => $fname, 'lname' => $lname,'level' => $level, 'email' => $email, 'contact' => $contact, 'registered' => date('Y-m-d'), 'status' => 'active');
-            $this->Md->update($id, $user, 'user');
+            if ($this->session->userdata('level') > 0) {
+                $user = array('fname' => $fname, 'lname' => $lname, 'level' => $level, 'email' => $email, 'contact' => $contact, 'registered' => date('Y-m-d'), 'status' => 'active');
+                $this->Md->update($id, $user, 'user');
+            }
         }
 
 
@@ -627,21 +755,29 @@ class Management extends CI_Controller {
             $country = $this->input->post('country');
             $contact = $this->input->post('contact');
             $level = $this->input->post('level');
-            
+
             $submitted = date('Y-m-d');
 
             $email = $this->input->post('email');
+            if ($this->session->userdata('level') > 0) {
+                $user = array('fname' => $fname, 'lname' => $lname, 'level' => $level, 'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
+                $file_id = $this->Md->save($user, 'user');
 
-            $user = array('fname' => $fname, 'lname' => $lname, 'level'=>$level,'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
-            $file_id = $this->Md->save($user, 'user');
-            ;
-            $this->session->set_flashdata('msg', '<div class="alert alert-success">
+                $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
                                                  user information saved</strong>									
 						</div>');
 
-            redirect('/management/user', 'refresh');
+                redirect('/management/user', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                redirect('/management/user', 'refresh');
+            }
         }
         $query = $this->Md->show('user');
         //  var_dump($query);
@@ -650,10 +786,10 @@ class Management extends CI_Controller {
         } else {
             $data['users'] = array();
         }
-         $query = $this->Md->show('country');
-      //  var_dump($query);
+        $query = $this->Md->show('country');
+        //  var_dump($query);
         if ($query) {
-             $data['country'] = $query;
+            $data['country'] = $query;
         } else {
             $data['country'] = array();
         }
@@ -661,6 +797,7 @@ class Management extends CI_Controller {
 
         $this->load->view('user', $data);
     }
+
     public function country_user() {
 
         $this->load->helper(array('form', 'url'));
@@ -724,17 +861,25 @@ class Management extends CI_Controller {
             $submitted = date('Y-m-d');
 
             $email = $this->input->post('email');
+            if ($this->session->userdata('level') > 0) {
+                $user = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'false');
+                $file_id = $this->Md->save($user, 'user');
 
-            $user = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
-            $file_id = $this->Md->save($user, 'user');
-            ;
-            $this->session->set_flashdata('msg', '<div class="alert alert-success">
+                $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
                                                  user information saved</strong>									
 						</div>');
 
-            redirect('/management/country_user', 'refresh');
+                redirect('/management/country_user', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                redirect('/management/country_user', 'refresh');
+            }
         }
         $query = $this->Md->show('user');
         //  var_dump($query);
@@ -743,10 +888,10 @@ class Management extends CI_Controller {
         } else {
             $data['users'] = array();
         }
-         $query = $this->Md->show('country');
-      //  var_dump($query);
+        $query = $this->Md->show('country');
+        //  var_dump($query);
         if ($query) {
-             $data['country'] = $query;
+            $data['country'] = $query;
         } else {
             $data['country'] = array();
         }
@@ -754,7 +899,8 @@ class Management extends CI_Controller {
 
         $this->load->view('country-user', $data);
     }
-  public function event() {
+
+    public function event() {
 
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
@@ -789,22 +935,22 @@ class Management extends CI_Controller {
 
         $this->load->helper(array('form', 'url'));
 
-            $title = $this->input->post('title');
-            $description = $this->input->post('description');
-            $country = $this->input->post('country');
-            $startdate = date('Y-m-d', strtotime($this->input->post('startdate')));
-            $enddate = date('Y-m-d', strtotime($this->input->post('enddate')));
-            $endtime = $this->input->post('endtime');
-            $starttime = $this->input->post('starttime');
-            
-            $postedby = 'test';
-           
+        $title = $this->input->post('title');
+        $description = $this->input->post('description');
+        $country = $this->input->post('country');
+        $startdate = date('Y-m-d', strtotime($this->input->post('startdate')));
+        $enddate = date('Y-m-d', strtotime($this->input->post('enddate')));
+        $endtime = $this->input->post('endtime');
+        $starttime = $this->input->post('starttime');
 
-        if ($title != "" && $startdate != "") {      
-           
-          
+        $postedby = 'test';
 
-            $event = array('title' => $title, 'description' => $description, 'country' => $country, 'startdate' => $startdate, 'enddate' => $enddate,'starttime'=>$starttime ,'endtime'=>$endtime,'posted' => $postedby, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
+
+        if ($title != "" && $startdate != "") {
+
+
+
+            $event = array('title' => $title, 'description' => $description, 'country' => $country, 'startdate' => $startdate, 'enddate' => $enddate, 'starttime' => $starttime, 'endtime' => $endtime, 'posted' => $postedby, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
             $file_id = $this->Md->save($event, 'event');
             ;
             $this->session->set_flashdata('msg', '<div class="alert alert-success">
@@ -826,7 +972,8 @@ class Management extends CI_Controller {
 
         $this->load->view('event', $data);
     }
-        public function advert() {
+
+    public function advert() {
 
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
@@ -872,7 +1019,7 @@ class Management extends CI_Controller {
                 $title = $this->input->post('title');
                 $file = $data['file_name'];
 
-                $advert = array('image' => $file, 'title' => $title,'submitted'=> date('y-m-d'),'status'=>'active');
+                $advert = array('image' => $file, 'title' => $title, 'submitted' => date('y-m-d'), 'status' => 'active');
                 $file_id = $this->Md->save($advert, 'advert');
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    

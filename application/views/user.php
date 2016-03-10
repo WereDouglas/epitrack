@@ -100,7 +100,7 @@
                                                 <div class="control-group align-right">
                                                     <div class="controls">
                                                         <span class="span12 align-right">   Country:<input type="text" readonly="true" id="country" class="span6" name="country" value="<?= $this->session->userdata('country') ?>" /></span>
-                                                        <input type="hidden" r id="level" class="span6" name="level" value="2" />
+                                                        <input id="level" class="span6" name="level" value="" />
 
                                                     </div>
                                                 </div>
@@ -170,6 +170,7 @@
                                                         <th>Status</th>   
                                                         <th>Created</th>
                                                         <th></th>
+                                                          <th>Approve</th>
                                                     </tr>
                                                 </thead>
 
@@ -229,6 +230,11 @@
                                                                                 <i class="icon-trash bigger-120"></i>
                                                                             </span>
                                                                         </a>
+                                                                    </td>
+                                                                    
+                                                                      <td class="td-actions">
+
+                                                                        
                                                                     </td>
                                                                 </tr>
                                                                 <?php

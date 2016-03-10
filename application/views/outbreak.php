@@ -250,8 +250,9 @@
 
                                                         <th>Name</th>
                                                         <th>Onset</th>
-                                                        <th>Dissemination</th>   
-                                                        <th>Findings</th>   
+                                                        <th>Dissemination</th> 
+                                                        <th>Period</th>  
+                                                        <th>Findings</th>
                                                         <th>Date of study</th> 
                                                         <th>Cases</th> 
                                                         <th>Deaths</th> 
@@ -283,7 +284,8 @@
                                                                     <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
                                                                 </td>
                                                                 <td><?= $loop->onset ?></td>
-                                                                 <td><?= $loop->dissemination ?></td>
+                                                                 <td><?= $loop->findings ?></td>
+                                                                   <td><?= $loop->dates ?></td>
 
                                                                 <td class="edit_td">
                                                                     <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>

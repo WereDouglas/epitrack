@@ -14,7 +14,7 @@ class Country extends CI_Controller {
     }
 
     public function index() {
-        
+
         $query = $this->Md->show('event');
         //  var_dump($query);
         if ($query) {
@@ -22,16 +22,16 @@ class Country extends CI_Controller {
         } else {
             $data['events'] = array();
         }
-         $query = $this->Md->show('chat');
-        
+        $query = $this->Md->show('chat');
+
         //  var_dump($query);
         if ($query) {
             $data['chats'] = $query;
         } else {
             $data['chats'] = array();
         }
-       // $this->load->view('country-home',$data);
-        $this->load->view('center_page',$data);
+        // $this->load->view('country-home',$data);
+        $this->load->view('center_page', $data);
     }
 
     public function tracks() {
@@ -111,7 +111,7 @@ class Country extends CI_Controller {
                                                  Cohort deleted	</strong>									
 						</div>');
 
-            redirect('/management/tracks', 'refresh');
+            redirect('/management/cohort', 'refresh');
         }
         if ($action == 'update') {
 
@@ -212,8 +212,6 @@ class Country extends CI_Controller {
 
 
         if ($fname != "" && $lname != "") {
-
-
             $email = $this->input->post('email');
             $password = $password;
             $key = $email;
@@ -250,7 +248,7 @@ class Country extends CI_Controller {
                 $data = $this->upload->data();
                 $other = $this->input->post('other');
                 $gender = $this->input->post('gender');
-                $dob =  date('Y-m-d', strtotime($this->input->post('dob')));
+                $dob = date('Y-m-d', strtotime($this->input->post('dob')));
                 $country = $this->input->post('country');
                 $contact = $this->input->post('contact');
                 $cohort = $this->input->post('cohort');
@@ -388,14 +386,22 @@ class Country extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'user');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
+            if ($this->session->userdata('level') == 2) {
+                $query = $this->Md->delete($id, 'user');
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
                                                  user deleted	</strong>									
 						</div>');
 
-            redirect('/management/user', 'refresh');
+                redirect('/management/user', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                redirect('/management/user', 'refresh');
+            }
         }
         if ($action == 'update') {
 
@@ -463,10 +469,10 @@ class Country extends CI_Controller {
         } else {
             $data['users'] = array();
         }
-         $query = $this->Md->show('country');
-      //  var_dump($query);
+        $query = $this->Md->show('country');
+        //  var_dump($query);
         if ($query) {
-             $data['country'] = $query;
+            $data['country'] = $query;
         } else {
             $data['country'] = array();
         }
@@ -475,7 +481,7 @@ class Country extends CI_Controller {
         $this->load->view('user', $data);
     }
 
-  public function event() {
+    public function event() {
 
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
@@ -510,22 +516,22 @@ class Country extends CI_Controller {
 
         $this->load->helper(array('form', 'url'));
 
-            $title = $this->input->post('title');
-            $description = $this->input->post('description');
-            $country = $this->input->post('country');
-            $startdate = date('Y-m-d', strtotime($this->input->post('startdate')));
-            $enddate = date('Y-m-d', strtotime($this->input->post('enddate')));
-            $endtime = $this->input->post('endtime');
-            $starttime = $this->input->post('starttime');
-            
-            $postedby = 'test';
-           
+        $title = $this->input->post('title');
+        $description = $this->input->post('description');
+        $country = $this->input->post('country');
+        $startdate = date('Y-m-d', strtotime($this->input->post('startdate')));
+        $enddate = date('Y-m-d', strtotime($this->input->post('enddate')));
+        $endtime = $this->input->post('endtime');
+        $starttime = $this->input->post('starttime');
 
-        if ($title != "" && $startdate != "") {      
-           
-          
+        $postedby = 'test';
 
-            $event = array('title' => $title, 'description' => $description, 'country' => $country, 'startdate' => $startdate, 'enddate' => $enddate,'starttime'=>$starttime ,'endtime'=>$endtime,'posted' => $postedby, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
+
+        if ($title != "" && $startdate != "") {
+
+
+
+            $event = array('title' => $title, 'description' => $description, 'country' => $country, 'startdate' => $startdate, 'enddate' => $enddate, 'starttime' => $starttime, 'endtime' => $endtime, 'posted' => $postedby, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
             $file_id = $this->Md->save($event, 'event');
             ;
             $this->session->set_flashdata('msg', '<div class="alert alert-success">
@@ -547,7 +553,8 @@ class Country extends CI_Controller {
 
         $this->load->view('event', $data);
     }
-        public function advert() {
+
+    public function advert() {
 
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
@@ -593,7 +600,7 @@ class Country extends CI_Controller {
                 $title = $this->input->post('title');
                 $file = $data['file_name'];
 
-                $advert = array('image' => $file, 'title' => $title,'submitted'=> date('y-m-d'),'status'=>'active');
+                $advert = array('image' => $file, 'title' => $title, 'submitted' => date('y-m-d'), 'status' => 'active');
                 $file_id = $this->Md->save($advert, 'advert');
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    

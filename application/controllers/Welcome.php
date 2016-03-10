@@ -59,6 +59,7 @@ class Welcome extends CI_Controller {
                             'contact' => $res->contact,
                             'country' => $res->country,
                             'cohort' => $res->cohort,
+                            'level' => 'student',
                             'logged_in' => TRUE
                         );
                  
@@ -225,7 +226,7 @@ class Welcome extends CI_Controller {
                         } else {
                             $data['pubs'] = array();
                         }
-        $this->load->view('management',$data);
+        $this->load->view('center_page',$data);
     }
 
     public function projects() {

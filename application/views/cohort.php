@@ -4,25 +4,18 @@
         <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 
-    <div class="main-content">
-    <style>
-.form-horizontal .controls {
-    margin-left: 2px;
-}
-</style>
 
-    <div class="page-content">
-                
-         <div class="alert alert-success">Add new cohort</div>  
-                          <?php echo $this->session->flashdata('msg'); ?>
+
+         <h4>Add new cohort</h4>  
+                          
         
             <div class="row-fluid">
                          <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/cohort/'  method="post">            
              
                                             
-
+<?php echo $this->session->flashdata('msg'); ?>
  
-      <div class="well well-large span12">
+     
           
                                                     <label>
                                                         <span class="block input-icon input-icon-right">
@@ -55,14 +48,15 @@
 
                                                         </button>
                         </div>
-                                                    </div>
+                                              
                                                        </form>
 
                  
 </div>
                                                      
                                                      
-                                                     
+        <hr>   
+        <h4>Cohort list</h4>
                                                      
         <div class="alert alert-info">Select a field to edit the content</div>                     
                                       
@@ -127,10 +121,6 @@
                                         </table>      
                          
                    
-
-           
- </div>
-                                                
 
 
 </div><!--/.main-content-->

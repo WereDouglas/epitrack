@@ -11,29 +11,7 @@
 <link href="<?= base_url(); ?>dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
 <div class="row">
-    <div class="info-box">
 
-        <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
-        <div class="info-box-content">
-            <span class="info-box-text">Likes</span>
-            <span class="info-box-number">93,139</span>
-        </div><!-- /.info-box-content -->
-
-    </div><!-- /.info-box -->
-    <div class="info-box bg-red">
-        <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
-        <div class="info-box-content">
-            <span class="info-box-text">Likes</span>
-            <span class="info-box-number">41,410</span>
-            <-- The progress section is optional -->
-            <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-            </div>
-            <span class="progress-description">
-                70% Increase in 30 Days
-            </span>
-        </div><!-- /.info-box-content -->
-    </div><!-- /.info-box -->
 
     <div class="col-md-12">
         <!-- The time line -->
@@ -41,93 +19,160 @@
             <!-- timeline time label -->
             <li class="time-label">
                 <span class="bg-red">
-                    10 Feb. 2014
+                    <?php echo date('Y-m-d'); ?>
                 </span>
             </li>
             <!-- /.timeline-label -->
             <!-- timeline item -->
             <li>
-                <i class="fa fa-envelope bg-blue"></i>
-                <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-                    <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-                    <div class="timeline-body">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                        quora plaxo ideeli hulu weebly balihoo...
-                    </div>
-                    <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                    </div>
-                </div>
+
+                <i class="fa fa-newspaper-o bg-blue"></i>
+
+                <?php
+                if (is_array($publication_cnt_review)) {
+                    foreach ($publication_cnt_review as $loop) {
+                        ?>    
+                         <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i>  <?= $loop->author; ?></span>
+                            <h3 class="timeline-header"><a href="#"><?= $loop->title.' ' ?></a>  <?= $loop->author; ?></h3>
+                            <div class="timeline-body">
+                              <?= $loop->abstract; ?>
+                            </div>
+                            <div class="timeline-footer">
+                                 <a href="<?php echo base_url() . "publications/" . $loop->file; ?>">view</a>
+                              
+                            </div>
+                        </div>
+
+
+                        <?php
+                    }
+                }
+                ?>
+                        <?php
+                if (is_array($publication_cnt_accepted)) {
+                    foreach ($publication_cnt_accepted as $loop) {
+                        ?>    
+                        
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i>  <?= $loop->author; ?></span>
+                            <h3 class="timeline-header"><a href="#"><?= $loop->title.' ' ?></a>  <?= $loop->author; ?></h3>
+                            <div class="timeline-body">
+                              <?= $loop->abstract; ?>
+                            </div>
+                            <div class="timeline-footer">
+                                 <a href="<?php echo base_url() . "publications/" . $loop->file; ?>">view</a>
+                              
+                            </div>
+                        </div>
+
+
+                        <?php
+                    }
+                }
+                ?>  
+                        
+
+
+              
             </li>
             <!-- END timeline item -->
             <!-- timeline item -->
             <li>
                 <i class="fa fa-user bg-aqua"></i>
                 <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-                    <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
+                    <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame">
+                        <i class="fa fa-users text-aqua"></i> <?php echo count($student_cnt_false); ?> Pending activation
+                    </a>  
+
+                    <?php
+                    if (is_array($student_cnt_false)) {
+                        foreach ($student_cnt_false as $loop) {
+                            ?>    
+                            <h3 class="timeline-header no-border"><a href="#"><?= $loop->fname . ' ' . $loop->fname . ' ' ?></a><?= $loop->email . ' ' . $loop->contact ?> </h3>
+
+                            <?php
+                        }
+                    }
+                    ?>
+
                 </div>
             </li>
             <!-- END timeline item -->
             <!-- timeline item -->
             <li>
-                <i class="fa fa-comments bg-yellow"></i>
-                <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-                    <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-                    <div class="timeline-body">
-                        Take me to your leader!
-                        Switzerland is small and neutral!
-                        We are more like Germany, ambitious and misunderstood!
-                    </div>
-                    <div class="timeline-footer">
-                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                    </div>
-                </div>
+                <i class="fa fa-video-camera bg-yellow"></i>
+                
+                         <?php
+                if (is_array($present_cnt_accepted)) {
+                    foreach ($present_cnt_accepted as $loop) {
+                        ?>    
+                         <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i>  <?= $loop->submissionDate; ?></span>
+                            <h3 class="timeline-header"><a href="#"><?= $loop->title.' ' ?></a>  <?= $loop->presenter.' '.$loop->country ; ?></h3>
+                            <div class="timeline-body">
+                              <?= $loop->summary; ?>
+                            </div>
+                            <div class="timeline-footer">
+                                 <a href="<?php echo base_url() . "publications/" . $loop->file; ?>">view</a>
+                              
+                            </div>
+                        </div>
+
+
+                        <?php
+                    }
+                }
+                ?>
+           
             </li>
             <!-- END timeline item -->
             <!-- timeline time label -->
             <li class="time-label">
                 <span class="bg-green">
-                    3 Jan. 2014
+                   <?php echo date('Y-m-d'); ?>
                 </span>
             </li>
             <!-- /.timeline-label -->
             <!-- timeline item -->
-            <li>
-                <i class="fa fa-camera bg-purple"></i>
-                <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-                    <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-                    <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin" />
-                        <img src="http://placehold.it/150x100" alt="..." class="margin" />
-                        <img src="http://placehold.it/150x100" alt="..." class="margin" />
-                        <img src="http://placehold.it/150x100" alt="..." class="margin" />
-                    </div>
-                </div>
-            </li>
+           
+             <div class="col-md-6">
+                  <!-- USERS LIST -->
+                  <div class="box box-danger">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Latest Students</h3>
+                      <div class="box-tools pull-right">
+                        <span class="label label-danger"><?php echo count($student_cnt_false);?> New students</span>
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                      </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body no-padding">
+                      <ul class="users-list clearfix">
+                           <?php
+                    if (is_array($student_cnt_false)) {
+                        foreach ($student_cnt_false as $loop) {
+                            ?>    
+                          <li>
+                         <a href="<?php echo base_url() . "index.php/student/details/".$loop->id; ?>" target="frame">  <img src="<?= base_url(); ?>uploads/<?php echo $loop->image; ?>" alt="User Image" />
+                           <?php echo  $loop->fname.' '.$loop->lname ?></a>
+                          <span class="users-list-date"><?php echo $loop->submitted?></span>
+                        </li>
+                            <?php
+                        }
+                    }
+                    ?>                          
+                      </ul><!-- /.users-list -->
+                    </div><!-- /.box-body -->
+                    <div class="box-footer text-center">
+                      <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" class="uppercase">View All Students</a>
+                    </div><!-- /.box-footer -->
+                  </div><!--/.box -->
+                </div><!-- /.col -->
+             
             <!-- END timeline item -->
             <!-- timeline item -->
-            <li>
-                <i class="fa fa-video-camera bg-maroon"></i>
-                <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> 5 days ago</span>
-                    <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
-                    <div class="timeline-body">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tMWkeBIohBs" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="timeline-footer">
-                        <a href="#" class="btn btn-xs bg-maroon">See comments</a>
-                    </div>
-                </div>
-            </li>
+           
             <!-- END timeline item -->
             <li>
                 <i class="fa fa-clock-o bg-gray"></i>
@@ -136,53 +181,6 @@
     </div><!-- /.col -->
 </div><!-- /.row -->
 
-<div class="row" style="margin-top: 10px;">
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-header">
-                <h3 class="box-title"><i class="fa fa-code"></i> Timeline Markup</h3>
-            </div>
-            <div class="box-body">
-                <pre style="font-weight: 600;">
-&lt;ul class="timeline">
-
-    &lt;!-- timeline time label -->
-    &lt;li class="time-label">
-        &lt;span class="bg-red">
-            10 Feb. 2014
-        &lt;/span>
-    &lt;/li>
-    &lt;!-- /.timeline-label -->
-
-    &lt;!-- timeline item -->
-    &lt;li>
-        &lt;!-- timeline icon -->
-        &lt;i class="fa fa-envelope bg-blue">&lt;/i>
-        &lt;div class="timeline-item">
-            &lt;span class="time">&lt;i class="fa fa-clock-o">&lt;/i> 12:05&lt;/span>
-
-            &lt;h3 class="timeline-header">&lt;a href="#">Support Team&lt;/a> ...&lt;/h3>
-
-            &lt;div class="timeline-body">
-                ...
-                Content goes here
-            &lt;/div>
-
-            &lt;div class="timeline-footer">
-                &lt;a class="btn btn-primary btn-xs">...&lt;/a>
-            &lt;/div>
-        &lt;/div>
-    &lt;/li>
-    &lt;!-- END timeline item -->
-
-    ...
-
-&lt;/ul>
-                </pre>
-            </div><!-- /.box-body -->
-        </div><!-- /.box -->
-    </div><!-- /.col -->
-</div><!-- /.row -->
 <script src="<?= base_url(); ?>plugins/jQuery/jQuery-2.1.4.min.js" type="text/javascript"></script>
 <!-- Bootstrap 3.3.2 JS -->
 <script src="<?= base_url(); ?>bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

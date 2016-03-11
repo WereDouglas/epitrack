@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-responsive.min.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
-<link href="<?= base_url(); ?>css/mine.css" rel="stylesheet" />
+
 
 
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery-ui-1.10.3.custom.min.css" />
@@ -160,8 +160,8 @@
                                     <div class="alert alert-danger">Select a field to edit the content</div>                     
 
 
-                                    <div class="grid-wrapper pre-scrollable">
-                                        <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                              
+                                        <table id="example1" class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
                                                     <th class="center">
@@ -224,7 +224,7 @@
                                                 ?>
                                             </tbody>
                                         </table>  
-                                    </div>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -768,8 +768,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $('#simple-colorpicker-1').ace_colorpicker();
 
 
-        $(".knob").knob();
-
+     
 
         //we could just set the data-provide="tag" of the element inside HTML, but IE8 fails!
         var tag_input = $('#form-field-tags');
@@ -812,3 +811,11 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
     });
 </script>
+<script src="<?= base_url(); ?>plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function () {
+        $("#example1").DataTable();
+        
+      });
+    </script>

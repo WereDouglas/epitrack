@@ -34,9 +34,63 @@ class Management extends CI_Controller {
     }
 
     public function news() {
+        $cty = $this->session->userdata('country');
+
+        $name = $this->session->userdata('name');
+        $query = $this->Md->get('reciever', $name, 'chat');
+        //  var_dump($query);
+        if ($query) {
+            $data['chats'] = $query;
+        } else {
+            $data['chats'] = array();
+        }
+        $query = $this->Md->query("SELECT * FROM outbreak where country = '" . $cty . "'");
+        //  var_dump($query);
+        if ($query) {
+            $data['outbreaks'] = $query;
+        } else {
+            $data['outbreaks'] = array();
+        }
+
+        $query = $this->Md->query("SELECT * FROM publication where country = '" . $cty . "'");
+        //  var_dump($query);
+        if ($query) {
+            $data['pubs'] = $query;
+        } else {
+            $data['pubs'] = array();
+        }
+        $query = $this->Md->query("SELECT * FROM student where status = 'false'");
+        //  var_dump($query);
+        if ($query) {
+            $data['student_cnt_false'] = $query;
+        } else {
+            $data['student_cnt_false'] = array();
+        }
+         
+                        $query = $this->Md->query("SELECT * FROM publication where reviewed = 'no'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['publication_cnt_review'] = $query;
+                        } else {
+                            $data['publication_cnt_review'] = array();
+                        }
+                        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['publication_cnt_accepted'] = $query;
+                        } else {
+                            $data['publication_cnt_accepted'] = array();
+                        }
+                         $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['present_cnt_accepted'] = $query;
+                        } else {
+                            $data['present_cnt_accepted'] = array();
+                        }
 
 
-        $this->load->view('blank');
+        $this->load->view('blank', $data);
     }
 
     public function tracks() {
@@ -343,7 +397,6 @@ class Management extends CI_Controller {
             $other = $this->input->post('other');
             $email = $this->input->post('email');
             $contact = $this->input->post('contact');
-
             $student = array('fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'contact' => $contact);
             $this->Md->update($id, $student, 'student');
         }
@@ -397,13 +450,17 @@ class Management extends CI_Controller {
                 $gender = $this->input->post('gender');
                 $dob = date('Y-m-d', strtotime($this->input->post('dob')));
                 $country = $this->input->post('country');
+                if ($this->session->userdata('level') == 1) {
+
+                    $country = $this->session->userdata('country');
+                }
                 $contact = $this->input->post('contact');
                 $cohort = $this->input->post('cohort');
                 $submitted = date('Y-m-d');
                 $file = $data['file_name'];
                 $email = $this->input->post('email');
 
-                $student = array('image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'active');
+                $student = array('image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false');
                 $file_id = $this->Md->save($student, 'student');
                 ;
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
@@ -447,7 +504,7 @@ class Management extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            if ($this->session->userdata('level') > 1) {
+            if ($this->session->userdata('level') > 0) {
                 $query = $this->Md->delete($id, 'student');
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
@@ -528,12 +585,16 @@ class Management extends CI_Controller {
                 $gender = $this->input->post('gender');
                 $dob = date('Y-m-d', strtotime($this->input->post('dob')));
                 $country = $this->input->post('country');
+                if ($this->session->userdata('level') == 1) {
+
+                    $country = $this->session->userdata('country');
+                }
                 $contact = $this->input->post('contact');
                 $cohort = $this->input->post('cohort');
                 $submitted = date('Y-m-d');
                 $file = $data['file_name'];
                 $email = $this->input->post('email');
-                if ($this->session->userdata('level') > 1) {
+                if ($this->session->userdata('level') > 0) {
                     $student = array('image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false');
                     $file_id = $this->Md->save($student, 'student');
 
@@ -753,6 +814,10 @@ class Management extends CI_Controller {
             }
 
             $country = $this->input->post('country');
+            if ($this->session->userdata('level') == 1) {
+
+                $country = $this->session->userdata('country');
+            }
             $contact = $this->input->post('contact');
             $level = $this->input->post('level');
 
@@ -760,7 +825,7 @@ class Management extends CI_Controller {
 
             $email = $this->input->post('email');
             if ($this->session->userdata('level') > 0) {
-                $user = array('fname' => $fname, 'lname' => $lname, 'level' => $level, 'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'active');
+                $user = array('fname' => $fname, 'lname' => $lname, 'level' => $level, 'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'false');
                 $file_id = $this->Md->save($user, 'user');
 
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
@@ -798,6 +863,41 @@ class Management extends CI_Controller {
         $this->load->view('user', $data);
     }
 
+    public function activate_user() {
+        $this->load->helper(array('form', 'url'));
+        $id = trim($this->input->post('id'));
+        $actives = trim($this->input->post('actives'));
+        if ($actives == "active") {
+            $active = "false";
+        }
+        if ($actives == "false") {
+            $active = "active";
+        }
+
+        if ($this->session->userdata('level') > 0) {
+            $user = array('status' => $active);
+            $this->Md->update($id, $user, 'user');
+        }
+    }
+
+    public function activate_student() {
+
+        $this->load->helper(array('form', 'url'));
+        $id = trim($this->input->post('id'));
+        $actives = trim($this->input->post('actives'));
+        if ($actives == "active") {
+            $active = "false";
+        }
+        if ($actives == "false") {
+            $active = "active";
+        }
+
+        if ($this->session->userdata('level') > 0) {
+            $student = array('status' => $active);
+            $this->Md->update($id, $student, 'student');
+        }
+    }
+
     public function country_user() {
 
         $this->load->helper(array('form', 'url'));
@@ -814,6 +914,8 @@ class Management extends CI_Controller {
 
             redirect('/management/country_user', 'refresh');
         }
+
+
         if ($action == 'update') {
 
             $this->load->helper(array('form', 'url'));

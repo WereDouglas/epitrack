@@ -87,18 +87,18 @@
                                                         <span class="span12 align-right">Last name:<input class="input-small span6"  type="text" id="lname" name="lname" placeholder="Last Name"  /></span>
                                                         <span class="span12 align-right">E-mail:<input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
                                                         <span class="span12 align-right">Contact <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
- <div class="controls  align-right">
-                                                     
-                                                           Level :
+                                                        <div class="controls  align-right">
+
+                                                            Level :
                                                             <select class="span6 align-right" id="level" name="level" >                                                            
-                                                                                    
-                                                                        <option value="1" />Level-1
-                                                                          <option value="2" />Level-2
-                                                                          <option value="3" />Level-3
-                                                                 
+
+                                                                <option value="1" />Level-1
+                                                                <option value="2" />Level-2
+                                                                <option value="3" />Level-3
+
                                                             </select>
 
-                                                   </div>
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -111,19 +111,20 @@
 
                                                 <div class="control-group align-right">
                                                     <div class="controls">
-                                                     
-                                                            Country :
-                                                            <select class="span6 align-right" id="country" name="country" >                                                            
-                                                                <?php
-                                                                if (is_array($country) && count($country)) {
-                                                                    foreach ($country as $loop) {
-                                                                        ?>                        
-                                                                        <option value="<?= $loop->name ?>" /><?= $loop->name ?>
-                                                                    <?php }
-                                                                } ?>
-                                                            </select>
 
-                                                   </div>
+                                                        Country :
+                                                        <select class="span6 align-right" id="country" name="country" >                                                            
+                                                            <?php
+                                                            if (is_array($country) && count($country)) {
+                                                                foreach ($country as $loop) {
+                                                                    ?>                        
+                                                                    <option value="<?= $loop->name ?>" /><?= $loop->name ?>
+                                                                <?php }
+                                                            }
+                                                            ?>
+                                                        </select>
+
+                                                    </div>
                                                 </div>
 
 
@@ -171,8 +172,8 @@
                                         <div class="alert alert-danger">Select a field to edit the content</div>                     
 
 
-                                        <div class="grid-wrapper pre-scrollable">
-                                            <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                     
+                                            <table id="example1" class="table table-striped table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th class="center">
@@ -185,12 +186,13 @@
                                                         <th>First name</th>
                                                         <th>Last name</th>                                                             
                                                         <th>E-mail</th>    
-                                                           <th>Level</th>    
+                                                        <th>Level</th>    
                                                         <th>Country</th>  
                                                         <th>Contact</th>                                                                 
                                                         <th>Status</th>   
                                                         <th>Created</th>
                                                         <th></th>
+                                                         <th>Approve/activate</th>
                                                     </tr>
                                                 </thead>
 
@@ -203,7 +205,7 @@
 
                                                             $email = $loop->email;
                                                             $contact = $loop->contact;
-                                                              $level = $loop->level;
+                                                            $level = $loop->level;
 
                                                             $id = $loop->id;
                                                             ?>  
@@ -229,10 +231,10 @@
                                                                     <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
                                                                     <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"/>
                                                                 </td>
-                                                                  <td class="edit_td">
-                                                                        <span id="level_<?php echo $id; ?>" class="text"><?php echo $level; ?></span>
-                                                                        <input type="text" value="<?php echo $level; ?>" class="editbox" id="level_input_<?php echo $id; ?>"/>
-                                                                 </td>
+                                                                <td class="edit_td">
+                                                                    <span id="level_<?php echo $id; ?>" class="text"><?php echo $level; ?></span>
+                                                                    <input type="text" value="<?php echo $level; ?>" class="editbox" id="level_input_<?php echo $id; ?>"/>
+                                                                </td>
 
 
                                                                 <td><?= $loop->country ?></td>
@@ -253,6 +255,39 @@
                                                                         </span>
                                                                     </a>
                                                                 </td>
+                                                                <td >
+
+                                                                    <?php
+                                                                    if ($loop->status == "false") {
+                                                                        ?>
+                                                                        <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                            <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
+                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" />
+                                                                                Active
+                                                                            </label>
+                                                                            <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
+                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                                                Off
+                                                                            </label>
+                                                                        </div> 
+                                                                    <?php } ?>
+
+                                                                    <?php
+                                                                    if ($loop->status == "active") {
+                                                                        ?>
+                                                                        <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                            <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
+                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                                                Active
+                                                                            </label>
+                                                                            <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
+                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>"  />
+                                                                                Off
+                                                                            </label>
+                                                                        </div> 
+        <?php } ?>
+
+                                                                </td>
                                                             </tr>
                                                             <?php
                                                         }
@@ -261,7 +296,7 @@
                                                 </tbody>
                                             </table>  
                                         </div>
-                                    </div>
+                                 
                                 </div>
                             </div>
                         </div>
@@ -348,8 +383,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                 inp.setAttribute('readonly', 'true');
                 inp.removeAttribute('disabled');
                 inp.value = "This text field is readonly!";
-            }
-            else {
+            } else {
                 inp.setAttribute('disabled', 'disabled');
                 inp.removeAttribute('readonly');
                 inp.value = "This text field is disabled!";
@@ -506,8 +540,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                             //IE8 and browsers that don't support File Object
                             if (!(/\.(jpe?g|png|gif|bmp)$/i).test(file))
                                 return false;
-                        }
-                        else {
+                        } else {
                             var type = $.trim(file.type);
                             if ((type.length > 0 && !(/^image\/(jpe?g|png|gif|bmp)$/i).test(type))
                                     || (type.length == 0 && !(/\.(jpe?g|png|gif|bmp)$/i).test(file.name))//for android's default browser which gives an empty string for file.type
@@ -522,8 +555,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     return allowed_files;
                 }
-            }
-            else {
+            } else {
                 btn_choose = "Drop files here or click to choose";
                 no_icon = "icon-cloud-upload";
                 before_change = function (files, dropped) {
@@ -600,8 +632,8 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
             $("#email" + ID).hide();
             $("#email_input_" + ID).show();
-            
-             $("#level" + ID).hide();
+
+            $("#level" + ID).hide();
             $("#level_input_" + ID).show();
 
 
@@ -615,7 +647,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             var level = $("#level_input_" + ID).val();
 
 
-            var dataString = 'id=' + ID + '&fname=' + fname + '&lname=' + lname + '&contact=' + contact + '&email=' + email+ '&level=' + level;
+            var dataString = 'id=' + ID + '&fname=' + fname + '&lname=' + lname + '&contact=' + contact + '&email=' + email + '&level=' + level;
             $("#fname_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             $("#lname_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             $("#contact_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
@@ -636,13 +668,12 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                         $("#lname_" + ID).html(lname);
                         $("#contact_" + ID).html(contact);
                         $("#email_" + ID).html(email);
-                         $("#level_" + ID).html(level);
+                        $("#level_" + ID).html(level);
 
 
                     }
                 });
-            }
-            else
+            } else
             {
                 alert('Enter something.');
             }
@@ -664,3 +695,55 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
     });
 </script>
+<script src="<?= base_url(); ?>js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(); ?>js/bootstrap.min.js"></script>
+
+
+<script>
+
+
+  $('.btn-group[data-toggle=buttons]').each(function (i, e) {
+      var default_class = $(e).data('toggle-default-class') || 'btn-default';
+
+      $(e).find('label')
+              .click(function (event) {
+                  $(e).find('label')
+                          .each(function (i, e) {
+                              if (!(e == event.target)) {
+                                  $(e).removeClass($(e).data('toggle-class'))
+                                          .addClass(default_class);
+
+                                  $(e).find('input').removeAttr('checked');
+                                  console.log($(e).find("input").attr("id"));
+
+
+                                  $.post("<?php echo base_url() ?>index.php/management/activate_user", {
+                                      id: $(e).find("input").val(),
+                                      actives: $(e).find("input").attr("id")
+
+                                  }, function (response) {
+                                      // console.log(response);
+                                  });
+                                  // alert("active");
+
+                              } else {
+                                  $(e).removeClass(default_class)
+                                          .addClass($(e).data('toggle-class'));
+
+                                  $(e).find('input')
+                                          .attr('checked', 1);
+
+                              }
+                          });
+              });
+  });
+
+</script>
+<script src="<?= base_url(); ?>plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function () {
+        $("#example1").DataTable();
+        
+      });
+    </script>

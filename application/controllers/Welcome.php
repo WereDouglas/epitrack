@@ -94,10 +94,7 @@ class Welcome extends CI_Controller {
                             $data['pubs'] = $query;
                         } else {
                             $data['pubs'] = array();
-                        }
-                            
-                            
-                            
+                        }   
                              
                         $query = $this->Md->show('event');
                         //  var_dump($query);
@@ -160,26 +157,18 @@ class Welcome extends CI_Controller {
                             );
                             $this->session->set_userdata($newdata);
                             
-                        if ($this->session->userdata('level')==1){
-                              redirect('country/', 'refresh');
-                              return;
-                            
-                        }
-                        if ($this->session->userdata('level')==2){
-                            $cty= $this->session->userdata('country');                                   
+                        if ($this->session->userdata('level')>0){
+                             $cty= $this->session->userdata('country');                                   
                               $country = $this->Md->get('name', $cty, 'country');
                                 foreach ($country as $res) {
                                      $county = $res->image;
                                 }
-                            $this->session->set_userdata('flag', $county);
-                            
-                            
-                            
+                                $this->session->set_userdata('flag', $county);
                             
                               redirect('welcome/management/', 'refresh');
                               return;
-                            
                         }
+                        
                             
                             redirect('welcome/management/', 'refresh');
                         } else {
@@ -226,6 +215,38 @@ class Welcome extends CI_Controller {
                         } else {
                             $data['pubs'] = array();
                         }
+                       $query = $this->Md->query("SELECT * FROM student where status = 'false'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['student_cnt_false'] = $query;
+                        } else {
+                            $data['student_cnt_false'] = array();
+                        }
+                        
+                        $query = $this->Md->query("SELECT * FROM publication where reviewed = 'no'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['publication_cnt_review'] = $query;
+                        } else {
+                            $data['publication_cnt_review'] = array();
+                        }
+                        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['publication_cnt_accepted'] = $query;
+                        } else {
+                            $data['publication_cnt_accepted'] = array();
+                        }
+                        
+                         $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['present_cnt_accepted'] = $query;
+                        } else {
+                            $data['present_cnt_accepted'] = array();
+                        }
+                        
+                        
         $this->load->view('center_page',$data);
     }
 

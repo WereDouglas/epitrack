@@ -170,7 +170,7 @@
                                                         <th>Status</th>   
                                                         <th>Created</th>
                                                         <th></th>
-                                                          <th>Approve</th>
+                                                        <th>Approve</th>
                                                     </tr>
                                                 </thead>
 
@@ -186,7 +186,7 @@
 
                                                                 $email = $loop->email;
                                                                 $contact = $loop->contact;
-                                                                  // $level = $loop->level;
+                                                                // $level = $loop->level;
 
                                                                 $id = $loop->id;
                                                                 ?>  
@@ -212,7 +212,7 @@
                                                                         <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
                                                                         <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"
                                                                     </td>
-                                                                     
+
                                                                     <td><?= $loop->country ?></td>
 
                                                                     <td class="edit_td">
@@ -231,10 +231,39 @@
                                                                             </span>
                                                                         </a>
                                                                     </td>
-                                                                    
-                                                                      <td class="td-actions">
 
-                                                                        
+                                                                    <td class="td-actions" >
+                                                                       
+                                                                        <?php
+                                                                        if ($loop->status == "false") {
+                                                                            ?>
+                                                                            <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                                <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
+                                                                                    <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->tbl_id; ?>" />
+                                                                                    Active
+                                                                                </label>
+                                                                                <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
+                                                                                    <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->tbl_id; ?>" checked />
+                                                                                    Off
+                                                                                </label>
+                                                                            </div> 
+                                                                        <?php } ?>
+
+                                                                        <?php
+                                                                        if ($loop->status == "active") {
+                                                                            ?>
+                                                                            <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                                <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
+                                                                                    <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                                                    Active
+                                                                                </label>
+                                                                                <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
+                                                                                    <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>"  />
+                                                                                    Off
+                                                                                </label>
+                                                                            </div> 
+                                                                        <?php } ?>
+
                                                                     </td>
                                                                 </tr>
                                                                 <?php
@@ -332,8 +361,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                 inp.setAttribute('readonly', 'true');
                 inp.removeAttribute('disabled');
                 inp.value = "This text field is readonly!";
-            }
-            else {
+            } else {
                 inp.setAttribute('disabled', 'disabled');
                 inp.removeAttribute('readonly');
                 inp.value = "This text field is disabled!";
@@ -490,8 +518,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                             //IE8 and browsers that don't support File Object
                             if (!(/\.(jpe?g|png|gif|bmp)$/i).test(file))
                                 return false;
-                        }
-                        else {
+                        } else {
                             var type = $.trim(file.type);
                             if ((type.length > 0 && !(/^image\/(jpe?g|png|gif|bmp)$/i).test(type))
                                     || (type.length == 0 && !(/\.(jpe?g|png|gif|bmp)$/i).test(file.name))//for android's default browser which gives an empty string for file.type
@@ -506,8 +533,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     return allowed_files;
                 }
-            }
-            else {
+            } else {
                 btn_choose = "Drop files here or click to choose";
                 no_icon = "icon-cloud-upload";
                 before_change = function (files, dropped) {
@@ -619,8 +645,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     }
                 });
-            }
-            else
+            } else
             {
                 alert('Enter something.');
             }

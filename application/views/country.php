@@ -15,24 +15,16 @@
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-responsive.min.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
-<link href="<?= base_url(); ?>css/mine.css" rel="stylesheet" />
 
 
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery-ui-1.10.3.custom.min.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/chosen.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/datepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-timepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/daterangepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/colorpicker.css" />
+
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 
 <body >
     <div class="main-content">
-        <style>
-            .form-horizontal .controls {
-                margin-left: 2px;
-            }
-        </style>
+      
 
         <div class="page-content">
 
@@ -156,9 +148,8 @@
                                             <div class="accordion-inner">
                                                 <div class="alert alert-danger">Select a field to edit the content</div>                     
                                                
-                                                    
-                                                    <div class="grid-wrapper pre-scrollable">
-                                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                                                                                    
+                                                    <table id="example1" class="table table-striped table-bordered table-hover">
                                                         <thead>
                                                             <tr>
                                                                 <th class="center">
@@ -191,13 +182,12 @@
                                                                                 <span class="lbl"></span>
                                                                             </label>
                                                                         </td>
-                                                                        <td>
-                                                                          
+                                                                        <td>                                                                          
                                                                                 <img class=""  src="<?= base_url(); ?>flags/<?= $loop->image ?>"  alt="<?php echo $name; ?>" />
                                                                             </td>
                                                                         <td class="edit_td">
                                                                             <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                                                                            <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
+                                                                            <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"/>
                                                                         </td>
                                                                         
 
@@ -222,7 +212,7 @@
                                                     </div>
                                             </div>
                                         </div>
-                                    </div>
+                                  
                                 </div>
                             </div>
                     
@@ -622,4 +612,12 @@
             });
 
         });
+    </script>
+    <script src="<?= base_url(); ?>plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function () {
+        $("#example1").DataTable();
+        
+      });
     </script>

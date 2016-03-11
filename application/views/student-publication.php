@@ -97,13 +97,13 @@
                                                         <input type="text" class="span12" id="title" name="title" placeholder="title"  />
                                                     </div>
                                                 </div>
-                                           
+
 
 
 
                                             </div>
                                             <div class="alert alert-block alert-info span6">
-                                                 <div class="control-group">
+                                                <div class="control-group">
                                                     <label class="control-label" for="form-field-username">Country</label>
 
                                                     <div class="controls">
@@ -122,7 +122,7 @@
                                                         <input type="text" class="span12" id="author" name="author" placeholder="link"  />
                                                     </div>
                                                 </div>
-                                            
+
                                             </div>
 
 
@@ -156,85 +156,120 @@
                                         <div class="alert alert-danger">Select a field to edit the content</div>                     
 
 
-                                        <div class="grid-wrapper pre-scrollable">
-                                            <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center">
-                                                            <label>
-                                                                <input type="checkbox" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </th>
-                                                        <th>Title</th>
-                                                        <th>link</th>
-                                                        <th>abstract</th>
-                                                        <th>Reviewed</th>
-                                                        <th>Accepted</th>
-                                                        <th>submitted on</th>
+
+                                        <table id="example1" class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="center">
+                                                        <label>
+                                                            <input type="checkbox" />
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </th>
+                                                    <th>Title</th>
+                                                    <th>link</th>
+                                                    <th>abstract</th>
+                                                    <th>Reviewed</th>
+
+                                                    <th>Accepted</th>
+                                                    <th>submitted on</th>
 
 
 
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
 
-                                                <tbody>
-                                                    <?php
-                                                    if (is_array($publications) && count($publications)) {
-                                                        foreach ($publications as $loop) {
-                                                            $name = $loop->title;
-                                                            $link = $loop->link;
-                                                            $abstract = $loop->abstract;
+                                            <tbody>
+                                                <?php
+                                                if (is_array($publications) && count($publications)) {
+                                                    foreach ($publications as $loop) {
+                                                        $name = $loop->title;
+                                                        $link = $loop->link;
+                                                        $abstract = $loop->abstract;
 
-                                                            $id = $loop->id;
-                                                            ?>  
+                                                        $id = $loop->id;
+                                                        ?>  
 
-                                                            <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                                <td class="center ">
-                                                                    <label>
-                                                                        <input type="checkbox" />
-                                                                        <span class="lbl"></span>
-                                                                    </label>
-                                                                </td>
-                                                                <td class="edit_td">
+                                                        <tr id="<?php echo $id; ?>" class="edit_tr">
+                                                            <td class="center ">
+                                                                <label>
+                                                                    <input type="checkbox" />
+                                                                    <span class="lbl"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <a href="<?php echo base_url() . "publications/" . $loop->file; ?>">
                                                                     <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                                                                     <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $link ?>
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $loop->abstract ?>
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $loop->reviewed ?>
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $loop->accepted ?>
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $loop->dos ?>
-                                                                </td>
-                                                                <td class="td-actions">
+                                                                </a>
+                                                            </td>
+                                                            <td class="center ">
+                                                                <?php echo $link ?>
+                                                            </td>
+                                                            <td class="center ">
+                                                                <?php echo $loop->abstract ?>
+                                                            </td>
 
-                                                                    <a href="<?php echo base_url() . "index.php/management/country/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="icon-trash bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <?php
-                                                        }
+                                                            <td >
+
+                                                                <?php
+                                                                if ($loop->reviewed == "no") {
+                                                                    ?>
+                                                                    <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                        <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
+                                                                            <input type="radio" name="status" id="<?= $loop->reviewed; ?>" value="<?= $loop->id; ?>" />
+                                                                            yes
+                                                                        </label>
+                                                                        <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
+                                                                            <input type="radio" name="status" id="<?= $loop->reviewed; ?>" value="<?= $loop->id; ?>" checked />
+                                                                            no
+                                                                        </label>
+                                                                    </div> 
+                                                                <?php } ?>
+
+                                                                <?php
+                                                                if ($loop->reviewed == "yes") {
+                                                                    ?>
+                                                                    <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                        <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
+                                                                            <input type="radio" name="status" id="<?= $loop->reviewed; ?>" value="<?= $loop->id; ?>" checked />
+                                                                            yes
+                                                                        </label>
+                                                                        <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
+                                                                            <input type="radio" name="status" id="<?= $loop->reviewed; ?>" value="<?= $loop->id; ?>"  />
+                                                                            no
+                                                                        </label>
+                                                                    </div> 
+                                                                <?php } ?>
+
+                                                            </td>
+
+                                                            <td class="center ">
+                                                                <?php echo $loop->accepted ?>
+                                                            </td>
+                                                            <td class="center ">
+                                                                <?php echo $loop->dos ?>
+                                                            </td>
+                                                            <td class="td-actions">
+
+                                                                <a href="<?php echo base_url() . "index.php/management/country/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                    <span class="red">
+                                                                        <i class="icon-trash bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
                                                     }
-                                                    ?>
+                                                }
+                                                ?>
 
 
 
-                                                </tbody>
-                                            </table>  
-                                        </div>
+                                            </tbody>
+                                        </table>  
+
                                     </div>
                                 </div>
                             </div>
@@ -322,8 +357,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                 inp.setAttribute('readonly', 'true');
                 inp.removeAttribute('disabled');
                 inp.value = "This text field is readonly!";
-            }
-            else {
+            } else {
                 inp.setAttribute('disabled', 'disabled');
                 inp.removeAttribute('readonly');
                 inp.value = "This text field is disabled!";
@@ -471,8 +505,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                             //IE8 and browsers that don't support File Object
                             if (!(/\.(jpe?g|png|gif|bmp)$/i).test(file))
                                 return false;
-                        }
-                        else {
+                        } else {
                             var type = $.trim(file.type);
                             if ((type.length > 0 && !(/^image\/(jpe?g|png|gif|bmp)$/i).test(type))
                                     || (type.length == 0 && !(/\.(jpe?g|png|gif|bmp)$/i).test(file.name))//for android's default browser which gives an empty string for file.type
@@ -487,8 +520,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     return allowed_files;
                 }
-            }
-            else {
+            } else {
                 btn_choose = "Drop files here or click to choose";
                 no_icon = "icon-cloud-upload";
                 before_change = function (files, dropped) {
@@ -594,8 +626,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     }
                 });
-            }
-            else
+            } else
             {
                 alert('Enter something.');
             }
@@ -619,3 +650,52 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 </script>
 <script src="<?= base_url(); ?>tinymce/tinymce.min.js"></script>
 <script>tinymce.init({selector: 'textarea'});</script>
+
+<script src="<?= base_url(); ?>plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function () {
+    $("#example1").DataTable();
+
+});
+</script>
+<script>
+
+
+    $('.btn-group[data-toggle=buttons]').each(function (i, e) {
+        var default_class = $(e).data('toggle-default-class') || 'btn-default';
+
+        $(e).find('label')
+                .click(function (event) {
+                    $(e).find('label')
+                            .each(function (i, e) {
+                                if (!(e == event.target)) {
+                                    $(e).removeClass($(e).data('toggle-class'))
+                                            .addClass(default_class);
+
+                                    $(e).find('input').removeAttr('checked');
+                                    console.log($(e).find("input").attr("id"));
+
+
+                                    $.post("<?php echo base_url() ?>index.php/student/activate_publication", {
+                                        id: $(e).find("input").val(),
+                                        actives: $(e).find("input").attr("id")
+
+                                    }, function (response) {
+                                        // console.log(response);
+                                    });
+                                    // alert("active");
+
+                                } else {
+                                    $(e).removeClass(default_class)
+                                            .addClass($(e).data('toggle-class'));
+
+                                    $(e).find('input')
+                                            .attr('checked', 1);
+
+                                }
+                            });
+                });
+    });
+
+</script>

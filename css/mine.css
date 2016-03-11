@@ -27,15 +27,16 @@ background-color:#ffffcc;
 border:solid 1px #000;
 padding:4px;
 }
+
 .edit_tr:hover
 {
 background:url(edit.png) right no-repeat #80C8E5;
 cursor:pointer;
 }
 .grid-wrapper {
-  // border: solid red 5px;
+  
    overflow: scroll;
-   height: 70%;
+   height: auto;
 }
 .widget-main {
     padding:0px;
@@ -57,5 +58,10 @@ cursor:pointer;
 }
 .login-layout {
     background: #21409A  none repeat scroll 0% 0%;
+}
+table{
+    display: block; 
+overflow: scroll; /* Scrollbar are always visible */
+overflow: auto; 
 }
 

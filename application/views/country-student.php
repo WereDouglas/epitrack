@@ -1,3 +1,6 @@
+
+ <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+   
 <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
 <link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/font-awesome.min.css" />
@@ -19,12 +22,15 @@
 
 
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery-ui-1.10.3.custom.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/chosen.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/datepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-timepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/daterangepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/colorpicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
+
+ <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+   <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+   
+<link href="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+ <link href="<?= base_url(); ?>dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="<?= base_url(); ?>dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 <script>
     // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
@@ -99,8 +105,8 @@
 
         <div class="page-content">
 
-
-            <?php echo $this->session->flashdata('msg'); ?>
+            <h2>Students</h2>
+           
             <div class="row-fluid">
                 <div class="span12 widget-container-span">
                  
@@ -166,6 +172,7 @@
 
                                         <div class="accordion-body collapse" id="collapseTwo">
                                             <div class="accordion-inner">
+                                                 <?php echo $this->session->flashdata('msg'); ?>
                                                 <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/student/'  method="post">            
 
                                                     <div class="alert alert-block alert-info span6">   
@@ -308,8 +315,8 @@
                                                 <div class="alert alert-danger">Select a field to edit the content</div>                     
                                                
                                                     
-                                                    <div class="grid-wrapper pre-scrollable">
-                                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                                
+                                                    <table  id="example1" class="table table-bordered table-striped">
                                                         <thead>
                                                             <tr>
                                                                 <th class="center">
@@ -331,6 +338,7 @@
                                                                       <th>Status</th>   
                                                                 <th>Created</th>
                                                                 <th></th>
+                                                                 <th>Approve/activate</th>
                                                             </tr>
                                                         </thead>
 
@@ -357,7 +365,7 @@
                                                                         </td>
                                                                         <td>
                                                                             <div class="profile-activity">
-                                                                                <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>"  alt="<?php echo $fname; ?>" />
+                                                                                <a href="<?php echo base_url() . "index.php/student/details/".$loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>"  alt="<?php echo $fname; ?>" /></a>
                                                                             </div>
                                                                         </td>
                                                                         <td class="edit_td">
@@ -398,6 +406,40 @@
                                                                                 </span>
                                                                             </a>
                                                                         </td>
+                                                                           <td >
+
+                                                                    <?php
+                                                                    if ($loop->status == "false") {
+                                                                        ?>
+                                                                        <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                            <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
+                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" />
+                                                                                Active
+                                                                            </label>
+                                                                            <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
+                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                                                Off
+                                                                            </label>
+                                                                        </div> 
+                                                                    <?php } ?>
+
+                                                                    <?php
+                                                                    if ($loop->status == "active") {
+                                                                        ?>
+                                                                        <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                            <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
+                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                                                Active
+                                                                            </label>
+                                                                            <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
+                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>"  />
+                                                                                Off
+                                                                            </label>
+                                                                        </div> 
+        <?php } ?>
+
+                                                                </td>
+                                                      
                                                                     </tr>
                                                                     <?php
                                                                 }
@@ -408,7 +450,7 @@
 
                                                         </tbody>
                                                     </table>  
-                                                    </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -811,4 +853,56 @@
             });
 
         });
+    </script>
+  
+<script src="<?= base_url(); ?>js/bootstrap.min.js"></script>
+
+
+<script>
+
+
+  $('.btn-group[data-toggle=buttons]').each(function (i, e) {
+      var default_class = $(e).data('toggle-default-class') || 'btn-default';
+
+      $(e).find('label')
+              .click(function (event) {
+                  $(e).find('label')
+                          .each(function (i, e) {
+                              if (!(e == event.target)) {
+                                  $(e).removeClass($(e).data('toggle-class'))
+                                          .addClass(default_class);
+
+                                  $(e).find('input').removeAttr('checked');
+                                  console.log($(e).find("input").attr("id"));
+
+
+                                  $.post("<?php echo base_url() ?>index.php/management/activate_student", {
+                                      id: $(e).find("input").val(),
+                                      actives: $(e).find("input").attr("id")
+
+                                  }, function (response) {
+                                      // console.log(response);
+                                  });
+                                  // alert("active");
+
+                              } else {
+                                  $(e).removeClass(default_class)
+                                          .addClass($(e).data('toggle-class'));
+
+                                  $(e).find('input')
+                                          .attr('checked', 1);
+
+                              }
+                          });
+              });
+  });
+
+</script>
+ <script src="<?= base_url(); ?>plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function () {
+        $("#example1").DataTable();
+        
+      });
     </script>

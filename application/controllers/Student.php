@@ -88,6 +88,97 @@ class Student extends CI_Controller {
         $this->load->view('student-bio', $data);
     }
 
+    public function details() {
+        //get($field,$value,$table)
+
+        $studentID = $this->uri->segment(3);
+        $query = $this->Md->show('event');
+        //  var_dump($query);
+        if ($query) {
+            $data['events'] = $query;
+        } else {
+            $data['events'] = array();
+        }
+
+        $query = $this->Md->get('id', $studentID, 'student');
+        //  var_dump($query);
+        if ($query) {
+            $data['bio'] = $query;
+        } else {
+            $data['bio'] = array();
+        }
+        $query = $this->Md->show('country');
+        //  var_dump($query);
+        if ($query) {
+            $data['countries'] = $query;
+        } else {
+            $data['countries'] = array();
+        }
+        $query = $this->Md->show('cohort');
+        //  var_dump($query);
+        if ($query) {
+            $data['cohorts'] = $query;
+        } else {
+            $data['cohorts'] = array();
+        }
+        $query = $this->Md->get('studentID', $studentID, 'qualification');
+        if ($query) {
+            $data['qualifications'] = $query;
+        } else {
+            $data['qualifications'] = array();
+        }
+        
+        $query = $this->Md->get('studentID', $studentID, 'publication');
+        if ($query) {
+            $data['publications'] = $query;
+        } else {
+            $data['publications'] = array();
+        }
+        
+         $query = $this->Md->get('studentID', $studentID, 'presentation');
+        if ($query) {
+            $data['presentations'] = $query;
+        } else {
+            $data['presentations'] = array();
+        }
+         $query = $this->Md->get('studentID', $studentID, 'employment');
+        if ($query) {
+            $data['records'] = $query;
+        } else {
+            $data['records'] = array();
+        }
+         $query = $this->Md->get('studentID', $studentID, 'surveillance');
+        if ($query) {
+            $data['survey'] = $query;
+        } else {
+            $data['survey'] = array();
+        }
+         $query = $this->Md->get('studentID', $studentID, 'outbreak');
+        if ($query) {
+            $data['out'] = $query;
+        } else {
+            $data['out'] = array();
+        }
+        
+          $query = $this->Md->get('studentID', $studentID, 'course');
+        if ($query) {
+            $data['outs'] = $query;
+        } else {
+            $data['outs'] = array();
+        }
+        
+          $query = $this->Md->get('studentID', $studentID, 'study');
+        if ($query) {
+            $data['study'] = $query;
+        } else {
+            $data['study'] = array();
+        }
+        
+         
+
+        $this->load->view('student-details', $data);
+    }
+
     public function contact() {
 
         $this->load->helper(array('form', 'url'));
@@ -426,15 +517,24 @@ class Student extends CI_Controller {
         $studentID = $this->session->userdata('id');
 
         if ($action == 'delete') {
-            $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'presentation');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+            if ($this->session->userdata('level') == 'student') {
+                $id = $this->uri->segment(4);
+                $query = $this->Md->delete($id, 'presentation');
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
                                                  presentation deleted	</strong>									
 						</div>');
 
-            redirect('/student/presentation', 'refresh');
+                redirect('/student/presentation', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action</strong>									
+						</div>');
+
+                redirect('/management/user', 'refresh');
+            }
         }
         if ($action == 'update') {
 
@@ -498,6 +598,24 @@ class Student extends CI_Controller {
         }
 
         $this->load->view('student-presentation', $data);
+    }
+
+    public function activate_publication() {
+        $this->load->helper(array('form', 'url'));
+        $id = trim($this->input->post('id'));
+        $actives = trim($this->input->post('actives'));
+        if ($actives == "yes") {
+            $active = "no";
+        }
+        if ($actives == "no") {
+            $active = "yes";
+        }
+
+        if ($this->session->userdata('level') > 0) {
+
+            $publication = array('reviewed' => $active);
+            $this->Md->update($id, $publication, 'publication');
+        }
     }
 
     public function study() {

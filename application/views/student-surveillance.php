@@ -27,8 +27,6 @@
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 
 <body>
-    <div class="main-content">     
-
         <div class="page-content">
 
 
@@ -241,25 +239,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-
-        <div class="row-fluid">
-
-
-
-        </div>                
-
-
-
-    </div>
-
-
-
-</div><!--/.main-content-->
 
 
 <!--<![endif]-->

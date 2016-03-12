@@ -90,9 +90,7 @@
 
 </script>
 <body onload="initialize()">
-    <div class="main-content">
-       
-
+   
         <div class="page-content">
 
             <h2>Students</h2>
@@ -450,12 +448,6 @@
 
 
         </div>                
-
-
-
-    </div>
-
-
 
 </div><!--/.main-content-->
 

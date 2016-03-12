@@ -10,11 +10,7 @@
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-editable.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 
-<div class="main-content">
     <div class="page-content">
-
-
-
         <div class="row-fluid">
             <div class="span12">
                 <!--PAGE CONTENT BEGINS-->
@@ -151,8 +147,6 @@
         </div><!--/.row-fluid-->
     </div><!--/.page-content-->
 
-
-</div><!--/.main-content-->
 <script type="text/javascript">
     window.jQuery || document.write("<script src='<?= base_url(); ?>assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");</script>
 

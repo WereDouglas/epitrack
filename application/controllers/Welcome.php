@@ -223,7 +223,7 @@ class Welcome extends CI_Controller {
                             $data['student_cnt_false'] = array();
                         }
                         
-                        $query = $this->Md->query("SELECT * FROM publication where reviewed = 'no'");
+                        $query = $this->Md->query("SELECT * FROM publication where verified = 'false'");
                         //  var_dump($query);
                         if ($query) {
                             $data['publication_cnt_review'] = $query;

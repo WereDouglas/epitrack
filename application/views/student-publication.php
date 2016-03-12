@@ -212,7 +212,7 @@
                                                             <td >
 
                                                                 <?php
-                                                                if ($loop->reviewed == "no") {
+                                                                if ($loop->verified == "false") {
                                                                     ?>
                                                                     <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
                                                                         <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
@@ -227,7 +227,7 @@
                                                                 <?php } ?>
 
                                                                 <?php
-                                                                if ($loop->reviewed == "yes") {
+                                                                if ($loop->verified == "true") {
                                                                     ?>
                                                                     <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
                                                                         <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">

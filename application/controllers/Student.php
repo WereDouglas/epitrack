@@ -127,54 +127,54 @@ class Student extends CI_Controller {
         } else {
             $data['qualifications'] = array();
         }
-        
+
         $query = $this->Md->get('studentID', $studentID, 'publication');
         if ($query) {
             $data['publications'] = $query;
         } else {
             $data['publications'] = array();
         }
-        
-         $query = $this->Md->get('studentID', $studentID, 'presentation');
+
+        $query = $this->Md->get('studentID', $studentID, 'presentation');
         if ($query) {
             $data['presentations'] = $query;
         } else {
             $data['presentations'] = array();
         }
-         $query = $this->Md->get('studentID', $studentID, 'employment');
+        $query = $this->Md->get('studentID', $studentID, 'employment');
         if ($query) {
             $data['records'] = $query;
         } else {
             $data['records'] = array();
         }
-         $query = $this->Md->get('studentID', $studentID, 'surveillance');
+        $query = $this->Md->get('studentID', $studentID, 'surveillance');
         if ($query) {
             $data['survey'] = $query;
         } else {
             $data['survey'] = array();
         }
-         $query = $this->Md->get('studentID', $studentID, 'outbreak');
+        $query = $this->Md->get('studentID', $studentID, 'outbreak');
         if ($query) {
             $data['out'] = $query;
         } else {
             $data['out'] = array();
         }
-        
-          $query = $this->Md->get('studentID', $studentID, 'course');
+
+        $query = $this->Md->get('studentID', $studentID, 'course');
         if ($query) {
             $data['outs'] = $query;
         } else {
             $data['outs'] = array();
         }
-        
-          $query = $this->Md->get('studentID', $studentID, 'study');
+
+        $query = $this->Md->get('studentID', $studentID, 'study');
         if ($query) {
             $data['study'] = $query;
         } else {
             $data['study'] = array();
         }
-        
-         
+
+
 
         $this->load->view('student-details', $data);
     }
@@ -490,7 +490,7 @@ class Student extends CI_Controller {
                 $data = $this->upload->data();
                 $title = $this->input->post('title');
                 $file = $data['file_name'];
-                $publication = array('file' => $file, 'author' => $author, 'title' => $title, 'dos' => date('y-m-d'), 'accepted' => 'no', 'reviewed' => 'no', 'link' => $link, 'abstract' => $abstract, 'country' => $country, 'studentID' => $studentID);
+                $publication = array('file' => $file, 'author' => $author, 'title' => $title, 'dos' => date('y-m-d'), 'accepted' => 'no', 'verified' => 'false', 'link' => $link, 'abstract' => $abstract, 'country' => $country, 'studentID' => $studentID);
                 $file_id = $this->Md->save($publication, 'publication');
                 $this->session->set_flashdata('msg', '<div class="alert alert-success"><strong>
                                               publication information saved</strong>									
@@ -613,8 +613,46 @@ class Student extends CI_Controller {
 
         if ($this->session->userdata('level') > 0) {
 
-            $publication = array('reviewed' => $active);
+            $publication = array('verified' => $active);
             $this->Md->update($id, $publication, 'publication');
+        }
+    }
+
+    public function verify_qualification() {
+        $this->load->helper(array('form', 'url'));
+        $id = $this->uri->segment(3);
+        $actives = $this->uri->segment(4);
+        $table = $this->uri->segment(5);
+        if ($actives == "true") {
+            $active = "false";
+        }
+        if ($actives == "false") {
+            $active = "true";
+        }
+
+
+        if ($this->session->userdata('level') > 0) {
+
+            $quali = array('verified' => $active);
+            $this->Md->update($id, $quali, $table);
+        }
+    }
+
+    public function accept() {
+        $this->load->helper(array('form', 'url'));
+        $id = $this->uri->segment(3);
+        $actives = $this->uri->segment(4);
+        $table = $this->uri->segment(5);
+        if ($actives == "yes") {
+            $active = "no";
+        }
+        if ($actives == "no") {
+            $active = "yes";
+        }
+
+        if ($this->session->userdata('level') > 0) {
+            $quali = array('accepted' => $active);
+            $this->Md->update($id, $quali, $table);
         }
     }
 

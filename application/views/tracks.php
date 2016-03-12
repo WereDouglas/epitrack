@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
+   <div class="page-content">
 
 <h4>Add new track</h4>  
 
@@ -101,6 +102,7 @@
 
 
 </div>
+
 
 
 

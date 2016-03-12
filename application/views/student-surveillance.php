@@ -27,12 +27,7 @@
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 
 <body>
-    <div class="main-content">
-        <style>
-            .form-horizontal .controls {
-                margin-left: 2px;
-            }
-        </style>
+    <div class="main-content">     
 
         <div class="page-content">
 
@@ -79,7 +74,7 @@
                                     <div class="accordion-inner">
                                       <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/surveillance'  method="post">            
 
-                                            <div class="alert alert-block alert-info span6">  
+                                            <div class="span6">  
 
                                                 <div class="control-group">
 
@@ -92,7 +87,7 @@
                                                 </div>                                            
 
                                             </div>
-                                            <div class="alert alert-block alert-info span6">  
+                                            <div class="span6">  
 
                                                 <div class="control-group">
 
@@ -155,7 +150,6 @@
                                         <div class="alert alert-danger">Select a field to edit the content</div>                     
 
 
-                                        <div class="grid-wrapper pre-scrollable">
                                             <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
@@ -237,7 +231,7 @@
 
                                             </tbody>
                                         </table>  
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>

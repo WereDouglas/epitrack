@@ -28,11 +28,6 @@
 
 <body>
     <div class="main-content">
-        <style>
-            .form-horizontal .controls {
-                margin-left: 2px;
-            }
-        </style>
 
         <div class="page-content">
 
@@ -61,33 +56,6 @@
                                     </a>
                                 </div>
 
-
-
-                                <div class="btn-group">
-                                    <button data-toggle="dropdown" class="btn btn-small btn-grey dropdown-toggle">
-                                        <i class="icon-caret-down icon-only bigger-110"></i>
-                                    </button>
-
-                                    <ul class="dropdown-menu pull-right dropdown-purple dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#">Action</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Another action</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Something else here</a>
-                                        </li>
-
-                                        <li class="divider"></li>
-
-                                        <li>
-                                            <a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div><!--/btn-group-->
                             </div>
                         </div>
 
@@ -96,16 +64,16 @@
 
 
                     <div class="widget-main ">
-                        <div id="accordion2" class="accordion">              
+                        <div id="accordion2" class="accordion">
 
                             <div class="accordion-group">
 
 
                                 <div class="accordion-body collapse" id="collapseTwo">
                                     <div class="accordion-inner">
-                                        <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/outbreak'  method="post">            
+                                        <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/outbreak'  method="post">
 
-                                            <div class="alert alert-block alert-info span12">  
+                                            <div class="span12">
                                                 <div class="span6">
                                                     <div class="control-group">
 
@@ -147,7 +115,7 @@
 
                                                     <div class="control-group">
                                                         What's your role
-                                                        <select id="lab" name="role" >            
+                                                        <select id="lab" name="role" >
                                                             <option value="participant" />participant
                                                             <option value="instructor" />instructor
 
@@ -159,7 +127,7 @@
 
                                                         <textarea class="span12 limited" id="form-field-9" name="description" data-maxlength="20"></textarea>
 
-                                                    </div>         
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="">
@@ -173,11 +141,11 @@
                                                     Reset
                                                 </button>
                                             </div>
-                                             </form>	
+                                        </form>
                                     </div>
                                 </div>
 
-                               
+
                             </div>
                         </div>
                     </div>
@@ -187,80 +155,75 @@
 
                         <div class="accordion-body collapsed" id="collapseThree">
                             <div class="accordion-inner">
-                                <div class="alert alert-danger">Select a field to edit the content</div>                     
+                                <div class="alert alert-danger">Select a field to edit the content</div>
 
+                                <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="center">
+                                                <label>
+                                                    <input type="checkbox" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </th>
 
-                                <div class="grid-wrapper pre-scrollable">
-                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th class="center">
-                                                    <label>
-                                                        <input type="checkbox" />
-                                                        <span class="lbl"></span>
-                                                    </label>
-                                                </th>
+                                            <th>Name</th>
+                                            <th>Onset</th>
+                                            <th>Dissemination</th>
+                                            <th>Findings</th>
+                                            <th>Date of study</th>
 
-                                                <th>Name</th>
-                                                <th>Onset</th>
-                                                <th>Dissemination</th>   
-                                                <th>Findings</th>   
-                                                <th>Date of study</th> 
+                                            <th></th>
+                                        </tr>
+                                    </thead>
 
-                                                <th></th>
-                                            </tr>
-                                        </thead>
+                                    <tbody>
+                                        <?php
+                                        if (is_array($out) && count($out)) {
+                                            foreach ($out as $loop) {
+                                                $name = $loop->name;
+                                                $findings = $loop->findings;
+                                                $id = $loop->id;
+                                                ?>
 
-                                        <tbody>
-                                            <?php
-                                            if (is_array($out) && count($out)) {
-                                                foreach ($out as $loop) {
-                                                    $name = $loop->name;
-                                                    $findings = $loop->findings;
-                                                    $id = $loop->id;
-                                                    ?>  
+                                                <tr id="<?php echo $id; ?>" class="edit_tr">
+                                                    <td class="center ">
+                                                        <label>
+                                                            <input type="checkbox" />
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </td>
 
-                                                    <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                        <td class="center ">
-                                                            <label>
-                                                                <input type="checkbox" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </td>
+                                                    <td class="edit_td">
+                                                        <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
+                                                        <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
+                                                    </td>
+                                                    <td><?= $loop->onset ?></td>
+                                                    <td><?= $loop->dissemination ?></td>
 
-                                                        <td class="edit_td">
-                                                            <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                                                            <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
-                                                        </td>
-                                                        <td><?= $loop->onset ?></td>
-                                                        <td><?= $loop->dissemination ?></td>
+                                                    <td class="edit_td">
+                                                        <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
+                                                        <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
+                                                    </td>
 
-                                                        <td class="edit_td">
-                                                            <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
-                                                            <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
-                                                        </td>                                                          
+                                                    <td><?= $loop->dos ?></td>
 
-                                                        <td><?= $loop->dos ?></td>
+                                                    <td class="td-actions">
 
-                                                        <td class="td-actions">
-
-                                                            <a href="<?php echo base_url() . "index.php/student/study/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                <span class="red">
-                                                                    <i class="icon-trash bigger-120"></i>
-                                                                </span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
-                                                }
+                                                        <a href="<?php echo base_url() . "index.php/student/study/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                            <span class="red">
+                                                                <i class="icon-trash bigger-120"></i>
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <?php
                                             }
-                                            ?>
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
 
-
-
-                                        </tbody>
-                                    </table>  
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -275,7 +238,7 @@
 
 
 
-</div>                
+</div>
 
 
 
@@ -347,8 +310,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                 inp.setAttribute('readonly', 'true');
                 inp.removeAttribute('disabled');
                 inp.value = "This text field is readonly!";
-            }
-            else {
+            } else {
                 inp.setAttribute('disabled', 'disabled');
                 inp.removeAttribute('readonly');
                 inp.value = "This text field is disabled!";
@@ -505,8 +467,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                             //IE8 and browsers that don't support File Object
                             if (!(/\.(jpe?g|png|gif|bmp)$/i).test(file))
                                 return false;
-                        }
-                        else {
+                        } else {
                             var type = $.trim(file.type);
                             if ((type.length > 0 && !(/^image\/(jpe?g|png|gif|bmp)$/i).test(type))
                                     || (type.length == 0 && !(/\.(jpe?g|png|gif|bmp)$/i).test(file.name))//for android's default browser which gives an empty string for file.type
@@ -521,8 +482,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     return allowed_files;
                 }
-            }
-            else {
+            } else {
                 btn_choose = "Drop files here or click to choose";
                 no_icon = "icon-cloud-upload";
                 before_change = function (files, dropped) {
@@ -647,8 +607,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     }
                 });
-            }
-            else
+            } else
             {
                 alert('Enter something.');
             }

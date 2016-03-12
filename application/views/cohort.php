@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 
 
-
+<div class="page-content">
          <h4>Add new cohort</h4>  
                           
         
@@ -21,7 +21,7 @@
                                                         <span class="block input-icon input-icon-right">
                                                              <input type="text" class="span2" id="name" name="name" placeholder="cohort III 2015" /> 
                                                              
-                                                                 Select track :
+                                                             <label> Select track </label>
                                   <select id="track" name="track" >                                                            
                                                             <?php
                                         if (is_array($tracks) && count($tracks)) {
@@ -31,7 +31,7 @@
                                         <?php }}?>
                                                 </select>
        
-                                                                 Select the Year:   <input type="text" class="span2" id="years" name="years" placeholder="<?php echo date('Y');?>" /> 
+                                                                 <label>Year </label>   <input type="text" class="span2" id="years" name="years" placeholder="<?php echo date('Y');?>" /> 
                                                                              
                                                         </span>
                                                     </label>

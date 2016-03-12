@@ -28,11 +28,7 @@
 
 <body>
     <div class="main-content">
-        <style>
-            .form-horizontal .controls {
-                margin-left: 2px;
-            }
-        </style>
+        
 
         <div class="page-content">
 
@@ -79,20 +75,21 @@
                                     <div class="accordion-inner">
                                         <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/qualification'  method="post">            
 
-                                            <div class="alert alert-block alert-info span6">  
+                                            <div class="span6">  
 
                                                 <div class="control-group">
 
                                                     <div class="controls">
-                                                        <span class="span12 ">Qualification name:<input type="text" class="span12"  id="name" name="name"   /></span>
-                                                        <span class="span12 ">Awarding Institute:<input type="text" class="span12"  id="institute" name="institute"   /></span>
+                                                        <label>Qualification name</label>
+                                                        <span class="span12 "><input type="text" class="span12"  id="name" name="name"   /></span>
+                                                        <label>Awarding Institute</label> <span class="span12 "><input type="text" class="span12"  id="institute" name="institute"   /></span>
                                       
                           
                                                     </div>
                                                 </div>                                            
 
                                             </div>
-                                                        <div class="alert alert-block alert-info span6">  
+                                                        <div class="span6">  
 
                                                 <div class="control-group">
 
@@ -144,14 +141,12 @@
                             </div>
 
                             <div class="accordion-group">
-
-
                                 <div class="accordion-body collapsed" id="collapseThree">
                                     <div class="accordion-inner">
                                         <div class="alert alert-danger">Select a field to edit the content</div>                     
 
 
-                                        <div class="grid-wrapper pre-scrollable">
+                                    
                                             <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                                                 <thead>
                                                     <tr>
@@ -225,7 +220,6 @@
                                                 </tbody>
                                             </table>  
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

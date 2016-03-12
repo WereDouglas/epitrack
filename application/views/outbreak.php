@@ -28,11 +28,6 @@
 
 <body>
     <div class="main-content">
-        <style>
-            .form-horizontal .controls {
-                margin-left: 2px;
-            }
-        </style>
 
         <div class="page-content">
 
@@ -61,33 +56,6 @@
                                     </a>
                                 </div>
 
-
-
-                                <div class="btn-group">
-                                    <button data-toggle="dropdown" class="btn btn-small btn-grey dropdown-toggle">
-                                        <i class="icon-caret-down icon-only bigger-110"></i>
-                                    </button>
-
-                                    <ul class="dropdown-menu pull-right dropdown-purple dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#">Action</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Another action</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Something else here</a>
-                                        </li>
-
-                                        <li class="divider"></li>
-
-                                        <li>
-                                            <a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div><!--/btn-group-->
                             </div>
                         </div>
 
@@ -105,109 +73,111 @@
                                     <div class="accordion-inner">
                                         <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/outbreak'  method="post">            
 
-                                            <div class="alert alert-block alert-info span12">  
- <div class="span6">
-                                                <div class="control-group">
+                                            <div class="span12">  
+                                                <div class="span6">
+                                                    <div class="control-group">
 
-                                                    <div class="controls">
-                                                        <span class="span12 ">Surveillance name/title:<input type="text" class="span12"  id="organisation" name="name"   /></span>
-                                                       
-                                                </div>
-                                                         <div class="control-group">
-                                                             
-                                                             
-                                                           Choose country of outbreak:
-                                                           <select class="span12" id="country" name="country" >                                                            
+                                                        <div class="controls">
+                                                            <span class="span12 ">Surveillance name/title:<input type="text" class="span12"  id="organisation" name="name"   /></span>
+
+                                                        </div>
+                                                        <div class="control-group">
+
+
+                                                            Choose country of outbreak:
+                                                            <select class="span12" id="country" name="country" >                                                            
                                                                 <?php
                                                                 if (is_array($country) && count($country)) {
                                                                     foreach ($country as $loop) {
                                                                         ?>                        
                                                                         <option value="<?= $loop->name ?>" /><?= $loop->name ?>
-                                                                    <?php
+                                                                        <?php
                                                                     }
                                                                 }
                                                                 ?>
                                                             </select>
                                                         </div>
-                                                     <div class="controls">
-                                                        <span class="span12 ">Surveillance region:<input type="text" class="span12"  id="region" name="region"   /></span>
-                                                       
-                                                </div>
-                                                     <div class="controls">
-                                                        <span class="span12 ">Number of cases:<input type="text" class="span12"  id="max" name="max" /></span>
-                                                       
-                                                </div>
-                                                     <div class="controls">
-                                                        <span class="span12 ">Number of deaths:<input type="text" class="span12"  id="max" name="min" /></span>
-                                                       
-                                                </div>
-                                                               <label for="id-date-picker-1">Date of Study Onset</label>
-                                                <div class="control-group">
-                                                    <div class="row-fluid input-append">
-                                                        <input class="span10 date-picker" id="id-date-picker-1" type="text" name="onset" data-date-format="yyyy-mm-dd" />
-                                                        <span class="add-on">
-                                                            <i class="icon-calendar"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                                    <div class="row-fluid">
-                                                    <label for="id-date-picker-1">Date of notification to MOH*</label>
-                                                </div>
+                                                        <div class="controls">
+                                                            <span class="span12 ">Surveillance region:<input type="text" class="span12"  id="region" name="region"   /></span>
 
-                                                <div class="control-group">
-                                                    <div class="row-fluid input-append">
-                                                        <input class="span10 date-picker" id="id-date-picker-1" type="text" name="notification" data-date-format="yyyy-mm-dd" />
-                                                        <span class="add-on">
-                                                            <i class="icon-calendar"></i>
-                                                        </span>
+                                                        </div>
+                                                        <div class="controls">
+                                                            <span class="span12 ">Number of cases:<input type="text" class="span12"  id="max" name="max" /></span>
+
+                                                        </div>
+                                                        <div class="controls">
+                                                            <span class="span12 ">Number of deaths:<input type="text" class="span12"  id="max" name="min" /></span>
+
+                                                        </div>
+                                                        <label for="id-date-picker-1">Date of Study Onset</label>
+                                                        <div class="control-group">
+                                                            <div class="row-fluid input-append">
+                                                                <input class="span10 date-picker" id="id-date-picker-1" type="text" name="onset" data-date-format="yyyy-mm-dd" />
+                                                                <span class="add-on">
+                                                                    <i class="icon-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row-fluid">
+                                                            <label for="id-date-picker-1">Date of notification to MOH*</label>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <div class="row-fluid input-append">
+                                                                <input class="span10 date-picker" id="id-date-picker-1" type="text" name="notification" data-date-format="yyyy-mm-dd" />
+                                                                <span class="add-on">
+                                                                    <i class="icon-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
-                                                         
-                                                </div>
- </div>
                                                 <div class="span6">
-                                                 <div class="row-fluid">
-                                          
-                                                          <div class="controls">
-                                                              <div class="row-fluid">
-                                                                  <label for="id-date-range-picker-1">Investigation Dates:</label>
-                                                              </div>
+                                                    <div class="row-fluid">
 
-                                                              <div class="control-group">
-                                                                  <div class="row-fluid input-prepend">
-                                                                      <span class="add-on">
-                                                                          <i class="icon-calendar"></i>
-                                                                      </span>
+                                                        <div class="controls">
+                                                            <div class="row-fluid">
+                                                                <label for="id-date-range-picker-1">Investigation Dates:</label>
+                                                            </div>
 
-                                                                      <input class="span10" type="text" name="dates" id="id-date-range-picker-1" />
-                                                                  </div>
-                                                              </div>
-                                                </div>
-                                                         <div class="control-group">
-                                                           Lab involvement:
+                                                            <div class="control-group">
+                                                                <div class="row-fluid input-prepend">
+                                                                    <span class="add-on">
+                                                                        <i class="icon-calendar"></i>
+                                                                    </span>
+
+                                                                    <input class="span10" type="text" name="dates" id="id-date-range-picker-1" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                         <label> Lab involvement</label>
+                                                        <div class="control-group">
+                                                           
                                                             <select id="lab" name="lab" >            
-                                                                        <option value="yes" />yes
-                                                                         <option value="no" />no
-                                                                  
+                                                                <option value="yes" />yes
+                                                                <option value="no" />no
+
                                                             </select>
                                                         </div>
-                                                    <div class="control-group">
-                                                          Lab Confirm:
+                                                         <label> Lab Confirm</label>
+                                                        <div class="control-group">
+                                                           
                                                             <select id="confirm" name="confirm" >            
-                                                                        <option value="yes" />yes
-                                                                         <option value="no" />no
-                                                                  
+                                                                <option value="yes" />yes
+                                                                <option value="no" />no
+
                                                             </select>
                                                         </div>
-                                                         <div class="row-fluid">
-                                                              <label for="form-field-9">Etiology*</label>
+                                                        <div class="row-fluid">
+                                                            <label for="form-field-9">Etiology*</label>
 
-                                                        <textarea class="span12 limited" id="form-field-9" name="etiology" data-maxlength="20"></textarea>
-                                                 
-                                                        <label for="form-field-9">Findings/Public Health Action*</label>
+                                                            <textarea class="span12 limited" id="form-field-9" name="etiology" data-maxlength="20"></textarea>
 
-                                                        <textarea class="span12 limited" id="form-field-9" name="findings" data-maxlength="50"></textarea>
-                                                    </div>         
+                                                            <label for="form-field-9">Findings/Public Health Action*</label>
+
+                                                            <textarea class="span12 limited" id="form-field-9" name="findings" data-maxlength="50"></textarea>
+                                                        </div>         
                                                     </div>
                                                 </div>
                                                 <div class="">
@@ -222,111 +192,111 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            </div>
-
-                                        </form>	
                                     </div>
+
+                                    </form>	
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="accordion-group">
-
-
-                                <div class="accordion-body collapsed" id="collapseThree">
-                                    <div class="accordion-inner">
-                                        <div class="alert alert-danger">Select a field to edit the content</div>                     
+                        <div class="accordion-group">
 
 
-                                        <div class="grid-wrapper pre-scrollable">
-                                            <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center">
-                                                            <label>
-                                                                <input type="checkbox" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </th>
+                            <div class="accordion-body collapsed" id="collapseThree">
+                                <div class="accordion-inner">
+                                    <div class="alert alert-danger">Select a field to edit the content</div>                     
 
-                                                        <th>Name</th>
-                                                        <th>Onset</th>
-                                                        <th>Dissemination</th> 
-                                                        <th>Period</th>  
-                                                        <th>Findings</th>
-                                                        <th>Date of study</th> 
-                                                        <th>Cases</th> 
-                                                        <th>Deaths</th> 
-                                                        <th>verified</th> 
-                                                      
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
 
-                                                <tbody>
-                                                    <?php
-                                                    if (is_array($out) && count($out)) {
-                                                        foreach ($out as $loop) {
-                                                            $name = $loop->name;
-                                                            $findings = $loop->findings;
-                                                            $id = $loop->id;
-                                                            ?>  
+                          
+                                        <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="center">
+                                                        <label>
+                                                            <input type="checkbox" />
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </th>
 
-                                                            <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                                <td class="center ">
-                                                                    <label>
-                                                                        <input type="checkbox" />
-                                                                        <span class="lbl"></span>
-                                                                    </label>
-                                                                </td>
+                                                    <th>Name</th>
+                                                    <th>Onset</th>
+                                                    <th>Dissemination</th> 
+                                                    <th>Period</th>  
+                                                    <th>Findings</th>
+                                                    <th>Date of study</th> 
+                                                    <th>Cases</th> 
+                                                    <th>Deaths</th> 
+                                                    <th>verified</th> 
 
-                                                                <td class="edit_td">
-                                                                    <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                                                                    <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td><?= $loop->onset ?></td>
-                                                                 <td><?= $loop->findings ?></td>
-                                                                   <td><?= $loop->dates ?></td>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
 
-                                                                <td class="edit_td">
-                                                                    <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
-                                                                    <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
-                                                                </td>                                                          
+                                            <tbody>
+                                                <?php
+                                                if (is_array($out) && count($out)) {
+                                                    foreach ($out as $loop) {
+                                                        $name = $loop->name;
+                                                        $findings = $loop->findings;
+                                                        $id = $loop->id;
+                                                        ?>  
 
-                                                                <td><?= $loop->dos ?></td>
-                                                                  <td><?= $loop->max ?></td>
-                                                                    <td><?= $loop->min ?></td>
-                                                                      <td><?= $loop->verified ?></td>
+                                                        <tr id="<?php echo $id; ?>" class="edit_tr">
+                                                            <td class="center ">
+                                                                <label>
+                                                                    <input type="checkbox" />
+                                                                    <span class="lbl"></span>
+                                                                </label>
+                                                            </td>
 
-                                                                <td class="td-actions">
+                                                            <td class="edit_td">
+                                                                <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
+                                                                <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td><?= $loop->onset ?></td>
+                                                            <td><?= $loop->findings ?></td>
+                                                            <td><?= $loop->dates ?></td>
 
-                                                                    <a href="<?php echo base_url() . "index.php/student/study/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="icon-trash bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </td>
-                                                                
-                                                            </tr>
-                                                            <?php
-                                                        }
+                                                            <td class="edit_td">
+                                                                <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
+                                                                <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
+                                                            </td>                                                          
+
+                                                            <td><?= $loop->dos ?></td>
+                                                            <td><?= $loop->max ?></td>
+                                                            <td><?= $loop->min ?></td>
+                                                            <td><?= $loop->verified ?></td>
+
+                                                            <td class="td-actions">
+
+                                                                <a href="<?php echo base_url() . "index.php/student/study/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                    <span class="red">
+                                                                        <i class="icon-trash bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </td>
+
+                                                        </tr>
+                                                        <?php
                                                     }
-                                                    ?>
+                                                }
+                                                ?>
 
 
 
-                                                </tbody>
-                                            </table>  
-                                        </div>
-                                    </div>
+                                            </tbody>
+                                        </table>  
+                                  
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
- </div>
+    </div>
+</div>
 
 
 
@@ -395,8 +365,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                 inp.setAttribute('readonly', 'true');
                 inp.removeAttribute('disabled');
                 inp.value = "This text field is readonly!";
-            }
-            else {
+            } else {
                 inp.setAttribute('disabled', 'disabled');
                 inp.removeAttribute('readonly');
                 inp.value = "This text field is disabled!";
@@ -553,8 +522,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                             //IE8 and browsers that don't support File Object
                             if (!(/\.(jpe?g|png|gif|bmp)$/i).test(file))
                                 return false;
-                        }
-                        else {
+                        } else {
                             var type = $.trim(file.type);
                             if ((type.length > 0 && !(/^image\/(jpe?g|png|gif|bmp)$/i).test(type))
                                     || (type.length == 0 && !(/\.(jpe?g|png|gif|bmp)$/i).test(file.name))//for android's default browser which gives an empty string for file.type
@@ -569,8 +537,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     return allowed_files;
                 }
-            }
-            else {
+            } else {
                 btn_choose = "Drop files here or click to choose";
                 no_icon = "icon-cloud-upload";
                 before_change = function (files, dropped) {
@@ -695,8 +662,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     }
                 });
-            }
-            else
+            } else
             {
                 alert('Enter something.');
             }

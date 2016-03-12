@@ -29,11 +29,7 @@
 
 <body >
     <div class="main-content">
-        <style>
-            .form-horizontal .controls {
-                margin-left: 2px;
-            }
-        </style>
+
 
         <div class="page-content">
 
@@ -81,7 +77,7 @@
                                     <div class="accordion-inner">
                                         <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/presentation/'  method="post">            
 
-                                            <div class="alert alert-block alert-info span12">   
+                                            <div class="span12">   
 
                                                 <div class="span6">   
                                                     <div class="widget-main">
@@ -97,7 +93,7 @@
                                                         <div class="controls">
                                                             <input type="text" class="span12" id="title" name="title" placeholder="title"  />
                                                         </div>
-                                                         <div class="controls">
+                                                        <div class="controls">
                                                             <input type="text" class="span12" id="author" name="author" placeholder="Co-author"  />
                                                         </div>
                                                     </div>
@@ -105,7 +101,7 @@
                                                         <label class="control-label" for="form-field-username">Country of presentation</label>
                                                         <div class="controls">
 
-                                                            <select class="span6 align-right" id="country" name="country" >                                                            
+                                                            <select class="span6" id="country" name="country" >                                                            
 
                                                                 <option value="Afghanistan" title="Afghanistan">Afghanistan</option>
                                                                 <option value="Åland Islands" title="Åland Islands">Åland Islands</option>
@@ -445,93 +441,93 @@
                                         <div class="alert alert-danger">Select a field to edit the content</div>                     
 
 
-                                        <div class="grid-wrapper pre-scrollable">
-                                            <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center">
-                                                            <label>
-                                                                <input type="checkbox" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </th>
-                                                        <th>Title</th>
-                                                        <th>Event type</th>
-                                                        <th>Event name</th>
-                                                        <th>Presentation type</th>
-                                                        <th>Summary</th>
-                                                        <th>Date</th>
-                                                        <th>Accepted</th>
-                                                        <th>submitted on</th>
+
+                                        <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="center">
+                                                        <label>
+                                                            <input type="checkbox" />
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </th>
+                                                    <th>Title</th>
+                                                    <th>Event type</th>
+                                                    <th>Event name</th>
+                                                    <th>Presentation type</th>
+                                                    <th>Summary</th>
+                                                    <th>Date</th>
+                                                    <th>Accepted</th>
+                                                    <th>submitted on</th>
 
 
 
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
 
-                                                <tbody>
-                                                    <?php
-                                                    if (is_array($presentations) && count($presentations)) {
-                                                        foreach ($presentations as $loop) {
-                                                            $name = $loop->eventName;
-                                                            $type = $loop->eventType;
-                                                            $summary = $loop->summary;
+                                            <tbody>
+                                                <?php
+                                                if (is_array($presentations) && count($presentations)) {
+                                                    foreach ($presentations as $loop) {
+                                                        $name = $loop->eventName;
+                                                        $type = $loop->eventType;
+                                                        $summary = $loop->summary;
 
-                                                            $id = $loop->id;
-                                                            ?>  
+                                                        $id = $loop->id;
+                                                        ?>  
 
-                                                            <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                                <td class="center ">
-                                                                    <label>
-                                                                        <input type="checkbox" />
-                                                                        <span class="lbl"></span>
-                                                                    </label>
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                                                                    <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $type ?>
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $loop->eventName ?>
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $loop->presentationType ?>
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $loop->summary ?>
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $loop->date ?>
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $loop->accepted ?>
-                                                                </td>
-                                                                <td class="center ">
-                                                                    <?php echo $loop->dos ?>
-                                                                </td>
-                                                                <td class="td-actions">
+                                                        <tr id="<?php echo $id; ?>" class="edit_tr">
+                                                            <td class="center ">
+                                                                <label>
+                                                                    <input type="checkbox" />
+                                                                    <span class="lbl"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
+                                                                <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td class="center ">
+                                                                <?php echo $type ?>
+                                                            </td>
+                                                            <td class="center ">
+                                                                <?php echo $loop->eventName ?>
+                                                            </td>
+                                                            <td class="center ">
+                                                                <?php echo $loop->presentationType ?>
+                                                            </td>
+                                                            <td class="center ">
+                                                                <?php echo $loop->summary ?>
+                                                            </td>
+                                                            <td class="center ">
+                                                                <?php echo $loop->date ?>
+                                                            </td>
+                                                            <td class="center ">
+                                                                <?php echo $loop->accepted ?>
+                                                            </td>
+                                                            <td class="center ">
+                                                                <?php echo $loop->dos ?>
+                                                            </td>
+                                                            <td class="td-actions">
 
-                                                                    <a href="<?php echo base_url() . "index.php/management/country/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="icon-trash bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <?php
-                                                        }
+                                                                <a href="<?php echo base_url() . "index.php/management/country/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                    <span class="red">
+                                                                        <i class="icon-trash bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
                                                     }
-                                                    ?>
+                                                }
+                                                ?>
 
 
 
-                                                </tbody>
-                                            </table>  
-                                        </div>
+                                            </tbody>
+                                        </table>  
+
                                     </div>
                                 </div>
                             </div>
@@ -619,8 +615,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                 inp.setAttribute('readonly', 'true');
                 inp.removeAttribute('disabled');
                 inp.value = "This text field is readonly!";
-            }
-            else {
+            } else {
                 inp.setAttribute('disabled', 'disabled');
                 inp.removeAttribute('readonly');
                 inp.value = "This text field is disabled!";
@@ -633,7 +628,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $('[data-rel=tooltip]').tooltip({container: 'body'});
         $('[data-rel=popover]').popover({container: 'body'});
 
-     
+
 
         $.mask.definitions['~'] = '[+-]';
         $('.input-mask-date').mask('99/99/9999');
@@ -769,8 +764,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                             //IE8 and browsers that don't support File Object
                             if (!(/\.(jpe?g|png|gif|bmp)$/i).test(file))
                                 return false;
-                        }
-                        else {
+                        } else {
                             var type = $.trim(file.type);
                             if ((type.length > 0 && !(/^image\/(jpe?g|png|gif|bmp)$/i).test(type))
                                     || (type.length == 0 && !(/\.(jpe?g|png|gif|bmp)$/i).test(file.name))//for android's default browser which gives an empty string for file.type
@@ -785,8 +779,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     return allowed_files;
                 }
-            }
-            else {
+            } else {
                 btn_choose = "Drop files here or click to choose";
                 no_icon = "icon-cloud-upload";
                 before_change = function (files, dropped) {
@@ -830,7 +823,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
 
 
-        
+
 
 
     });
@@ -896,8 +889,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     }
                 });
-            }
-            else
+            } else
             {
                 alert('Enter something.');
             }

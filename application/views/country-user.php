@@ -78,19 +78,43 @@
                                     <div class="accordion-inner">
                                         <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/user/'  method="post">            
 
-                                            <div class="alert alert-block alert-info span6">                                                        
+                                            <div class="span6">                                                        
 
                                                 <div class="control-group">
 
                                                     <div class="controls">
-                                                        <span class="span12 align-right">First name:<input type="text" class="span6"  id="fname" name="fname" placeholder="First name"  /></span>
-                                                        <span class="span12 align-right">Last name:<input class="input-small span6"  type="text" id="lname" name="lname" placeholder="Last Name"  /></span>
-                                                        <span class="span12 align-right">E-mail:<input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
-                                                        <span class="span12 align-right">Contact <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
-                                                        <div class="controls  align-right">
+                                                        <lable>First name</lable>
 
-                                                            Level :
-                                                            <select class="span6 align-right" id="level" name="level" >                                                            
+                                                        <div class="control-group">
+                                                            <div class="controls">
+                                                                <span class="span12 "><input type="text" class="span12"  id="fname" name="fname" placeholder="First name"  /></span>
+
+                                                            </div>
+                                                        </div>
+                                                        <lable>Last name</lable>
+                                                        <div class="control-group">
+                                                            <div class="controls">                                                     
+                                                                <span class="span12 "><input class="span12"  type="text" id="lname" name="lname" placeholder="Last Name"  /></span>
+                                                            </div>
+                                                        </div> 
+                                                        <lable>E-mail</lable>
+                                                        <div class="control-group">
+                                                            <div class="controls">
+                                                                <span class="span12 "><input type="text" class="span12" id="email" name="email"  placeholder="email" /></span>
+                                                            </div>
+                                                        </div>
+                                                        <lable>Contact</lable>
+                                                        <div class="control-group">
+                                                            <div class="controls">
+                                                                <span class="span12 "><input type="text" class="span12"  id="contact" name="contact"  placeholder="contact" /></span>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <lable>Level</lable>
+                                                        <div class="controls">
+
+                                                            <select class="span12" id="level" name="level" >                                                            
 
                                                                 <option value="1" />Level-1
                                                                 <option value="2" />Level-2
@@ -104,41 +128,38 @@
 
                                             </div>
 
-                                            <div class="alert alert-block alert-info span6">                                                   
+                                            <div class=" span6">
 
-
-
-
-                                                <div class="control-group align-right">
+                                                <lable >Country</lable> 
+                                                <div class="control-group">
                                                     <div class="controls">
 
-                                                        Country :
-                                                        <select class="span6 align-right" id="country" name="country" >                                                            
+
+                                                        <select class="span12" id="country" name="country" >                                                            
                                                             <?php
                                                             if (is_array($country) && count($country)) {
                                                                 foreach ($country as $loop) {
                                                                     ?>                        
                                                                     <option value="<?= $loop->name ?>" /><?= $loop->name ?>
-                                                                <?php }
+                                                                    <?php
+                                                                }
                                                             }
                                                             ?>
                                                         </select>
 
                                                     </div>
                                                 </div>
-
-
-
+                                                <lable>Password</lable> 
                                                 <div class="control-group">
 
                                                     <div class="controls">
-                                                        <span class="span12 align-right">   Password:<input type="password" id="password1" class="span6" name="password1" /></span>
+                                                        <span class="span12 ">   <input type="password" id="password1" class="span12" name="password1" /></span>
                                                     </div>
                                                 </div>
-
+                                                <lable>Confirm Password</lable> 
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <span class="span12 align-right">    Confirm Password: <input type="password" class="span6" id="password2" name="password2" /></span>
+                                                        <span class="span12">  <input type="password" class="span12" id="password2" name="password2" /></span>
                                                     </div>
                                                 </div>
 
@@ -154,150 +175,147 @@
                                                     </button>
                                                 </div>
                                             </div>
-
-
-
-
-
                                         </form>	
                                     </div>
                                 </div>
                             </div>
+                            <hr>
 
-                            <div class="accordion-group">
-
-
-                                <div class="accordion-body collapsed" id="collapseThree">
-                                    <div class="accordion-inner">
-                                        <div class="alert alert-danger">Select a field to edit the content</div>                     
+                        </div>
+                        <div class="accordion-group">
 
 
-                                     
-                                            <table id="example1" class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center">
+                            <div class="accordion-body collapsed" id="collapseThree">
+                                 <div class="row">
+                                <div class="accordion-inner">
+
+                                   
+
+                                    <table id="example1" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="center">
+                                                    <label>
+                                                        <input type="checkbox" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </th>
+                                                <th>Approve/activate</th>
+                                                <th>First name</th>
+                                                <th>Last name</th>                                                             
+                                                <th>E-mail</th>    
+                                                <th>Level</th>    
+                                                <th>Country</th>  
+                                                <th>Contact</th>                                                                 
+
+                                                <th>Created</th>
+
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <?php
+                                            if (is_array($users) && count($users)) {
+                                                foreach ($users as $loop) {
+                                                    $fname = $loop->fname;
+                                                    $lname = $loop->lname;
+
+                                                    $email = $loop->email;
+                                                    $contact = $loop->contact;
+                                                    $level = $loop->level;
+
+                                                    $id = $loop->id;
+                                                    ?>  
+
+                                                    <tr id="<?php echo $id; ?>" class="edit_tr">
+                                                        <td class="center ">
                                                             <label>
                                                                 <input type="checkbox" />
                                                                 <span class="lbl"></span>
                                                             </label>
-                                                        </th>
+                                                        </td>
+                                                        <td >
 
-                                                        <th>First name</th>
-                                                        <th>Last name</th>                                                             
-                                                        <th>E-mail</th>    
-                                                        <th>Level</th>    
-                                                        <th>Country</th>  
-                                                        <th>Contact</th>                                                                 
-                                                        <th>Status</th>   
-                                                        <th>Created</th>
-                                                        <th></th>
-                                                         <th>Approve/activate</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <?php
-                                                    if (is_array($users) && count($users)) {
-                                                        foreach ($users as $loop) {
-                                                            $fname = $loop->fname;
-                                                            $lname = $loop->lname;
-
-                                                            $email = $loop->email;
-                                                            $contact = $loop->contact;
-                                                            $level = $loop->level;
-
-                                                            $id = $loop->id;
-                                                            ?>  
-
-                                                            <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                                <td class="center ">
-                                                                    <label>
-                                                                        <input type="checkbox" />
-                                                                        <span class="lbl"></span>
-                                                                    </label>
-                                                                </td>
-
-                                                                <td class="edit_td">
-                                                                    <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
-                                                                    <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"/>
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
-                                                                    <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"/>
-                                                                </td>
-
-                                                                <td class="edit_td">
-                                                                    <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
-                                                                    <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"/>
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="level_<?php echo $id; ?>" class="text"><?php echo $level; ?></span>
-                                                                    <input type="text" value="<?php echo $level; ?>" class="editbox" id="level_input_<?php echo $id; ?>"/>
-                                                                </td>
-
-
-                                                                <td><?= $loop->country ?></td>
-
-                                                                <td class="edit_td">
-                                                                    <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
-                                                                    <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"/>
-                                                                </td>
-
-                                                                <td><?= $loop->status ?></td>
-                                                                <td><?= $loop->registered ?></td>
-
-                                                                <td class="td-actions">
-
-                                                                    <a href="<?php echo base_url() . "index.php/management/user/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="icon-trash bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </td>
-                                                                <td >
-
-                                                                    <?php
-                                                                    if ($loop->status == "false") {
-                                                                        ?>
-                                                                        <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
-                                                                            <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
-                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" />
-                                                                                Active
-                                                                            </label>
-                                                                            <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
-                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
-                                                                                Off
-                                                                            </label>
-                                                                        </div> 
-                                                                    <?php } ?>
-
-                                                                    <?php
-                                                                    if ($loop->status == "active") {
-                                                                        ?>
-                                                                        <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
-                                                                            <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
-                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
-                                                                                Active
-                                                                            </label>
-                                                                            <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
-                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>"  />
-                                                                                Off
-                                                                            </label>
-                                                                        </div> 
-        <?php } ?>
-
-                                                                </td>
-                                                            </tr>
                                                             <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                </tbody>
-                                            </table>  
+                                                            if ($loop->status == "false") {
+                                                                ?>
+                                                                <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                    <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
+                                                                        <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" />
+                                                                        Active
+                                                                    </label>
+                                                                    <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
+                                                                        <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                                        false
+                                                                    </label>
+                                                                </div> 
+                                                            <?php } ?>
+
+                                                            <?php
+                                                            if ($loop->status == "active") {
+                                                                ?>
+                                                                <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                    <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
+                                                                        <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                                        Active
+                                                                    </label>
+                                                                    <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
+                                                                        <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>"  />
+                                                                        false
+                                                                    </label>
+                                                                </div> 
+                                                            <?php } ?>
+
+                                                        </td>
+                                                        <td class="edit_td">
+                                                            <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
+                                                            <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"/>
+                                                        </td>
+                                                        <td class="edit_td">
+                                                            <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
+                                                            <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"/>
+                                                        </td>
+
+                                                        <td class="edit_td">
+                                                            <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
+                                                            <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"/>
+                                                        </td>
+                                                        <td class="edit_td">
+                                                            <span id="level_<?php echo $id; ?>" class="text"><?php echo $level; ?></span>
+                                                            <input type="text" value="<?php echo $level; ?>" class="editbox" id="level_input_<?php echo $id; ?>"/>
+                                                        </td>
+
+
+                                                        <td><?= $loop->country ?></td>
+
+                                                        <td class="edit_td">
+                                                            <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
+                                                            <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"/>
+                                                        </td>
+
+
+                                                        <td><?= $loop->registered ?></td>
+
+                                                        <td class="td-actions">
+
+                                                            <a href="<?php echo base_url() . "index.php/management/user/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                <span class="red">
+                                                                    <i class="icon-trash bigger-120"></i>
+                                                                </span>
+                                                            </a>
+                                                        </td>
+
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>  
                                         </div>
-                                 
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -702,48 +720,48 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 <script>
 
 
-  $('.btn-group[data-toggle=buttons]').each(function (i, e) {
-      var default_class = $(e).data('toggle-default-class') || 'btn-default';
+    $('.btn-group[data-toggle=buttons]').each(function (i, e) {
+        var default_class = $(e).data('toggle-default-class') || 'btn-default';
 
-      $(e).find('label')
-              .click(function (event) {
-                  $(e).find('label')
-                          .each(function (i, e) {
-                              if (!(e == event.target)) {
-                                  $(e).removeClass($(e).data('toggle-class'))
-                                          .addClass(default_class);
+        $(e).find('label')
+                .click(function (event) {
+                    $(e).find('label')
+                            .each(function (i, e) {
+                                if (!(e == event.target)) {
+                                    $(e).removeClass($(e).data('toggle-class'))
+                                            .addClass(default_class);
 
-                                  $(e).find('input').removeAttr('checked');
-                                  console.log($(e).find("input").attr("id"));
+                                    $(e).find('input').removeAttr('checked');
+                                    console.log($(e).find("input").attr("id"));
 
 
-                                  $.post("<?php echo base_url() ?>index.php/management/activate_user", {
-                                      id: $(e).find("input").val(),
-                                      actives: $(e).find("input").attr("id")
+                                    $.post("<?php echo base_url() ?>index.php/management/activate_user", {
+                                        id: $(e).find("input").val(),
+                                        actives: $(e).find("input").attr("id")
 
-                                  }, function (response) {
-                                      // console.log(response);
-                                  });
-                                  // alert("active");
+                                    }, function (response) {
+                                        // console.log(response);
+                                    });
+                                    // alert("active");
 
-                              } else {
-                                  $(e).removeClass(default_class)
-                                          .addClass($(e).data('toggle-class'));
+                                } else {
+                                    $(e).removeClass(default_class)
+                                            .addClass($(e).data('toggle-class'));
 
-                                  $(e).find('input')
-                                          .attr('checked', 1);
+                                    $(e).find('input')
+                                            .attr('checked', 1);
 
-                              }
-                          });
-              });
-  });
+                                }
+                            });
+                });
+    });
 
 </script>
 <script src="<?= base_url(); ?>plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      $(function () {
+<script src="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
         $("#example1").DataTable();
-        
-      });
-    </script>
+
+    });
+</script>

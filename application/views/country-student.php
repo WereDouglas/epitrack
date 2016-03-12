@@ -1,6 +1,3 @@
-
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
 <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
 <link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/font-awesome.min.css" />
@@ -22,15 +19,12 @@
 
 
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery-ui-1.10.3.custom.min.css" />
-
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-
-<link href="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="<?= base_url(); ?>dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-<!-- AdminLTE Skins. Choose a skin from the css/skins
-     folder instead of downloading all of them to reduce the load. -->
-<link href="<?= base_url(); ?>dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="<?= base_url(); ?>assets/css/chosen.css" />
+<link rel="stylesheet" href="<?= base_url(); ?>assets/css/datepicker.css" />
+<link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="<?= base_url(); ?>assets/css/daterangepicker.css" />
+<link rel="stylesheet" href="<?= base_url(); ?>assets/css/colorpicker.css" />
+<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 <script>
     // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
@@ -97,11 +91,7 @@
 </script>
 <body onload="initialize()">
     <div class="main-content">
-        <style>
-            .form-horizontal .controls {
-                margin-left: 2px;
-            }
-        </style>
+       
 
         <div class="page-content">
 
@@ -322,20 +312,19 @@
                                                                 <span class="lbl"></span>
                                                             </label>
                                                         </th>
+                                                         <th>Approve/activate</th>
                                                         <th></th>
                                                         <th>First name</th>
                                                         <th>last name</th>
                                                         <th>Other</th>   
-                                                        <th>email</th>   
-                                                        <th>Gender</th>   
-                                                        <th>Age</th>
+                                                        <th>email</th> 
+                                                        
                                                         <th>Country</th>  
                                                         <th>Contact</th> 
                                                         <th>Cohort</th>
-                                                        <th>Status</th>   
-                                                        <th>Created</th>
+                                                        
                                                         <th></th>
-                                                        <th>Approve/activate</th>
+                                                       
                                                     </tr>
                                                 </thead>
 
@@ -359,50 +348,7 @@
                                                                         <span class="lbl"></span>
                                                                     </label>
                                                                 </td>
-                                                                <td>
-                                                                    <div class="profile-activity">
-                                                                        <a href="<?php echo base_url() . "index.php/student/details/" . $loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>"  alt="<?php echo $fname; ?>" /></a>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
-                                                                    <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
-                                                                    <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="other_<?php echo $id; ?>" class="text"><?php echo $other; ?></span>
-                                                                    <input type="text" value="<?php echo $other; ?>" class="editbox" id="other_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
-                                                                    <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"
-                                                                </td>
-
-
-                                                                <td><?= $loop->gender ?></td>
-                                                                <td><?= $loop->dob ?></td>
-                                                                <td><?= $loop->country ?></td>
-
-                                                                <td class="edit_td">
-                                                                    <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
-                                                                    <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td><?= $loop->cohort ?></td>
-                                                                <td><?= $loop->status ?></td>
-                                                                <td><?= $loop->submitted ?></td>
-
-                                                                <td class="td-actions">
-
-                                                                    <a href="<?php echo base_url() . "index.php/management/student/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="icon-trash bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </td>
-                                                                <td >
+                                                                        <td >
 
                                                                     <?php
                                                                     if ($loop->status == "false") {
@@ -435,6 +381,48 @@
                                                                     <?php } ?>
 
                                                                 </td>
+                                                                <td>
+                                                                    <div class="profile-activity">
+                                                                        <a href="<?php echo base_url() . "index.php/student/details/" . $loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>"  alt="<?php echo $fname; ?>" /></a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="edit_td">
+                                                                    <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
+                                                                    <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"
+                                                                </td>
+                                                                <td class="edit_td">
+                                                                    <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
+                                                                    <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"
+                                                                </td>
+                                                                <td class="edit_td">
+                                                                    <span id="other_<?php echo $id; ?>" class="text"><?php echo $other; ?></span>
+                                                                    <input type="text" value="<?php echo $other; ?>" class="editbox" id="other_input_<?php echo $id; ?>"
+                                                                </td>
+                                                                <td class="edit_td">
+                                                                    <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
+                                                                    <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"
+                                                                </td>
+
+
+                                                              
+                                                                <td><?= $loop->country ?></td>
+
+                                                                <td class="edit_td">
+                                                                    <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
+                                                                    <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
+                                                                </td>
+                                                                <td><?= $loop->cohort ?></td>
+                                                               
+
+                                                                <td class="td-actions">
+
+                                                                    <a href="<?php echo base_url() . "index.php/management/student/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                        <span class="red">
+                                                                            <i class="icon-trash bigger-120"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </td>
+                                                        
 
                                                             </tr>
                                                             <?php

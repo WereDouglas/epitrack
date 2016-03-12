@@ -27,12 +27,7 @@
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 
 
-<div class="main-content">
-    <style>
-        .form-horizontal .controls {
-            margin-left: 2px;
-        }
-    </style>
+
 
     <div class="page-content">
 
@@ -77,56 +72,51 @@
                                 <div class="accordion-inner">
                                     <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/event/'  method="post">            
 
-                                        <div class="alert alert-block alert-info span6">                                                        
-                                        
+                                        <div class="span6">                                                        
+
 
                                             <div class="control-group">
-                                            
+
                                                 <div class="row-fluid">
-                                                     <span class="span12 align-right">Title:<input type="text" class="span6"  id="title" name="title" placeholder="Event name"  /></span>
+                                                    <label>Title</label> <span class="span12 "><input type="text" class="span12"  id="title" name="title" placeholder="Event name"  /></span>
 
-                                                       <span class="span12 align-right">   Country:<input type="text" readonly="true" id="country" class="span6" name="country" value="<?=$this->session->userdata('country')?>" /></span>
-                                                       <span class="span12 align-right">Venue: <input id="venue"  class="span6" name="venue" type="text" /></span>
+                                                    <label> Country</label> <span class="span12 ">  <input type="text" readonly="true" id="country" class="span12" name="country" value="<?= $this->session->userdata('country') ?>" /></span>
+                                                    <label>Venue</label> <span class="span12 "> <input id="venue"  class="span12" name="venue" type="text" /></span>
 
-                                                       <span class="span12 align-right"> start date:<span class="add-on">
-                                                        <i class="icon-calendar"></i>
-                                                           </span>  <input class="span3 date-picker" id="id-date-picker-1" name="startdate"type="text" data-date-format="dd-mm-yyyy" />
-                                                       </span> 
-                                                     <div class="input-append bootstrap-timepicker">
-                                                         <span class="span12 align-right"> <label>Start time:</label><span class="add-on">
-                                                        <i class="icon-time"></i>
-                                                             </span>    <input id="timepicker1" name="starttime" type="text" class="span3" />
-                                                       </span> 
-                                                         </div>
-                                                      <span class="span12 align-right"> End date:<span class="add-on">
-                                                        <i class="icon-calendar"></i>
-                                                          </span>  <input class="span3 date-picker" id="id-date-picker-1"  name="enddate" type="text" data-date-format="dd-mm-yyyy" />
-                                                       </span> 
-                                                     <div class="input-append bootstrap-timepicker">
-                                                         <span class="span12 align-right"> <label>End time:</label><span class="add-on">
-                                                        <i class="icon-time"></i>
-                                                             </span>    <input id="timepicker1" name="endtime" type="text" class="span3" />
-                                                         </span> </div>
+                                                    <label>start date</label><span class="span12"> <span class="add-on">
+                                                            <i class="icon-calendar"></i>
+                                                        </span>  <input class="span12 date-picker" id="id-date-picker-1" name="startdate"type="text" data-date-format="dd-mm-yyyy" />
+                                                    </span> 
+                                                    <div class="input-append bootstrap-timepicker">
+                                                        <label>Start time</label><span class="span12 "> <span class="add-on">
+                                                                <i class="icon-time"></i>
+                                                            </span>    <input id="timepicker1" name="starttime" type="text" class="span12" />
+                                                        </span> 
+                                                    </div>
+                                                    <span class="span12 "> End date<span class="add-on">
+                                                            <i class="icon-calendar"></i>
+                                                        </span>  <input class="span12 date-picker" id="id-date-picker-1"  name="enddate" type="text" data-date-format="dd-mm-yyyy" />
+                                                    </span> 
+                                                    <div class="input-append bootstrap-timepicker">
+                                                        <span class="span12"> <label>End time:</label><span class="add-on">
+                                                                <i class="icon-time"></i>
+                                                            </span>    <input id="timepicker1" name="endtime" type="text" class="span12" />
+                                                        </span> </div>
                                                 </div>
                                             </div>
-                                          
                                         </div>
 
-                                        <div class="alert alert-block alert-info span6">                                                   
+                                        <div class=" span6">                                                   
                                             <div class="widget-box">
-                                                <div class="widget-header widget-header-small  header-color-green">
+                                                <div class="widget-header widget-header-small">
                                                     <div class="widget-toolbar">
                                                         <a href="#" data-action="collapse">
                                                             <i class="icon-chevron-up"></i>
                                                         </a>
                                                     </div>
                                                 </div>
-
                                                 <div class="widget-body">                                                   
-                                                           <textarea class="span12" id="form-field-8" name="description" placeholder="Default Text"></textarea>
-						
-                                               
-
+                                                    <textarea class="span12" id="form-field-8" name="description" placeholder="Default Text"></textarea>
                                                     <div class="widget-toolbox padding-4 clearfix">
                                                         <div class="btn-group pull-left">
                                                             <button class="btn btn-small btn-grey">
@@ -159,72 +149,70 @@
                                 <div class="accordion-inner">
                                     <div class="alert alert-danger">Select a field to edit the content</div>                     
 
+                                    <table id="example1" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="center">
+                                                    <label>
+                                                        <input type="checkbox" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </th>
 
-                              
-                                        <table id="example1" class="table table-striped table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th class="center">
-                                                        <label>
-                                                            <input type="checkbox" />
-                                                            <span class="lbl"></span>
-                                                        </label>
-                                                    </th>
+                                                <th>Title</th>
+                                                <th>Description</th>                                                             
+                                                <th>Country</th>                                                                
+                                                <th>Start</th>  
+                                                <th>End</th>    
+                                                <th>Posted by</th>     
+                                                <th>Status</th>   
+                                                <th>Created</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
 
-                                                    <th>Title</th>
-                                                    <th>Description</th>                                                             
-                                                    <th>Country</th>                                                                
-                                                    <th>Start</th>  
-                                                    <th>End</th>    
-                                                    <th>Posted by</th>     
-                                                    <th>Status</th>   
-                                                    <th>Created</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
+                                        <tbody>
+                                            <?php
+                                            if (is_array($events) && count($events)) {
+                                                foreach ($events as $loop) {
+                                                    ?>  
 
-                                            <tbody>
-                                                <?php
-                                                if (is_array($events) && count($events)) {
-                                                    foreach ($events as $loop) {
-                                                        ?>  
+                                                    <tr id="<?php echo $loop->id; ?>" class="edit_tr">
+                                                        <td class="center ">
+                                                            <label>
+                                                                <input type="checkbox" />
+                                                                <span class="lbl"></span>
+                                                            </label>
+                                                        </td>
 
-                                                        <tr id="<?php echo $loop->id; ?>" class="edit_tr">
-                                                            <td class="center ">
-                                                                <label>
-                                                                    <input type="checkbox" />
-                                                                    <span class="lbl"></span>
-                                                                </label>
-                                                            </td>
-
-                                                            <td ><?php echo $loop->title; ?></td>
-                                                            <td ><?php echo $loop->description; ?></td>
-                                                            <td ><?php echo $loop->country; ?></td>
-                                                            <td ><?php echo $loop->startdate; ?></td>
-                                                            <td ><?php echo $loop->enddate; ?></td>
+                                                        <td ><?php echo $loop->title; ?></td>
+                                                        <td ><?php echo $loop->description; ?></td>
+                                                        <td ><?php echo $loop->country; ?></td>
+                                                        <td ><?php echo $loop->startdate; ?></td>
+                                                        <td ><?php echo $loop->enddate; ?></td>
 
 
-                                                            <td ><?php echo $loop->posted; ?></td>
+                                                        <td ><?php echo $loop->posted; ?></td>
 
-                                                            <td><?= $loop->status ?></td>
-                                                            <td><?= $loop->registered ?></td>
+                                                        <td><?= $loop->status ?></td>
+                                                        <td><?= $loop->registered ?></td>
 
-                                                            <td class="td-actions">
+                                                        <td class="td-actions">
 
-                                                                <a href="<?php echo base_url() . "index.php/management/event/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                    <span class="red">
-                                                                        <i class="icon-trash bigger-120"></i>
-                                                                    </span>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    }
+                                                            <a href="<?php echo base_url() . "index.php/management/event/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                <span class="red">
+                                                                    <i class="icon-trash bigger-120"></i>
+                                                                </span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
                                                 }
-                                                ?>
-                                            </tbody>
-                                        </table>  
-                                  
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>  
+
                                 </div>
                             </div>
                         </div>
@@ -234,20 +222,6 @@
             </div>
         </div>
     </div>
-
-    <div class="row-fluid">
-
-
-
-    </div>                
-
-
-
-</div>
-
-
-
-</div><!--/.main-content-->
 
 
 <!--<![endif]-->
@@ -360,8 +334,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     }
                 });
-            }
-            else
+            } else
             {
                 alert('Enter something.');
             }
@@ -391,8 +364,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             var msg = '';
             if (reason === 'unsupported-file-type') {
                 msg = "Unsupported format " + detail;
-            }
-            else {
+            } else {
                 console.log("error uploading file", reason, detail);
             }
             $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
@@ -552,8 +524,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                 inp.setAttribute('readonly', 'true');
                 inp.removeAttribute('disabled');
                 inp.value = "This text field is readonly!";
-            }
-            else {
+            } else {
                 inp.setAttribute('disabled', 'disabled');
                 inp.removeAttribute('readonly');
                 inp.value = "This text field is disabled!";
@@ -710,8 +681,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                             //IE8 and browsers that don't support File Object
                             if (!(/\.(jpe?g|png|gif|bmp)$/i).test(file))
                                 return false;
-                        }
-                        else {
+                        } else {
                             var type = $.trim(file.type);
                             if ((type.length > 0 && !(/^image\/(jpe?g|png|gif|bmp)$/i).test(type))
                                     || (type.length == 0 && !(/\.(jpe?g|png|gif|bmp)$/i).test(file.name))//for android's default browser which gives an empty string for file.type
@@ -726,8 +696,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     return allowed_files;
                 }
-            }
-            else {
+            } else {
                 btn_choose = "Drop files here or click to choose";
                 no_icon = "icon-cloud-upload";
                 before_change = function (files, dropped) {
@@ -768,7 +737,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $('#simple-colorpicker-1').ace_colorpicker();
 
 
-     
+
 
         //we could just set the data-provide="tag" of the element inside HTML, but IE8 fails!
         var tag_input = $('#form-field-tags');
@@ -812,10 +781,10 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
     });
 </script>
 <script src="<?= base_url(); ?>plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      $(function () {
+<script src="<?= base_url(); ?>plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
         $("#example1").DataTable();
-        
-      });
-    </script>
+
+    });
+</script>

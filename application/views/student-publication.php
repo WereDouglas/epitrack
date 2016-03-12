@@ -80,7 +80,7 @@
                                     <div class="accordion-inner">
                                         <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/publication/'  method="post">            
 
-                                            <div class="alert alert-block alert-info span6">   
+                                            <div class="span6">   
 
 
                                                 <div class="widget-main">
@@ -102,7 +102,7 @@
 
 
                                             </div>
-                                            <div class="alert alert-block alert-info span6">
+                                            <div class="span6">
                                                 <div class="control-group">
                                                     <label class="control-label" for="form-field-username">Country</label>
 
@@ -154,8 +154,6 @@
                                 <div class="accordion-body collapsed" id="collapseThree">
                                     <div class="accordion-inner">
                                         <div class="alert alert-danger">Select a field to edit the content</div>                     
-
-
 
                                         <table id="example1" class="table table-striped table-bordered table-hover">
                                             <thead>

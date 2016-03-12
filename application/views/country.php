@@ -55,31 +55,7 @@
 
 
 
-                                    <div class="btn-group">
-                                        <button data-toggle="dropdown" class="btn btn-small btn-grey dropdown-toggle">
-                                            <i class="icon-caret-down icon-only bigger-110"></i>
-                                        </button>
-
-                                        <ul class="dropdown-menu pull-right dropdown-purple dropdown-caret dropdown-close">
-                                            <li>
-                                                <a href="#">Action</a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#">Another action</a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#">Something else here</a>
-                                            </li>
-
-                                            <li class="divider"></li>
-
-                                            <li>
-                                                <a href="#">Separated link</a>
-                                            </li>
-                                        </ul>
-                                    </div><!--/btn-group-->
+                                 
                                 </div>
                             </div>
 
@@ -96,9 +72,6 @@
                                         <div class="accordion-body collapse" id="collapseTwo">
                                             <div class="accordion-inner">
                                                 <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/country/'  method="post">            
-
-                                                    <div class="alert alert-block alert-info span6">   
-
 
                                                         <div class="widget-main">
 
@@ -128,13 +101,6 @@
                                                                 Reset
                                                             </button>
                                                         </div>
-
-                                                   </div>
-                                                  
-
-
-
-
 
                                                 </form>	
                                             </div>

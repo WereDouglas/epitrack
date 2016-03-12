@@ -25,8 +25,6 @@
         </style>
 
         <div class="page-content">
-
-
             <?php echo $this->session->flashdata('msg'); ?>
             <div class="row-fluid">
                 <div class="span12 widget-container-span">
@@ -53,31 +51,7 @@
 
 
 
-                                <div class="btn-group">
-                                    <button data-toggle="dropdown" class="btn btn-small btn-grey dropdown-toggle">
-                                        <i class="icon-caret-down icon-only bigger-110"></i>
-                                    </button>
 
-                                    <ul class="dropdown-menu pull-right dropdown-purple dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#">Action</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Another action</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Something else here</a>
-                                        </li>
-
-                                        <li class="divider"></li>
-
-                                        <li>
-                                            <a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div><!--/btn-group-->
                             </div>
                         </div>
 
@@ -95,18 +69,17 @@
                                     <div class="accordion-inner">
                                         <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/employment'  method="post">            
 
-                                            <div class="alert alert-block alert-info span12">  
+                                            <div class="span12">  
 
                                                 <div class="control-group">
 
                                                     <div class="controls">
-                                                        <span class="span6 ">Organisation:<input type="text" class="span6"  id="organisation" name="organisation"   /></span>
-                                                        <span class="span6 ">Position:<input class="input-small span6"  type="text" id="position" name="position"   /></span>
-                                                        <div class="control-group">
-
-
-                                                            Choose country of outbreak:
-                                                            <select class="span3" id="country" name="country" >                                                            
+                                                        <label>Organisation</label>
+                                                        <span class="span12 "><input type="text" class="span10"  id="organisation" name="organisation"   /></span>
+                                                        <label>Position</label><span class="span12"><input class="input-small span10"  type="text" id="position" name="position"   /></span>
+                                                        <label>Choose country of outbreak</label>
+                                                        <div class="control-group">   
+                                                            <select class="span10" id="country" name="country" >                                                            
                                                                 <?php
                                                                 if (is_array($country) && count($country)) {
                                                                     foreach ($country as $loop) {
@@ -117,26 +90,28 @@
                                                                 }
                                                                 ?>
                                                             </select>
-                                                        </div>  <span class="span6 "> Location:<input type="text" class="input-small span6" id="location" name="location"  /></span>
-                                                        <span class="span6 ">Contact: <input type="text" class="input-small span6"  id="contact" name="contact"   /></span>
-                                                        <span class="span6 ">Sector: <input type="text" class="input-small span6"  id="sector" name="sector"   /></span>
-                                                                                  <div class="row-fluid">
-                                                    <label for="id-date-picker-1">Date of notification to MOH*</label>
+                                                        </div>
+                                                        <label>Location</label>
+                                                        <span class="span12 "> <input type="text" class="span10" id="location" name="location"  /></span>
+                                                        <label>Contact</label> <span class="span12 "> <input type="text" class="span10"  id="contact" name="contact"   /></span>
+                                                        <label>Sector</label> <span class="span12 "> <input type="text" class="span10"  id="sector" name="sector"   /></span>
+
+                                                        <label >Date of notification to MOH*</label>
+
+
+                                                        <div class="control-group">
+                                                            <div class="row-fluid input-append">
+                                                                <input class="span10 date-picker" id="id-date-picker-1" type="text" name="notification" data-date-format="yyyy-mm-dd" />
+                                                                <span class="add-on">
+                                                                    <i class="icon-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
                                                 </div>
 
-                                                <div class="control-group">
-                                                    <div class="row-fluid input-append">
-                                                        <input class="span10 date-picker" id="id-date-picker-1" type="text" name="notification" data-date-format="yyyy-mm-dd" />
-                                                        <span class="add-on">
-                                                            <i class="icon-calendar"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                         
-                                                    </div>
-
-                                                </div>
-                                             
                                                 <button class="btn btn-info" type="submit">
                                                     <i class="icon-ok bigger-110"></i>
                                                     Submit
@@ -162,99 +137,97 @@
                                 <div class="accordion-inner">
                                     <div class="alert alert-danger">Select a field to edit the content</div>                     
 
+                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="center">
+                                                    <label>
+                                                        <input type="checkbox" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </th>
 
-                                    <div class="grid-wrapper pre-scrollable">
-                                        <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th class="center">
-                                                        <label>
-                                                            <input type="checkbox" />
-                                                            <span class="lbl"></span>
-                                                        </label>
-                                                    </th>
+                                                <th>Organisation</th>
+                                                <th>Position</th>
+                                                <th>Country</th>   
+                                                <th>Location</th>   
+                                                <th>Sector</th>   
+                                                <th>Contact</th>
 
-                                                    <th>Organisation</th>
-                                                    <th>Position</th>
-                                                    <th>Country</th>   
-                                                    <th>Location</th>   
-                                                    <th>Sector</th>   
-                                                    <th>Contact</th>
+                                                <th>Created</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
 
-                                                    <th>Created</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
+                                        <tbody>
+                                            <?php
+                                            if (is_array($records) && count($records)) {
+                                                foreach ($records as $loop) {
+                                                    $organisation = $loop->organisation;
+                                                    $position = $loop->position;
+                                                    $country = $loop->country;
+                                                    $location = $loop->location;
+                                                    $sector = $loop->sector;
+                                                    $contact = $loop->contact;
+                                                    $created = $loop->created;
 
-                                            <tbody>
-                                                <?php
-                                                if (is_array($records) && count($records)) {
-                                                    foreach ($records as $loop) {
-                                                        $organisation = $loop->organisation;
-                                                        $position = $loop->position;
-                                                        $country = $loop->country;
-                                                        $location = $loop->location;
-                                                        $sector = $loop->sector;
-                                                        $contact = $loop->contact;
-                                                        $created = $loop->created;
+                                                    $id = $loop->id;
+                                                    ?>  
 
-                                                        $id = $loop->id;
-                                                        ?>  
+                                                    <tr id="<?php echo $id; ?>" class="edit_tr">
+                                                        <td class="center ">
+                                                            <label>
+                                                                <input type="checkbox" />
+                                                                <span class="lbl"></span>
+                                                            </label>
+                                                        </td>
 
-                                                        <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                            <td class="center ">
-                                                                <label>
-                                                                    <input type="checkbox" />
-                                                                    <span class="lbl"></span>
-                                                                </label>
-                                                            </td>
+                                                        <td class="edit_td">
+                                                            <span id="organisation_<?php echo $id; ?>" class="text"><?php echo $organisation; ?></span>
+                                                            <input type="text" value="<?php echo $organisation; ?>" class="editbox" id="organisation_input_<?php echo $id; ?>"
+                                                        </td>
+                                                        <td class="edit_td">
+                                                            <span id="position_<?php echo $id; ?>" class="text"><?php echo $position; ?></span>
+                                                            <input type="text" value="<?php echo $position; ?>" class="editbox" id="position_input_<?php echo $id; ?>"
+                                                        </td>
+                                                        <td class="edit_td">
+                                                            <span id="country_<?php echo $id; ?>" class="text"><?php echo $country; ?></span>
+                                                            <input type="text" value="<?php echo $country; ?>" class="editbox" id="country_input_<?php echo $id; ?>"
+                                                        </td>
+                                                        <td class="edit_td">
+                                                            <span id="location_<?php echo $id; ?>" class="text"><?php echo $location; ?></span>
+                                                            <input type="text" value="<?php echo $location; ?>" class="editbox" id="location_input_<?php echo $id; ?>"
+                                                        </td>
+                                                        <td class="edit_td">
+                                                            <span id="sector_<?php echo $id; ?>" class="text"><?php echo $sector; ?></span>
+                                                            <input type="text" value="<?php echo $sector; ?>" class="editbox" id="sector_input_<?php echo $id; ?>"
+                                                        </td>
+                                                        <td class="edit_td">
+                                                            <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
+                                                            <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
+                                                        </td>
 
-                                                            <td class="edit_td">
-                                                                <span id="organisation_<?php echo $id; ?>" class="text"><?php echo $organisation; ?></span>
-                                                                <input type="text" value="<?php echo $organisation; ?>" class="editbox" id="organisation_input_<?php echo $id; ?>"
-                                                            </td>
-                                                            <td class="edit_td">
-                                                                <span id="position_<?php echo $id; ?>" class="text"><?php echo $position; ?></span>
-                                                                <input type="text" value="<?php echo $position; ?>" class="editbox" id="position_input_<?php echo $id; ?>"
-                                                            </td>
-                                                            <td class="edit_td">
-                                                                <span id="country_<?php echo $id; ?>" class="text"><?php echo $country; ?></span>
-                                                                <input type="text" value="<?php echo $country; ?>" class="editbox" id="country_input_<?php echo $id; ?>"
-                                                            </td>
-                                                            <td class="edit_td">
-                                                                <span id="location_<?php echo $id; ?>" class="text"><?php echo $location; ?></span>
-                                                                <input type="text" value="<?php echo $location; ?>" class="editbox" id="location_input_<?php echo $id; ?>"
-                                                            </td>
-                                                            <td class="edit_td">
-                                                                <span id="sector_<?php echo $id; ?>" class="text"><?php echo $sector; ?></span>
-                                                                <input type="text" value="<?php echo $sector; ?>" class="editbox" id="sector_input_<?php echo $id; ?>"
-                                                            </td>
-                                                            <td class="edit_td">
-                                                                <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
-                                                                <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
-                                                            </td>
+                                                        <td><?= $loop->created ?></td>
 
-                                                            <td><?= $loop->created ?></td>
+                                                        <td class="td-actions">
 
-                                                            <td class="td-actions">
-
-                                                                <a href="<?php echo base_url() . "index.php/student/employment/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                    <span class="red">
-                                                                        <i class="icon-trash bigger-120"></i>
-                                                                    </span>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    }
+                                                            <a href="<?php echo base_url() . "index.php/student/employment/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                <span class="red">
+                                                                    <i class="icon-trash bigger-120"></i>
+                                                                </span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
                                                 }
-                                                ?>
+                                            }
+                                            ?>
 
 
 
-                                            </tbody>
-                                        </table>  
-                                    </div>
+                                        </tbody>
+                                    </table>  
+
                                 </div>
                             </div>
                         </div>
@@ -395,8 +368,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     }
                 });
-            }
-            else
+            } else
             {
                 alert('Enter something.');
             }

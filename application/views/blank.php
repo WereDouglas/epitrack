@@ -1,10 +1,7 @@
 <?php require_once(APPPATH . 'views/css-page.php'); ?>
 
 
-<div class="col-xs-12">
-
-
-   
+<div class="col-xs-12">   
         <!-- The time line -->
         <ul class="timeline">
             <!-- timeline time label -->
@@ -75,24 +72,31 @@
                     <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame">
                         <i class="fa fa-users text-aqua"></i> <?php echo count($student_cnt_false); ?> Pending activation
                     </a>  
-
-                    <?php
+                    <div class="box-body ">
+                      <ul class="users-list clearfix">
+                           <?php
                     if (is_array($student_cnt_false)) {
                         foreach ($student_cnt_false as $loop) {
                             ?>    
-                            <h3 class="timeline-header no-border"><a href="#"><?= $loop->fname . ' ' . $loop->fname . ' ' ?></a><?= $loop->email . ' ' . $loop->contact ?> </h3>
-
+                          <li>
+                         <a href="<?php echo base_url() . "index.php/student/details/".$loop->id; ?>" target="frame">  <img src="<?= base_url(); ?>uploads/<?php echo $loop->image; ?>" alt="User Image" />
+                           <?php echo  $loop->fname.' '.$loop->lname ?></a>
+                          <span class="users-list-date"><?php echo $loop->submitted?></span>
+                        </li>
                             <?php
                         }
                     }
-                    ?>
-
+                    ?>                          
+                      </ul><!-- /.users-list -->
+                    </div><!-- /.box-body -->
+                    <div class="box-footer text-center">
+                      <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" class="uppercase">View All Students</a>
+                    </div><!-- /.box-footer -->
                 </div>
             </li>
             <!-- END timeline item -->
             <!-- timeline item -->
-            <li>
-                <i class="fa fa-video-camera bg-yellow"></i>
+            <li>               
                 
                          <?php
                 if (is_array($present_cnt_accepted)) {
@@ -117,49 +121,10 @@
                 ?>
            
             </li>
-            <!-- END timeline item -->
-            <!-- timeline time label -->
-            <li class="time-label">
-                <span class="bg-green">
-                   <?php echo date('Y-m-d'); ?>
-                </span>
-            </li>
-            <!-- /.timeline-label -->
-            <!-- timeline item -->
+            <li>
            
-             <div class="col-md-6">
-                  <!-- USERS LIST -->
-                  <div class="box box-danger">
-                    <div class="box-header with-border">
-                      <h3 class="box-title">Latest Students</h3>
-                      <div class="box-tools pull-right">
-                        <span class="label label-danger"><?php echo count($student_cnt_false);?> New students</span>
-                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                      </div>
-                    </div><!-- /.box-header -->
-                    <div class="box-body no-padding">
-                      <ul class="users-list clearfix">
-                           <?php
-                    if (is_array($student_cnt_false)) {
-                        foreach ($student_cnt_false as $loop) {
-                            ?>    
-                          <li>
-                         <a href="<?php echo base_url() . "index.php/student/details/".$loop->id; ?>" target="frame">  <img src="<?= base_url(); ?>uploads/<?php echo $loop->image; ?>" alt="User Image" />
-                           <?php echo  $loop->fname.' '.$loop->lname ?></a>
-                          <span class="users-list-date"><?php echo $loop->submitted?></span>
-                        </li>
-                            <?php
-                        }
-                    }
-                    ?>                          
-                      </ul><!-- /.users-list -->
-                    </div><!-- /.box-body -->
-                    <div class="box-footer text-center">
-                      <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" class="uppercase">View All Students</a>
-                    </div><!-- /.box-footer -->
-                  </div><!--/.box -->
-                </div><!-- /.col -->
+        
+            </li>
              
             <!-- END timeline item -->
             <!-- timeline item -->

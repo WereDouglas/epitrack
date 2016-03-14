@@ -93,13 +93,40 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>" class="user-image" alt="user" />
-                                    <span class="hidden-xs"><?php echo $this->session->userdata('name'); ?></span>
+                                    
+                                            
+                                 <?php   
+                                 if ($this->session->userdata('image')!= null){                               
+                                 ?>       
+                                       
+                                        <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>"  class="user-image" alt="user" />
+                                        
+                                 <?php } else{
+                                     echo  $this->session->userdata('image');
+                                     ?>                                       
+                                       
+                                         <img src="<?= base_url(); ?>uploads/temp_face.png"  class="user-image" alt="user" />
+                                 <?php }?>   
+                                    
+                                        <span class="hidden-xs"><?php echo $this->session->userdata('name'); ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
+                                        
+                                 <?php   
+                                 if ($this->session->userdata('image')!= null){                               
+                                 ?>       
+                                       
                                         <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>" class="img-circle" alt="user" />
+                                        
+                                 <?php } else{
+                                     echo  $this->session->userdata('image');
+                                     ?>                                       
+                                       
+                                         <img src="<?= base_url(); ?>uploads/temp_face.png" class="img-circle" alt="user" />
+                                 <?php }?>   
+                                        
                                         <p>
                                             <?php echo $this->session->userdata('name'); ?>
                                             <small><?php echo $this->session->userdata('country'); ?></small>
@@ -119,9 +146,7 @@
                                 </ul>
                             </li>
                             <!-- Control Sidebar Toggle Button -->
-                            <li>
-                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                            </li>
+                           
                         </ul>
                     </div>
                 </nav>
@@ -133,9 +158,19 @@
                 <section class="sidebar">
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>" class="img-circle" alt="User Image" />
-                        </div>
+                        <div class="pull-left image">              
+                                 <?php   
+                                 if ($this->session->userdata('image')!= null){                               
+                                 ?>       
+                                       
+                                        <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>"  class="user-image" alt="user" />
+                                        
+                                 <?php } else{
+                                     echo  $this->session->userdata('image');
+                                     ?>                                       
+                                       
+                                         <img src="<?= base_url(); ?>uploads/temp_face.png"  class="user-image" alt="user" />
+                                 <?php }?>   </div>
                         <div class="pull-left info">
                             <p><?php echo $this->session->userdata('name'); ?></p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>

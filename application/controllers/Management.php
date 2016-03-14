@@ -7,7 +7,7 @@ class Management extends CI_Controller {
     function __construct() {
 
         parent::__construct();
-        // error_reporting(E_PARSE);
+         error_reporting(E_PARSE);
         $this->load->model('Md');
         $this->load->library('session');
         $this->load->library('encrypt');
@@ -654,6 +654,44 @@ class Management extends CI_Controller {
             }
         }
         $this->load->view('country-student', $data);
+    }
+
+    public function details() {
+        //get($field,$value,$table)
+
+        $ID = $this->uri->segment(3);
+        $query = $this->Md->show('event');
+        //  var_dump($query);
+        if ($query) {
+            $data['events'] = $query;
+        } else {
+            $data['events'] = array();
+        }
+
+        if ($this->session->userdata('level') > 0) {
+             $query = $this->Md->get('id', $ID, 'user');
+            //  var_dump($query);
+            if ($query) {
+                $data['bio'] = $query;
+            } else {
+                $data['bio'] = array();
+            }
+            
+        }
+
+        if ($this->session->userdata('level') == "student") {
+            $query = $this->Md->get('id', $ID, 'student');
+            //  var_dump($query);
+            if ($query) {
+                $data['bio'] = $query;
+            } else {
+                $data['bio'] = array();
+            }
+        }
+
+
+
+        $this->load->view('user-details', $data);
     }
 
     public function country() {

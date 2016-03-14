@@ -50,7 +50,7 @@ class Welcome extends CI_Controller {
                     $password = $this->encrypt->decode($res->password, $key);
 
                     if ($password_now == $password) {
-
+                        $status = $res->status;
                         $newdata = array(
                             'id' => $res->id,
                             'name' => $res->fname . ' ' . $res->lname . ' ' . $res->other,
@@ -60,6 +60,7 @@ class Welcome extends CI_Controller {
                             'country' => $res->country,
                             'cohort' => $res->cohort,
                             'level' => 'student',
+                            'status' => $res->status,
                             'logged_in' => TRUE
                         );
 
@@ -148,9 +149,16 @@ class Welcome extends CI_Controller {
                         } else {
                             $data['present_cnt_accepted'] = array();
                         }
-
-
-                        $this->load->view('center_page', $data);
+                        if ($status != 'false') {
+                            $this->load->view('center_page', $data);
+                        } else {
+                            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                                your account has not yet been activated</strong>									
+						</div>');
+                            redirect('welcome/register', 'refresh');
+                        }
                     } else {
                         $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    

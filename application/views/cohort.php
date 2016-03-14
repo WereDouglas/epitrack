@@ -1,11 +1,6 @@
- <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<?php require_once(APPPATH . 'views/css-page.php'); ?>
 
-        <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
-
-
-<div class="page-content">
+ <div class="col-xs-12">
          <h4>Add new cohort</h4>  
                           
         
@@ -43,7 +38,7 @@
                                                             Clear
                                                         </button>
 
-                                                        <button  class="width-15 pull-right btn btn-small btn-success">
+                                                        <button  class="width-15 pull-left btn btn-small btn-success">
                                                            Submit
 
                                                         </button>
@@ -106,7 +101,7 @@
 
                                                     <td class="td-actions">
                                       
-                                                        <a href="<?php echo base_url() . "index.php/management/tracks/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                        <a href="<?php echo base_url() . "index.php/management/cohort/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                             <span class="red">
                                                                 <i class="icon-trash bigger-120"></i>
                                                             </span>

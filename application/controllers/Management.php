@@ -7,7 +7,7 @@ class Management extends CI_Controller {
     function __construct() {
 
         parent::__construct();
-         error_reporting(E_PARSE);
+        error_reporting(E_PARSE);
         $this->load->model('Md');
         $this->load->library('session');
         $this->load->library('encrypt');
@@ -188,14 +188,14 @@ class Management extends CI_Controller {
                                                  Cohort deleted	</strong>									
 						</div>');
 
-                redirect('/management/tracks', 'refresh');
+                redirect('/management/cohort', 'refresh');
             } else {
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
                                                  You cannot carry out this action</strong>									
 						</div>');
 
-                redirect('/management/tracks', 'refresh');
+                redirect('/management/cohort', 'refresh');
             }
         }
         if ($action == 'update') {

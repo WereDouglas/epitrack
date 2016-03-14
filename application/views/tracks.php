@@ -1,102 +1,98 @@
-<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
-   <div class="page-content">
-
-<h4>Add new track</h4>  
+<?php require_once(APPPATH . 'views/css-page.php'); ?>
 
 
-<div class="row-fluid">
-    <?php echo $this->session->flashdata('msg'); ?>
-    <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/tracks/'  method="post">            
+<div class="col-xs-12">
+    <h4>Add new track</h4>  
+
+
+    <div class="row-fluid">
+        <?php echo $this->session->flashdata('msg'); ?>
+        <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/tracks/'  method="post">            
 
 
 
 
 
-        <label>
-            <span class="block input-icon input-icon-right">
-                <input type="text" class="span12" id="track" name="track" placeholder="track name" />  
-            </span>
-        </label>
+            <label>
+                <span class="block input-icon input-icon-right">
+                    <input type="text" class="span12" id="track" name="track" placeholder="track name" />  
+                </span>
+            </label>
 
-        <button type="reset" class="width-10 pull-left btn btn-small">
-            <i class="icon-refresh"></i>
-            Clear
-        </button>
+           
 
-        <button  class="width-15 pull-right btn btn-small btn-success">
-            Submit
+            <button  class="width-15 pull-right btn btn-small btn-success">
+                Submit
 
-        </button>
+            </button>
+            
 
-    </form>
+        </form>
 
-</div>                                                     
-<hr>                                                
-<h4>Track list</h4>                               
+    </div>                                                     
+    <hr>                                                
+    <h4>Track list</h4>                               
 
-<div class="alert alert-info">Select a field to edit the content</div>                     
+    <div class="alert alert-info">Select a field to edit the content</div>                     
 
-<table id="sample-table-2" class="table table-striped table-bordered table-hover">
-    <thead>
-        <tr>
-            <th class="center">
-                <label>
-                    <input type="checkbox" />
-                    <span class="lbl"></span>
-                </label>
-            </th>
+    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th class="center">
+                    <label>
+                        <input type="checkbox" />
+                        <span class="lbl"></span>
+                    </label>
+                </th>
 
-            <th>Name</th>
+                <th>Name</th>
 
-            <th>Submitted on</th>
-            <th></th>
-        </tr>
-    </thead>
+                <th>Submitted on</th>
+                <th></th>
+            </tr>
+        </thead>
 
-    <tbody>
-        <?php
-        if (is_array($tracks) && count($tracks)) {
-            foreach ($tracks as $loop) {
-                $track = $loop->track;
-                $id = $loop->id;
-                ?>  
+        <tbody>
+            <?php
+            if (is_array($tracks) && count($tracks)) {
+                foreach ($tracks as $loop) {
+                    $track = $loop->track;
+                    $id = $loop->id;
+                    ?>  
 
-                <tr id="<?php echo $id; ?>" class="edit_tr">
-                    <td class="center ">
-                        <label>
-                            <input type="checkbox" />
-                            <span class="lbl"></span>
-                        </label>
-                    </td>
+                    <tr id="<?php echo $id; ?>" class="edit_tr">
+                        <td class="center ">
+                            <label>
+                                <input type="checkbox" />
+                                <span class="lbl"></span>
+                            </label>
+                        </td>
 
-                    <td class="edit_td">
-                        <span id="track_<?php echo $id; ?>" class="text"><?php echo $track; ?></span>
-                        <input type="text" value="<?php echo $track; ?>" class="editbox" id="track_input_<?php echo $id; ?>"
-                    </td>
+                        <td class="edit_td">
+                            <span id="track_<?php echo $id; ?>" class="text"><?php echo $track; ?></span>
+                            <input type="text" value="<?php echo $track; ?>" class="editbox" id="track_input_<?php echo $id; ?>"
+                        </td>
 
 
-                    <td><?= $loop->created ?></td>
+                        <td><?= $loop->created ?></td>
 
-                    <td class="td-actions">
+                        <td class="td-actions">
 
-                        <a href="<?php echo base_url() . "index.php/management/tracks/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                            <span class="red">
-                                <i class="icon-trash bigger-120"></i>
-                            </span>
-                        </a>
-                    </td>
-                </tr>
-            <?php }
-        } ?>
+                            <a href="<?php echo base_url() . "index.php/management/tracks/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                <span class="red">
+                                    <i class="icon-trash bigger-120"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                <?php }
+            }
+            ?>
 
 
 
-    </tbody>
-</table>      
+        </tbody>
+    </table>      
 
 
 

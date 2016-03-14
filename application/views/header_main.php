@@ -161,7 +161,7 @@
                      <?php   if ($this->session->userdata('level') == 2) {
                         ?>
                         <li class="header">General</li>
-                        <li><a href="<?php echo base_url() . "index.php/management/"; ?>" target="frame"><i class="fa fa-circle-o"></i> Home</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/"; ?>" target="frame"><i class="fa fa-calendar"></i> Calendar</a></li>
                         <li><a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame"><i class="fa fa-road"></i> Tracks</a></li>
                         <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i> Cohorts</a></li>
                         <li><a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame"><i class="fa fa-flag"></i> Countries</a></li>

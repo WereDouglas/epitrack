@@ -1,9 +1,10 @@
 <?php require_once(APPPATH . 'views/css-page.php'); ?>
 
-<div class="row">
+
+<div class="col-xs-12">
 
 
-    <div class="col-md-12">
+   
         <!-- The time line -->
         <ul class="timeline">
             <!-- timeline time label -->
@@ -168,7 +169,7 @@
                 <i class="fa fa-clock-o bg-gray"></i>
             </li>
         </ul>
-    </div><!-- /.col -->
+ 
 </div><!-- /.row -->
 
 <script src="<?= base_url(); ?>plugins/jQuery/jQuery-2.1.4.min.js" type="text/javascript"></script>

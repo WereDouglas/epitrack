@@ -88,7 +88,7 @@
 
                                         <div class="accordion-body collapsed" id="collapseThree">
                                             <div class="accordion-inner">
-                                                <div class="alert alert-danger">Select a field to edit the content</div>                     
+                                                <div class="alert alert-info">Select a field to edit the content</div>                     
                                                
                                                                                                     
                                                     <table id="example1" class="table table-striped table-bordered table-hover">

@@ -1,12 +1,7 @@
-<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
-
-<div class="page-content">
+<?php require_once(APPPATH . 'views/css-page.php'); ?>
 
 
+<div class="col-xs-12">
 
 
     <div class="alert alert-success">Add new contact</div>  
@@ -37,7 +32,7 @@
                         Clear
                     </button>
 
-                    <button  class="width-15 pull-right btn btn-small btn-success">
+                    <button  class="width-15 pull-left btn btn-small btn-success">
                         Submit
 
                     </button>

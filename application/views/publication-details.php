@@ -1,19 +1,7 @@
-<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/font-awesome.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-responsive.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery.gritter.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/fullcalendar.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/select2.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-editable.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
-<link href="<?= base_url(); ?>dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<?php require_once(APPPATH . 'views/css-page.php'); ?>
 
-<div class="main-content">
-    <div class="page-content">
-        <div class="row-fluid">
+
+           <div class="col-xs-12">
 
 
             <?php

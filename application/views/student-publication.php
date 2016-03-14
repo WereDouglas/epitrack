@@ -1,30 +1,7 @@
-<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/font-awesome.min.css" />
-
-<!--[if IE 7]>
-  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
-<![endif]-->
-
-<!--page specific plugin styles-->
-
-<!--fonts-->
-
-<!--ace styles-->
+<?php require_once(APPPATH . 'views/css-page.php'); ?>
 
 
-
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery-ui-1.10.3.custom.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/chosen.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/datepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-timepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/daterangepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/colorpicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
-
-<body >
-    
-        <div class="page-content">
+           <div class="col-xs-12">
 
 
             <?php echo $this->session->flashdata('msg'); ?>
@@ -143,7 +120,7 @@
 
                                 <div class="accordion-body collapsed" id="collapseThree">
                                     <div class="accordion-inner">
-                                        <div class="alert alert-danger">Select a field to edit the content</div>                     
+                                        <div class="alert alert-info">Select a field to edit the content</div>                     
 
                                         <table id="example1" class="table table-striped table-bordered table-hover">
                                             <thead>

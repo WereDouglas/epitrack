@@ -355,7 +355,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <div class="profile-activity">
-                                                                        <a href="<?php echo base_url() . "index.php/student/details/" . $loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>"  alt="<?php echo $fname; ?>" /></a>
+                                                                        <a href="<?php echo base_url() . "index.php/student/details/" . $loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>" height="70px" width="70px"  alt="<?php echo $fname; ?>" /></a>
                                                                     </div>
                                                                 </td>
                                                                 <td class="edit_td">

@@ -905,9 +905,7 @@ class Management extends CI_Controller {
         } else {
             $data['country'] = array();
         }
-
-
-        $this->load->view('user', $data);
+        $this->load->view('country-user', $data);
     }
 
     public function activate_user() {

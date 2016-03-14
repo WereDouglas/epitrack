@@ -12,10 +12,7 @@
 
 <!--ace styles-->
 
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-responsive.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
-<link href="<?= base_url(); ?>css/mine.css" rel="stylesheet" />
+
 
 
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery-ui-1.10.3.custom.min.css" />

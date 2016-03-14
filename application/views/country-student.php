@@ -1,30 +1,4 @@
-<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/font-awesome.min.css" />
-
-<!--[if IE 7]>
-  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
-<![endif]-->
-
-<!--page specific plugin styles-->
-
-<!--fonts-->
-
-<!--ace styles-->
-
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-responsive.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
-<link href="<?= base_url(); ?>css/mine.css" rel="stylesheet" />
-
-
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery-ui-1.10.3.custom.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/chosen.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/datepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-timepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/daterangepicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/colorpicker.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
+<?php require_once(APPPATH . 'views/css-page.php'); ?>
 <script>
     // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
@@ -91,7 +65,7 @@
 </script>
 <body onload="initialize()">
    
-        <div class="page-content">
+         <div class="col-xs-12">
 
             <h2>Students</h2>
 

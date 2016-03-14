@@ -30,7 +30,7 @@ class Welcome extends CI_Controller {
 
     public function login() {
 
-      
+
         $this->load->helper(array('form', 'url'));
         $email = $this->input->post('email');
         $password_now = $this->input->post('password');
@@ -62,17 +62,17 @@ class Welcome extends CI_Controller {
                             'level' => 'student',
                             'logged_in' => TRUE
                         );
-                 
+
                         $this->session->set_userdata($newdata);
-                        
-                                   $cty= $this->session->userdata('country');                                   
-                              $country = $this->Md->get('name', $cty, 'country');
-                                foreach ($country as $res) {
-                                     $county = $res->image;
-                                }
-                            $this->session->set_userdata('flag', $county);
-                            
-                        $name= $this->session->userdata('name'); 
+
+                        $cty = $this->session->userdata('country');
+                        $country = $this->Md->get('name', $cty, 'country');
+                        foreach ($country as $res) {
+                            $county = $res->image;
+                        }
+                        $this->session->set_userdata('flag', $county);
+
+                        $name = $this->session->userdata('name');
                         $query = $this->Md->get('reciever', $name, 'chat');
                         //  var_dump($query);
                         if ($query) {
@@ -80,22 +80,22 @@ class Welcome extends CI_Controller {
                         } else {
                             $data['chats'] = array();
                         }
-                         $query = $this->Md->query("SELECT * FROM outbreak where country = '". $cty."'");
+                        $query = $this->Md->query("SELECT * FROM outbreak where country = '" . $cty . "'");
                         //  var_dump($query);
                         if ($query) {
                             $data['outbreaks'] = $query;
                         } else {
                             $data['outbreaks'] = array();
                         }
-                        
-                          $query = $this->Md->query("SELECT * FROM publication where country = '". $cty."'");
+
+                        $query = $this->Md->query("SELECT * FROM publication where country = '" . $cty . "'");
                         //  var_dump($query);
                         if ($query) {
                             $data['pubs'] = $query;
                         } else {
                             $data['pubs'] = array();
-                        }   
-                             
+                        }
+
                         $query = $this->Md->show('event');
                         //  var_dump($query);
                         if ($query) {
@@ -117,8 +117,39 @@ class Welcome extends CI_Controller {
                         } else {
                             $data['students'] = array();
                         }
-                        
-                      
+
+                        $query = $this->Md->query("SELECT * FROM student where status = 'false'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['student_cnt_false'] = $query;
+                        } else {
+                            $data['student_cnt_false'] = array();
+                        }
+
+                        $query = $this->Md->query("SELECT * FROM publication where verified = 'false'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['publication_cnt_review'] = $query;
+                        } else {
+                            $data['publication_cnt_review'] = array();
+                        }
+                        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['publication_cnt_accepted'] = $query;
+                        } else {
+                            $data['publication_cnt_accepted'] = array();
+                        }
+
+                        $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no'");
+                        //  var_dump($query);
+                        if ($query) {
+                            $data['present_cnt_accepted'] = $query;
+                        } else {
+                            $data['present_cnt_accepted'] = array();
+                        }
+
+
                         $this->load->view('center_page', $data);
                     } else {
                         $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -146,30 +177,30 @@ class Welcome extends CI_Controller {
 
                             $newdata = array(
                                 'id' => $res->id,
-                                'name' => $res->fname .' '.$res->lname . ' ',
+                                'name' => $res->fname . ' ' . $res->lname . ' ',
                                 'email' => $res->email,
                                 'contact' => $res->contact,
                                 'country' => $res->country,
-                                 'image' => $res->image,
+                                'image' => $res->image,
                                 'status' => $res->status,
-                                 'level' => $res->level,
+                                'level' => $res->level,
                                 'logged_in' => TRUE
                             );
                             $this->session->set_userdata($newdata);
-                            
-                        if ($this->session->userdata('level')>0){
-                             $cty= $this->session->userdata('country');                                   
-                              $country = $this->Md->get('name', $cty, 'country');
+
+                            if ($this->session->userdata('level') > 0) {
+                                $cty = $this->session->userdata('country');
+                                $country = $this->Md->get('name', $cty, 'country');
                                 foreach ($country as $res) {
-                                     $county = $res->image;
+                                    $county = $res->image;
                                 }
                                 $this->session->set_userdata('flag', $county);
-                            
-                              redirect('welcome/management/', 'refresh');
-                              return;
-                        }
-                        
-                            
+
+                                redirect('welcome/management/', 'refresh');
+                                return;
+                            }
+
+
                             redirect('welcome/management/', 'refresh');
                         } else {
                             $this->session->set_flashdata('msg', '<div class="alert alert-error"> <strong>! invalid password</strong></div>');
@@ -189,65 +220,65 @@ class Welcome extends CI_Controller {
     }
 
     public function management() {
-        
-                       $cty= $this->session->userdata('country');  
-        
-                        $name= $this->session->userdata('name'); 
-                        $query = $this->Md->get('reciever', $name, 'chat');
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['chats'] = $query;
-                        } else {
-                            $data['chats'] = array();
-                        }
-                         $query = $this->Md->query("SELECT * FROM outbreak where country = '". $cty."'");
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['outbreaks'] = $query;
-                        } else {
-                            $data['outbreaks'] = array();
-                        }
-                        
-                          $query = $this->Md->query("SELECT * FROM publication where country = '". $cty."'");
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['pubs'] = $query;
-                        } else {
-                            $data['pubs'] = array();
-                        }
-                       $query = $this->Md->query("SELECT * FROM student where status = 'false'");
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['student_cnt_false'] = $query;
-                        } else {
-                            $data['student_cnt_false'] = array();
-                        }
-                        
-                        $query = $this->Md->query("SELECT * FROM publication where verified = 'false'");
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['publication_cnt_review'] = $query;
-                        } else {
-                            $data['publication_cnt_review'] = array();
-                        }
-                        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no'");
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['publication_cnt_accepted'] = $query;
-                        } else {
-                            $data['publication_cnt_accepted'] = array();
-                        }
-                        
-                         $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no'");
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['present_cnt_accepted'] = $query;
-                        } else {
-                            $data['present_cnt_accepted'] = array();
-                        }
-                        
-                        
-        $this->load->view('center_page',$data);
+
+        $cty = $this->session->userdata('country');
+
+        $name = $this->session->userdata('name');
+        $query = $this->Md->get('reciever', $name, 'chat');
+        //  var_dump($query);
+        if ($query) {
+            $data['chats'] = $query;
+        } else {
+            $data['chats'] = array();
+        }
+        $query = $this->Md->query("SELECT * FROM outbreak where country = '" . $cty . "'");
+        //  var_dump($query);
+        if ($query) {
+            $data['outbreaks'] = $query;
+        } else {
+            $data['outbreaks'] = array();
+        }
+
+        $query = $this->Md->query("SELECT * FROM publication where country = '" . $cty . "'");
+        //  var_dump($query);
+        if ($query) {
+            $data['pubs'] = $query;
+        } else {
+            $data['pubs'] = array();
+        }
+        $query = $this->Md->query("SELECT * FROM student where status = 'false'");
+        //  var_dump($query);
+        if ($query) {
+            $data['student_cnt_false'] = $query;
+        } else {
+            $data['student_cnt_false'] = array();
+        }
+
+        $query = $this->Md->query("SELECT * FROM publication where verified = 'false'");
+        //  var_dump($query);
+        if ($query) {
+            $data['publication_cnt_review'] = $query;
+        } else {
+            $data['publication_cnt_review'] = array();
+        }
+        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no'");
+        //  var_dump($query);
+        if ($query) {
+            $data['publication_cnt_accepted'] = $query;
+        } else {
+            $data['publication_cnt_accepted'] = array();
+        }
+
+        $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no'");
+        //  var_dump($query);
+        if ($query) {
+            $data['present_cnt_accepted'] = $query;
+        } else {
+            $data['present_cnt_accepted'] = array();
+        }
+
+
+        $this->load->view('center_page', $data);
     }
 
     public function projects() {

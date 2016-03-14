@@ -165,10 +165,9 @@
 
                                                     <th>Accepted</th>
                                                     <th>submitted on</th>
-
-
-
                                                     <th></th>
+                                                      <th>Details</th>
+                                                    
                                                 </tr>
                                             </thead>
 
@@ -179,7 +178,6 @@
                                                         $name = $loop->title;
                                                         $link = $loop->link;
                                                         $abstract = $loop->abstract;
-
                                                         $id = $loop->id;
                                                         ?>  
 
@@ -210,11 +208,11 @@
                                                                     ?>
                                                                     <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
                                                                         <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
-                                                                            <input type="radio" name="status" id="<?= $loop->reviewed; ?>" value="<?= $loop->id; ?>" />
+                                                                            <input type="radio" name="status" id="<?= $loop->verified; ?>" value="<?= $loop->id; ?>" />
                                                                             yes
                                                                         </label>
                                                                         <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
-                                                                            <input type="radio" name="status" id="<?= $loop->reviewed; ?>" value="<?= $loop->id; ?>" checked />
+                                                                            <input type="radio" name="status" id="<?= $loop->verified; ?>" value="<?= $loop->id; ?>" checked />
                                                                             no
                                                                         </label>
                                                                     </div> 
@@ -225,11 +223,11 @@
                                                                     ?>
                                                                     <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
                                                                         <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
-                                                                            <input type="radio" name="status" id="<?= $loop->reviewed; ?>" value="<?= $loop->id; ?>" checked />
+                                                                            <input type="radio" name="status" id="<?= $loop->verified; ?>" value="<?= $loop->id; ?>" checked />
                                                                             yes
                                                                         </label>
                                                                         <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
-                                                                            <input type="radio" name="status" id="<?= $loop->reviewed; ?>" value="<?= $loop->id; ?>"  />
+                                                                            <input type="radio" name="status" id="<?= $loop->verified; ?>" value="<?= $loop->id; ?>"  />
                                                                             no
                                                                         </label>
                                                                     </div> 
@@ -245,11 +243,18 @@
                                                             </td>
                                                             <td class="td-actions">
 
-                                                                <a href="<?php echo base_url() . "index.php/management/country/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                <a href="<?php echo base_url() . "index.php/management/publication/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                                     <span class="red">
                                                                         <i class="icon-trash bigger-120"></i>
                                                                     </span>
                                                                 </a>
+                                                            </td>
+                                                            <td class="td-actions">
+                                                                
+                                                                  <a href="<?php echo base_url() . "index.php/student/publicationed/" . $loop->id; ?>" target="frame"> 
+                                                                   Read more
+                                                                </a>
+                                                                
                                                             </td>
                                                         </tr>
                                                         <?php
@@ -261,6 +266,8 @@
 
                                             </tbody>
                                         </table>  
+                                        
+                                        
 
                                     </div>
                                 </div>

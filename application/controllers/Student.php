@@ -178,6 +178,23 @@ class Student extends CI_Controller {
 
         $this->load->view('student-details', $data);
     }
+    
+    
+     public function publicationed() {
+        //get($field,$value,$table)
+
+        $publicationID = $this->uri->segment(3);
+        
+        $query = $this->Md->get('id', $publicationID, 'publication');
+        if ($query) {
+            $data['publications'] = $query;
+        } else {
+            $data['publications'] = array();
+        }
+
+        $this->load->view('publication-details', $data);
+    }
+    
 
     public function contact() {
 
@@ -315,21 +332,7 @@ class Student extends CI_Controller {
         } else {
             $data['records'] = array();
         }
-
-        $query = $this->Md->show('student');
-        //  var_dump($query);
-        if ($query) {
-            $data['students'] = $query;
-        } else {
-            $data['students'] = array();
-        }
-        $query = $this->Md->show('country');
-        //  var_dump($query);
-        if ($query) {
-            $data['country'] = $query;
-        } else {
-            $data['country'] = array();
-        }
+       
         $this->load->view('student-employment', $data);
     }
 
@@ -589,14 +592,7 @@ class Student extends CI_Controller {
         } else {
             $data['presentations'] = array();
         }
-        $query = $this->Md->show('country');
-        //  var_dump($query);
-        if ($query) {
-            $data['country'] = $query;
-        } else {
-            $data['country'] = array();
-        }
-
+        
         $this->load->view('student-presentation', $data);
     }
 
@@ -621,7 +617,7 @@ class Student extends CI_Controller {
     public function activate() {
 
         $this->load->helper(array('form', 'url'));
-        
+
         $id = $this->uri->segment(3);
         $actives = $this->uri->segment(4);
         if ($actives == "active") {
@@ -731,14 +727,7 @@ class Student extends CI_Controller {
         } else {
             $data['study'] = array();
         }
-
-        $query = $this->Md->show('study');
-        //  var_dump($query);
-        if ($query) {
-            $data['study'] = $query;
-        } else {
-            $data['study'] = array();
-        }
+       
 
         $this->load->view('student-study', $data);
     }
@@ -797,13 +786,6 @@ class Student extends CI_Controller {
             $data['study'] = array();
         }
 
-        $query = $this->Md->show('study');
-        //  var_dump($query);
-        if ($query) {
-            $data['study'] = $query;
-        } else {
-            $data['study'] = array();
-        }
         $query = $this->Md->get('studentID', $studentID, 'qualification');
         // var_dump($query);
         if ($query) {
@@ -875,20 +857,7 @@ class Student extends CI_Controller {
             redirect('/student/surveillance', 'refresh');
         }
 
-        $query = $this->Md->get('studentID', $studentID, 'study');
-        if ($query) {
-            $data['study'] = $query;
-        } else {
-            $data['study'] = array();
-        }
 
-        $query = $this->Md->show('study');
-        //  var_dump($query);
-        if ($query) {
-            $data['study'] = $query;
-        } else {
-            $data['study'] = array();
-        }
         $query = $this->Md->get('studentID', $studentID, 'surveillance');
         // var_dump($query);
         if ($query) {
@@ -896,7 +865,6 @@ class Student extends CI_Controller {
         } else {
             $data['survey'] = array();
         }
-
 
         $this->load->view('student-surveillance', $data);
     }
@@ -971,14 +939,6 @@ class Student extends CI_Controller {
             $data['out'] = array();
         }
 
-        $query = $this->Md->show('country');
-        //  var_dump($query);
-        if ($query) {
-            $data['country'] = $query;
-        } else {
-            $data['country'] = array();
-        }
-
         $this->load->view('outbreak', $data);
     }
 
@@ -1039,14 +999,6 @@ class Student extends CI_Controller {
             $data['out'] = $query;
         } else {
             $data['out'] = array();
-        }
-
-        $query = $this->Md->show('country');
-        //  var_dump($query);
-        if ($query) {
-            $data['country'] = $query;
-        } else {
-            $data['country'] = array();
         }
 
         $this->load->view('student-course', $data);

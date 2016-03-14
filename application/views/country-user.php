@@ -27,14 +27,7 @@
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 
 <body>
-    <div class="main-content">
-        <style>
-            .form-horizontal .controls {
-                margin-left: 2px;
-            }
-        </style>
-
-        <div class="page-content">
+           <div class="page-content">
 
 
             <?php echo $this->session->flashdata('msg'); ?>
@@ -323,21 +316,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="row-fluid">
-
-
-
-        </div>                
-
-
-
-    </div>
-
-
-
-</div><!--/.main-content-->
-
 
 <!--<![endif]-->
 

@@ -17,93 +17,104 @@
             <div class="span12">
                 <!--PAGE CONTENT BEGINS-->
 
-
+                <?php
+                if (is_array($bio) && count($bio)) {
+                    foreach ($bio as $loop) {
+                        $id = $loop->id;
+                        $fname = $loop->fname;
+                        $lname = $loop->lname;
+                        $other = $loop->other;
+                        $email = $loop->email;
+                        $gender = $loop->gender;
+                        $dob = $loop->dob;
+                        $country = $loop->country;
+                        $image = $loop->image;
+                        $password = $loop->password;
+                        $cohort = $loop->cohort;
+                        $contact = $loop->contact;
+                        $status = $loop->status;
+                    }
+                }
+                ?>
                 <div class="row-fluid">
-                    <div class="span4">
-                        <div class="profile-user-info profile-user-info-striped">
+                    <div class="span12">
+                        <div class="span3">
+                            <img  height="100px" width="120px" class="" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
 
-                            <?php
-                            if (is_array($bio) && count($bio)) {
-                                foreach ($bio as $loop) {
-                                    $id = $loop->id;
-                                    $fname = $loop->fname;
-                                    $lname = $loop->lname;
-                                    $other = $loop->other;
-                                    $email = $loop->email;
-                                    $gender = $loop->gender;
-                                    $dob = $loop->dob;
-                                    $country = $loop->country;
-                                    $image = $loop->image;
-                                    $password = $loop->password;
-                                    $cohort = $loop->cohort;
-                                    $contact = $loop->contact;
-                                }
-                            }
-                            ?>
+                        </div>
+                        <div class="span4">                         
+                                    <div class="profile-user-info profile-user-info-striped ">
 
-                            <div class="span3">
-                                <img  height="150px" width="220px" class="" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name">
+                                                Name  
+                                            </div>
+                                            <div class="profile-info-value">
+                                                <?= $fname ?>  <?= $lname ?>   <?= $other ?>
+                                            </div>
+                                        </div>                                
 
-                                <div class="profile-user-info profile-user-info-striped span4">
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name">Primary email </div>
 
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name">
-                                            Name  
+                                            <div class="profile-info-value">
+                                                <?= $email ?>
+                                            </div>
                                         </div>
-                                        <div class="profile-info-value">
-                                            <?= $fname ?>  <?= $lname ?>   <?= $other ?>
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name">Gender </div>
+
+                                            <div class="profile-info-value">
+                                                <?= $gender ?>
+                                            </div>
                                         </div>
-                                    </div>                                
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name"> Date of Birth</div>
 
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name">Primary email </div>
-
-                                        <div class="profile-info-value">
-                                            <?= $email ?>
+                                            <div class="profile-info-value">
+                                                <?php echo $dob; ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name">Gender </div>
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name"> Country </div>
 
-                                        <div class="profile-info-value">
-                                            <?= $gender ?>
+                                            <div class="profile-info-value">
+                                                <i class="icon-map-marker light-orange bigger-110"></i>
+                                                <?= $country ?>
+
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name"> Date of Birth</div>
 
-                                        <div class="profile-info-value">
-                                            <?php echo $dob; ?>
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name">Primary contact </div>
+
+                                            <div class="profile-info-value">
+                                                <?= $contact ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name"> Country </div>
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name">Cohort </div>
 
-                                        <div class="profile-info-value">
-                                            <i class="icon-map-marker light-orange bigger-110"></i>
-                                            <?= $country ?>
+                                            <div class="profile-info-value">
+                                                <?= $cohort ?>
 
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name">Primary contact </div>
+                                        <div class="profile-info-row">
+                                            <div class="profile-info-name">Activate /deactivate student </div>
 
-                                        <div class="profile-info-value">
-                                            <?= $contact ?>
-                                        </div>
-                                    </div>
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name">Cohort </div>
+                                            <div class="profile-info-value">
 
-                                        <div class="profile-info-value">
-                                            <?= $cohort ?>
+                                                <a href="<?php echo base_url() . "index.php/student/activate/" . $id . "/" . $status; ?>" class="tooltip-info qualification" data-rel="tooltip" title="activat/deativate">
+                                                    <span class="blue">
+                                                        <i class="icon-archive bigger-120">activate/deactivate</i>
+                                                    </span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div> 
-                            </div>
-
-                        </div> 
+                        </div>
                     </div><!--/span-->
 
 
@@ -677,7 +688,7 @@
 
                                                             <td><?= $loop->dos ?></td>
 
-                                                            
+
                                                         </tr>
                                                         <?php
                                                     }
@@ -737,7 +748,7 @@
 
                                                             <td><?= $loop->dos ?></td>
 
-                                                           
+
                                                         </tr>
                                                         <?php
                                                     }
@@ -805,8 +816,6 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
 <script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
-
-
 <script>
     $('.qualification').click(function (e) {
         updateURL = $(this).attr("href");
@@ -817,11 +826,11 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             url: updateURL,
             async: false,
             success: function (data) {
-                alert('qualification information updated!')
+                alert('Information updated!')
             }
 
         });
-        alert('qualification information updated!')
+        alert('Information updated!')
         return false;
     });
 

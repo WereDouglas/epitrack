@@ -66,28 +66,28 @@ class Management extends CI_Controller {
         } else {
             $data['student_cnt_false'] = array();
         }
-         
-                        $query = $this->Md->query("SELECT * FROM publication where verified = 'false'");
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['publication_cnt_review'] = $query;
-                        } else {
-                            $data['publication_cnt_review'] = array();
-                        }
-                        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no'");
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['publication_cnt_accepted'] = $query;
-                        } else {
-                            $data['publication_cnt_accepted'] = array();
-                        }
-                         $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no'");
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['present_cnt_accepted'] = $query;
-                        } else {
-                            $data['present_cnt_accepted'] = array();
-                        }
+
+        $query = $this->Md->query("SELECT * FROM publication where verified = 'false'");
+        //  var_dump($query);
+        if ($query) {
+            $data['publication_cnt_review'] = $query;
+        } else {
+            $data['publication_cnt_review'] = array();
+        }
+        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no'");
+        //  var_dump($query);
+        if ($query) {
+            $data['publication_cnt_accepted'] = $query;
+        } else {
+            $data['publication_cnt_accepted'] = array();
+        }
+        $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no'");
+        //  var_dump($query);
+        if ($query) {
+            $data['present_cnt_accepted'] = $query;
+        } else {
+            $data['present_cnt_accepted'] = array();
+        }
 
 
         $this->load->view('blank', $data);
@@ -636,14 +636,23 @@ class Management extends CI_Controller {
         } else {
             $data['countries'] = array();
         }
-        $query = $this->Md->show('student');
-        //  var_dump($query);
-        if ($query) {
-            $data['students'] = $query;
-        } else {
-            $data['students'] = array();
+        if ($this->session->userdata('level') == 1) {
+            $query = $this->Md->get('country', $this->session->userdata('country'), 'student');
+            //  var_dump($query);
+            if ($query) {
+                $data['students'] = $query;
+            } else {
+                $data['students'] = array();
+            }
+        } elseif ($this->session->userdata('level') == 2) {
+            $query = $this->Md->show('student');
+            //  var_dump($query);
+            if ($query) {
+                $data['students'] = $query;
+            } else {
+                $data['students'] = array();
+            }
         }
-
         $this->load->view('country-student', $data);
     }
 

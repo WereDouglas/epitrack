@@ -52,12 +52,12 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                             <!-- Messages: style can be found in dropdown.less-->
-                      
+
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning"><?php echo  count($student_cnt_false) +  count($publication_cnt_review) + count($publication_cnt_accepted) ; ?></span>
+                                    <span class="label label-warning"><?php echo count($student_cnt_false) + count($publication_cnt_review) + count($publication_cnt_accepted); ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="header">Your notifications</li>
@@ -65,31 +65,31 @@
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
-                                               <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame">
-                                                    <i class="fa fa-users text-aqua"></i> <?php echo  count($student_cnt_false); ?> new members/inactive students today
+                                                <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame">
+                                                    <i class="fa fa-users text-aqua"></i> <?php echo count($student_cnt_false); ?> new members/inactive students today
                                                 </a>
                                             </li>
                                             <li>
-                                                 <li>
-                                               <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
-                                                    <i class="fa fa-users text-aqua"></i> <?php echo  count($publication_cnt_review); ?> Publications pending review
+                                            <li>
+                                                <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
+                                                    <i class="fa fa-users text-aqua"></i> <?php echo count($publication_cnt_review); ?> Publications pending review
                                                 </a>
-                                           
+
                                             </li>
                                             <li>
-                                                <li>
-                                               <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
-                                                    <i class="fa fa-users text-aqua"></i> <?php echo  count($publication_cnt_accepted); ?> publications pending acceptance
+                                            <li>
+                                                <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
+                                                    <i class="fa fa-users text-aqua"></i> <?php echo count($publication_cnt_accepted); ?> publications pending acceptance
                                                 </a>
                                             </li>
-                                            </li>
-                                           
+
+
                                         </ul>
                                     </li>
                                     <li class="footer"><a href="#">View all</a></li>
                                 </ul>
                             </li>
-                       
+
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -143,45 +143,50 @@
                     </div>                  
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
-                    
-                                <li class="active"><a href="<?php echo base_url() . "index.php/management/news"; ?>" target="frame"><i class="fa  fa-calendar"></i>Home</a></li>
 
-                           
+                        <li class="active"><a href="<?php echo base_url() . "index.php/management/news"; ?>" target="frame"><i class="fa  fa-calendar"></i>Home</a></li>
+
+                        <?php
+                        if ($this->session->userdata('level') == 1) {
+                        ?>
                         <li class="header">Country</li>
-
                         <li><a href="<?php echo base_url() . "index.php/management/country_report"; ?>" target="frame"><i class="fa fa-bar-chart"></i> Country reports</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame"><i class="fa fa-road"></i> Tracks</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i> Cohorts</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i>Event & Updates</a></li>
                         <li><a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"><i class="fa fa-users"></i> Students</a></li>
-
-                        <li class="header">Country</li>
-
-                        <li><a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame"><i class="fa fa-flag"></i> Countries</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/management/country_user"; ?>" target="frame"><i class="fa fa-users"></i> Users</a></li>
                         <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i> Events & Updates</a></li>
                         <li><a href="<?php echo base_url() . "index.php/management/advert"; ?>" target="frame"><i class="fa fa-circle-o"></i> Advertisement</a></li>
 
-                        <li class="header">Student</li>
 
-                        <li><a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame"><i class="fa fa-circle-o"></i> start</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/student/bio"; ?>" target="frame"><i class="fa fa-male"></i> Bio</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/student/contact"; ?>" target="frame"><i class="fa fa-phone"></i> Contacts</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame"><i class="fa fa-newspaper-o"></i> Employment records</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame"><i class="fa fa-mortar-board"></i> Qualification</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame"><i class="fa fa-video-camera"></i> Surveillance</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame"><i class="fa fa-newspaper-o"></i>Publications</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame"><i class="fa  fa-university"></i> Studies</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame"><i class="fa fa-circle-o"></i> Outbreaks</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame"><i class="fa fa-file"></i> Presentations</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame"><i class="fa  fa-file-text"></i> Short courses</a></li>
-
-
-                        <li class="header">Country</li>
-
+                        <?php } ?>
+                     <?php   if ($this->session->userdata('level') == 2) {
+                        ?>
+                        <li class="header">General</li>
                         <li><a href="<?php echo base_url() . "index.php/management/"; ?>" target="frame"><i class="fa fa-circle-o"></i> Home</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame"><i class="fa fa-road"></i>Tracks</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i>Cohorts</a></li>
-                        <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i>Event & Updates</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame"><i class="fa fa-road"></i> Tracks</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i> Cohorts</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame"><i class="fa fa-flag"></i> Countries</a></li>
+                        <li><a href="<?php echo base_url() . "index.php/management/country_user"; ?>" target="frame"><i class="fa fa-users"></i> Users</a></li>
+                        <?php } ?>                       
+
+                        <?php
+                        if ($this->session->userdata('level') == "student") {
+                            ?>
+                            <li class="header">Student</li>
+                            <li><a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame"><i class="fa fa-circle-o"></i> start</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/bio"; ?>" target="frame"><i class="fa fa-male"></i> Bio</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/contact"; ?>" target="frame"><i class="fa fa-phone"></i> Contacts</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame"><i class="fa fa-newspaper-o"></i> Employment records</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame"><i class="fa fa-mortar-board"></i> Qualification</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame"><i class="fa fa-video-camera"></i> Surveillance</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame"><i class="fa fa-newspaper-o"></i>Publications</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame"><i class="fa  fa-university"></i> Studies</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame"><i class="fa fa-circle-o"></i> Outbreaks</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame"><i class="fa fa-file"></i> Presentations</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame"><i class="fa  fa-file-text"></i> Short courses</a></li>
+
+
+                        <?php } ?>
+
 
                     </ul>
                 </section>

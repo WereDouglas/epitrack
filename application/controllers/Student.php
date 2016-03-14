@@ -618,6 +618,25 @@ class Student extends CI_Controller {
         }
     }
 
+    public function activate() {
+
+        $this->load->helper(array('form', 'url'));
+        
+        $id = $this->uri->segment(3);
+        $actives = $this->uri->segment(4);
+        if ($actives == "active") {
+            $active = "false";
+        }
+        if ($actives == "false") {
+            $active = "active";
+        }
+        if ($this->session->userdata('level') > 0) {
+
+            $student = array('status' => $active);
+            $this->Md->update($id, $student, 'student');
+        }
+    }
+
     public function verify_qualification() {
         $this->load->helper(array('form', 'url'));
         $id = $this->uri->segment(3);

@@ -2,7 +2,7 @@
 
 
            <div class="col-xs-12">
-
+ <h3>Studies</h3>
 
             <?php echo $this->session->flashdata('msg'); ?>
             <div class="row-fluid">
@@ -75,9 +75,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="row-fluid">
-                                                            <label for="form-field-9">Findings/Public Health Action*</label>
+                                                            <label for="">Findings/Public Health Action*</label>
 
-                                                            <textarea class="span12 limited" id="form-field-9" name="findings" data-maxlength="50"></textarea>
+                                                            <textarea class="" id="" name="findings" data-maxlength="50"></textarea>
                                                         </div>         
                                                     </div>
                                                 </div>
@@ -105,11 +105,7 @@
 
                                 <div class="accordion-body collapsed" id="collapseThree">
                                     <div class="accordion-inner">
-                                        <div class="alert alert-info">Select a field to edit the content</div>                     
-
-
-
-                                        <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                            <table id="example1" class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
                                                     <th class="center">
@@ -263,15 +259,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $('[data-rel=tooltip]').tooltip({container: 'body'});
         $('[data-rel=popover]').popover({container: 'body'});
 
-        $('textarea[class*=autosize]').autosize({append: "\n"});
-        $('textarea[class*=limited]').each(function () {
-            var limit = parseInt($(this).attr('data-maxlength')) || 100;
-            $(this).inputlimiter({
-                "limit": limit,
-                remText: '%n character%s remaining...',
-                limitText: 'max allowed : %n.'
-            });
-        });
+      
 
         $.mask.definitions['~'] = '[+-]';
         $('.input-mask-date').mask('99/99/9999');
@@ -569,3 +557,5 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
     });
 </script>
+
+<?php require_once(APPPATH . 'views/js-page.php'); ?>

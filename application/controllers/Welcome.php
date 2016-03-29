@@ -150,7 +150,9 @@ class Welcome extends CI_Controller {
                             $data['present_cnt_accepted'] = array();
                         }
                         if ($status != 'false') {
+                            
                             $this->load->view('center_page', $data);
+                            
                         } else {
                             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    

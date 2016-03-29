@@ -2,15 +2,13 @@
 
 
            <div class="col-xs-12">
-
+<h3>Employment History</h3>
         <div class="page-content">
             <?php echo $this->session->flashdata('msg'); ?>
             <div class="row-fluid">
                 <div class="span12 widget-container-span">
 
-                    <div class="">
-
-                        <div class="">
+                  
                             <div class="btn-toolbar ">
                                 <div class="btn-group">
                                     <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
@@ -30,10 +28,6 @@
 
 
 
-
-                            </div>
-                        </div>
-
                     </div>
 
 
@@ -48,14 +42,14 @@
                                     <div class="accordion-inner">
                                         <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/employment'  method="post">            
 
-                                            <div class="span12">  
-
+                                            <div class="span12"> 
                                                 <div class="control-group">
-
                                                     <div class="controls">
                                                         <label>Organisation</label>
-                                                        <span class="span12 "><input type="text" class="span10"  id="organisation" name="organisation"   /></span>
-                                                        <label>Position</label><span class="span12"><input class="input-small span10"  type="text" id="position" name="position"   /></span>
+                                                        <div class="control-group">  <input type="text" class="span10"  id="organisation" name="organisation"   /></div>
+                                                        <label>Position</label>
+                                                        <div class="control-group">  <input class="input-small span10"  type="text" id="position" name="position"   />
+                                                        </div>
                                                         <label>Choose country of outbreak</label>
                                                         <div class="control-group">   
                                                             <select class="span10" id="country" name="country" >                                                            
@@ -71,9 +65,9 @@
                                                             </select>
                                                         </div>
                                                         <label>Location</label>
-                                                        <span class="span12 "> <input type="text" class="span10" id="location" name="location"  /></span>
-                                                        <label>Contact</label> <span class="span12 "> <input type="text" class="span10"  id="contact" name="contact"   /></span>
-                                                        <label>Sector</label> <span class="span12 "> <input type="text" class="span10"  id="sector" name="sector"   /></span>
+                                                    <div class="control-group">   <input type="text" class="span10" id="location" name="location"  /></div>
+                                                        <label>Contact</label>  <div class="control-group">   <input type="text" class="span10"  id="contact" name="contact"   /></div>
+                                                        <label>Sector</label>  <div class="control-group">   <input type="text" class="span10"  id="sector" name="sector"   /></div>
 
                                                         <label >Date of notification to MOH*</label>
 
@@ -116,7 +110,7 @@
                                 <div class="accordion-inner">
                                     <div class="alert alert-info">Select a field to edit the content</div>                     
 
-                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                    <table id="example1" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th class="center">
@@ -369,3 +363,4 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
     });
 </script>
+<?php require_once(APPPATH . 'views/js-page.php'); ?>

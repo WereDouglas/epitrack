@@ -3,18 +3,13 @@
 
 <div class="col-xs-12">
 
-
-    <div class="alert alert-success">Add new contact</div>  
+    <h3>Contacts</h3>  
     <?php echo $this->session->flashdata('msg'); ?>
 
     <div class="row-fluid">
         <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/contact/'  method="post">            
-
-
-            <span class="block input-icon input-icon-right">
-                <input type="text" class="span12" id="contact" name="contact" placeholder="250" /> 
-
-                <label>Select type</label>
+            <label>Select type</label>
+            <div class="control-group">
                 <select id="type" name="type" >                                                            
 
                     <option value="e-mail" />E-mail
@@ -25,18 +20,24 @@
                     <option value="fax" />Fax
 
                 </select>  
+            </div>
 
-                <div>                   
-                    <button type="reset" class="width-10 pull-left btn btn-small">
-                        <i class="icon-refresh"></i>
-                        Clear
-                    </button>
+            <label>Contact</label>
+            <div class="control-group">
+                <input type="text" class="span12" id="contact" name="contact" placeholder="250" /> 
+            </div>
 
-                    <button  class="width-15 pull-left btn btn-small btn-success">
-                        Submit
+            <div>                   
+                <button type="reset" class="width-10 pull-left btn btn-small">
+                    <i class="icon-refresh"></i>
+                    Clear
+                </button>
 
-                    </button>
-                </div>
+                <button  class="width-15 pull-left btn btn-small btn-success">
+                    Submit
+
+                </button>
+            </div>
 
         </form>
 
@@ -48,7 +49,7 @@
 
     <div class="alert alert-info">Select a field to edit the content</div>                     
 
-    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+    <table id="example1" class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
                 <th class="center">
@@ -61,7 +62,7 @@
                 <th>CONTACT</th>
                 <th>TYPE</th>                                                                                                      
                 <th>SUBMITTED ON</th>
-                  <th></th>
+                <th></th>
 
             </tr>
         </thead>
@@ -99,7 +100,7 @@
                             </a>
                         </td>
                     </tr>
-                <?php
+                    <?php
                 }
             }
             ?>
@@ -164,3 +165,4 @@
 
     });
 </script>
+<?php require_once(APPPATH . 'views/js-page.php'); ?>

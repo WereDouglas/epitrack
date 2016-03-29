@@ -1,204 +1,203 @@
 <?php require_once(APPPATH . 'views/css-page.php'); ?>
-           <div class="col-xs-12">
-        <?php echo $this->session->flashdata('msg'); ?>
-        <div class="row-fluid">
-            <div class="span12 widget-container-span">
+<div class="col-xs-12">
+    <h3>Short Courses</h3>
+    <?php echo $this->session->flashdata('msg'); ?>
+    <div class="row-fluid">
+        <div class="span12 widget-container-span">
+
+            <div class="">
 
                 <div class="">
+                    <div class="btn-toolbar ">
+                        <div class="btn-group">
+                            <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
 
-                    <div class="">
-                        <div class="btn-toolbar ">
-                            <div class="btn-group">
-                                <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
+                                <button class="btn btn-small btn-success">
+                                    <i class="icon-save bigger-125"></i>
+                                    Add
+                                </button></a>
+                            <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
 
-                                    <button class="btn btn-small btn-success">
-                                        <i class="icon-save bigger-125"></i>
-                                        Add
-                                    </button></a>
-                                <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
-
-                                    <button class="btn btn-small btn-danger">
-                                        <i class="icon-list bigger-110"></i>
-                                        List
-                                    </button>
-                                </a>
-                            </div>
-
+                                <button class="btn btn-small btn-danger">
+                                    <i class="icon-list bigger-110"></i>
+                                    List
+                                </button>
+                            </a>
                         </div>
-                    </div>
 
-                </div>
-
-
-
-                <div class="widget-main ">
-                    <div id="accordion2" class="accordion">
-
-                        <div class="accordion-group">
-
-
-                            <div class="accordion-body collapse" id="collapseTwo">
-                                <div class="accordion-inner">
-                                    <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/outbreak'  method="post">
-
-                                        <div class="span12">
-                                            <div class="span6">
-                                                <div class="control-group">
-
-                                                    <div class="controls">
-                                                        <span class="span12 ">Name of course:<input type="text" class="span12"  id="organisation" name="name"   /></span>
-
-                                                    </div>
-                                                    <label for="form-field-9">Course objective</label>
-
-                                                    <textarea class="span12 limited" id="form-field-9" name="findings" data-maxlength="50"></textarea>
-
-
-                                                    <label for="id-date-picker-1">Start Date</label>
-                                                    <div class="control-group">
-                                                        <div class="row-fluid input-append">
-                                                            <input class="span10 date-picker" id="id-date-picker-1" type="text" name="start" data-date-format="yyyy-mm-dd" />
-                                                            <span class="add-on">
-                                                                <i class="icon-calendar"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row-fluid">
-                                                        <label for="id-date-picker-1">End Date</label>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <div class="row-fluid input-append">
-                                                            <input class="span10 date-picker" id="id-date-picker-1" type="text" name="end" data-date-format="yyyy-mm-dd" />
-                                                            <span class="add-on">
-                                                                <i class="icon-calendar"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                            <div class="span6">
-
-                                                <div class="control-group">
-                                                    What's your role
-                                                    <select id="lab" name="role" >
-                                                        <option value="participant" />participant
-                                                        <option value="instructor" />instructor
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="row-fluid">
-                                                    <label for="form-field-9">Course description</label>
-
-                                                    <textarea class="span12 limited" id="form-field-9" name="description" data-maxlength="20"></textarea>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="">
-                                            <button class="btn btn-info" type="submit">
-                                                <i class="icon-ok bigger-110"></i>
-                                                Submit
-                                            </button>
-
-                                            <button class="btn" type="reset">
-                                                <i class="icon-undo bigger-110"></i>
-                                                Reset
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-
-                        </div>
                     </div>
                 </div>
 
-                <div class="accordion-group">
+            </div>
 
 
-                    <div class="accordion-body collapsed" id="collapseThree">
-                        <div class="accordion-inner">
-                            <div class="alert alert-info">Select a field to edit the content</div>
 
-                            <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th class="center">
-                                            <label>
-                                                <input type="checkbox" />
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </th>
+            <div class="widget-main ">
+                <div id="accordion2" class="accordion">
 
-                                        <th>Name</th>
-                                        <th>Onset</th>
-                                        <th>Dissemination</th>
-                                        <th>Findings</th>
-                                        <th>Date of study</th>
+                    <div class="accordion-group">
 
-                                        <th></th>
-                                    </tr>
-                                </thead>
 
-                                <tbody>
-                                    <?php
-                                    if (is_array($out) && count($out)) {
-                                        foreach ($out as $loop) {
-                                            $name = $loop->name;
-                                            $findings = $loop->findings;
-                                            $id = $loop->id;
-                                            ?>
+                        <div class="accordion-body collapse" id="collapseTwo">
+                            <div class="accordion-inner">
+                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/outbreak'  method="post">
 
-                                            <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                <td class="center ">
-                                                    <label>
-                                                        <input type="checkbox" />
-                                                        <span class="lbl"></span>
-                                                    </label>
-                                                </td>
+                                    <div class="span12">
+                                        <div class="span6">
+                                            <div class="control-group">
 
-                                                <td class="edit_td">
-                                                    <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                                                    <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
-                                                </td>
-                                                <td><?= $loop->onset ?></td>
-                                                <td><?= $loop->dissemination ?></td>
+                                                <div class="controls">
+                                                    <label for="id-date-picker-1">Name of course</label><input type="text" class="span12"  id="organisation" name="name"   /></span>
 
-                                                <td class="edit_td">
-                                                    <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
-                                                    <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
-                                                </td>
+                                                </div>
+                                                <label for="form-field-9">Course objective</label>
 
-                                                <td><?= $loop->dos ?></td>
+                                                <textarea class="span12 limited" id="form-field-9" name="findings" data-maxlength="50"></textarea>
 
-                                                <td class="td-actions">
 
-                                                    <a href="<?php echo base_url() . "index.php/student/study/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                        <span class="red">
-                                                            <i class="icon-trash bigger-120"></i>
+                                                <label for="id-date-picker-1">Start Date</label>
+                                                <div class="control-group">
+                                                    <div class="row-fluid input-append">
+                                                        <input class="span10 date-picker" id="id-date-picker-1" type="text" name="start" data-date-format="yyyy-mm-dd" />
+                                                        <span class="add-on">
+                                                            <i class="icon-calendar"></i>
                                                         </span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                                                    </div>
+                                                </div>
+                                                <div class="row-fluid">
+                                                    <label for="id-date-picker-1">End Date</label>
+                                                </div>
 
+                                                <div class="control-group">
+                                                    <div class="row-fluid input-append">
+                                                        <input class="span10 date-picker" id="id-date-picker-1" type="text" name="end" data-date-format="yyyy-mm-dd" />
+                                                        <span class="add-on">
+                                                            <i class="icon-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="span6">
+                                            <label for="id-date-picker-1"> What's your role</label>
+                                            <div class="control-group">
+
+                                                <select id="lab" name="role" >
+                                                    <option value="participant" />participant
+                                                    <option value="instructor" />instructor
+
+                                                </select>
+                                            </div>
+
+                                            <div class="row-fluid">
+                                                <label for="form-field-9">Course description</label>
+
+                                                <textarea class="span12 limited" id="form-field-9" name="description" data-maxlength="20"></textarea>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <button class="btn btn-info" type="submit">
+                                            <i class="icon-ok bigger-110"></i>
+                                            Submit
+                                        </button>
+
+                                        <button class="btn" type="reset">
+                                            <i class="icon-undo bigger-110"></i>
+                                            Reset
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-group">
+                <div class="accordion-body collapsed" id="collapseThree">
+                    <div class="accordion-inner">
+                        <div class="alert alert-info">Select a field to edit the content</div>
+
+                        <table id="example1" class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="center">
+                                        <label>
+                                            <input type="checkbox" />
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </th>
+
+                                    <th>Name</th>
+                                    <th>Onset</th>
+                                    <th>Dissemination</th>
+                                    <th>Findings</th>
+                                    <th>Date of study</th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php
+                                if (is_array($out) && count($out)) {
+                                    foreach ($out as $loop) {
+                                        $name = $loop->name;
+                                        $findings = $loop->findings;
+                                        $id = $loop->id;
+                                        ?>
+
+                                        <tr id="<?php echo $id; ?>" class="edit_tr">
+                                            <td class="center ">
+                                                <label>
+                                                    <input type="checkbox" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </td>
+
+                                            <td class="edit_td">
+                                                <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
+                                                <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
+                                            </td>
+                                            <td><?= $loop->onset ?></td>
+                                            <td><?= $loop->dissemination ?></td>
+
+                                            <td class="edit_td">
+                                                <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
+                                                <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
+                                            </td>
+
+                                            <td><?= $loop->dos ?></td>
+
+                                            <td class="td-actions">
+
+                                                <a href="<?php echo base_url() . "index.php/student/study/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <span class="red">
+                                                        <i class="icon-trash bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
+
+</div>
 </div>
 </div>
 
@@ -279,16 +278,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $('[data-rel=tooltip]').tooltip({container: 'body'});
         $('[data-rel=popover]').popover({container: 'body'});
 
-        $('textarea[class*=autosize]').autosize({append: "\n"});
-        $('textarea[class*=limited]').each(function () {
-            var limit = parseInt($(this).attr('data-maxlength')) || 100;
-            $(this).inputlimiter({
-                "limit": limit,
-                remText: '%n character%s remaining...',
-                limitText: 'max allowed : %n.'
-            });
-        });
-
+       
         $.mask.definitions['~'] = '[+-]';
         $('.input-mask-date').mask('99/99/9999');
         $('.input-mask-phone').mask('(999) 999-9999');
@@ -585,3 +575,5 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
     });
 </script>
+
+<?php require_once(APPPATH . 'views/js-page.php'); ?>

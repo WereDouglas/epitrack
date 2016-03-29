@@ -1,9 +1,8 @@
 <?php require_once(APPPATH . 'views/css-page.php'); ?>
 
-
            <div class="col-xs-12">
 
-
+ <h3>Publications</h3>
             <?php echo $this->session->flashdata('msg'); ?>
             <div class="row-fluid">
                 <div class="span12 widget-container-span">

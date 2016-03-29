@@ -98,14 +98,16 @@
 
 
                                     <?php
+                                   // echo $this->session->userdata('image');
                                     if ($this->session->userdata('image') != null) {
+                                      
                                         ?>       
 
                                         <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>"  class="user-image" alt="user" />
 
                                         <?php
                                     } else {
-                                        echo $this->session->userdata('image');
+                                       
                                         ?>                                       
 
                                         <img src="<?= base_url(); ?>uploads/temp_face.png"  class="user-image" alt="user" />

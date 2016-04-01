@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class  Pending  extends CI_Controller {
+class Pending extends CI_Controller {
 
     function __construct() {
 
@@ -14,8 +14,8 @@ class  Pending  extends CI_Controller {
     }
 
     public function index() {
-        
-         $query = $this->Md->query("SELECT * FROM pending ");
+
+        $query = $this->Md->query("SELECT * FROM pending ");
         //  var_dump($query);
         if ($query) {
             $data['logs'] = $query;
@@ -23,8 +23,6 @@ class  Pending  extends CI_Controller {
             $data['logs'] = array();
         }
         $this->load->view('log-page', $data);
-
-     
     }
 
     public function client() {
@@ -71,23 +69,73 @@ class  Pending  extends CI_Controller {
     public function delete() {
         $this->load->helper(array('form', 'url'));
         $id = $this->uri->segment(3);
-       
-        $query = $this->Md->delete($id, 'sync_data');        
-        if ($this->db->affected_rows() > 0) {          
-            
+
+        $query = $this->Md->delete($id, 'pending');
+        if ($this->db->affected_rows() > 0) {
+
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
                                                 Information deleted	</strong>									
 						</div>');
-            redirect('log/', 'refresh');
+            redirect('pending/', 'refresh');
         } else {
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
                                              Action Failed	</strong>									
 						</div>');
-            redirect('log/', 'refresh');
+            redirect('pending/', 'refresh');
+        }
+    }
+
+    public function execute() {
+        $this->load->helper(array('form', 'url'));
+        $id = $this->uri->segment(3);
+
+        $query = $this->Md->query("SELECT * FROM pending WHERE id = '" . $id . "'");
+        //  var_dump($query);
+        if ($query) {
+
+            foreach ($query as $res) {
+                $action = $res->action;
+                $object = $res->object;
+                $oid = $res->oid;
+                $content = $res->content;
+                
+            }
+             $content =  json_decode($content);
+            switch ($action) {
+                case delete: 
+                      $query = $this->Md->delete($oid, $object);                    
+                    break;
+                case create:
+                    $className = 'label-success';
+                    break;
+                case update:
+                     //$employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
+                     $this->Md->update($oid, $content, $object);
+                    break;
+            }
+        }
+
+
+        $query = $this->Md->delete($id, 'pending');
+        if ($this->db->affected_rows() > 0) {
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                                Information deleted	</strong>									
+						</div>');
+            redirect('pending/', 'refresh');
+        } else {
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                             Action Failed	</strong>									
+						</div>');
+            redirect('pending/', 'refresh');
         }
     }
 

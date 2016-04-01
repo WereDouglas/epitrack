@@ -312,7 +312,11 @@ class Student extends CI_Controller {
             $contact = $this->input->post('contact');
 
             $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
-            $this->Md->update($id, $employment, 'employment');
+           // $this->Md->update($id, $employment, 'employment');
+            $content = json_encode($employment);
+
+            $pd = array('user' => $this->session->userdata('name'), 'object' => 'employment', 'content' => $content, 'action' => 'update', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
+            $this->Md->save($pd, 'pending');
         }
 
 

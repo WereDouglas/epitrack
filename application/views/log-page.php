@@ -22,7 +22,7 @@
                         <th>DATE</th>
                         <th>USER</th>                                     
                         <th>TYPE</th>
-                        <th>ACTION</th>
+                        <th>DELETE RECORD</th>
                     </tr>
                 </thead>   
                 <tbody>
@@ -32,21 +32,8 @@
                         foreach ($logs as $loop) {
                             ?>  
                             <tr >
-                                <td >
-
-
-                                    <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
-                                        <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->oid; ?>">
-                                            <input type="radio" name="status" id="<?= $loop->oid; ?>" value="<?= $loop->oid; ?>" />
-                                            Active
-                                        </label>
-                                        <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
-                                            <input type="radio" name="status" id="<?= $loop->oid; ?>" value="<?= $loop->oid; ?>" checked />
-                                            Off
-                                        </label>
-                                    </div> 
-
-
+                                <td>
+                                    <a class="btn-info btn-small icon-beaker" href="<?php echo base_url() . "index.php/pending/execute/" . $loop->id; ?>"></a>
                                 </td>
 
                                 <td> 
@@ -69,7 +56,7 @@
                                 </td>
 
                                 <td class="center">
-                                    <a class="btn-danger btn-small icon-remove" href="<?php echo base_url() . "index.php/log/delete/" . $loop->id; ?>"></a>
+                                    <a class="btn-danger btn-small icon-remove" href="<?php echo base_url() . "index.php/pending/delete/" . $loop->id; ?>"></a>
                                 </td>
                             </tr>
                             <?php

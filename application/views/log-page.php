@@ -4,7 +4,7 @@
 <div id="accordion2" class="accordion">  
 
     <div class="align-left">
-        <h3>Synchronisation logs</h3>
+        <h3>Pending Actions</h3>
         <?php echo $this->session->flashdata('msg'); ?>
     </div>  
 

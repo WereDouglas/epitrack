@@ -2,37 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/wamp/www/epitrack/application/views/student-publication.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/header_main.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/country.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/event.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/advert.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/controllers/Management.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/student-employment.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/student-course.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/footer_main.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/country-report.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/center_page.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/publication-details.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/student-qualification.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/controllers/Welcome.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/student-contact.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/student-details.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/tracks.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/student-surveillance.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/user.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/css-page.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/blank.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/cohort.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/student-study.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/controllers/Student.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/student-presentation.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/user-details.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/outbreak.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/student-bio.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/country-user.php</file>
-            <file>file:/C:/wamp/www/epitrack/application/views/country-student.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

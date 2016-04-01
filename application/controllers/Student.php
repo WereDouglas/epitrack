@@ -178,13 +178,12 @@ class Student extends CI_Controller {
 
         $this->load->view('student-details', $data);
     }
-    
-    
-     public function publicationed() {
+
+    public function publicationed() {
         //get($field,$value,$table)
 
         $publicationID = $this->uri->segment(3);
-        
+
         $query = $this->Md->get('id', $publicationID, 'publication');
         if ($query) {
             $data['publications'] = $query;
@@ -194,7 +193,6 @@ class Student extends CI_Controller {
 
         $this->load->view('publication-details', $data);
     }
-    
 
     public function contact() {
 
@@ -278,18 +276,29 @@ class Student extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
         $studentID = $this->session->userdata('id');
-
+        $id = $this->uri->segment(4);
 
         if ($action == 'delete') {
-            $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'employment');
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+            if ($this->session->userdata('level') == 2) {
+
+                $query = $this->Md->delete($id, 'employment');
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
                                                  employment record  deleted	</strong>									
 						</div>');
 
-            redirect('/student/employment', 'refresh');
+                redirect('/student/employment', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                  Action pending review ' . $this->session->userdata('level') . '	</strong>									
+						</div>');
+                $pd = array('user' => $this->session->userdata('name'), 'object' => 'employment', 'content' => ' ', 'action' => 'delete', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
+                $file_id = $this->Md->save($pd, 'pending');
+
+                redirect('/student/employment', 'refresh');
+            }
         }
         if ($action == 'update') {
 
@@ -332,7 +341,7 @@ class Student extends CI_Controller {
         } else {
             $data['records'] = array();
         }
-       
+
         $this->load->view('student-employment', $data);
     }
 
@@ -592,7 +601,7 @@ class Student extends CI_Controller {
         } else {
             $data['presentations'] = array();
         }
-        
+
         $this->load->view('student-presentation', $data);
     }
 
@@ -727,7 +736,7 @@ class Student extends CI_Controller {
         } else {
             $data['study'] = array();
         }
-       
+
 
         $this->load->view('student-study', $data);
     }

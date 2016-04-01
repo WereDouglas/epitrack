@@ -1,30 +1,7 @@
-<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/font-awesome.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-responsive.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery.gritter.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/fullcalendar.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/select2.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-editable.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
-
-    <div class="page-content">
-        <div class="row-fluid">
-            <div class="span12">
-                <!--PAGE CONTENT BEGINS-->
-
-                <div class=" span12 pull-left alert alert-error inline no-margin">
-                    <button type="button" class="close" data-dismiss="alert">
-                        <i class="icon-remove"></i>
-                    </button>
-
-                    <i class="icon-home bigger-120 blue"></i>
-                    Click on the image below or on profile fields to edit them
-                </div>
-                <div class="row-fluid">
-                    <div class="span12">
+<?php require_once(APPPATH . 'views/css-page.php'); ?>    
+              
+               <div class="col-xs-12">
+                  <section >
                         <div class="profile-user-info profile-user-info-striped">
 
                             <?php
@@ -53,98 +30,78 @@
                             <div class="span9 center">
                                 <div class="profile-user-info profile-user-info-striped">
                                     <div class="profile-info-row">
-                                        <div class="profile-info-name">First name </div>
-
+                                        
                                         <div class="profile-info-value">
-                                            <span class="editable" id="fname"><?= $fname ?></span>
+                                            FIRST NAME:  <strong><span class="editable" id="fname"><?= $fname ?></span></strong>
                                         </div>
                                     </div>
                                     <div class="profile-info-row">
-                                        <div class="profile-info-name">Last name </div>
+                                        
 
                                         <div class="profile-info-value">
-                                            <span class="editable" id="lname"><?= $lname ?></span>
+                                           LAST NAME: <span class="editable" id="lname"><?= $lname ?></span>
                                         </div>
                                     </div>
                                     <div class="profile-info-row">
-                                        <div class="profile-info-name">Other name </div>
+                                      
 
                                         <div class="profile-info-value">
-                                            <span class="editable" id="other"><?= $other ?></span>
+                                           OTHER NAME: <span class="editable" id="other"><?= $other ?></span>
                                         </div>
                                     </div>
                                     <div class="profile-info-row">
-                                        <div class="profile-info-name">Primary email </div>
-
+                                       
                                         <div class="profile-info-value">
-                                            <span class="editable" id="email"><?= $email ?></span>
+                                           PRIMARY E-MAIL: <span  id="email"><?= $email ?></span>
                                         </div>
                                     </div>
                                     <div class="profile-info-row">
-                                        <div class="profile-info-name">Gender </div>
-
+                                       
                                         <div class="profile-info-value">
-                                            <span class="editable" id="gender"><?= $gender ?></span>
+                                            GENDER:<span class="editable" id="gender"><?= $gender ?></span>
                                         </div>
                                     </div>
                                     <div class="profile-info-row">
-                                        <div class="profile-info-name"> Date of Birth</div>
+                                      
 
                                         <div class="profile-info-value">
-                                            <span class="editable" id="dob" ><?php echo $dob; ?></span>
+                                           DATE OF BIRTH: <span class="editable" id="dob" ><?php echo $dob; ?></span>
                                         </div>
                                     </div>
                                     <div class="profile-info-row">
-                                        <div class="profile-info-name"> Country </div>
-
+                                       
                                         <div class="profile-info-value">
-                                            <i class="icon-map-marker light-orange bigger-110"></i>
+                                           COUNTRY: <i class="icon-map-marker light-orange bigger-110"></i>
                                             <span class="editable" id="country"><?= $country ?></span>
 
                                         </div>
                                     </div>
-                                    <div class="profile-info-row">
+<!--                                    <div class="profile-info-row">
                                         <div class="profile-info-name">Password </div>
 
                                         <div class="profile-info-value">
                                             <span class="editable" id="password"><?= $password ?></span>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="profile-info-row">
-                                        <div class="profile-info-name">Primary contact </div>
+                                        
 
                                         <div class="profile-info-value">
-                                            <span class="editable" id="contact"><?= $contact ?></span>
+                                        PRIMARY CONTACT: <span class="editable" id="contact"><?= $contact ?></span>
                                         </div>
                                     </div>
                                     <div class="profile-info-row">
-                                        <div class="profile-info-name">Cohort </div>
-
+                                        
                                         <div class="profile-info-value">
-                                            <span class="editable" id="cohort"><?= $cohort ?></span>
+                                         COHORT:   <span class="editable" id="cohort"><?= $cohort ?></span>
                                         </div>
                                     </div>
                                 </div> 
                             </div>
 
-
-
-
-
-
-                        </div> 
-                    </div><!--/span-->
-
-
-                </div><!--/row-->
-
-
-
-
-
-                <!--PAGE CONTENT ENDS-->
+               <!--PAGE CONTENT ENDS-->
             </div><!--/.span-->
-        </div><!--/.row-fluid-->
+                  </section>
     </div><!--/.page-content-->
 
 <script type="text/javascript">

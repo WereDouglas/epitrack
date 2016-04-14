@@ -78,14 +78,14 @@
                                             <li>
                                             <li>
                                                 <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
-                                                    <i class="fa fa-users text-aqua"></i> <?php echo count($publication_cnt_review); ?> Publications pending review
+                                                    <i class="fa fa-newspaper-o text-aqua"></i> <?php echo count($publication_cnt_review); ?> Publications pending review
                                                 </a>
 
                                             </li>
                                             <li>
                                             <li>
                                                 <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
-                                                    <i class="fa fa-users text-aqua"></i> <?php echo count($publication_cnt_accepted); ?> publications pending acceptance
+                                                    <i class="fa fa-mortar-board text-aqua"></i> <?php echo count($publication_cnt_accepted); ?> publications pending acceptance
                                                 </a>
                                             </li>
 

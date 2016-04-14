@@ -1,19 +1,12 @@
 <?php require_once(APPPATH . 'views/css-page.php'); ?>
-
-
 <div class="col-xs-12">   
     <!-- The time line -->
     <ul class="timeline">
         <!-- timeline time label -->
-        <li class="time-label">
-            <span class="bg-red">
-                <?php echo date('Y-m-d'); ?>
-            </span>
-        </li>
+      
         <!-- /.timeline-label -->
         <!-- timeline item -->
         <li>
-
             <i class="fa fa-newspaper-o bg-blue"></i>
 
             <?php
@@ -116,22 +109,21 @@
             ?>
 
         </li>
-
         <li>
-            <i class="fa fa-user bg-aqua"></i>
+            <i class="fa fa-clock-o bg-gray"></i>
             <div class="timeline-item">
                 <a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame">
                     <i class="fa fa-users text-aqua"></i> <?php echo count($events); ?> Events
                 </a>  
                 <div class="box-body ">
-                    <ul class="users-list clearfix">
+                    <ul class="calendar-date clearfix">
                         <?php
                         if (is_array($events)) {
                             foreach ($events as $loop) {
                                 ?>    
                                 <li>
-                                       <h3>  <?php echo $loop->title ; ?></h3>
-                                       <p><?php echo $loop->description.' '.$loop->country ; ?></p>
+                                    <h3>  <?php echo $loop->title; ?></h3>
+                                    <p><?php echo $loop->description . ' ' . $loop->country; ?></p>
                                     <span class="users-list-date"><?php echo $loop->startdate ?></span>
                                 </li>
                                 <?php

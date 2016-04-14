@@ -95,7 +95,7 @@ class Management extends CI_Controller {
         }
         if ($this->session->userdata('level') == "student") {
 
-            $query = $this->Md->query("SELECT * FROM outbreak where country = '" . $cty . "' AND studentID='".$this->session->userdata('id')."'");
+            $query = $this->Md->query("SELECT * FROM outbreak where country = '" . $cty . "' AND studentID='" . $this->session->userdata('id') . "'");
             //  var_dump($query);
             if ($query) {
                 $data['outbreaks'] = $query;
@@ -103,30 +103,37 @@ class Management extends CI_Controller {
                 $data['outbreaks'] = array();
             }
 
-            $query = $this->Md->query("SELECT * FROM publication where country = '" . $cty . "' AND studentID='".$this->session->userdata('id')."'");
+            $query = $this->Md->show('event');
+            //  var_dump($query);
+            if ($query) {
+                $data['events'] = $query;
+            } else {
+                $data['events'] = array();
+            }
+            $query = $this->Md->query("SELECT * FROM publication where country = '" . $cty . "' AND studentID='" . $this->session->userdata('id') . "'");
             //  var_dump($query);
             if ($query) {
                 $data['pubs'] = $query;
             } else {
                 $data['pubs'] = array();
             }
-            
 
-            $query = $this->Md->query("SELECT * FROM publication where verified = 'false' AND studentID='".$this->session->userdata('id')."'");
+
+            $query = $this->Md->query("SELECT * FROM publication where verified = 'false' AND studentID='" . $this->session->userdata('id') . "'");
             //  var_dump($query);
             if ($query) {
                 $data['publication_cnt_review'] = $query;
             } else {
                 $data['publication_cnt_review'] = array();
             }
-            $query = $this->Md->query("SELECT * FROM publication where accepted = 'no' AND studentID='".$this->session->userdata('id')."'");
+            $query = $this->Md->query("SELECT * FROM publication where accepted = 'no' AND studentID='" . $this->session->userdata('id') . "'");
             //  var_dump($query);
             if ($query) {
                 $data['publication_cnt_accepted'] = $query;
             } else {
                 $data['publication_cnt_accepted'] = array();
             }
-            $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no' AND studentID='".$this->session->userdata('id')."'");
+            $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no' AND studentID='" . $this->session->userdata('id') . "'");
             //  var_dump($query);
             if ($query) {
                 $data['present_cnt_accepted'] = $query;

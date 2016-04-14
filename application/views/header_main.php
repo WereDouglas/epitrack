@@ -56,6 +56,10 @@
                                 <img src="<?= base_url(); ?>flags/<?php echo $this->session->userdata('flag'); ?>"  class="user-image" height="30px" width="40px" alt="user" />
                             </li>
                             <!-- Notifications: style can be found in dropdown.less -->
+                            <?php 
+                            
+                             if ($this->session->userdata('level') == 2 || $this->session->userdata('level') == 1) {
+                            ?>
                             <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
@@ -91,7 +95,7 @@
                                     <li class="footer"><a href="#">View all</a></li>
                                 </ul>
                             </li>
-
+<?php }?>
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -109,7 +113,7 @@
                                         ?>                                       
 
                                         <img src="<?= base_url(); ?>uploads/temp_face.png"  class="user-image" alt="user" />
-<?php } ?>   
+                                    <?php } ?>   
 
                                     <span class="hidden-xs"><?php echo $this->session->userdata('name'); ?></span>
                                 </a>
@@ -117,22 +121,22 @@
                                     <!-- User image -->
                                     <li class="user-header">
 
-<?php
-if ($this->session->userdata('image') != null) {
-    ?>       
+                                        <?php
+                                        if ($this->session->userdata('image') != null) {
+                                            ?>       
 
                                             <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>" class="img-circle" alt="user" />
 
-    <?php
-} else {
-    echo $this->session->userdata('image');
-    ?>                                       
+                                            <?php
+                                        } else {
+                                            echo $this->session->userdata('image');
+                                            ?>                                       
 
                                             <img src="<?= base_url(); ?>uploads/temp_face.png" class="img-circle" alt="user" />
-<?php } ?>   
+                                        <?php } ?>   
 
                                         <p>
-<?php echo $this->session->userdata('name'); ?>
+                                            <?php echo $this->session->userdata('name'); ?>
                                             <small><?php echo $this->session->userdata('country'); ?></small>
                                         </p>
                                     </li>
@@ -163,19 +167,19 @@ if ($this->session->userdata('image') != null) {
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">              
-<?php
-if ($this->session->userdata('image') != null) {
-    ?>       
+                            <?php
+                            if ($this->session->userdata('image') != null) {
+                                ?>       
 
                                 <img src="<?= base_url(); ?>uploads/<?php echo $this->session->userdata('image'); ?>"  class="user-image" alt="user" />
 
-    <?php
-} else {
-    echo $this->session->userdata('image');
-    ?>                                       
+                                <?php
+                            } else {
+                                echo $this->session->userdata('image');
+                                ?>                                       
 
                                 <img src="<?= base_url(); ?>uploads/temp_face.png"  class="user-image" alt="user" />
-<?php } ?>   </div>
+                            <?php } ?>   </div>
                         <div class="pull-left info">
                             <small><?php echo $this->session->userdata('name'); ?></small><br>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
@@ -186,18 +190,21 @@ if ($this->session->userdata('image') != null) {
 
                         <li class="active"><a href="<?php echo base_url() . "index.php/management/news"; ?>" target="frame"><i class="fa  fa-calendar"></i>Home</a></li>
 
-<?php
-if ($this->session->userdata('level') == 1) {
-    ?>
+                        <?php
+                        if ($this->session->userdata('level') == 2) {
+                            ?>
                             <li class="header">Country</li>
                             <li><a href="<?php echo base_url() . "index.php/management/country_report"; ?>" target="frame"><i class="fa fa-bar-chart"></i> Country reports</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i>Event & Updates</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"><i class="fa fa-users"></i> Students</a></li>
     <!--                            <li><a href="<?php echo base_url() . "index.php/management/advert"; ?>" target="frame"><i class="fa fa-circle-o"></i> Advertisement</a></li>-->
+                            <li><a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame"><i class="fa fa-road"></i> Tracks</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i> Cohorts</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
 
 
-<?php } ?>
-                        <?php if ($this->session->userdata('level') == 2) {
+                        <?php } ?>
+                        <?php if ($this->session->userdata('level') == 1) {
                             ?>
                             <li class="header">General</li>
                             <li><a href="<?php echo base_url() . "index.php/management/"; ?>" target="frame"><i class="fa fa-calendar"></i> Calendar</a></li>
@@ -208,7 +215,7 @@ if ($this->session->userdata('level') == 1) {
                             <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i> Events & Updates</a></li>
                             <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
 
-<?php } ?>                       
+                        <?php } ?>                       
 
                         <?php
                         if ($this->session->userdata('level') == "student") {
@@ -227,7 +234,7 @@ if ($this->session->userdata('level') == 1) {
                             <li><a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame"><i class="fa  fa-file-text"></i> Short courses</a></li>
 
 
-<?php } ?>
+                        <?php } ?>
 
 
                     </ul>

@@ -12,7 +12,7 @@
 
         <div class="box-body">
 
-            <table class="table table-striped table-bordered bootstrap-datatable datatable" id="datatable">
+            <table id="example1" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr> 
                         <th>EXECUTE</th>
@@ -22,6 +22,7 @@
                         <th>DATE</th>
                         <th>USER</th>                                     
                         <th>TYPE</th>
+                        <th>COUNTRY</th>
                         <th>DELETE RECORD</th>
                     </tr>
                 </thead>   
@@ -54,6 +55,9 @@
                                 <td> 
                                     <?php echo $loop->type; ?>
                                 </td>
+                                <td> 
+                                    <?php echo $loop->country; ?>
+                                </td>
 
                                 <td class="center">
                                     <a class="btn-danger btn-small icon-remove" href="<?php echo base_url() . "index.php/pending/delete/" . $loop->id; ?>"></a>
@@ -70,8 +74,5 @@
 
 
     </div>
-
-
     <?php require_once(APPPATH . 'views/js-page.php'); ?>
-
-
+ 

@@ -2,17 +2,13 @@
 
 
 <div class="col-xs-12">
+    <?php
+      if ($this->session->userdata('level') == 1) {
+    ?>
     <h4>Add new track</h4>  
-
-
     <div class="row-fluid">
-        <?php echo $this->session->flashdata('msg'); ?>
+       
         <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/tracks/'  method="post">            
-
-
-
-
-
             <label>
                 <span class="block input-icon input-icon-right">
                     <input type="text" class="span12" id="track" name="track" placeholder="track name" />  
@@ -30,9 +26,10 @@
         </form>
 
     </div>                                                     
-    <hr>                                                
+    <hr>        
+      <?php }?>
     <h4>Track list</h4>                               
-
+ <?php echo $this->session->flashdata('msg'); ?>
     <div class="alert alert-info">Select a field to edit the content</div>                     
 
     <table id="sample-table-2" class="table table-striped table-bordered table-hover">
@@ -122,7 +119,6 @@
 
             if (track.length > 0)
             {
-
                 $.ajax({
                     type: "POST",
                     url: "<?php echo base_url() . "index.php/management/tracks/update/"; ?>",
@@ -131,7 +127,7 @@
                     success: function (html)
                     {
                         $("#track_" + ID).html(track);
-
+                        location.reload();
                     }
                 });
             } else

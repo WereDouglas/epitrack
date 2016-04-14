@@ -294,7 +294,7 @@ class Student extends CI_Controller {
                                                 <strong>
                                                   Action pending review ' . $this->session->userdata('level') . '	</strong>									
 						</div>');
-                $pd = array('user' => $this->session->userdata('name'), 'object' => 'employment', 'content' => ' ', 'action' => 'delete', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
+                $pd = array('user' => $this->session->userdata('name'),'country' => $this->session->userdata('country'), 'object' => 'employment', 'content' => ' ', 'action' => 'delete', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
                 $file_id = $this->Md->save($pd, 'pending');
 
                 redirect('/student/employment', 'refresh');
@@ -315,7 +315,7 @@ class Student extends CI_Controller {
            // $this->Md->update($id, $employment, 'employment');
             $content = json_encode($employment);
 
-            $pd = array('user' => $this->session->userdata('name'), 'object' => 'employment', 'content' => $content, 'action' => 'update', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
+            $pd = array('user' => $this->session->userdata('name'),'country' => $this->session->userdata('country'), 'object' => 'employment', 'content' => $content, 'action' => 'update', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
             $this->Md->save($pd, 'pending');
         }
 
@@ -619,12 +619,18 @@ class Student extends CI_Controller {
         if ($actives == "no") {
             $active = "yes";
         }
-
         if ($this->session->userdata('level') > 0) {
 
             $publication = array('verified' => $active);
             $this->Md->update($id, $publication, 'publication');
-        }
+        
+         } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                                                <strong>
+                                                 You cannot carry out this action ' . '	</strong>									
+						</div>');
+              // redirect('/management/tracks', 'refresh');
+            }
     }
 
     public function activate() {

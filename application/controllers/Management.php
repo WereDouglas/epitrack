@@ -34,61 +34,106 @@ class Management extends CI_Controller {
     }
 
     public function news() {
+
         $cty = $this->session->userdata('country');
-
         $name = $this->session->userdata('name');
-        $query = $this->Md->get('reciever', $name, 'chat');
-        //  var_dump($query);
-        if ($query) {
-            $data['chats'] = $query;
-        } else {
-            $data['chats'] = array();
-        }
-        $query = $this->Md->query("SELECT * FROM outbreak where country = '" . $cty . "'");
-        //  var_dump($query);
-        if ($query) {
-            $data['outbreaks'] = $query;
-        } else {
-            $data['outbreaks'] = array();
-        }
+        $id = $this->session->userdata('id');
 
-        $query = $this->Md->query("SELECT * FROM publication where country = '" . $cty . "'");
-        //  var_dump($query);
-        if ($query) {
-            $data['pubs'] = $query;
-        } else {
-            $data['pubs'] = array();
-        }
-        $query = $this->Md->query("SELECT * FROM student where status = 'false'");
-        //  var_dump($query);
-        if ($query) {
-            $data['student_cnt_false'] = $query;
-        } else {
-            $data['student_cnt_false'] = array();
-        }
+        if ($this->session->userdata('level') == 1) {
 
-        $query = $this->Md->query("SELECT * FROM publication where verified = 'false'");
-        //  var_dump($query);
-        if ($query) {
-            $data['publication_cnt_review'] = $query;
-        } else {
-            $data['publication_cnt_review'] = array();
-        }
-        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no'");
-        //  var_dump($query);
-        if ($query) {
-            $data['publication_cnt_accepted'] = $query;
-        } else {
-            $data['publication_cnt_accepted'] = array();
-        }
-        $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no'");
-        //  var_dump($query);
-        if ($query) {
-            $data['present_cnt_accepted'] = $query;
-        } else {
-            $data['present_cnt_accepted'] = array();
-        }
+            $query = $this->Md->get('reciever', $name, 'chat');
+            //  var_dump($query);
+            if ($query) {
+                $data['chats'] = $query;
+            } else {
+                $data['chats'] = array();
+            }
+            $query = $this->Md->query("SELECT * FROM outbreak where country = '" . $cty . "'");
+            //  var_dump($query);
+            if ($query) {
+                $data['outbreaks'] = $query;
+            } else {
+                $data['outbreaks'] = array();
+            }
 
+            $query = $this->Md->query("SELECT * FROM publication where country = '" . $cty . "'");
+            //  var_dump($query);
+            if ($query) {
+                $data['pubs'] = $query;
+            } else {
+                $data['pubs'] = array();
+            }
+            $query = $this->Md->query("SELECT * FROM student where status = 'false'");
+            //  var_dump($query);
+            if ($query) {
+                $data['student_cnt_false'] = $query;
+            } else {
+                $data['student_cnt_false'] = array();
+            }
+
+            $query = $this->Md->query("SELECT * FROM publication where verified = 'false'");
+            //  var_dump($query);
+            if ($query) {
+                $data['publication_cnt_review'] = $query;
+            } else {
+                $data['publication_cnt_review'] = array();
+            }
+            $query = $this->Md->query("SELECT * FROM publication where accepted = 'no'");
+            //  var_dump($query);
+            if ($query) {
+                $data['publication_cnt_accepted'] = $query;
+            } else {
+                $data['publication_cnt_accepted'] = array();
+            }
+            $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no'");
+            //  var_dump($query);
+            if ($query) {
+                $data['present_cnt_accepted'] = $query;
+            } else {
+                $data['present_cnt_accepted'] = array();
+            }
+        }
+        if ($this->session->userdata('level') == "student") {
+
+            $query = $this->Md->query("SELECT * FROM outbreak where country = '" . $cty . "' AND studentID='".$this->session->userdata('id')."'");
+            //  var_dump($query);
+            if ($query) {
+                $data['outbreaks'] = $query;
+            } else {
+                $data['outbreaks'] = array();
+            }
+
+            $query = $this->Md->query("SELECT * FROM publication where country = '" . $cty . "' AND studentID='".$this->session->userdata('id')."'");
+            //  var_dump($query);
+            if ($query) {
+                $data['pubs'] = $query;
+            } else {
+                $data['pubs'] = array();
+            }
+            
+
+            $query = $this->Md->query("SELECT * FROM publication where verified = 'false' AND studentID='".$this->session->userdata('id')."'");
+            //  var_dump($query);
+            if ($query) {
+                $data['publication_cnt_review'] = $query;
+            } else {
+                $data['publication_cnt_review'] = array();
+            }
+            $query = $this->Md->query("SELECT * FROM publication where accepted = 'no' AND studentID='".$this->session->userdata('id')."'");
+            //  var_dump($query);
+            if ($query) {
+                $data['publication_cnt_accepted'] = $query;
+            } else {
+                $data['publication_cnt_accepted'] = array();
+            }
+            $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no' AND studentID='".$this->session->userdata('id')."'");
+            //  var_dump($query);
+            if ($query) {
+                $data['present_cnt_accepted'] = $query;
+            } else {
+                $data['present_cnt_accepted'] = array();
+            }
+        }
 
         $this->load->view('blank', $data);
     }
@@ -100,7 +145,7 @@ class Management extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            if ($this->session->userdata('level') == 2) {
+            if ($this->session->userdata('level') == 1) {
                 $query = $this->Md->delete($id, 'track');
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
@@ -111,16 +156,15 @@ class Management extends CI_Controller {
             } else {
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
-                                                 You cannot carry out this action' . $this->session->userdata('level') . '	</strong>									
+                                                 You cannot carry out this action ' . '	</strong>									
 						</div>');
 
                 redirect('/management/tracks', 'refresh');
             }
         }
         if ($action == 'update') {
-            if ($this->session->userdata('level') == 2) {
+            if ($this->session->userdata('level') == 1) {
                 $this->load->helper(array('form', 'url'));
-
                 $track = $this->input->post('track');
                 $id = $this->input->post('id');
                 $track = array('track' => $track);
@@ -143,7 +187,7 @@ class Management extends CI_Controller {
                 redirect('/management/tracks', 'refresh');
             }
             $tracks = array('track' => $track, 'created' => date('Y-m-d'));
-            if ($this->session->userdata('level') == 2) {
+            if ($this->session->userdata('level') == 1) {
                 $this->Md->save($tracks, 'track');
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
@@ -179,7 +223,7 @@ class Management extends CI_Controller {
         $action = $this->uri->segment(3);
 
         if ($action == 'delete') {
-            if ($this->session->userdata('level') > 0) {
+            if ($this->session->userdata('level') == 1) {
                 $id = $this->uri->segment(4);
                 $query = $this->Md->delete($id, 'cohort');
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -199,15 +243,14 @@ class Management extends CI_Controller {
             }
         }
         if ($action == 'update') {
-            if ($this->session->userdata('level') > 0) {
+            if ($this->session->userdata('level') == 1) {
                 $this->load->helper(array('form', 'url'));
 
                 $name = $this->input->post('name');
                 $id = $this->input->post('id');
-
-
                 $cohort = array('name' => $name);
                 $this->Md->update($id, $cohort, 'cohort');
+                //redirect('/management/cohort', 'refresh');
             }
         }
 
@@ -230,7 +273,7 @@ class Management extends CI_Controller {
                 redirect('/management/cohort', 'refresh');
             }
             $cohort = array('name' => $name, 'track' => $track, 'year' => $startyear, 'created' => date('Y-m-d'));
-            if ($this->session->userdata('level') > 0) {
+            if ($this->session->userdata('level') == 1) {
                 $this->Md->save($cohort, 'cohort');
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">                               
                                                 <strong>
@@ -242,7 +285,6 @@ class Management extends CI_Controller {
                 foreach ($result as $res) {
                     $this->sendEmail($message, $res->email, $subject);
                 }
-
                 redirect('/management/cohort', 'refresh');
             } else {
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
@@ -637,7 +679,8 @@ class Management extends CI_Controller {
             $data['countries'] = array();
         }
         if ($this->session->userdata('level') == 1) {
-            $query = $this->Md->get('country', $this->session->userdata('country'), 'student');
+            $query = $this->Md->show('student');
+
             //  var_dump($query);
             if ($query) {
                 $data['students'] = $query;
@@ -645,7 +688,7 @@ class Management extends CI_Controller {
                 $data['students'] = array();
             }
         } elseif ($this->session->userdata('level') == 2) {
-            $query = $this->Md->show('student');
+            $query = $this->Md->get('country', $this->session->userdata('country'), 'student');
             //  var_dump($query);
             if ($query) {
                 $data['students'] = $query;
@@ -669,14 +712,13 @@ class Management extends CI_Controller {
         }
 
         if ($this->session->userdata('level') > 0) {
-             $query = $this->Md->get('id', $ID, 'user');
+            $query = $this->Md->get('id', $ID, 'user');
             //  var_dump($query);
             if ($query) {
                 $data['bio'] = $query;
             } else {
                 $data['bio'] = array();
             }
-            
         }
 
         if ($this->session->userdata('level') == "student") {

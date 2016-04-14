@@ -151,9 +151,7 @@
                         </div>
                   
                          <div class="row-fluid span12">
-                        <div class="accordion-group">
-
-                                   
+                        <div class="accordion-group">                                  
 
                             <div class="accordion-body collapsed" id="collapseThree">
                                
@@ -175,8 +173,7 @@
                                                 <th>E-mail</th>    
                                                 <th>Level</th>    
                                                 <th>Country</th>  
-                                                <th>Contact</th>                                                                 
-
+                                                <th>Contact</th> 
                                                 <th>Created</th>
 
                                                 <th></th>

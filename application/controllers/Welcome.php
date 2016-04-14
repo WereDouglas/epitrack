@@ -104,13 +104,7 @@ class Welcome extends CI_Controller {
                         } else {
                             $data['events'] = array();
                         }
-                        $query = $this->Md->show('event');
-                        //  var_dump($query);
-                        if ($query) {
-                            $data['events'] = $query;
-                        } else {
-                            $data['events'] = array();
-                        }
+                       
                         $query = $this->Md->show('student');
                         //  var_dump($query);
                         if ($query) {

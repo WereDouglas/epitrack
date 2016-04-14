@@ -25,14 +25,14 @@
                         <h3 class="timeline-header"><a href="#"><?= $loop->title . ' ' ?></a>  <?= $loop->author; ?></h3>
                         <div class="timeline-body">
                             <?= $loop->abstract; ?>
-                           
+
                         </div>
                         <div class="timeline-footer">
                             <a href="<?php echo base_url() . "publications/" . $loop->file; ?>">view</a>
 
                         </div>
                     </div>
-                        <?php
+                    <?php
                 }
             }
             ?>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="timeline-footer">
                             <a href="<?php echo base_url() . "publications/" . $loop->file; ?>">view</a>
- 
+
                         </div>
                     </div>
                     <?php
@@ -116,7 +116,39 @@
             ?>
 
         </li>
+
         <li>
+            <i class="fa fa-user bg-aqua"></i>
+            <div class="timeline-item">
+                <a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame">
+                    <i class="fa fa-users text-aqua"></i> <?php echo count($events); ?> Events
+                </a>  
+                <div class="box-body ">
+                    <ul class="users-list clearfix">
+                        <?php
+                        if (is_array($events)) {
+                            foreach ($events as $loop) {
+                                ?>    
+                                <li>
+                                       <h3>  <?php echo $loop->title ; ?></h3>
+                                       <p><?php echo $loop->description.' '.$loop->country ; ?></p>
+                                    <span class="users-list-date"><?php echo $loop->startdate ?></span>
+                                </li>
+                                <?php
+                            }
+                        }
+                        ?>                          
+                    </ul><!-- /.users-list -->
+                </div><!-- /.box-body -->
+                <div class="box-footer text-center">
+                    <?php
+                    if ($this->session->userdata('level') == '1' || $this->session->userdata('level') == '2') {
+                        ?>
+                        <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" class="uppercase">View All Students</a>
+
+                    <?php } ?>
+                </div><!-- /.box-footer -->
+            </div>
         </li>
 
         <!-- END timeline item -->

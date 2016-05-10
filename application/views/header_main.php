@@ -56,46 +56,45 @@
                                 <img src="<?= base_url(); ?>flags/<?php echo $this->session->userdata('flag'); ?>"  class="user-image" height="30px" width="40px" alt="user" />
                             </li>
                             <!-- Notifications: style can be found in dropdown.less -->
-                            <?php 
-                            
-                             if ($this->session->userdata('level') == 2 || $this->session->userdata('level') == 1) {
-                            ?>
-                            <li class="dropdown notifications-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning"><?php echo count($student_cnt_false) + count($publication_cnt_review) + count($publication_cnt_accepted); ?></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">Your notifications</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li>
-                                                <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame">
-                                                    <i class="fa fa-users text-aqua"></i> <?php echo count($student_cnt_false); ?> new members/inactive students today
-                                                </a>
-                                            </li>
-                                            <li>
-                                            <li>
-                                                <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
-                                                    <i class="fa fa-newspaper-o text-aqua"></i> <?php echo count($publication_cnt_review); ?> Publications pending review
-                                                </a>
+                            <?php
+                            if ($this->session->userdata('level') == 2 || $this->session->userdata('level') == 1) {
+                                ?>
+                                <li class="dropdown notifications-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-bell-o"></i>
+                                        <span class="label label-warning"><?php echo count($student_cnt_false) + count($publication_cnt_review) + count($publication_cnt_accepted); ?></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="header">Your notifications</li>
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li>
+                                                    <a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame">
+                                                        <i class="fa fa-users text-aqua"></i> <?php echo count($student_cnt_false); ?> new members/inactive students today
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                <li>
+                                                    <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
+                                                        <i class="fa fa-newspaper-o text-aqua"></i> <?php echo count($publication_cnt_review); ?> Publications pending review
+                                                    </a>
 
-                                            </li>
-                                            <li>
-                                            <li>
-                                                <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
-                                                    <i class="fa fa-mortar-board text-aqua"></i> <?php echo count($publication_cnt_accepted); ?> publications pending acceptance
-                                                </a>
-                                            </li>
+                                                </li>
+                                                <li>
+                                                <li>
+                                                    <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
+                                                        <i class="fa fa-mortar-board text-aqua"></i> <?php echo count($publication_cnt_accepted); ?> publications pending acceptance
+                                                    </a>
+                                                </li>
 
 
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
-                                </ul>
-                            </li>
-<?php }?>
+                                            </ul>
+                                        </li>
+                                        <li class="footer"><a href="#">View all</a></li>
+                                    </ul>
+                                </li>
+                            <?php } ?>
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -194,13 +193,15 @@
                         if ($this->session->userdata('level') == 2) {
                             ?>
                             <li class="header">Country</li>
-                            <li><a href="<?php echo base_url() . "index.php/management/country_report"; ?>" target="frame"><i class="fa fa-bar-chart"></i> Country reports</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/country_report"; ?>" target="frame"><i class="fa fa-bar-chart"></i> Country Reports</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i>Event & Updates</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"><i class="fa fa-users"></i> Students</a></li>
     <!--                            <li><a href="<?php echo base_url() . "index.php/management/advert"; ?>" target="frame"><i class="fa fa-circle-o"></i> Advertisement</a></li>-->
                             <li><a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame"><i class="fa fa-road"></i> Tracks</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i> Cohorts</a></li>
                             <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
+                             <li><a href="<?php echo base_url() . "index.php/field/view"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
+                        
 
 
                         <?php } ?>
@@ -232,7 +233,8 @@
                             <li><a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame"><i class="fa fa-circle-o"></i> Outbreaks</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame"><i class="fa fa-file"></i> Presentations</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame"><i class="fa  fa-file-text"></i> Short courses</a></li>
-
+                           <li><a href="<?php echo base_url() . "index.php/field"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
+                          
 
                         <?php } ?>
 

@@ -304,6 +304,18 @@
                                         </div>
                    </div>
                 </a>
+                      <a href="<?php echo base_url() . "index.php/field"; ?>" target="frame">
+                                     <div class="infobox infobox infobox-small ">     
+                                         <div class="infobox-icon">
+                                           <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/publish.png" alt="account" />
+                                       </div>
+
+                                        <div class="infobox-icon">
+                                            <div class="infobox-content">Field Report</div>
+                                            <div class="infobox-content"></div>
+                                        </div>
+                   </div>
+                </a>
              <a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame">
                                     <div class="infobox infobox infobox-small ">       <div class="infobox-icon">
                                            <img  height="50px" width="50px" class="nav-user-photo" src="<?= base_url(); ?>images/study.png" alt="account" />

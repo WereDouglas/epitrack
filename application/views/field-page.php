@@ -2,7 +2,7 @@
 
 <div class="col-xs-12">
 
-    <h3>Publications</h3>
+    <h3>Field Work</h3>
     <?php echo $this->session->flashdata('msg'); ?>
     <div class="row-fluid">
         <div class="span12 widget-container-span">
@@ -44,58 +44,31 @@
 
                         <div class="accordion-body collapse" id="collapseTwo">
                             <div class="accordion-inner">
-                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/publication/'  method="post">            
+                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/field/save/'  method="post">            
 
-                                    <div class="span6">   
-
-
+                                    <div class="span6"> 
                                         <div class="widget-main">
-
                                             <input multiple="" type="file" name="userfile" id="id-input-file-3" />
-
                                         </div>
-
-
                                         <div class="control-group">
-                                            <label class="control-label" for="form-field-username">title</label>
-
+                                            <label class="control-label" for="form-field-username">Name</label>
                                             <div class="controls">
-                                                <input type="text" class="span12" id="title" name="title" placeholder="title"  />
-                                            </div>
-                                        </div>
-
-
-
-
-                                    </div>
-                                    <div class="span6">
-                                        <div class="control-group">
-                                            <label class="control-label" for="form-field-username">Country</label>
-
-                                            <div class="controls">
-                                                <input type="text" class="span12" id="title" name="country" placeholder="country"  />
+                                                <input type="text" class="span12" id="title" name="name" placeholder="Name"  />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="form-field-username">link</label>
-
+                                            <label class="control-label" for="form-field-username">Location</label>
                                             <div class="controls">
-                                                <input type="text" class="span12" id="link" name="link" placeholder="link"  />
-                                            </div>
-                                            <label class="control-label" for="form-field-username">Co-author</label>
-
-                                            <div class="controls">
-                                                <input type="text" class="span12" id="author" name="author" placeholder="link"  />
+                                                <input type="text" class="span12" id="title" name="location" placeholder="Location"  />
                                             </div>
                                         </div>
-
                                     </div>
 
 
                                     <div class="alert span12">  
-                                        <label for="form-field-9">Abstract</label>
+                                        <label for="form-field-9">Abstract/Notes</label>
 
-                                        <textarea class="span12" id="form-field-9" name="abstract" data-maxlength="10"></textarea>
+                                        <textarea class="span12" id="form-field-9" name="notes" data-maxlength="10"></textarea>
                                         <div class="">
                                             <button class="btn btn-info" type="submit">
                                                 <i class="icon-ok bigger-110"></i>
@@ -130,26 +103,24 @@
                                                     <span class="lbl"></span>
                                                 </label>
                                             </th>
-                                            <th>Title</th>
-                                            <th>link</th>
-                                            <th>abstract</th>
-                                            <th>Reviewed</th>
+                                            <th>NAME</th>
+                                            <th>FILE</th>
+                                            <th>LOCATION</th>
+                                            <th>NOTES</th>
+                                            <th>CREATED</th>
+<!--                                            <th></th>-->
 
-                                            <th>Accepted</th>
-                                            <th>submitted on</th>
-                                            <th></th>
-                                            <th>Details</th>
 
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <?php
-                                        if (is_array($publications) && count($publications)) {
-                                            foreach ($publications as $loop) {
-                                                $name = $loop->title;
-                                                $link = $loop->link;
-                                                $abstract = $loop->abstract;
+                                        if (is_array($fd) && count($fd)) {
+                                            foreach ($fd as $loop) {
+                                                $name = $loop->name;
+                                                $link = $loop->file;
+                                                $abstract = $loop->notes;
                                                 $id = $loop->id;
                                                 ?>  
 
@@ -161,7 +132,7 @@
                                                         </label>
                                                     </td>
                                                     <td class="edit_td">
-                                                        <a href="<?php echo base_url() . "publications/" . $loop->file; ?>">
+                                                        <a href="<?php echo base_url() . "filed/" . $loop->file; ?>">
                                                             <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                                                             <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
                                                         </a>
@@ -170,74 +141,35 @@
                                                         <?php echo $link ?>
                                                     </td>
                                                     <td class="center ">
-                                                        
+                                                        <?php echo $loop->location; ?>
+                                                    </td>
+                                                    <td class="center ">
+
                                                         <?php
                                                         // echo $loop->abstract;
-                                                        $text = $loop->abstract;
+                                                        $text = $loop->notes;
                                                         $start = limit_words($text, 10);
                                                         $end = str_replace($start, '', $text);
                                                         ?>
-                                                      
+
                                                         <p><?php echo $start; ?></p>
-                                                       
-                                                     
-                                                    </td>
 
-                                                    <td>
-
-                                                        <?php
-                                                        if ($loop->verified == "false") {
-                                                            ?>
-                                                            <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
-                                                                <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
-                                                                    <input type="radio" name="status" id="<?= $loop->verified; ?>" value="<?= $loop->id; ?>" />
-                                                                    yes
-                                                                </label>
-                                                                <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
-                                                                    <input type="radio" name="status" id="<?= $loop->verified; ?>" value="<?= $loop->id; ?>" checked />
-                                                                    no
-                                                                </label>
-                                                            </div> 
-                                                        <?php } ?>
-
-                                                        <?php
-                                                        if ($loop->verified == "true") {
-                                                            ?>
-                                                            <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
-                                                                <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
-                                                                    <input type="radio" name="status" id="<?= $loop->verified; ?>" value="<?= $loop->id; ?>" checked />
-                                                                    yes
-                                                                </label>
-                                                                <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
-                                                                    <input type="radio" name="status" id="<?= $loop->verified; ?>" value="<?= $loop->id; ?>"  />
-                                                                    no
-                                                                </label>
-                                                            </div> 
-                                                        <?php } ?>
 
                                                     </td>
 
-                                                    <td class="center ">
-                                                        <?php echo $loop->accepted ?>
-                                                    </td>
+
                                                     <td class="center ">
                                                         <?php echo $loop->dos ?>
                                                     </td>
-                                                    <td class="td-actions">
+<!--                                                    <td class="td-actions">
 
                                                         <a href="<?php echo base_url() . "index.php/management/publication/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                             <span class="red">
                                                                 <i class="icon-trash bigger-120"></i>
                                                             </span>
                                                         </a>
-                                                    </td>
-                                                    <td class="td-actions">
-
-                                                        <a href="<?php echo base_url() . "index.php/student/publicationed/" . $loop->id; ?>" target="frame"> 
-                                                            Read more
-                                                        </a>
-
-                                                    </td>
+                                                    </td>-->
+                                                 
                                                 </tr>
                                                 <?php
                                             }

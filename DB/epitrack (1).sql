@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2016 at 06:05 AM
+-- Generation Time: Jul 05, 2016 at 10:39 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -161,17 +161,26 @@ INSERT INTO `country` (`id`, `image`, `name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
+  `name` text,
   `studentID` int(11) NOT NULL,
-  `start` date NOT NULL,
-  `end` date NOT NULL,
-  `participants` varchar(50) NOT NULL,
-  `objective` text NOT NULL,
-  `role` text NOT NULL,
-  `description` text NOT NULL,
-  `dos` date NOT NULL,
+  `start` varchar(50) DEFAULT NULL,
+  `end` varchar(50) DEFAULT NULL,
+  `participants` varchar(50) DEFAULT NULL,
+  `objective` text,
+  `role` text,
+  `description` text,
+  `dos` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`id`, `name`, `studentID`, `start`, `end`, `participants`, `objective`, `role`, `description`, `dos`) VALUES
+(1, 'TEST ', 1, '0000-00-00', '0000-00-00', NULL, NULL, 'instructor', '<p>TEST</p>', '2016-07-05'),
+(2, 'TEST', 1, '1467838800', '1468357200', NULL, NULL, 'participant', '<p>TEST</p>', '2016-07-05'),
+(3, 'USER', 1, '07/01/2016', '07/11/2016', NULL, NULL, 'participant', '<p>USER</p>', '2016-07-05');
 
 -- --------------------------------------------------------
 
@@ -184,22 +193,26 @@ CREATE TABLE IF NOT EXISTS `employment` (
   `studentID` int(11) NOT NULL,
   `organisation` text NOT NULL,
   `position` text NOT NULL,
-  `country` text NOT NULL,
+  `country` text,
   `location` text NOT NULL,
   `sector` text NOT NULL,
   `contact` varchar(100) NOT NULL,
   `created` date NOT NULL,
   `file` varchar(255) DEFAULT NULL,
   `period` varchar(50) DEFAULT NULL,
+  `startDate` varchar(255) DEFAULT NULL,
+  `endDate` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `employment`
 --
 
-INSERT INTO `employment` (`id`, `studentID`, `organisation`, `position`, `country`, `location`, `sector`, `contact`, `created`, `file`, `period`) VALUES
-(2, 1, 'World Bank', 'Chief Administration', 'Ethiopia', 'Malakai', 'Waste management', '067222889-12', '2015-07-27', NULL, NULL);
+INSERT INTO `employment` (`id`, `studentID`, `organisation`, `position`, `country`, `location`, `sector`, `contact`, `created`, `file`, `period`, `startDate`, `endDate`) VALUES
+(2, 1, 'World Bank', 'Chief Administration', 'Ethiopia', 'Malakai', 'Waste management', '067222889-12', '2015-07-27', NULL, NULL, NULL, NULL),
+(3, 1, 'UNMA', 'Accounts', 'Uganda', 'Kampalas', 'none', 'none', '2016-07-05', NULL, NULL, NULL, NULL),
+(4, 1, 'TEST', 'IT', 'Antigua and Barbuda', 'UT', 'IT', '078102343', '2016-07-05', NULL, NULL, '07/07/2016', '07/29/2015');
 
 -- --------------------------------------------------------
 
@@ -235,6 +248,30 @@ INSERT INTO `event` (`id`, `title`, `description`, `country`, `startdate`, `endd
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fields`
+--
+
+CREATE TABLE IF NOT EXISTS `fields` (
+  `file` varchar(500) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `dos` varchar(300) DEFAULT NULL,
+  `location` varchar(300) DEFAULT NULL,
+  `notes` varchar(500) DEFAULT NULL,
+  `studentID` varchar(500) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `fields`
+--
+
+INSERT INTO `fields` (`file`, `name`, `dos`, `location`, `notes`, `studentID`, `id`) VALUES
+('amItems.txt', 'Bone Volume', '16-07-04', 'Kampala', '<p>5&nbsp;mbs is okay for a report&nbsp;</p>', '1', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `outbreak`
 --
 
@@ -242,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `outbreak` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `studentID` int(11) NOT NULL,
   `name` text NOT NULL,
-  `country` text NOT NULL,
+  `country` text,
   `region` text NOT NULL,
   `max` varchar(100) NOT NULL,
   `min` varchar(100) NOT NULL,
@@ -255,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `outbreak` (
   `dos` date NOT NULL,
   `verified` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `outbreak`
@@ -264,7 +301,8 @@ CREATE TABLE IF NOT EXISTS `outbreak` (
 INSERT INTO `outbreak` (`id`, `studentID`, `name`, `country`, `region`, `max`, `min`, `onset`, `dates`, `lab`, `confirm`, `etiology`, `findings`, `dos`, `verified`) VALUES
 (1, 2, 'Test ', 'Uganda', 'Weather', '3', '1', '0000-00-00', '03/24/2016 - 03/29/2016', 'no', 'yes', 'Testing this ', 'testing ', '2016-03-10', 'false'),
 (2, 1, 'Medication', 'Kenya', 'Kenya', '56', '34', '1457643600', '03/23/2016 - 03/28/2016', 'no', 'yes', 'System management', 'Spread and outreach ', '2016-03-10', 'false'),
-(3, 1, 'Signal', 'Kenya', 'Middle East', '45', '2', '0', '03/15/2016 - 03/17/2016', 'yes', 'yes', 'irrigation region wa', 'Interested', '2016-03-10', 'false');
+(3, 1, 'Signal', 'Kenya', 'Middle East', '45', '2', '0', '03/15/2016 - 03/17/2016', 'yes', 'yes', 'irrigation region wa', 'Interested', '2016-03-10', 'false'),
+(4, 1, 'none', NULL, 'none', '2', '3', '1468270800', '07/11/2016 - 07/20/2016', 'yes', 'yes', '<p>none</p>', '<p>none</p>', '2016-07-04', 'false');
 
 -- --------------------------------------------------------
 
@@ -319,14 +357,15 @@ CREATE TABLE IF NOT EXISTS `presentation` (
   `author` text,
   `presenter` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `presentation`
 --
 
 INSERT INTO `presentation` (`id`, `file`, `studentID`, `title`, `country`, `eventType`, `eventName`, `date`, `location`, `submissionDate`, `accepted`, `presentationType`, `dos`, `summary`, `author`, `presenter`) VALUES
-(1, 'AM_Slides_for_HIPS_Presentation-_Final2.ppt', 1, 'HIPPS presentation', 'Uganda', 'Seminar', 'HIPPS', '0000-00-00', 'Mukono', '2015-08-04', 'yes', 'Oral', '2015-08-04', 'Hipps malaria Presentation', NULL, NULL);
+(1, 'AM_Slides_for_HIPS_Presentation-_Final2.ppt', 1, 'HIPPS presentation', 'Uganda', 'Seminar', 'HIPPS', '0000-00-00', 'Mukono', '2015-08-04', 'yes', 'Oral', '2015-08-04', 'Hipps malaria Presentation', NULL, NULL),
+(2, 'aartestsheet6.xlsx', 1, 'none', 'Tonga', 'Conference', 'none', '0000-00-00', 'none', '2016-07-04', 'no', 'Poster', '2016-07-04', '<p>none</p>', 'none', NULL);
 
 -- --------------------------------------------------------
 
@@ -347,14 +386,16 @@ CREATE TABLE IF NOT EXISTS `publication` (
   `studentID` int(11) NOT NULL,
   `author` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `publication`
 --
 
 INSERT INTO `publication` (`id`, `file`, `title`, `abstract`, `country`, `link`, `dos`, `accepted`, `verified`, `studentID`, `author`) VALUES
-(1, 'AM_Slides_for_HIPS_Presentation-_Final.ppt', 'HIPPS presentation', 'This is a medication program for  Uganda - Kenya', 'Kenya', 'HIPPS Government program ', '2015-08-04', 'no', 'false', 1, 'Micheal');
+(1, 'AM_Slides_for_HIPS_Presentation-_Final.ppt', 'HIPPS presentation', 'This is a medication program for  Uganda - Kenya', 'Kenya', 'HIPPS Government program ', '2015-08-04', 'no', 'false', 1, 'Micheal'),
+(2, 'allergies.xlsx', 'Norma Upload', 'none', 'Uganda', 'www.google.com', '2016-07-04', 'no', 'false', 1, 'Michael'),
+(3, ' ', 'TEST ', '<p>Tests</p>', 'Bahamas', 'www.google.com', '2016-07-05', 'no', 'false', 1, 'Michael');
 
 -- --------------------------------------------------------
 
@@ -372,14 +413,15 @@ CREATE TABLE IF NOT EXISTS `qualification` (
   `verified` text NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `qualification`
 --
 
 INSERT INTO `qualification` (`id`, `studentID`, `name`, `institute`, `completion`, `graduation`, `verified`, `created`) VALUES
-(1, '1', 'Masters (MBA)', 'Makerere University', '2015-08-19', '2015-08-19', 'false', '2016-03-12 00:00:00');
+(1, '1', 'Masters (MBA)', 'Makerere University', '2015-08-19', '2015-08-19', 'false', '2016-03-12 00:00:00'),
+(2, '1', 'Bsc  Computing', 'kyambogo.', '2016-07-12', '2016-07-29', 'False', '2016-07-04 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -426,12 +468,12 @@ CREATE TABLE IF NOT EXISTS `study` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `studentID` int(11) NOT NULL,
   `name` text NOT NULL,
-  `onset` date NOT NULL,
-  `dissemination` date NOT NULL,
+  `onset` varchar(50) DEFAULT NULL,
+  `dissemination` varchar(50) DEFAULT NULL,
   `findings` text NOT NULL,
   `dos` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `study`
@@ -440,7 +482,10 @@ CREATE TABLE IF NOT EXISTS `study` (
 INSERT INTO `study` (`id`, `studentID`, `name`, `onset`, `dissemination`, `findings`, `dos`) VALUES
 (1, 1, 'Water Reed', '2015-08-04', '2015-08-04', 'How Cholera is spread to a patient again', '2015-08-04'),
 (2, 1, 'Whooping Cough', '2015-08-04', '2015-08-04', 'Whooping cough spreading rate in South Africa', '2015-08-04'),
-(3, 1, 'River plate', '0000-00-00', '0000-00-00', 'River plate and red eye diseases', '2015-08-04');
+(3, 1, 'River plate', '0000-00-00', '0000-00-00', 'River plate and red eye diseases', '2015-08-04'),
+(4, 1, 'Water Reed', '0000-00-00', '0000-00-00', 'information study\n', '2016-07-04'),
+(5, 1, 'TEST ', '0000-00-00', '0000-00-00', '<p>TEST</p>', '2016-07-05'),
+(6, 1, 'TEST ', '07/14/2016', '07/20/2016', '<p>TEST&nbsp;</p>', '2016-07-05');
 
 -- --------------------------------------------------------
 
@@ -459,7 +504,15 @@ CREATE TABLE IF NOT EXISTS `surveillance` (
   `date` date NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `surveillance`
+--
+
+INSERT INTO `surveillance` (`id`, `studentID`, `name`, `verified`, `type`, `region`, `finding`, `date`, `created`) VALUES
+(1, '1', 'asdfasd', 'false', 'sdfsadfas', '0000-00-00', '<p>Disease Making&nbsp;</p>', '2016-07-19', '2016-07-04 16:19:13'),
+(2, '1', 'TEST', 'false', 'NONE', '0000-00-00', '<p style="border: 0px; color: #404040; font-stretch: inherit; font-family: Helmet, Freesans, Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.375; margin: 18px 0px 0px; padding: 0px; vertical-align: baseline;">He sent emails crafted to look like security warnings from internet service providers, which prompted targets to visit the sites he had created.</p>\r\n<p style="border: 0px; color: #404040; font-stretch: inherit; font-family: Helmet, Freesans, Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.375; margin: 18px 0px 0px; padding: 0px; vertical-align: baseline;">The hacker is believed to have used this method to steal login names and passwords for more than 300 Apple iCloud and Gmail accounts between November 2013 and August 2014.<span style="font-size: 1rem; line-height: 1.375;">He sent emails crafted to look like security warnings from internet service providers, which prompted targets to visit the sites he had created.</span></p>\r\n<p style="border: 0px; color: #404040; font-stretch: inherit; font-family: Helmet, Freesans, Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.375; margin: 18px 0px 0px; padding: 0px; vertical-align: baseline;">The hacker is believed to have used this method to steal login names and passwords for more than 300 Apple iCloud and Gmail accounts between November 2013 and August 2014.<span style="font-size: 1rem; line-height: 1.375;">He sent emails crafted to look like security warnings from internet service providers, which prompted targets to visit the sites he had created.</span></p>\r\n<p style="border: 0px; color: #404040; font-stretch: inherit; font-family: Helmet, Freesans, Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.375; margin: 18px 0px 0px; padding: 0px; vertical-align: baseline;">The hacker is believed to have used this method to steal login names and passwords for more than 300 Apple iCloud and Gmail accounts between November 2013 and August 2014.</p>', '2016-07-12', '2016-07-04 16:24:42');
 
 -- --------------------------------------------------------
 

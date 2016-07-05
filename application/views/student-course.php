@@ -40,7 +40,7 @@
 
                         <div class="accordion-body collapse" id="collapseTwo">
                             <div class="accordion-inner">
-                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/outbreak'  method="post">
+                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/course'  method="post">
 
                                     <div class="span12">
                                         <div class="span6">
@@ -55,26 +55,13 @@
                                                 <textarea class="span12 limited" id="form-field-9" name="findings" data-maxlength="50"></textarea>
 
 
-                                                <label for="id-date-picker-1">Start Date</label>
-                                                <div class="control-group">
-                                                    <div class="row-fluid input-append">
-                                                        <input class="span10 date-picker" id="id-date-picker-1" type="text" name="start" data-date-format="yyyy-mm-dd" />
-                                                        <span class="add-on">
-                                                            <i class="icon-calendar"></i>
-                                                        </span>
-                                                    </div>
+                                                <div style="margin-bottom:20px">
+                                                    <label class="label-top">Start</label>
+                                                    <input name="start" id="start" class="easyui-datebox control-group" >
                                                 </div>
-                                                <div class="row-fluid">
-                                                    <label for="id-date-picker-1">End Date</label>
-                                                </div>
-
-                                                <div class="control-group">
-                                                    <div class="row-fluid input-append">
-                                                        <input class="span10 date-picker" id="id-date-picker-1" type="text" name="end" data-date-format="yyyy-mm-dd" />
-                                                        <span class="add-on">
-                                                            <i class="icon-calendar"></i>
-                                                        </span>
-                                                    </div>
+                                                <div style="margin-bottom:20px">
+                                                    <label class="label-top">End</label>
+                                                    <input name="end" id="end" class="easyui-datebox control-group" >
                                                 </div>
 
 
@@ -135,9 +122,9 @@
                                     </th>
 
                                     <th>Name</th>
-                                    <th>Onset</th>
-                                    <th>Dissemination</th>
-                                    <th>Findings</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Description</th>
                                     <th>Date of study</th>
 
                                     <th></th>
@@ -149,8 +136,13 @@
                                 if (is_array($out) && count($out)) {
                                     foreach ($out as $loop) {
                                         $name = $loop->name;
-                                        $findings = $loop->findings;
+                                        $start = $loop->start;
+                                        $end = $loop->end;
+                                         $participants = $loop->participants;
+                                          $objective = $loop->objective;
                                         $id = $loop->id;
+                                        $role = $loop->role;
+                                        $description = $loop->description;
                                         ?>
 
                                         <tr id="<?php echo $id; ?>" class="edit_tr">
@@ -165,12 +157,12 @@
                                                 <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                                                 <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
                                             </td>
-                                            <td><?= $loop->onset ?></td>
-                                            <td><?= $loop->dissemination ?></td>
+                                            <td><?= $loop->start ?></td>
+                                            <td><?= $loop->end ?></td>
 
                                             <td class="edit_td">
-                                                <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
-                                                <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
+                                                <span id="findings_<?php echo $id; ?>" class="text"><?php echo $description; ?></span>
+                                                <input type="text" value="<?php echo $description; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
                                             </td>
 
                                             <td><?= $loop->dos ?></td>

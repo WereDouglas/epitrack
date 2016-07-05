@@ -312,11 +312,11 @@ class Student extends CI_Controller {
             $contact = $this->input->post('contact');
 
             $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
-           // $this->Md->update($id, $employment, 'employment');
-            $content = json_encode($employment);
+            $this->Md->update($id, $employment, 'employment');
+            //$content = json_encode($employment);
 
-            $pd = array('user' => $this->session->userdata('name'),'country' => $this->session->userdata('country'), 'object' => 'employment', 'content' => $content, 'action' => 'update', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
-            $this->Md->save($pd, 'pending');
+           // $pd = array('user' => $this->session->userdata('name'),'country' => $this->session->userdata('country'), 'object' => 'employment', 'content' => $content, 'action' => 'update', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
+           // $this->Md->save($pd, 'pending');
         }
 
 
@@ -329,7 +329,7 @@ class Student extends CI_Controller {
 
 
         if ($this->input->post('organisation') != "" && $id == "") {
-            $employment = array('organisation' => $organisation, 'studentID' => $studentID, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
+            $employment = array('location'=>$location,'organisation' => $organisation,'startDate'=>$this->input->post('startDate'),'endDate'=>$this->input->post('endDate') , 'studentID' => $studentID, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
             $this->Md->save($employment, 'employment');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
@@ -502,6 +502,15 @@ class Student extends CI_Controller {
             if (!$this->upload->do_upload($file_element_name)) {
                 $status = 'error';
                 echo $msg = $this->upload->display_errors('', '');
+                 $title = $this->input->post('title');
+                $file = " ";
+                 $publication = array('file' => $file, 'author' => $author, 'title' => $title, 'dos' => date('y-m-d'), 'accepted' => 'no', 'verified' => 'false', 'link' => $link, 'abstract' => $abstract, 'country' => $country, 'studentID' => $studentID);
+                $file_id = $this->Md->save($publication, 'publication');
+                $this->session->set_flashdata('msg', '<div class="alert alert-success"><strong>
+                                              publication information saved</strong>									
+						</div>');
+
+                redirect('/student/publication', 'refresh');
             } else {
                 $data = $this->upload->data();
                 $title = $this->input->post('title');
@@ -730,7 +739,7 @@ class Student extends CI_Controller {
         $findings = $this->input->post('findings');
 
         if ($this->input->post('name') != "" && $studentID != "") {
-            $study = array('name' => $name, 'studentID' => $studentID, 'onset' => $onset, 'dissemination' => $dissemination, 'findings' => $findings, 'dos' => date('Y-m-d'));
+            $study = array('name' => $name, 'studentID' => $studentID, 'onset' => $this->input->post('onset'), 'dissemination' => $this->input->post('dissemination'), 'findings' => $findings, 'dos' => date('Y-m-d'));
             $this->Md->save($study, 'study');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
@@ -995,8 +1004,8 @@ class Student extends CI_Controller {
         }
 
         $name = $this->input->post('name');
-        $start = strtotime($this->input->post('start'));
-        $end = strtotime($this->input->post('end'));
+        $start = $this->input->post('start');
+        $end = $this->input->post('end');
         $participants = $this->input->post('participants');
         $objective = $this->input->post('objective');
         $role = $this->input->post('role');

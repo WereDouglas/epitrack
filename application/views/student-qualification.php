@@ -49,10 +49,17 @@
 
                                                     <div class="controls">
                                                         <label>Qualification name</label>
-                                                        <span class="span12 "><input type="text" class="span12"  id="name" name="name"   /></span>
-                                                        <label>Awarding Institute</label> <span class="span12 "><input type="text" class="span12"  id="institute" name="institute"   /></span>
-                                      
+                                                        <span class="span12 ">
+                                                            <input type="text" class="span12"  id="name" name="name"   /></span>
+                                                        
                           
+                                                    </div>
+                                                    <div class="controls">
+                                                        
+                                                        <label>Awarding Institute</label> 
+                                                        <span class="span12 "><input type="text" class="span12"  id="institute" name="institute"   /></span>
+                                      
+                                                        
                                                     </div>
                                                 </div>                                            
 

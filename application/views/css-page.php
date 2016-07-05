@@ -21,6 +21,12 @@
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/daterangepicker.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/colorpicker.css" />
 
+<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>css/easyui.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>css/icon.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>css/demo.css">
+    <script type="text/javascript" src="<?= base_url(); ?>js/jquery.js"></script>
+    <script type="text/javascript" src="<?= base_url(); ?>js/jquery.easyui.min.js"></script>
+
 
  <!-- Bootstrap 3.3.4 -->
     <link href="<?= base_url(); ?>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

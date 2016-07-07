@@ -367,7 +367,7 @@
                                                     <option value="Other" />Other
                                                 </select>
                                             </div>
-                                              <div class="widget-main">
+                                            <div class="widget-main">
 
                                                 <input multiple="" type="file" name="userfile" id="id-input-file-3" />
 
@@ -439,9 +439,18 @@
                                         <?php
                                         if (is_array($presentations) && count($presentations)) {
                                             foreach ($presentations as $loop) {
-                                                $name = $loop->eventName;
-                                                $type = $loop->eventType;
+                                                $eventName = $loop->eventName;
+                                                $title = $loop->title;
+                                                $date = $loop->date;
+                                                $location = $loop->location;
+                                                $eventType = $loop->eventType;
+                                                $country = $loop->country;
                                                 $summary = $loop->summary;
+                                                $submissionDate = $loop->submissionDate;
+                                                $accepted = $loop->accepted;
+                                                $presentationType = $loop->presentationType;
+                                                $author = $loop->author;
+                                                $presenter = $loop->presenter;
 
                                                 $id = $loop->id;
                                                 ?>  
@@ -454,27 +463,68 @@
                                                         </label>
                                                     </td>
                                                     <td class="edit_td">
-                                                        <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                                                        <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
+                                                        <span id="title_<?php echo $id; ?>" class="text"><?php echo $title; ?></span>
+                                                        <input type="text" value="<?php echo $title; ?>" class="editbox" id="title_input_<?php echo $id; ?>"
                                                     </td>
-                                                    <td class="center ">
-                                                        <?php echo $type ?>
+                                                    <td class="edit_td">
+                                                        <span id="type_<?php echo $id; ?>" class="text"><?php echo $type; ?></span>
+        <!--                                                        <input type="text" value="<?php echo $type; ?>" class="editbox" id="type_input_<?php echo $id; ?>"
+                                                        --> 
+                                                        <select  name="type" class="editbox" id="type_input_<?php echo $id; ?>" >
+                                                            <option value="<?php echo $type; ?>" title="<?php echo $type; ?>"><?php echo $type; ?></option>
+                                                            <option value="Oral" />Oral
+                                                            <option value="Poster" />Poster
+                                                        </select>
+                                                    </td>   
+                                                    <td class="edit_td">
+                                                        <span id="eventName_<?php echo $id; ?>" class="text"><?php echo $eventName; ?></span>
+                                                        <input type="text" value="<?php echo $eventName; ?>" class="editbox" id="eventName_input_<?php echo $id; ?>"
                                                     </td>
-                                                    <td class="center ">
-                                                        <?php echo $loop->eventName ?>
+                                                    <td class="edit_td">
+                                                        <span id="presentationType_<?php echo $id; ?>" class="text"><?php echo $presentationType; ?></span>                                              <select  name="type" class="editbox" id="type_input_<?php echo $id; ?>" >
+                                                            <option value="<?php echo $presentationType; ?>" title="<?php echo $presentationType; ?>"><?php echo $presentationType; ?></option>
+                                                            <option value="Oral" />Oral
+                                                            <option value="Poster" />Poster
+                                                        </select>
+                                                    </td>  
+                                                    <td class="edit_td">
+
+                                                        <span id="summary_<?php echo $id; ?>" class="text">
+                                                            <?php
+                                                            //echo $abstract;
+                                                            // strip tags to avoid breaking any html
+                                                            $string = strip_tags($summary);
+
+                                                            if (strlen($string) > 5) {
+
+                                                                // truncate string
+                                                                $stringCut = substr($string, 0, 5);
+
+                                                                // make sure it ends in a word so assassinate doesn't become ass...
+                                                                $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '... <a href="' . base_url() . "index.php/student/finding/" . $loop->id . '">Read More</a>';
+                                                            }
+                                                            echo $string;
+                                                            ?>
+                                                        </span>
+                                                        <textarea type="text" value="<?php echo $summary; ?>" class="editbox" id="summary_input_<?php echo $id; ?>"><?php echo $summary; ?></textarea>
+
+
+
                                                     </td>
-                                                    <td class="center ">
-                                                        <?php echo $loop->presentationType ?>
+                                                    <td class="edit_td">
+                                                        <span id="date_<?php echo $id; ?>" class="text"><?php echo $date; ?></span>
+                                                        <input class="span10 date-picker editbox" id="date_input_<?php echo $id; ?>" value="<?php echo $date; ?>"  type="text" name="date" data-date-format="yyyy-mm-dd" />
+                                                        <span class="add-on">
+                                                            <i class="icon-calendar"></i>
+                                                        </span>
                                                     </td>
-                                                    <td class="center ">
-                                                        <?php echo $loop->summary ?>
-                                                    </td>
-                                                    <td class="center ">
-                                                        <?php echo $loop->date ?>
-                                                    </td>
-                                                    <td class="center ">
-                                                        <?php echo $loop->accepted ?>
-                                                    </td>
+                                                    <td class="edit_td">
+                                                        <span id="accepted_<?php echo $id; ?>" class="text"><?php echo $accepted; ?></span>                                              <select  name="type" class="editbox" id="type_input_<?php echo $id; ?>" >
+                                                            <option value="<?php echo $accepted; ?>" title="<?php echo $accepted; ?>"><?php echo $accepted; ?></option>
+                                                            <option value="Yes" />Yes
+                                                            <option value="No" />No
+                                                        </select>
+                                                    </td>  
                                                     <td class="center ">
                                                         <?php echo $loop->dos ?>
                                                     </td>
@@ -782,6 +832,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
     });
 </script>
+<?php require_once(APPPATH . 'views/js-page.php'); ?>
 <script type="text/javascript">
     $(document).ready(function ()
     {
@@ -790,56 +841,74 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $(".edit_tr").click(function ()
         {
             var ID = $(this).attr('id');
-            $("#fname" + ID).hide();
-            $("#fname_input_" + ID).show();
+            $("#eventName_" + ID).hide();
+            $("#country_" + ID).hide();
+            $("#location_" + ID).hide();
+            $("#date_" + ID).hide();
+            $("#eventType_" + ID).hide();
+            $("#summary_" + ID).hide();
+            $("#submissionDate_" + ID).hide();
+            $("#accepted_" + ID).hide();
+            $("#presentationType_" + ID).hide();
+            $("#author_" + ID).hide();
+            $("#presenter_" + ID).hide();
 
-            $("#lname" + ID).hide();
-            $("#lname_input_" + ID).show();
-
-            $("#contact" + ID).hide();
-            $("#contact_input_" + ID).show();
-
-
-            $("#email" + ID).hide();
-            $("#email_input_" + ID).show();
-
-            $("#other" + ID).hide();
-            $("#other_input_" + ID).show();
-
-
-
+            $("#location_input_" + ID).show();
+            $("#eventName_input_" + ID).show();
+            $("#country_input_" + ID).show();
+            $("#date_input_" + ID).show();
+            $("#eventType_input_" + ID).show();
+            $("#summary_input_" + ID).show();
+            $("#submissionDate_input_" + ID).show();
+            $("#accepted_input_" + ID).show();
+            $("#presentationType_input_" + ID).show();
+            $("#author_input_" + ID).show();
+            $("#presenter_input_" + ID).show();
 
         }).change(function ()
         {
             var ID = $(this).attr('id');
-            var fname = $("#fname_input_" + ID).val();
-            var lname = $("#lname_input_" + ID).val();
-            var contact = $("#contact_input_" + ID).val();
-            var email = $("#email_input_" + ID).val();
-            var other = $("#other_input_" + ID).val();
+            var eventName = $("#eventName_input_" + ID).val();
+            var location = $("#location_input_" + ID).val();
+            var country = $("#country_input_" + ID).val();
+            var date = $("#date_input_" + ID).val();
+            var eventType = $("#eventType_input_" + ID).val();
+            var summary = $("#summary_input_" + ID).val();
+            var submissionDate = $("#submissionDate_input_" + ID).val();
+            var accepted = $("#accepted_input_" + ID).val();
+            var presentationType = $("#presentationType_input_" + ID).val();
+            var author = $("#author_input_" + ID).val();
+            var presenter = $("#presenter_input_" + ID).val();
 
-            var dataString = 'id=' + ID + '&fname=' + fname + '&lname=' + lname + '&contact=' + contact + '&email=' + email + '&other=' + other;
-            $("#fname_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#lname_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#contact_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#email_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#other_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            var dataString = 'id=' + ID + '&accepted=' + accepted + '&presentationType=' + presentationType + '&presenter=' + presenter + '&author=' + author + '&eventName=' + eventName + '&location=' + location + '&country=' + country + '&date=' + date + '&eventType=' + eventType + '&summary=' + summary + '&submissionDate=' + submissionDate;
+            $("#eventName_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#location_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#country_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#date_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#eventType_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#summary_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
 
-            if (fname.length > 0 && lname.length > 0)
+            if (eventName.length > 0 && summary.length > 0)
             {
 
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url() . "index.php/management/student/update/"; ?>",
+                    url: "<?php echo base_url() . "index.php/student/presentation/update/"; ?>",
                     data: dataString,
                     cache: false,
                     success: function (html)
                     {
-                        $("#fname_" + ID).html(fname);
-                        $("#lname_" + ID).html(lname);
-                        $("#contact_" + ID).html(contact);
-                        $("#email_" + ID).html(email);
-                        $("#other_" + ID).html(other);
+                        $("#eventName_" + ID).html(eventName);
+                        $("#location_" + ID).html(location);
+                        $("#country_" + ID).html(country);
+                        $("#date_" + ID).html(date);
+                        $("#eventType_" + ID).html(eventType);
+                        $("#summary_" + ID).html(summary);
+                        $("#submissionDate_" + ID).html(submissionDate);
+                        $("#accepted_" + ID).html(accepted);
+                        $("#presentationType_" + ID).html(presentationType);
+                        $("#author_" + ID).html(author);
+                        $("#presenter_" + ID).html(presenter);
 
                     }
                 });
@@ -865,5 +934,4 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
     });
 </script>
-<?php require_once(APPPATH . 'views/js-page.php'); ?>
 

@@ -451,7 +451,7 @@
         <!--                                                        <input type="text" value="<?php echo $region; ?>" class="editbox" id="region_input_<?php echo $id; ?>"-->
 
                                                         <select   name="country" class="editbox" id="region_input_<?php echo $id; ?>" >                                                            
-                                                            <option value="" title=""></option>
+                                                            <option value="<?php echo $region; ?>" title="<?php echo $region; ?>"><?php echo $region; ?></option>                                                          
                                                             <option value="Afghanistan" title="Afghanistan">Afghanistan</option>
                                                             <option value="Åland Islands" title="Åland Islands">Åland Islands</option>
                                                             <option value="Albania" title="Albania">Albania</option>
@@ -1038,16 +1038,15 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $(".edit_tr").click(function ()
         {
             var ID = $(this).attr('id');
-            $("#name" + ID).hide();
-            $("#name_input_" + ID).show();
-
-            $("#finding" + ID).hide();
-            $("#finding_input_" + ID).show();
-
-            $("#region" + ID).hide();
-            $("#region_input_" + ID).show();
-
-            $("#type" + ID).hide();
+            $("#name_" + ID).hide();
+             $("#finding_" + ID).hide();
+             $("#region_" + ID).hide();
+             $("#type_" + ID).hide();
+             
+             
+            $("#name_input_" + ID).show();           
+            $("#finding_input_" + ID).show();            
+            $("#region_input_" + ID).show();            
             $("#type_input_" + ID).show();
 
 
@@ -1059,10 +1058,10 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             var ID = $(this).attr('id');
             var name = $("#name_input_" + ID).val();
             var finding = $("#finding_input_" + ID).val();
-            var institute = $("#region_input_" + ID).val();
+            var region = $("#region_input_" + ID).val();
             var type = $("#type_input_" + ID).val();
 
-            var dataString = 'id=' + ID + '&name=' + name + '&region=' + institute + '&finding=' + finding + '&type=' + type;
+            var dataString = 'id=' + ID + '&name=' + name + '&region=' + region + '&finding=' + finding + '&type=' + type;
             $("#name_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             $("#region_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             $("#finding_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
@@ -1079,7 +1078,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                     success: function (html)
                     {
                         $("#name_" + ID).html(name);
-                        $("#region_" + ID).html(institute);
+                        $("#region_" + ID).html(region);
                         $("#finding_" + ID).html(finding);
                         $("#type_" + ID).html(type);
 

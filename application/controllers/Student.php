@@ -73,7 +73,7 @@ class Student extends CI_Controller {
                     //update the values
                     $student = array($field_name => $val);
                     $this->Md->update($user_id, $student, 'student');
-                     echo "Updated";
+                    echo "Updated";
                 } else {
                     echo "Invalid Requests";
                 }
@@ -254,8 +254,7 @@ class Student extends CI_Controller {
             $contact = $this->input->post('contact');
             $id = $this->input->post('id');
 
-
-            $contact = array('contact' => $contact);
+            $contact = array('contact' => $contact, 'type' => $this->input->post('type'));
             $this->Md->update($id, $contact, 'contact');
         }
 
@@ -347,7 +346,7 @@ class Student extends CI_Controller {
             $sector = $this->input->post('sector');
             $contact = $this->input->post('contact');
 
-            $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
+            $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'startDate' => $this->input->post('startDate'), 'endDate' => $this->input->post('endDate'), 'created' => date('Y-m-d'));
             $this->Md->update($id, $employment, 'employment');
             //$content = json_encode($employment);
             // $pd = array('user' => $this->session->userdata('name'),'country' => $this->session->userdata('country'), 'object' => 'employment', 'content' => $content, 'action' => 'update', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
@@ -510,11 +509,11 @@ class Student extends CI_Controller {
         if ($action == 'update') {
 
             $this->load->helper(array('form', 'url'));
+            $id = $this->input->post('id');
+            $pub = array('title' => $this->input->post('title'), 'link' => $this->input->post('link'), 'abstract' => $this->input->post('abstract'));
+            $this->Md->update($id, $pub, 'publication');
 
-            $title = $this->input->post('title');
-
-            $advert = array('title' => $title);
-            $this->Md->update($id, $advert, 'advert');
+            return;
         }
 
 
@@ -816,10 +815,10 @@ class Student extends CI_Controller {
             $this->load->helper(array('form', 'url'));
             $name = $this->input->post('name');
             $institute = $this->input->post('institute');
-            $id = $this->input->post('id');
 
+            $id = $this->input->post('id');
             $verified = 'False';
-            $qualification = array('name' => $name, 'institute' => $institute, 'created' => date('Y-m-d'));
+            $qualification = array('name' => $name, 'institute' => $institute, 'completion' => $this->input->post('completion'), 'graduation' => $this->input->post('graduation'), 'created' => date('Y-m-d'));
             $this->Md->update($id, $qualification, 'qualification');
         }
 
@@ -895,7 +894,7 @@ class Student extends CI_Controller {
             $id = $this->input->post('id');
             $verified = 'false';
 
-            $survey = array('name' => $name,'region' => $region,'finding' => $finding ,'verified' => $verified, 'created' => date('Y-m-d'));
+            $survey = array('name' => $name, 'region' => $region, 'type' => $type, 'finding' => $finding, 'verified' => $verified, 'created' => date('Y-m-d'));
             $this->Md->update($id, $survey, 'surveillance');
             return;
         }
@@ -958,16 +957,10 @@ class Student extends CI_Controller {
         if ($action == 'update') {
 
             $this->load->helper(array('form', 'url'));
-            $organisation = $this->input->post('organisation');
-            $position = $this->input->post('position');
             $id = $this->input->post('id');
-            $country = $this->input->post('country');
-            $location = $this->input->post('location');
-            $sector = $this->input->post('sector');
-            $contact = $this->input->post('contact');
-
-            $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
-            $this->Md->update($id, $employment, 'employment');
+            $out = array('name' => $this->input->post('name'), 'country' => $this->input->post('country'), 'region' => $this->input->post('region'), 'max' => $this->input->post('max'), 'min' => $this->input->post('min'), 'onset' => $this->input->post('onset'), 'dates' =>$this->input->post('dates'), 'lab' =>$this->input->post('lab'), 'confirm' =>$this->input->post('confirm'), 'etiology' =>$this->input->post('etiology'), 'findings' =>$this->input->post('findings'));
+            $this->Md->update($id, $out, 'outbreak');
+            return;
         }
 
         $name = $this->input->post('name');

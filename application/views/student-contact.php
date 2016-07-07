@@ -73,8 +73,8 @@
                 foreach ($contacts as $loop) {
                     $contact = $loop->contact;
                     $id = $loop->id;
-                    ?>  
-
+                    $type = $loop->type;
+                    ?> 
                     <tr id="<?php echo $id; ?>" class="edit_tr">
                         <td class="center ">
                             <label>
@@ -84,10 +84,23 @@
                         </td>
 
                         <td class="edit_td">
-                            <span id="cohort_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
+                            <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
                             <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
                         </td>
-                        <td><?= $loop->type ?></td>
+                        <td>
+                            <span id="type_<?php echo $id; ?>" class="text"><?php echo $type; ?></span>
+
+                            <select  name="type" class="editbox" id="type_input_<?php echo $id; ?>" >
+                                <option value="<?php echo $type; ?>"><?php echo $type; ?></option>  
+                                <option value="E-mail" >E-mail</option>  
+                                <option value="Physical" >Physical</option>  
+                                <option value="Mobile" >Mobile phone</option>  
+                                <option value="office" >Office </option>  
+                                <option value="land line" >Land line</option>  
+                                <option value="fax" >Fax</option>
+                            </select>  
+
+                        </td>
 
                         <td><?= $loop->created ?></td>
 
@@ -119,15 +132,24 @@
         $(".edit_tr").click(function ()
         {
             var ID = $(this).attr('id');
-            $("#contact" + ID).hide();
-            $("#contact_input_" + ID).show();
+            $("#contact_" + ID).hide();
+            $("#type_" + ID).hide();
+            
+            
+            $("#contact_input_" + ID).show();            
+            $("#type_input_" + ID).show();
 
         }).change(function ()
         {
             var ID = $(this).attr('id');
             var contact = $("#contact_input_" + ID).val();
-            var dataString = 'id=' + ID + '&contact=' + contact;
+            var types = $("#type_input_" + ID).val();
+
+
+
+            var dataString = 'id=' + ID + '&contact=' + contact + '&type=' + types;
             $("#contact_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#type_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
 
             if (contact.length > 0)
             {
@@ -140,6 +162,7 @@
                     success: function (html)
                     {
                         $("#contact_" + ID).html(contact);
+                        $("#type_" + ID).html(types);
 
                     }
                 });

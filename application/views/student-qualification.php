@@ -1,75 +1,75 @@
 <?php require_once(APPPATH . 'views/css-page.php'); ?>
-           <div class="col-xs-12">
-                <h3>Qualifications</h3>
-            <?php echo $this->session->flashdata('msg'); ?>
-            <div class="row-fluid">
-                <div class="span12 widget-container-span">
+<div class="col-xs-12">
+    <h3>Qualifications</h3>
+    <?php echo $this->session->flashdata('msg'); ?>
+    <div class="row-fluid">
+        <div class="span12 widget-container-span">
 
-                    <div class="">
+            <div class="">
 
-                        <div class="">
-                            <div class="btn-toolbar ">
-                                
-                                <div class="btn-group">
-                                    <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
+                <div class="">
+                    <div class="btn-toolbar ">
 
-                                        <button class="btn btn-small btn-success">
-                                            <i class="icon-save bigger-125"></i>
-                                            Add
-                                        </button></a>
-                                    <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
+                        <div class="btn-group">
+                            <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
 
-                                        <button class="btn btn-small btn-danger">
-                                            <i class="icon-list bigger-110"></i>
-                                            List
-                                        </button>
-                                    </a>
-                                   
-                                </div>                        
-                            </div>
-                        </div>
+                                <button class="btn btn-small btn-success">
+                                    <i class="icon-save bigger-125"></i>
+                                    Add
+                                </button></a>
+                            <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
 
+                                <button class="btn btn-small btn-danger">
+                                    <i class="icon-list bigger-110"></i>
+                                    List
+                                </button>
+                            </a>
+
+                        </div>                        
                     </div>
+                </div>
+
+            </div>
 
 
 
-                    <div class="widget-main ">
-                        <div id="accordion2" class="accordion">              
+            <div class="widget-main ">
+                <div id="accordion2" class="accordion">              
 
-                            <div class="accordion-group">
+                    <div class="accordion-group">
 
 
-                                <div class="accordion-body collapse" id="collapseTwo">
-                                    <div class="accordion-inner">
-                                        <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/qualification'  method="post">            
+                        <div class="accordion-body collapse" id="collapseTwo">
+                            <div class="accordion-inner">
+                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/qualification'  method="post">            
 
-                                            <div class="span6">  
+                                    <div class="span6">  
 
-                                                <div class="control-group">
+                                        <div class="control-group">
 
-                                                    <div class="controls">
-                                                        <label>Qualification name</label>
-                                                        <span class="span12 ">
-                                                            <input type="text" class="span12"  id="name" name="name"   /></span>
-                                                        
-                          
-                                                    </div>
-                                                    <div class="controls">
-                                                        
-                                                        <label>Awarding Institute</label> 
-                                                        <span class="span12 "><input type="text" class="span12"  id="institute" name="institute"   /></span>
-                                      
-                                                        
-                                                    </div>
-                                                </div>                                            
+                                            <div class="controls">
+                                                <label>Qualification name</label>
+                                                <span class="span12 ">
+                                                    <input type="text" class="span12"  id="name" name="name"   /></span>
+
 
                                             </div>
-                                                        <div class="span6">  
+                                            <div class="controls">
 
-                                                <div class="control-group">
+                                                <label>Awarding Institute</label> 
+                                                <span class="span12 "><input type="text" class="span12"  id="institute" name="institute"   /></span>
 
-                                                    <div class="controls">
-                                                                  <div class="row-fluid">
+
+                                            </div>
+                                        </div>                                            
+
+                                    </div>
+                                    <div class="span6">  
+
+                                        <div class="control-group">
+
+                                            <div class="controls">
+                                                <div class="row-fluid">
                                                     <label for="id-date-picker-1">Date of completion</label>
                                                 </div>
 
@@ -81,7 +81,7 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                               <div class="row-fluid">
+                                                <div class="row-fluid">
                                                     <label for="id-date-picker-1">Date of graduation</label>
                                                 </div>
 
@@ -93,118 +93,131 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                          
-                                                    </div>
-                                                </div>
-                                                <div class="">
-                                                    <button class="btn btn-info" type="submit">
-                                                        <i class="icon-ok bigger-110"></i>
-                                                        Submit
-                                                    </button>
-
-                                                    <button class="btn" type="reset">
-                                                        <i class="icon-undo bigger-110"></i>
-                                                        Reset
-                                                    </button>
-                                                </div>
 
                                             </div>
-
-                                        </form>	
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-group">
-                                <div class="accordion-body collapsed" id="collapseThree">
-                                    <div class="accordion-inner">
-                                        <div class="alert alert-danger">Select a field to edit the content</div>                     
-
-
-                                    
-                                            <table id="example1" class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center">
-                                                            <label>
-                                                                <input type="checkbox" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </th>
-
-                                                        <th>Name</th>
-                                                        <th>institute</th>
-                                                        <th>Year of completion</th>   
-                                                        <th>Graduation</th>   
-                                                        <th>verified</th> 
-                                                         <th>submitted</th> 
-                                                      
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <?php
-                                                    if (is_array($qualifications) && count($qualifications)) {
-                                                        foreach ($qualifications as $loop) {
-                                                            $name = $loop->name;
-                                                            $institute = $loop->institute;
-                                                            $id = $loop->id;
-                                                            ?>  
-
-                                                            <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                                <td class="center ">
-                                                                    <label>
-                                                                        <input type="checkbox" />
-                                                                        <span class="lbl"></span>
-                                                                    </label>
-                                                                </td>
-
-                                                                <td class="edit_td">
-                                                                    <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                                                                    <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                  <td class="edit_td">
-                                                                    <span id="institute_<?php echo $id; ?>" class="text"><?php echo $institute; ?></span>
-                                                                    <input type="text" value="<?php echo $institute; ?>" class="editbox" id="institute_input_<?php echo $id; ?>"
-                                                                </td>   
-                                                                <td><?= $loop->completion ?></td>
-                                                                 <td><?= $loop->graduation ?></td>
-
-                                                                                                                     
-
-                                                                <td><?= $loop->verified ?></td>
-                                                                 <td><?= $loop->created ?></td>
-
-                                                                <td class="td-actions">
-
-                                                                    <a href="<?php echo base_url() . "index.php/student/qualification/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="icon-trash bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <?php
-                                                        }
-                                                    }
-                                                    ?>
-
-
-
-                                                </tbody>
-                                            </table>  
                                         </div>
-                                </div>
+                                        <div class="">
+                                            <button class="btn btn-info" type="submit">
+                                                <i class="icon-ok bigger-110"></i>
+                                                Submit
+                                            </button>
+
+                                            <button class="btn" type="reset">
+                                                <i class="icon-undo bigger-110"></i>
+                                                Reset
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                </form>	
                             </div>
                         </div>
                     </div>
 
+                    <div class="accordion-group">
+                        <div class="accordion-body collapsed" id="collapseThree">
+                            <div class="accordion-inner">
+                                <div class="alert alert-danger">Select a field to edit the content</div>                     
+
+
+
+                                <table id="example1" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="center">
+                                                <label>
+                                                    <input type="checkbox" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </th>
+
+                                            <th>Name</th>
+                                            <th>institute</th>
+                                            <th>Year of completion</th>   
+                                            <th>Graduation</th>   
+                                            <th>verified</th> 
+                                            <th>submitted</th> 
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        if (is_array($qualifications) && count($qualifications)) {
+                                            foreach ($qualifications as $loop) {
+                                                $name = $loop->name;
+                                                $institute = $loop->institute;
+                                                $completion = $loop->completion;
+                                                $graduation = $loop->graduation;
+                                                $id = $loop->id;
+                                                ?>  
+
+                                                <tr id="<?php echo $id; ?>" class="edit_tr">
+                                                    <td class="center ">
+                                                        <label>
+                                                            <input type="checkbox" />
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </td>
+
+                                                    <td class="edit_td">
+                                                        <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
+                                                        <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
+                                                    </td>
+                                                    <td class="edit_td">
+                                                        <span id="institute_<?php echo $id; ?>" class="text"><?php echo $institute; ?></span>
+                                                        <input type="text" value="<?php echo $institute; ?>" class="editbox" id="institute_input_<?php echo $id; ?>"
+                                                    </td>   
+                                                    <td class="edit_td">
+                                                        <span id="completion_<?php echo $id; ?>" class="text"><?php echo $completion; ?></span>
+                                                        <input class="span10 date-picker editbox" id="completion_input_<?php echo $id; ?>" value="<?php echo $completion; ?>"  type="text" name="date" data-date-format="yyyy-mm-dd" />
+                                                        <span class="add-on">
+                                                            <i class="icon-calendar"></i>
+                                                        </span>
+                                                    </td>
+                                                    <td class="edit_td">
+                                                        <span id="graduation_<?php echo $id; ?>" class="text"><?php echo $graduation; ?></span>
+                                                        <input class="span10 date-picker editbox" id="graduation_input_<?php echo $id; ?>" value="<?php echo $graduation; ?>"  type="text" name="date" data-date-format="yyyy-mm-dd" />
+                                                        <span class="add-on">
+                                                            <i class="icon-calendar"></i>
+                                                        </span>                                                        
+                                                    </td>
+
+
+                                                    <td><?= $loop->verified ?></td>
+                                                    <td><?= $loop->created ?></td>
+
+                                                    <td class="td-actions">
+
+                                                        <a href="<?php echo base_url() . "index.php/student/qualification/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                            <span class="red">
+                                                                <i class="icon-trash bigger-120"></i>
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+
+
+
+                                    </tbody>
+                                </table>  
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-       
+        </div>
+    </div>
+</div>
+
+
 
 
 <!--<![endif]-->
@@ -268,8 +281,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                 inp.setAttribute('readonly', 'true');
                 inp.removeAttribute('disabled');
                 inp.value = "This text field is readonly!";
-            }
-            else {
+            } else {
                 inp.setAttribute('disabled', 'disabled');
                 inp.removeAttribute('readonly');
                 inp.value = "This text field is disabled!";
@@ -282,7 +294,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $('[data-rel=tooltip]').tooltip({container: 'body'});
         $('[data-rel=popover]').popover({container: 'body'});
 
-       
+
 
         $.mask.definitions['~'] = '[+-]';
         $('.input-mask-date').mask('99/99/9999');
@@ -418,8 +430,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                             //IE8 and browsers that don't support File Object
                             if (!(/\.(jpe?g|png|gif|bmp)$/i).test(file))
                                 return false;
-                        }
-                        else {
+                        } else {
                             var type = $.trim(file.type);
                             if ((type.length > 0 && !(/^image\/(jpe?g|png|gif|bmp)$/i).test(type))
                                     || (type.length == 0 && !(/\.(jpe?g|png|gif|bmp)$/i).test(file.name))//for android's default browser which gives an empty string for file.type
@@ -434,8 +445,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
                     return allowed_files;
                 }
-            }
-            else {
+            } else {
                 btn_choose = "Drop files here or click to choose";
                 no_icon = "icon-cloud-upload";
                 before_change = function (files, dropped) {
@@ -502,13 +512,17 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $(".edit_tr").click(function ()
         {
             var ID = $(this).attr('id');
-            $("#name" + ID).hide();
+            $("#name_" + ID).hide();
+            $("#institute_" + ID).hide();
+            $("#graduation_" + ID).hide();
+            $("#completion_" + ID).hide();
+
             $("#name_input_" + ID).show();
-
-            $("#institute" + ID).hide();
             $("#institute_input_" + ID).show();
+            $("#completion_input_" + ID).show();
+            $("#graduation_input_" + ID).show();
 
-            
+
 
 
 
@@ -517,11 +531,14 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             var ID = $(this).attr('id');
             var name = $("#name_input_" + ID).val();
             var institute = $("#institute_input_" + ID).val();
-            
-            var dataString = 'id=' + ID + '&name=' + name + '&institute=' + institute;
+            var completion = $("#completion_input_" + ID).val();
+            var graduation = $("#graduation_input_" + ID).val();
+
+            var dataString = 'id=' + ID + '&name=' + name + '&institute=' + institute + '&completion=' + completion + '&graduation=' + graduation;
             $("#name_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             $("#institute_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            
+            $("#graduation_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />');
+            $("#completion_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />');
             if (name.length > 0 && institute.length > 0)
             {
 
@@ -534,11 +551,12 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                     {
                         $("#name_" + ID).html(name);
                         $("#institute_" + ID).html(institute);
-                      
+                          $("#graduation_" + ID).html(graduation);
+                            $("#completion_" + ID).html(completion);
+
                     }
                 });
-            }
-            else
+            } else
             {
                 alert('Enter something.');
             }

@@ -12,7 +12,7 @@
             <div class="control-group">
                 <select id="type" name="type" >                                                            
 
-                    <option value="e-mail" />E-mail
+                    <option value="E-mail" />E-mail
                     <option value="Physical" />Physical
                     <option value="Mobile" />Mobile phone
                     <option value="office" />Office 

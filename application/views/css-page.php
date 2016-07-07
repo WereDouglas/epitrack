@@ -12,7 +12,7 @@
 
 <!--ace styles-->
 
-
+<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/jquery-ui-1.10.3.custom.min.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/chosen.css" />
@@ -42,7 +42,7 @@
          folder instead of downloading all of them to reduce the load. -->
     <link href="<?= base_url(); ?>dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
-<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
+
 <?php
 function limit_words($string, $word_limit){
     $words = explode(" ",$string);

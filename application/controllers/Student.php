@@ -47,6 +47,42 @@ class Student extends CI_Controller {
         $this->load->view('student-home', $data);
     }
 
+    public function update() {
+
+        $this->load->helper(array('form', 'url'));
+        $id = $this->input->post('id');
+        $student = array('fname' => $this->input->post('fname'), 'lname' => $this->input->post('lname'), 'contact' => $this->input->post('contact'));
+        $this->Md->update($id, $student, 'student');
+        $this->session->set_flashdata('msg', '<div class="alert alert-info"> <strong>   Information updated	</strong><div>');
+    }
+
+    public function updater() {
+        $this->load->helper(array('form', 'url'));
+
+        if (!empty($_POST)) {
+
+            foreach ($_POST as $field_name => $val) {
+                //clean post values
+                $field_id = strip_tags(trim($field_name));
+                $val = strip_tags(trim(mysql_real_escape_string($val)));
+                //from the fieldname:user_id we need to get user_id
+                $split_data = explode(':', $field_id);
+                $user_id = $split_data[1];
+                $field_name = $split_data[0];
+                if (!empty($user_id) && !empty($field_name) && !empty($val)) {
+                    //update the values
+                    $student = array($field_name => $val);
+                    $this->Md->update($user_id, $student, 'student');
+                     echo "Updated";
+                } else {
+                    echo "Invalid Requests";
+                }
+            }
+        } else {
+            echo "Invalid Requests";
+        }
+    }
+
     public function register() {
 
 
@@ -294,7 +330,7 @@ class Student extends CI_Controller {
                                                 <strong>
                                                   Action pending review ' . $this->session->userdata('level') . '	</strong>									
 						</div>');
-                $pd = array('user' => $this->session->userdata('name'),'country' => $this->session->userdata('country'), 'object' => 'employment', 'content' => ' ', 'action' => 'delete', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
+                $pd = array('user' => $this->session->userdata('name'), 'country' => $this->session->userdata('country'), 'object' => 'employment', 'content' => ' ', 'action' => 'delete', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
                 $file_id = $this->Md->save($pd, 'pending');
 
                 redirect('/student/employment', 'refresh');
@@ -314,9 +350,8 @@ class Student extends CI_Controller {
             $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
             $this->Md->update($id, $employment, 'employment');
             //$content = json_encode($employment);
-
-           // $pd = array('user' => $this->session->userdata('name'),'country' => $this->session->userdata('country'), 'object' => 'employment', 'content' => $content, 'action' => 'update', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
-           // $this->Md->save($pd, 'pending');
+            // $pd = array('user' => $this->session->userdata('name'),'country' => $this->session->userdata('country'), 'object' => 'employment', 'content' => $content, 'action' => 'update', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
+            // $this->Md->save($pd, 'pending');
         }
 
 
@@ -329,7 +364,7 @@ class Student extends CI_Controller {
 
 
         if ($this->input->post('organisation') != "" && $id == "") {
-            $employment = array('location'=>$location,'organisation' => $organisation,'startDate'=>$this->input->post('startDate'),'endDate'=>$this->input->post('endDate') , 'studentID' => $studentID, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
+            $employment = array('location' => $location, 'organisation' => $organisation, 'startDate' => $this->input->post('startDate'), 'endDate' => $this->input->post('endDate'), 'studentID' => $studentID, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
             $this->Md->save($employment, 'employment');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
@@ -502,9 +537,9 @@ class Student extends CI_Controller {
             if (!$this->upload->do_upload($file_element_name)) {
                 $status = 'error';
                 echo $msg = $this->upload->display_errors('', '');
-                 $title = $this->input->post('title');
+                $title = $this->input->post('title');
                 $file = " ";
-                 $publication = array('file' => $file, 'author' => $author, 'title' => $title, 'dos' => date('y-m-d'), 'accepted' => 'no', 'verified' => 'false', 'link' => $link, 'abstract' => $abstract, 'country' => $country, 'studentID' => $studentID);
+                $publication = array('file' => $file, 'author' => $author, 'title' => $title, 'dos' => date('y-m-d'), 'accepted' => 'no', 'verified' => 'false', 'link' => $link, 'abstract' => $abstract, 'country' => $country, 'studentID' => $studentID);
                 $file_id = $this->Md->save($publication, 'publication');
                 $this->session->set_flashdata('msg', '<div class="alert alert-success"><strong>
                                               publication information saved</strong>									
@@ -632,14 +667,13 @@ class Student extends CI_Controller {
 
             $publication = array('verified' => $active);
             $this->Md->update($id, $publication, 'publication');
-        
-         } else {
-                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+        } else {
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
                                                  You cannot carry out this action ' . '	</strong>									
 						</div>');
-              // redirect('/management/tracks', 'refresh');
-            }
+            // redirect('/management/tracks', 'refresh');
+        }
     }
 
     public function activate() {
@@ -859,17 +893,17 @@ class Student extends CI_Controller {
             $region = $this->input->post('region');
             $finding = $this->input->post('finding');
             $id = $this->input->post('id');
-
             $verified = 'false';
 
-            $survey = array('name' => $name, 'type' => $type, 'verified' => $verified, 'created' => date('Y-m-d'));
+            $survey = array('name' => $name,'region' => $region,'finding' => $finding ,'verified' => $verified, 'created' => date('Y-m-d'));
             $this->Md->update($id, $survey, 'surveillance');
+            return;
         }
 
 
         $name = $this->input->post('name');
         $type = $this->input->post('type');
-        $region = $this->input->post('region');
+        $region = $this->input->post('country');
         $date = $this->input->post('date');
         $finding = $this->input->post('finding');
         $verified = 'false';
@@ -1030,24 +1064,6 @@ class Student extends CI_Controller {
         }
 
         $this->load->view('student-course', $data);
-    }
-
-    public function update() {
-
-        $this->load->helper(array('form', 'url'));
-        $id = $this->input->post('id');
-        $title = $this->input->post('title');
-        $description = $this->input->post('description');
-
-        // function update($id, $data,$table)
-        $profile = array('title' => $title, 'description' => $description);
-        $this->Md->update($id, $profile, 'profile');
-        $this->session->set_flashdata('msg', '<div class="alert alert-info"> <strong>
-                                                  Information updated	</strong>									
-						</div>');
-
-        redirect('/profile/edit/' . $id, 'refresh');
-        return;
     }
 
     public function delete() {

@@ -442,7 +442,7 @@
 
                                                     <td class="edit_td">
                                                         <span id="finding_<?php echo $id; ?>" class="text"><?php echo $finding; ?></span>
-                                                        <input type="text" value="<?php echo $finding; ?>" class="editbox" id="finding_input_<?php echo $id; ?>"
+                                                        <textarea type="text" value="<?php echo $finding; ?>" class="editbox" id="finding_input_<?php echo $id; ?>"><?php echo $finding; ?></textarea>
                                                     </td>  
                                                     <td><?= $loop->verified ?></td>
                                                     <td><?= $loop->created ?></td>
@@ -762,6 +762,8 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 </script>
 
 
+
+<?php require_once(APPPATH . 'views/js-page.php'); ?>
 <script type="text/javascript">
     $(document).ready(function ()
     {
@@ -772,9 +774,12 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             var ID = $(this).attr('id');
             $("#name" + ID).hide();
             $("#name_input_" + ID).show();
+            
+             $("#finding" + ID).hide();
+            $("#finding_input_" + ID).show();
 
-            $("#institute" + ID).hide();
-            $("#institute_input_" + ID).show();
+            $("#region" + ID).hide();
+            $("#region_input_" + ID).show();
 
 
 
@@ -784,24 +789,27 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         {
             var ID = $(this).attr('id');
             var name = $("#name_input_" + ID).val();
-            var institute = $("#institute_input_" + ID).val();
+            var finding = $("#finding_input_" + ID).val();
+            var institute = $("#region_input_" + ID).val();
 
-            var dataString = 'id=' + ID + '&name=' + name + '&institute=' + institute;
+            var dataString = 'id=' + ID + '&name=' + name + '&region=' + institute+'&finding=' + finding;
             $("#name_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#institute_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#region_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#finding_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
 
             if (name.length > 0 && institute.length > 0)
             {
 
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url() . "index.php/student/qualification/update/"; ?>",
+                    url: "<?php echo base_url() . "index.php/student/surveillance/update/"; ?>",
                     data: dataString,
                     cache: false,
                     success: function (html)
                     {
                         $("#name_" + ID).html(name);
-                        $("#institute_" + ID).html(institute);
+                        $("#region_" + ID).html(institute);
+                        $("#finding_" + ID).html(finding);
 
                     }
                 });
@@ -827,5 +835,4 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
     });
 </script>
-<?php require_once(APPPATH . 'views/js-page.php'); ?>
 

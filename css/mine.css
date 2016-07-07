@@ -4,39 +4,39 @@
     border-radius: 4px;
 }
 .navbar .nav > li > a{
-   line-height: 28px;
+    line-height: 28px;
     width: 10%!important;
 }
 .highcharts-background{
     background-color: '';
-    
+
 }
 .editbox
 {
-display:none
+    display:none
 }
 td
 {
-padding:5px;
+    padding:5px;
 }
 .editbox
 {
-font-size:14px;
-width:80px;
-background-color:#ffffcc;
-border:solid 1px #000;
-padding:4px;
+    font-size:14px;
+    width:100px !important;
+    background-color:#ffffcc;
+    border:solid 1px #000;
+    padding:4px;
 }
 
 .edit_tr:hover
 {
-background:url(edit.png) right no-repeat #80C8E5;
-cursor:pointer;
+    background:url(edit.png) right no-repeat #80C8E5;
+    cursor:pointer;
 }
 .grid-wrapper {
-  
-   overflow: scroll;
-   height: auto;
+
+    overflow: scroll;
+    height: auto;
 }
 .widget-main {
     padding:0px;
@@ -61,7 +61,7 @@ cursor:pointer;
 }
 table{
     display: block; 
-overflow: scroll; /* Scrollbar are always visible */
-overflow: auto; 
+    overflow: scroll; /* Scrollbar are always visible */
+    overflow: auto; 
 }
 

@@ -598,11 +598,10 @@ class Student extends CI_Controller {
         if ($action == 'update') {
 
             $this->load->helper(array('form', 'url'));
-
-            $title = $this->input->post('title');
-
-            $advert = array('title' => $title);
-            $this->Md->update($id, $advert, 'advert');
+            $id = $this->input->post('id');
+            $presentation = array('presenter' => $this->input->post('presenter'),'author' => $this->input->post('author'), 'eventName' => $this->input->post('eventName'), 'summary' => $this->input->post('summary'), 'title' => $this->input->post('title'), 'dos' => date('Y-m-d'), 'accepted' => $this->input->post('accepted'), 'country' => $this->input->post('country'), 'location' => $this->input->post('location'), 'eventType' => $this->input->post('eventType'), 'presentationType' => $this->input->post('presentationType'));
+            $this->Md->update($id, $presentation, 'presentation');
+            return;
         }
 
 
@@ -632,7 +631,7 @@ class Student extends CI_Controller {
                 $data = $this->upload->data();
                 $title = $this->input->post('title');
                 $file = $data['file_name'];
-                $presentation = array('file' => $file, 'author' => $author, 'eventNAme' => $title, 'summary' => $summary, 'title' => $title, 'dos' => date('Y-m-d'), 'submissionDate' => date('Y-m-d'), 'date' => $date, 'accepted' => 'no', 'country' => $country, 'location' => $location, 'eventType' => $eventType, 'presentationType' => $presentationType, 'studentID' => $studentID);
+                $presentation = array('file' => $file, 'author' => $author, 'eventName' => $title, 'summary' => $summary, 'title' => $title, 'dos' => date('Y-m-d'), 'submissionDate' => date('Y-m-d'), 'date' => $date, 'accepted' => 'no', 'country' => $country, 'location' => $location, 'eventType' => $eventType, 'presentationType' => $presentationType, 'studentID' => $studentID);
                 $file_id = $this->Md->save($presentation, 'presentation');
                 $this->session->set_flashdata('msg', '<div class="alert alert-success"><strong>
                                               presentation information saved</strong>									
@@ -958,7 +957,7 @@ class Student extends CI_Controller {
 
             $this->load->helper(array('form', 'url'));
             $id = $this->input->post('id');
-            $out = array('name' => $this->input->post('name'), 'country' => $this->input->post('country'), 'region' => $this->input->post('region'), 'max' => $this->input->post('max'), 'min' => $this->input->post('min'), 'onset' => $this->input->post('onset'), 'dates' =>$this->input->post('dates'), 'lab' =>$this->input->post('lab'), 'confirm' =>$this->input->post('confirm'), 'etiology' =>$this->input->post('etiology'), 'findings' =>$this->input->post('findings'));
+            $out = array('name' => $this->input->post('name'), 'country' => $this->input->post('country'), 'region' => $this->input->post('region'), 'max' => $this->input->post('max'), 'min' => $this->input->post('min'), 'onset' => $this->input->post('onset'), 'dates' => $this->input->post('dates'), 'lab' => $this->input->post('lab'), 'confirm' => $this->input->post('confirm'), 'etiology' => $this->input->post('etiology'), 'findings' => $this->input->post('findings'));
             $this->Md->update($id, $out, 'outbreak');
             return;
         }
@@ -1017,17 +1016,11 @@ class Student extends CI_Controller {
         }
         if ($action == 'update') {
 
-            $this->load->helper(array('form', 'url'));
-            $organisation = $this->input->post('organisation');
-            $position = $this->input->post('position');
-            $id = $this->input->post('id');
-            $country = $this->input->post('country');
-            $location = $this->input->post('location');
-            $sector = $this->input->post('sector');
-            $contact = $this->input->post('contact');
-
-            $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
-            $this->Md->update($id, $employment, 'employment');
+            $this->load->helper(array('form', 'url')); 
+              $id = $this->input->post('id');
+            $course = array('name' =>$this->input->post('name'), 'start' => $this->input->post('start'), 'end' => $this->input->post('end'), 'participants' => $this->input->post('participants'), 'objective' => $this->input->post('objective'), 'role' => $this->input->post('role'), 'description' => $this->input->post('description'));
+            $this->Md->update($id, $course, 'course');
+            return;
         }
 
         $name = $this->input->post('name');

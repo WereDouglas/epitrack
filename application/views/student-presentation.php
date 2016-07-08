@@ -443,6 +443,7 @@
                                                 $title = $loop->title;
                                                 $date = $loop->date;
                                                 $location = $loop->location;
+                                           
                                                 $eventType = $loop->eventType;
                                                 $country = $loop->country;
                                                 $summary = $loop->summary;
@@ -467,11 +468,11 @@
                                                         <input type="text" value="<?php echo $title; ?>" class="editbox" id="title_input_<?php echo $id; ?>"
                                                     </td>
                                                     <td class="edit_td">
-                                                        <span id="type_<?php echo $id; ?>" class="text"><?php echo $type; ?></span>
-        <!--                                                        <input type="text" value="<?php echo $type; ?>" class="editbox" id="type_input_<?php echo $id; ?>"
+                                                        <span id="eventType_<?php echo $id; ?>" class="text"><?php echo $eventType; ?></span>
+        <!--                                                        <input type="text" value="<?php echo $eventType; ?>" class="editbox" id="type_input_<?php echo $id; ?>"
                                                         --> 
-                                                        <select  name="type" class="editbox" id="type_input_<?php echo $id; ?>" >
-                                                            <option value="<?php echo $type; ?>" title="<?php echo $type; ?>"><?php echo $type; ?></option>
+                                                        <select  name="type" class="editbox" id="eventType_input_<?php echo $id; ?>" >
+                                                            <option value="<?php echo $eventType; ?>" title="<?php echo $eventType; ?>"><?php echo $eventType; ?></option>
                                                             <option value="Oral" />Oral
                                                             <option value="Poster" />Poster
                                                         </select>
@@ -481,7 +482,8 @@
                                                         <input type="text" value="<?php echo $eventName; ?>" class="editbox" id="eventName_input_<?php echo $id; ?>"
                                                     </td>
                                                     <td class="edit_td">
-                                                        <span id="presentationType_<?php echo $id; ?>" class="text"><?php echo $presentationType; ?></span>                                              <select  name="type" class="editbox" id="type_input_<?php echo $id; ?>" >
+                                                        <span id="presentationType_<?php echo $id; ?>" class="text"><?php echo $presentationType; ?></span> 
+                                                        <select  name="type" class="editbox" id="presentationType_input_<?php echo $id; ?>" >
                                                             <option value="<?php echo $presentationType; ?>" title="<?php echo $presentationType; ?>"><?php echo $presentationType; ?></option>
                                                             <option value="Oral" />Oral
                                                             <option value="Poster" />Poster
@@ -519,7 +521,8 @@
                                                         </span>
                                                     </td>
                                                     <td class="edit_td">
-                                                        <span id="accepted_<?php echo $id; ?>" class="text"><?php echo $accepted; ?></span>                                              <select  name="type" class="editbox" id="type_input_<?php echo $id; ?>" >
+                                                        <span id="accepted_<?php echo $id; ?>" class="text"><?php echo $accepted; ?></span>                                      
+                                                        <select  name="type" class="editbox" id="accepted_input_<?php echo $id; ?>" >
                                                             <option value="<?php echo $accepted; ?>" title="<?php echo $accepted; ?>"><?php echo $accepted; ?></option>
                                                             <option value="Yes" />Yes
                                                             <option value="No" />No

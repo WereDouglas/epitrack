@@ -70,7 +70,6 @@
                                         <div class="span6">
                                             <label for="id-date-picker-1"> What's your role</label>
                                             <div class="control-group">
-
                                                 <select id="lab" name="role" >
                                                     <option value="participant" />participant
                                                     <option value="instructor" />instructor
@@ -125,6 +124,8 @@
                                     <th>Start</th>
                                     <th>End</th>
                                     <th>Description</th>
+                                    <th>Objective</th>
+                                    <th>Role</th>
                                     <th>Date of study</th>
 
                                     <th></th>
@@ -136,10 +137,10 @@
                                 if (is_array($out) && count($out)) {
                                     foreach ($out as $loop) {
                                         $name = $loop->name;
-                                        $start = $loop->start;
-                                        $end = $loop->end;
-                                         $participants = $loop->participants;
-                                          $objective = $loop->objective;
+                                        $startDates = $loop->start;
+                                        $endDates = $loop->end;
+                                        $participants = $loop->participants;
+                                        $objective = $loop->objective;
                                         $id = $loop->id;
                                         $role = $loop->role;
                                         $description = $loop->description;
@@ -157,12 +158,38 @@
                                                 <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                                                 <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
                                             </td>
-                                            <td><?= $loop->start ?></td>
-                                            <td><?= $loop->end ?></td>
+                                            <td class="edit_td">
+
+                                                <span id="startDates_<?php echo $id; ?>" class="text"><?php echo $startDates; ?></span>
+                                                <input class="span10 date-picker editbox" id="startDates_input_<?php echo $id; ?>" value="<?php echo $startDates; ?>"   type="text" name="date" data-date-format="yyyy-mm-dd" />
+                                                <span class="add-on">
+                                                    <i class="icon-calendar"></i>
+                                                </span>
+                                            </td>
+                                            <td class="edit_td">
+                                                <span id="endDates_<?php echo $id; ?>" class="text"><?php echo $endDates; ?></span>
+                                                <input class="span10 date-picker editbox" id="endDates_input_<?php echo $id; ?>" value="<?php echo $endDates; ?>"   type="text" name="date" data-date-format="yyyy-mm-dd" />
+                                                <span class="add-on">
+                                                    <i class="icon-calendar"></i>
+                                                </span>                                                        
+                                            </td>
 
                                             <td class="edit_td">
-                                                <span id="findings_<?php echo $id; ?>" class="text"><?php echo $description; ?></span>
-                                                <input type="text" value="<?php echo $description; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
+                                                <span id="description_<?php echo $id; ?>" class="text"><?php echo $description; ?></span>
+                                                <input type="text" value="<?php echo $description; ?>" class="editbox" id="description_input_<?php echo $id; ?>"
+                                            </td>
+                                            <td class="edit_td">
+                                                <span id="objective_<?php echo $id; ?>" class="text"><?php echo $objective; ?></span>
+                                                <input type="text" value="<?php echo $objective; ?>" class="editbox" id="objective_input_<?php echo $id; ?>"
+                                            </td>
+                                            <td class="edit_td">
+
+                                                <span id="role_<?php echo $id; ?>" class="text"><?php echo $role; ?></span>                                      
+                                                <select  name="type" class="editbox" id="role_input_<?php echo $id; ?>" >
+                                                    <option value="<?php echo $role; ?>" title="<?php echo $role; ?>"><?php echo $role; ?></option>
+                                                    <option value="participant" />participant
+                                                    <option value="instructor" />instructor
+                                                </select>
                                             </td>
 
                                             <td><?= $loop->dos ?></td>
@@ -270,7 +297,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $('[data-rel=tooltip]').tooltip({container: 'body'});
         $('[data-rel=popover]').popover({container: 'body'});
 
-       
+
         $.mask.definitions['~'] = '[+-]';
         $('.input-mask-date').mask('99/99/9999');
         $('.input-mask-phone').mask('(999) 999-9999');
@@ -487,61 +514,54 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $(".edit_tr").click(function ()
         {
             var ID = $(this).attr('id');
-            $("#organisation" + ID).hide();
-            $("#organisation_input_" + ID).show();
+            $("#name_" + ID).hide();
+            $("#objective_" + ID).hide();
+            $("#role_" + ID).hide();
+            $("#description_" + ID).hide();
+            $("#startDates_" + ID).hide();
+            $("#endDates_" + ID).hide();
 
-            $("#position" + ID).hide();
-            $("#position_input_" + ID).show();
-
-            $("#country" + ID).hide();
-            $("#country_input_" + ID).show();
-
-
-            $("#location" + ID).hide();
-            $("#location_input_" + ID).show();
-
-            $("#sector" + ID).hide();
-            $("#sector_input_" + ID).show();
-            $("#contact" + ID).hide();
-            $("#contact_input_" + ID).show();
-
+            $("#name_input_" + ID).show();
+            $("#objective_input_" + ID).show();
+            $("#role_input_" + ID).show();
+            $("#description_input_" + ID).show();
+            $("#startDates_input_" + ID).show();
+            $("#endDates_input_" + ID).show();
 
 
 
         }).change(function ()
         {
             var ID = $(this).attr('id');
-            var organisation = $("#organisation_input_" + ID).val();
-            var position = $("#position_input_" + ID).val();
-            var country = $("#country_input_" + ID).val();
-            var location = $("#location_input_" + ID).val();
-            var sector = $("#sector_input_" + ID).val();
-            var contact = $("#contact_input_" + ID).val();
+            var name = $("#name_input_" + ID).val();
+            var role = $("#role_input_" + ID).val();
+            var objective = $("#objective_input_" + ID).val();
+            var description = $("#description_input_" + ID).val();
+            var startDates = $("#startDates_input_" + ID).val();
+            var endDates = $("#endDates_input_" + ID).val();
 
-            var dataString = 'id=' + ID + '&organisation=' + organisation + '&position=' + position + '&country=' + country + '&location=' + location + '&sector=' + sector + '&contact=' + contact;
-            $("#organisation_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#position_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#country_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#location_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#sector_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#contact_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            var dataString = 'id=' + ID + '&name=' + name + '&description=' + description + '&start=' + startDates + '&end=' + endDates + '&role=' + role + '&objective=' + objective;
+            $("#name_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#description_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#startDates_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#endDates_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
 
-            if (organisation.length > 0 && contact.length > 0)
+            if (name.length > 0)
             {
 
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url() . "index.php/student/employment/update/"; ?>",
+                    url: "<?php echo base_url() . "index.php/student/course/update/"; ?>",
                     data: dataString,
                     cache: false,
                     success: function (html)
                     {
-                        $("#organisation_" + ID).html(organisation);
-                        $("#position_" + ID).html(position);
-                        $("#country_" + ID).html(country);
-                        $("#location_" + ID).html(location);
-                        $("#sector_" + ID).html(sector);
-                        $("#contact_" + ID).html(contact);
+                        $("#name_" + ID).html(name);
+                        $("#objective_" + ID).html(objective);
+                        $("#role_" + ID).html(role);
+                        $("#description_" + ID).html(description);
+                        $("#startDates_" + ID).html(startDates);
+                        $("#endDates_" + ID).html(endDates);
 
                     }
                 });

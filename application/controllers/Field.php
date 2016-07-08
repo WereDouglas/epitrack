@@ -25,7 +25,8 @@ class Field extends CI_Controller {
         }
         $this->load->view('field-page', $data);
     }
-     public function view() {
+
+    public function view() {
 
         $studentID = $this->session->userdata('id');
         $query = $this->Md->query('SELECT * FROM fields INNER JOIN student ON fields.studentID=student.id');
@@ -51,6 +52,16 @@ class Field extends CI_Controller {
         }
 
         $this->load->view('admin/edit-profile', $data);
+    }
+
+    public function update() {
+        
+        $this->load->helper(array('form', 'url'));
+        $id = $this->input->post('id');
+        $field = array('name' => $this->input->post('name'), 'location' => $this->input->post('location'), 'notes' => $this->input->post('notes'));
+        $this->Md->update($id, $field, 'fields');
+
+        return;
     }
 
     public function save() {
@@ -79,8 +90,8 @@ class Field extends CI_Controller {
                 $file = $data['file_name'];
                 $publication = array('file' => $file, 'name' => $name, 'dos' => date("y-m-d"), 'location' => $location, 'notes' => $notes, 'studentID' => $studentID);
                 $this->Md->save($publication, 'fields');
-                
-               // redirect('/student/publication', 'refresh');
+
+                // redirect('/student/publication', 'refresh');
 
                 $query = $this->Md->get('studentID', $studentID, 'fields');
                 if ($query) {

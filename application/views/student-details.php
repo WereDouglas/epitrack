@@ -10,119 +10,127 @@
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-editable.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 <link href="<?= base_url(); ?>dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<style>
+    table.zebra-style {
+        font-family:"Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        text-align:left;
+        border:1px solid #ccc;
+        margin-bottom:25px;
+        width:90%
+    }
+    table.zebra-style th {
+        color: #444;
+        font-size: 13px;
+        font-weight: normal;
+        padding: 10px 8px;
+    }
+    table.zebra-style td {
+        color: #777;
+        padding: 8px;
+        font-size:13px;
+    }
+    table.zebra-style tr.odd {
+        background:#f2f2f2;
+    }
+    body {
+        background:#fafafa;
+    }
+    .container {
+        width: 800px;
+        border: 1px solid #C4CDE0;
+        border-radius: 2px;
+        margin: 0 auto;
+        height: 1300px;
+        background:#fff;
+        padding-left:10px;
+    }
+    #status { padding:10px; background:#88C4FF; color:#000; font-weight:bold; font-size:12px; margin-bottom:10px; display:none; width:90%; }
+</style>
 
 <div class="main-content">
     <div class="page-content">
         <div class="row-fluid">
-            <div class="span12">
-                <!--PAGE CONTENT BEGINS-->
 
-                <?php
-                if (is_array($bio) && count($bio)) {
-                    foreach ($bio as $loop) {
-                        $id = $loop->id;
-                        $fname = $loop->fname;
-                        $lname = $loop->lname;
-                        $other = $loop->other;
-                        $email = $loop->email;
-                        $gender = $loop->gender;
-                        $dob = $loop->dob;
-                        $country = $loop->country;
-                        $image = $loop->image;
-                        $password = $loop->password;
-                        $cohort = $loop->cohort;
-                        $contact = $loop->contact;
-                        $status = $loop->status;
-                    }
+            <!--PAGE CONTENT BEGINS-->
+
+            <?php
+            if (is_array($bio) && count($bio)) {
+                foreach ($bio as $loop) {
+                    $id = $loop->id;
+                    $fname = $loop->fname;
+                    $lname = $loop->lname;
+                    $other = $loop->other;
+                    $email = $loop->email;
+                    $gender = $loop->gender;
+                    $dob = $loop->dob;
+                    $country = $loop->country;
+                    $image = $loop->image;
+                    $password = $loop->password;
+                    $cohort = $loop->cohort;
+                    $contact = $loop->contact;
+                    $status = $loop->status;
                 }
-                ?>
-                <div class="row-fluid">
-                    <div class="span12">
-                        <div class="span3">
-                            <img  height="100px" width="120px" class="" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
+            }
+            ?>
 
-                        </div>
-                        <div class="span4">                         
-                                    <div class="profile-user-info profile-user-info-striped ">
-
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name">
-                                                Name  
-                                            </div>
-                                            <div class="profile-info-value">
-                                                <?= $fname ?>  <?= $lname ?>   <?= $other ?>
-                                            </div>
-                                        </div>                                
-
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name">Primary email </div>
-
-                                            <div class="profile-info-value">
-                                                <?= $email ?>
-                                            </div>
-                                        </div>
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name">Gender </div>
-
-                                            <div class="profile-info-value">
-                                                <?= $gender ?>
-                                            </div>
-                                        </div>
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Date of Birth</div>
-
-                                            <div class="profile-info-value">
-                                                <?php echo $dob; ?>
-                                            </div>
-                                        </div>
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Country </div>
-
-                                            <div class="profile-info-value">
-                                                <i class="icon-map-marker light-orange bigger-110"></i>
-                                                <?= $country ?>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name">Primary contact </div>
-
-                                            <div class="profile-info-value">
-                                                <?= $contact ?>
-                                            </div>
-                                        </div>
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name">Cohort </div>
-
-                                            <div class="profile-info-value">
-                                                <?= $cohort ?>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name">Activate /deactivate student </div>
-
-                                            <div class="profile-info-value">
-
-                                                <a href="<?php echo base_url() . "index.php/student/activate/" . $id . "/" . $status; ?>" class="tooltip-info qualification" data-rel="tooltip" title="activat/deativate">
-                                                    <span class="blue">
-                                                        <i class="icon-archive bigger-120">activate/deactivate</i>
-                                                    </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                        </div>
-                    </div><!--/span-->
+            <div class="span12">
+                <div class="span3">
+                    <img  height="100px" width="120px" class="" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
+                </div>
+                <div class="span9">
 
 
-                </div><!--/row-->
+                    <table class="table zebra-style span8">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Other name</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>Date of Birth</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
 
-                <!--PAGE CONTENT ENDS-->
-            </div><!--/.span-->
+                            <?php
+                            if (is_array($bio) && count($bio)) {
+                                foreach ($bio as $loop) {
+                                    ?>  
+
+                                    <tr class="odd">
+                                        <td><?php echo $loop->id; ?></td>
+                                        <td id="fname:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->fname; ?></td>
+                                        <td id="lname:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->lname; ?></td>
+                                        <td id="other:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->other; ?></td>
+                                        <td id="contact:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->contact; ?></td>
+                                        <td id="email:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->email; ?></td>
+                                        <td id="dob:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->dob; ?></td>
+                                        <td>
+                                            <a href="#"  value="<?php echo $loop->id; ?>"  id="myLink" onclick="NavigateToSite(this)" class="tooltip-error text-danger" data-rel="tooltip" title="reset">
+                                                <span class="red">
+                                                    <i class="icon-lock bigger-120 text-danger"></i>
+                                                    Reset
+                                                </span>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                                }
+                            }
+                            ?>
+
+                        </tbody>
+                    </table>
+
+
+                </div><!--/span-->
+            </div>
         </div><!--/.row-fluid-->
 
 
@@ -339,6 +347,7 @@
                                                         $type = $loop->type;
                                                         $region = $loop->region;
                                                         $verified = $loop->verified;
+                                                        $finding = $loop->finding;
                                                         $id = $loop->id;
                                                         ?>  
 
@@ -712,10 +721,12 @@
                                                     </th>
 
                                                     <th>Name</th>
-                                                    <th>Onset</th>
-                                                    <th>Dissemination</th>   
-                                                    <th>Findings</th>   
-                                                    <th>Date of study</th> 
+                                                    <th>Start</th>
+                                                    <th>End</th>   
+                                                    <th>Participants</th>
+                                                    <th>Objective</th>
+                                                    <th>Role</th>
+                                                    <th>Date</th> 
 
                                                 </tr>
                                             </thead>
@@ -725,7 +736,7 @@
                                                 if (is_array($outs) && count($outs)) {
                                                     foreach ($outs as $loop) {
                                                         $name = $loop->name;
-                                                        $findings = $loop->findings;
+                                                        $obejctive = $loop->objective;
                                                         $id = $loop->id;
                                                         ?>  
 
@@ -740,12 +751,12 @@
                                                             <td class="">
                                                                 <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                                                             </td>
-                                                            <td><?= $loop->onset ?></td>
-                                                            <td><?= $loop->dissemination ?></td>
+                                                            <td><?= $loop->start ?></td>
+                                                            <td><?= $loop->end ?></td>
 
-                                                            <td class="">
-                                                            </td>                                                          
-
+                                                            <td><?= $loop->participants ?></td>
+                                                            <td><?= $loop->objective ?></td>
+                                                            <td><?= $loop->role ?></td>
                                                             <td><?= $loop->dos ?></td>
 
 
@@ -834,4 +845,46 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         return false;
     });
 
+</script>
+
+<script>
+    $(function () {
+        //acknowledgement message
+        var message_status = $("#status");
+        $("td[contenteditable=true]").blur(function () {
+            var field_id = $(this).attr("id");
+            var value = $(this).text();
+            $.post('<?php echo base_url() . "index.php/student/updatering/"; ?>', field_id + "=" + value, function (data) {
+                if (data != '')
+                {
+                    message_status.show();
+                    message_status.text(data);
+                    //hide the message
+                    setTimeout(function () {
+                        message_status.hide()
+                    }, 1000);
+                }
+            });
+        });
+
+        jQuery('.s_download').click(function () {
+            var semail = jQuery("#itzurkarthi_email").val();
+            if (semail == '')
+            {
+                alert('Enter Email');
+                return false;
+            }
+            var str = "sub_email=" + semail
+            jQuery.ajax({
+                type: "POST",
+                url: "download.php",
+                data: str,
+                cache: false,
+                success: function (htmld) {
+                    jQuery('#down_update').html(htmld);
+                }
+            });
+        });
+
+    });
 </script>

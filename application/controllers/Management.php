@@ -33,6 +33,113 @@ class Management extends CI_Controller {
         $this->load->view('management-home', $data);
     }
 
+    public function qualifications() {
+        //get($field,$value,$table)
+
+        $studentID = $this->uri->segment(3);
+
+        $query = $this->Md->query("SELECT * FROM qualification INNER JOIN student ON qualification.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        if ($query) {
+            $data['qualifications'] = $query;
+        } else {
+            $data['qualifications'] = array();
+        }
+        $this->load->view('view-qualifications', $data);
+    }
+
+    public function emps() {
+        //get($field,$value,$table)
+
+        $studentID = $this->uri->segment(3);
+
+        $query = $this->Md->query("SELECT * FROM employment INNER JOIN student ON employment.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        if ($query) {
+            $data['records'] = $query;
+        } else {
+            $data['records'] = array();
+        }
+        $this->load->view('view-employement', $data);
+    }
+
+    public function surveillance() {
+        //get($field,$value,$table)
+
+        $studentID = $this->uri->segment(3);
+
+        $query = $this->Md->query("SELECT * FROM surveillance INNER JOIN student ON surveillance.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        if ($query) {
+            $data['survey'] = $query;
+        } else {
+            $data['survey'] = array();
+        }
+        $this->load->view('view-surveillance', $data);
+    }
+
+    public function outbreaks() {
+        //get($field,$value,$table)
+
+        $studentID = $this->uri->segment(3);
+        $query = $this->Md->query("SELECT * FROM outbreak INNER JOIN student ON outbreak.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        if ($query) {
+            $data['out'] = $query;
+        } else {
+            $data['out'] = array();
+        }
+        $this->load->view('view-outbreaks', $data);
+    }
+
+    public function presentations() {
+        //get($field,$value,$table)
+
+
+        $query = $this->Md->query("SELECT * FROM presentation INNER JOIN student ON presentation.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        if ($query) {
+            $data['presentations'] = $query;
+        } else {
+            $data['presentations'] = array();
+        }
+        $this->load->view('view-presentations', $data);
+    }
+
+    public function publications() {
+        //get($field,$value,$table)
+
+        $studentID = $this->uri->segment(3);
+        $query = $this->Md->query("SELECT * FROM publication INNER JOIN student ON publication.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        if ($query) {
+            $data['publications'] = $query;
+        } else {
+            $data['publications'] = array();
+        }
+        $this->load->view('view-publications', $data);
+    }
+
+    public function studies() {
+        //get($field,$value,$table)
+
+        $studentID = $this->uri->segment(3);
+        $query = $this->Md->query("SELECT * FROM study INNER JOIN student ON study.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        if ($query) {
+            $data['study'] = $query;
+        } else {
+            $data['study'] = array();
+        }
+        $this->load->view('view-studies', $data);
+    }
+
+    public function courses() {
+        //get($field,$value,$table)
+
+        $studentID = $this->uri->segment(3);
+        $query = $this->Md->query("SELECT * FROM course INNER JOIN student ON course.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        if ($query) {
+            $data['outs'] = $query;
+        } else {
+            $data['outs'] = array();
+        }
+        $this->load->view('view-courses', $data);
+    }
+
     public function news() {
 
         $cty = $this->session->userdata('country');
@@ -704,6 +811,30 @@ class Management extends CI_Controller {
             }
         }
         $this->load->view('country-student', $data);
+    }
+
+    public function download() {
+
+        $files = $this->input->post('files');
+        foreach ($files as $t) {
+
+            echo base_url() . "publications/" . $t . '<br>';
+            $file = base_url() . "publications/" . $t;
+
+            if (!$file) { // file does not exist
+                die('file not found');
+            } else {
+                header("Cache-Control: public");
+                header("Content-Description: File Transfer");
+                header("Content-Disposition: attachment; filename=$file");
+                header("Content-Type: application/zip");
+                header("Content-Transfer-Encoding: binary");
+
+                // read the file from disk
+                readfile($file);
+
+            }
+        }
     }
 
     public function details() {

@@ -200,8 +200,23 @@
                             <li><a href="<?php echo base_url() . "index.php/management/tracks"; ?>" target="frame"><i class="fa fa-road"></i> Tracks</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i> Cohorts</a></li>
                             <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
-                             <li><a href="<?php echo base_url() . "index.php/field/view"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
-                        
+                            <li><a href="<?php echo base_url() . "index.php/field/view"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/qualifications"; ?>" target="frame"><i class="fa  fa-file-text"></i>Qualifications</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/emps"; ?>" target="frame"><i class="fa  fa-file-text"></i>Employement Records</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/surveillance"; ?>" target="frame"><i class="fa  fa-file-text"></i>Surveillance</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/outbreaks"; ?>" target="frame"><i class="fa  fa-file-text"></i>Out Breaks</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/presentations"; ?>" target="frame"><i class="fa  fa-file-text"></i>Presentations</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/publications"; ?>" target="frame"><i class="fa  fa-file-text"></i>Publications</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/studies"; ?>" target="frame"><i class="fa  fa-file-text"></i>Studies</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/courses"; ?>" target="frame"><i class="fa  fa-file-text"></i>Courses</a></li>
+
+
+
+
+
+
+
+
 
 
                         <?php } ?>
@@ -233,8 +248,8 @@
                             <li><a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame"><i class="fa fa-circle-o"></i> Outbreaks</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame"><i class="fa fa-file"></i> Presentations</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame"><i class="fa  fa-file-text"></i> Short courses</a></li>
-                           <li><a href="<?php echo base_url() . "index.php/field"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
-                          
+                            <li><a href="<?php echo base_url() . "index.php/field"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
+
 
                         <?php } ?>
 

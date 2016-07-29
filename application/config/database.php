@@ -65,7 +65,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn' => '',
-    'hostname' => 'epitrack3764.cloudapp.net',
+    'hostname' => '40.117.199.186/',
     'username' => 'root',
     'password' => '',
     'database' => 'epitrack',

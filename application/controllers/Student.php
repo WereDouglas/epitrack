@@ -697,6 +697,9 @@ class Student extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $id = $this->uri->segment(3);
         $actives = $this->uri->segment(4);
+         $active = "false";
+        
+    
         $table = $this->uri->segment(5);
         if ($actives == "true") {
             $active = "false";
@@ -705,11 +708,10 @@ class Student extends CI_Controller {
             $active = "true";
         }
 
-
         if ($this->session->userdata('level') > 0) {
 
-            $quali = array('verified' => $active);
-            $this->Md->update($id, $quali, $table);
+            $qualif = array('verified' => $active);
+            $this->Md->update($id, $qualif, $table);
         }
     }
 
@@ -752,16 +754,13 @@ class Student extends CI_Controller {
         if ($action == 'update') {
 
             $this->load->helper(array('form', 'url'));
-            $organisation = $this->input->post('organisation');
+            
             $position = $this->input->post('position');
             $id = $this->input->post('id');
-            $country = $this->input->post('country');
-            $location = $this->input->post('location');
-            $sector = $this->input->post('sector');
-            $contact = $this->input->post('contact');
+            
 
-            $employment = array('organisation' => $organisation, 'location' => $location, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
-            $this->Md->update($id, $employment, 'employment');
+            $study = array('name' => $this->input->post('name'), 'onset' => $this->input->post('onset'), 'dissemination' => $this->input->post('dissemination'), 'findings' => $this->input->post('findings'));
+            $this->Md->update($id, $study, 'study');
         }
 
 

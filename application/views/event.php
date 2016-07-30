@@ -1,197 +1,190 @@
 <?php require_once(APPPATH . 'views/css-page.php'); ?>
-           <div class="col-xs-12">
+<div class="col-xs-12">
 
-        <?php echo $this->session->flashdata('msg'); ?>
-        <div class="row-fluid">
-            <div class="span12 widget-container-span">
+    <?php echo $this->session->flashdata('msg'); ?>
+    <div class="row-fluid">
+        <div class="span12 widget-container-span">
+
+            <div class="">
 
                 <div class="">
+                    <div class="btn-toolbar ">
+                        <div class="btn-group">
+                            <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
 
-                    <div class="">
-                        <div class="btn-toolbar ">
-                            <div class="btn-group">
-                                <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
+                                <button class="btn btn-small btn-success">
+                                    <i class="icon-adn bigger-110"></i>
+                                    Add
+                                </button></a>
+                            <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
 
-                                    <button class="btn btn-small btn-success">
-                                        <i class="icon-adn bigger-110"></i>
-                                        Add
-                                    </button></a>
-                                <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
-
-                                    <button class="btn btn-small btn-danger">
-                                        <i class="icon-list bigger-110"></i>
-                                        List
-                                    </button>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-                <div class="widget-main ">
-                    <div id="accordion2" class="accordion">              
-
-                        <div class="accordion-group">
-
-
-                            <div class="accordion-body collapse" id="collapseTwo">
-                                <div class="accordion-inner">
-                                    <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/event/'  method="post">            
-
-                                        <div class="span6">                                                        
-
-
-                                            <div class="control-group">
-
-                                                <div class="row-fluid">
-                                                    <label>Title</label> <span class="span12 "><input type="text" class="span12"  id="title" name="title" placeholder="Event name"  /></span>
-
-                                                    <label> Country</label> <span class="span12 ">  <input type="text" readonly="true" id="country" class="span12" name="country" value="<?= $this->session->userdata('country') ?>" /></span>
-                                                    <label>Venue</label> <span class="span12 "> <input id="venue"  class="span12" name="venue" type="text" /></span>
-
-                                                    <label>start date</label><span class="span12"> <span class="add-on">
-                                                            <i class="icon-calendar"></i>
-                                                        </span>  <input class="span12 date-picker" id="id-date-picker-1" name="startdate"type="text" data-date-format="dd-mm-yyyy" />
-                                                    </span> 
-                                                    <div class="input-append bootstrap-timepicker">
-                                                        <label>Start time</label><span class="span12 "> <span class="add-on">
-                                                                <i class="icon-time"></i>
-                                                            </span>    <input id="timepicker1" name="starttime" type="text" class="span12" />
-                                                        </span> 
-                                                    </div>
-                                                    <span class="span12 "> End date<span class="add-on">
-                                                            <i class="icon-calendar"></i>
-                                                        </span>  <input class="span12 date-picker" id="id-date-picker-1"  name="enddate" type="text" data-date-format="dd-mm-yyyy" />
-                                                    </span> 
-                                                    <div class="input-append bootstrap-timepicker">
-                                                        <span class="span12"> <label>End time:</label><span class="add-on">
-                                                                <i class="icon-time"></i>
-                                                            </span>    <input id="timepicker1" name="endtime" type="text" class="span12" />
-                                                        </span> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class=" span6">                                                   
-                                            <div class="widget-box">
-                                                <div class="widget-header widget-header-small">
-                                                    <div class="widget-toolbar">
-                                                        <a href="#" data-action="collapse">
-                                                            <i class="icon-chevron-up"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="widget-body">                                                   
-                                                    <textarea class="span12" id="form-field-8" name="description" placeholder="Default Text"></textarea>
-                                                    <div class="widget-toolbox padding-4 clearfix">
-                                                        <div class="btn-group pull-left">
-                                                            <button class="btn btn-small btn-grey">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                                Cancel
-                                                            </button>
-                                                        </div>
-
-                                                        <div class="btn-group pull-right">
-                                                            <button class="btn btn-small btn-danger">
-                                                                <i class="icon-save bigger-125"></i>
-                                                                Save
-                                                            </button>
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>	
-                                </div>
-                            </div>
+                                <button class="btn btn-small btn-danger">
+                                    <i class="icon-list bigger-110"></i>
+                                    List
+                                </button>
+                            </a>
                         </div>
 
-                        <div class="accordion-group">
-
-
-                            <div class="accordion-body collapsed" id="collapseThree">
-                                <div class="accordion-inner">
-                                    <div class="alert alert-info">Select a field to edit the content</div>                     
-
-                                    <table id="example1" class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th class="center">
-                                                    <label>
-                                                        <input type="checkbox" />
-                                                        <span class="lbl"></span>
-                                                    </label>
-                                                </th>
-
-                                                <th>Title</th>
-                                                <th>Description</th>                                                             
-                                                <th>Country</th>                                                                
-                                                <th>Start</th>  
-                                                <th>End</th>    
-                                                <th>Posted by</th>     
-                                                <th>Status</th>   
-                                                <th>Created</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <?php
-                                            if (is_array($events) && count($events)) {
-                                                foreach ($events as $loop) {
-                                                    ?>  
-
-                                                    <tr id="<?php echo $loop->id; ?>" class="edit_tr">
-                                                        <td class="center ">
-                                                            <label>
-                                                                <input type="checkbox" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </td>
-
-                                                        <td ><?php echo $loop->title; ?></td>
-                                                        <td ><?php echo $loop->description; ?></td>
-                                                        <td ><?php echo $loop->country; ?></td>
-                                                        <td ><?php echo $loop->startdate; ?></td>
-                                                        <td ><?php echo $loop->enddate; ?></td>
-
-
-                                                        <td ><?php echo $loop->posted; ?></td>
-
-                                                        <td><?= $loop->status ?></td>
-                                                        <td><?= $loop->registered ?></td>
-
-                                                        <td class="td-actions">
-
-                                                            <a href="<?php echo base_url() . "index.php/management/event/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                <span class="red">
-                                                                    <i class="icon-trash bigger-120"></i>
-                                                                </span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>  
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
             </div>
+
+
+
+            <div class="widget-main ">
+                <div id="accordion2" class="accordion">              
+
+                    <div class="accordion-group">
+
+
+                        <div class="accordion-body collapse" id="collapseTwo">
+                            <div class="accordion-inner">
+                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/event/'  method="post">            
+
+                                    <div class="span6">                                                        
+
+
+                                        <div class="control-group">
+
+                                            <div class="row-fluid">
+                                                <label>Title</label><br> <span class="span12 "><input type="text" class="span12"  id="title" name="title" placeholder="Event name"  /></span>
+
+                                                <label> Country</label> <br><span class="span12 ">  <input type="text" readonly="true" id="country" class="span12" name="country" value="<?= $this->session->userdata('country') ?>" /></span>
+                                                <label>Venue</label> <br><span class="span12 ">
+                                                    <input id="venue"  class="span12" name="venue" type="text" /></span>
+
+                                                <label>start date</label> <span class="add-on"> <i class="icon-calendar"></i>   </span>    <br>
+                                                <span class="span12">                                                                                           
+                                                    <input class="span12 date-picker" id="id-date-picker-1" name="startdate"type="text" data-date-format="dd-mm-yyyy" />
+                                                </span> 
+                                                <br>
+                                                <div class="input-append bootstrap-timepicker">
+                                                    <label>Start time</label><br><span class="span12 "> <span class="add-on">
+                                                            <i class="icon-time"></i>
+                                                        </span>    <input id="timepicker1" name="starttime" type="text" class="span12" />
+                                                    </span> 
+                                                </div>
+                                                 <br>
+                                              <label> End date </label><span> <span class="add-on">
+                                                        <i class="icon-calendar"></i>
+                                                    </span>  <input class="span12 date-picker" id="id-date-picker-1"  name="enddate" type="text" data-date-format="dd-mm-yyyy" />
+                                                </span> 
+                                                <div class="input-append bootstrap-timepicker">
+                                                    <span class="span12"> <label>End time:</label> <br><span class="add-on">
+                                                            <i class="icon-time"></i>
+                                                        </span>    <input id="timepicker1" name="endtime" type="text" class="span12" />
+                                                    </span> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=" span6">                                                   
+                                        <textarea class="span12" id="form-field-8" name="description" placeholder="Default Text"></textarea>
+                                        <div class="widget-toolbox padding-4 clearfix">
+                                            <div class="btn-group pull-left">
+                                                <button class="btn btn-small btn-grey">
+                                                    <i class="icon-remove bigger-125"></i>
+                                                    Cancel
+                                                </button>
+                                            </div>
+
+                                            <div class="btn-group pull-right">
+                                                <button class="btn btn-small btn-danger">
+                                                    <i class="icon-save bigger-125"></i>
+                                                    Save
+                                                </button>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>	
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-group">
+
+
+                        <div class="accordion-body collapsed" id="collapseThree">
+                            <div class="accordion-inner">
+                                <div class="alert alert-info">Select a field to edit the content</div>                     
+
+                                <table id="example1" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="center">
+                                                <label>
+                                                    <input type="checkbox" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </th>
+
+                                            <th>Title</th>
+                                            <th>Description</th>                                                             
+                                            <th>Country</th>                                                                
+                                            <th>Start</th>  
+                                            <th>End</th>    
+                                            <th>Posted by</th>     
+                                            <th>Status</th>   
+                                            <th>Created</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        if (is_array($events) && count($events)) {
+                                            foreach ($events as $loop) {
+                                                ?>  
+
+                                                <tr id="<?php echo $loop->id; ?>" class="edit_tr">
+                                                    <td class="center ">
+                                                        <label>
+                                                            <input type="checkbox" />
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </td>
+
+                                                    <td ><?php echo $loop->title; ?></td>
+                                                    <td ><?php echo $loop->description; ?></td>
+                                                    <td ><?php echo $loop->country; ?></td>
+                                                    <td ><?php echo $loop->startdate; ?></td>
+                                                    <td ><?php echo $loop->enddate; ?></td>
+
+
+                                                    <td ><?php echo $loop->posted; ?></td>
+
+                                                    <td><?= $loop->status ?></td>
+                                                    <td><?= $loop->registered ?></td>
+
+                                                    <td class="td-actions">
+
+                                                        <a href="<?php echo base_url() . "index.php/management/event/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                            <span class="red">
+                                                                <i class="icon-trash bigger-120"></i>
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>  
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+</div>
 
 
 <!--<![endif]-->

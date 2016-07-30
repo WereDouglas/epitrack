@@ -1,7 +1,8 @@
 <?php require_once(APPPATH . 'views/css-page.php'); ?>
 
 <div class="row container-fluid">
-    <div class="col-md-12">
+    <input type="button" value="Print" onclick="PrintElem('#mydiv')" />
+    <div class="col-md-12" id="mydiv">
         <h4>Publications</h4>
 
         <form id="fileform" name="fileform" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/download/'  method="post">            
@@ -10,9 +11,7 @@
             <table id="example1" name="example1"  class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th> </th>
-
-                       
+                        <th> </th>                       
                         <th>Name</th>
                         <th>Cohort</th>
                         <th>Title <button type="button" id="selectAll" class="main"> <span class="sub"></span> Select </button></th>
@@ -157,6 +156,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
         });
         alert('Information updated!')
+         location.reload();
         return false;
     });
 
@@ -174,5 +174,31 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             $(this).toggleClass('allChecked');
         })
     });
+
+</script>
+<script type="text/javascript">
+
+    function PrintElem(elem)
+    {
+        Popup($(elem).html());
+    }
+
+    function Popup(data) 
+    {
+        var mywindow = window.open('', 'my div', 'height=400,width=600');
+        mywindow.document.write('<html><head><title>my div</title>');
+        /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(data);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10
+
+        mywindow.print();
+        mywindow.close();
+
+        return true;
+    }
 
 </script>

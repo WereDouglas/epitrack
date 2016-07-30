@@ -64,364 +64,306 @@
 
 </script>
 <body onload="initialize()">
-   
-         <div class="col-xs-12">
 
-            <h2>Students</h2>
+    <div class="col-xs-12">
 
-            <div class="row-fluid">
-                <div class="span12 widget-container-span">
+        <h2>Students</h2>
+
+        <div class="row-fluid">
+            <div class="span12 widget-container-span">
+
+                <div class="">
 
                     <div class="">
+                        <div class="btn-toolbar ">
+                            <div class="btn-group">
+                                <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
 
-                        <div class="">
-                            <div class="btn-toolbar ">
-                                <div class="btn-group">
-                                    <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
+                                    <button class="btn btn-small btn-success">
+                                        <i class="icon-save bigger-125"></i>
+                                        Add
+                                    </button></a>
+                                <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
 
-                                        <button class="btn btn-small btn-success">
-                                            <i class="icon-save bigger-125"></i>
-                                            Add
-                                        </button></a>
-                                    <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
-
-                                        <button class="btn btn-small btn-danger">
-                                            <i class="icon-list bigger-110"></i>
-                                            List
-                                        </button>
-                                    </a>
-                                </div>
-
-
-
-                                <div class="btn-group">
-                                    <button data-toggle="dropdown" class="btn btn-small btn-grey dropdown-toggle">
-                                        <i class="icon-caret-down icon-only bigger-110"></i>
+                                    <button class="btn btn-small btn-danger">
+                                        <i class="icon-list bigger-110"></i>
+                                        List
                                     </button>
-
-                                    <ul class="dropdown-menu pull-right dropdown-purple dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#">Action</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Another action</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Something else here</a>
-                                        </li>
-
-                                        <li class="divider"></li>
-
-                                        <li>
-                                            <a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div><!--/btn-group-->
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="widget-main ">
-                        <div id="accordion2" class="accordion">              
-
-                            <div class="accordion-group">
-
-
-                                <div class="accordion-body collapse" id="collapseTwo">
-                                    <div class="accordion-inner">
-                                        <?php echo $this->session->flashdata('msg'); ?>
-                                        <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/student/'  method="post">            
-
-                                            <div class=" span6">   
-
-
-                                                <div class="widget-main">
-                                                    <input multiple="" type="file" name="userfile" id="id-input-file-3" />
-                                                    <label>
-                                                        <input type="checkbox" name="file-format" id="id-file-format" />
-                                                        <span class="lbl"> Allow only images</span>
-                                                    </label>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label>   Select track :</label>
-                                                    <select id="cohort" name="cohort" >                                                            
-                                                        <?php
-                                                        if (is_array($cohorts) && count($cohorts)) {
-                                                            foreach ($cohorts as $loop) {
-                                                                ?>                        
-                                                                <option value="<?= $loop->name ?>" /><?= $loop->name ?>
-                                                                <?php
-                                                            }
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-
-                                                <div class="control-group">
-
-                                                    <div class="controls">
-                                                        First name
-                                                        <span class="span12 "><input type="text" class="span6"  id="fname" name="fname" placeholder="First name"  /></span>
-                                                        <label>Last name:</label> <span class="span12 "><input class="input-small span6"  type="text" id="lname" name="lname" placeholder="Last Name"  /></span>
-                                                        <label> Other name:</label>  <span class="span12 "><input class="input-small span6"  type="text" id="other" name="other" placeholder="Other name"  /></span>
-                                                        <label>Primary e-mail:</label> <span class="span12 "> <input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
-                                                        <label>  Primary contact</label>  <span class="span12 ">  <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
-                                                        <label>  Gender:  </label> <span class="span12 ">  <select  data-placeholder="Choose a sex..." name="gender" id="gender">
-
-                                                                <option value="male" />male
-                                                                <option value="female" />female
-
-                                                            </select></span> 
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="span6">
-
-                                                <div class="control-group">
-                                                    <div class="controls">
-
-
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="control-group">
-
-                                                    <div class="controls">
-                                                        <label>Date of Birth:  </label>     <span class="span12 ">    <input class="date-picker" id="dob" name="dob" type="text" data-date-format="dd-mm-yyyy" /></span>
-
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <div class="controls" id="locationField">
-                                                        <label> Location: </label>     <span class="span12 "> <input  id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input></span>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <div class="controls">
-                                                        <div class="controls " id="address">
-                                                            <label> Country :</label>    <div class="control-group">
-                                                                
-                                                                <select id="country" name="country" >                                                            
-                                                                    <?php
-                                                                    if (is_array($countries) && count($countries)) {
-                                                                        foreach ($countries as $loop) {
-                                                                            ?>                        
-                                                                            <option value="<?= $loop->name ?>" /><?= $loop->name ?>
-                                                                            <?php
-                                                                        }
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>          <input class="field" id="street_number" type="hidden" disabled="true"></input>
-                                                            <input class="field" id="route"type="hidden"  disabled="true"></input>
-                                                            <input class="field" id="locality" type="hidden"     disabled="true"></input>
-                                                            <input class="field" type="hidden" id="administrative_area_level_1" disabled="true"></input>
-                                                            <input class="field" type="hidden" id="postal_code"></input>
-
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div class="control-group">
-
-                                                    <div class="controls">
-                                                      <label> Password: </label>      <span class="span12">  <input type="password" id="password1" class="span6" name="password1" /></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="control-group">
-                                                    <div class="controls">
-                                                      <label>Confirm Password:  </label>      <span class="span12">    <input type="password" class="span6" id="password2" name="password2" /></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="">
-                                                    <button class="btn btn-info" type="submit">
-                                                        <i class="icon-ok bigger-110"></i>
-                                                        Submit
-                                                    </button>
-
-                                                    <button class="btn" type="reset">
-                                                        <i class="icon-undo bigger-110"></i>
-                                                        Reset
-                                                    </button>
-                                                </div>
-                                            </div>
-
-
-
-
-
-                                        </form>	
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-group">
-
-                                <div class="accordion-body collapsed" id="collapseThree">
-                                    <div class="accordion-inner">
-
-                                        <div class="row span12">
-                                            <table  id="example1" class="table table-bordered table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="center">
-                                                            <label>
-                                                                <input type="checkbox" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </th>
-                                                         <th>Approve/activate</th>
-                                                        <th></th>
-                                                        <th>First name</th>
-                                                        <th>last name</th>
-                                                        <th>Other</th>   
-                                                        <th>email</th> 
-                                                        
-                                                        <th>Country</th>  
-                                                        <th>Contact</th> 
-                                                        <th>Cohort</th>
-                                                        
-                                                        <th></th>
-                                                       
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <?php
-                                                    if (is_array($students) && count($students)) {
-                                                        foreach ($students as $loop) {
-                                                            $fname = $loop->fname;
-                                                            $lname = $loop->lname;
-                                                            $other = $loop->other;
-                                                            $email = $loop->email;
-                                                            $contact = $loop->contact;
-
-                                                            $id = $loop->id;
-                                                            ?>  
-
-                                                            <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                                <td class="center ">
-                                                                    <label>
-                                                                        <input type="checkbox" />
-                                                                        <span class="lbl"></span>
-                                                                    </label>
-                                                                </td>
-                                                                        <td >
-
-                                                                    <?php
-                                                                    if ($loop->status == "false") {
-                                                                        ?>
-                                                                        <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
-                                                                            <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
-                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" />
-                                                                                Active
-                                                                            </label>
-                                                                            <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
-                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
-                                                                                Off
-                                                                            </label>
-                                                                        </div> 
-                                                                    <?php } ?>
-
-                                                                    <?php
-                                                                    if ($loop->status == "active") {
-                                                                        ?>
-                                                                        <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
-                                                                            <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
-                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
-                                                                                Active
-                                                                            </label>
-                                                                            <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
-                                                                                <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>"  />
-                                                                                Off
-                                                                            </label>
-                                                                        </div> 
-                                                                    <?php } ?>
-
-                                                                </td>
-                                                                <td>
-                                                                    <div class="profile-activity">
-                                                                        <a href="<?php echo base_url() . "index.php/student/details/" . $loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>" height="70px" width="70px"  alt="<?php echo $fname; ?>" /></a>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
-                                                                    <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
-                                                                    <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="other_<?php echo $id; ?>" class="text"><?php echo $other; ?></span>
-                                                                    <input type="text" value="<?php echo $other; ?>" class="editbox" id="other_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td class="edit_td">
-                                                                    <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
-                                                                    <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"
-                                                                </td>
-
-
-                                                              
-                                                                <td><?= $loop->country ?></td>
-
-                                                                <td class="edit_td">
-                                                                    <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
-                                                                    <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
-                                                                </td>
-                                                                <td><?= $loop->cohort ?></td>
-                                                               
-
-                                                                <td class="td-actions">
-
-                                                                    <a href="<?php echo base_url() . "index.php/management/student/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="icon-trash bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </td>
-                                                        
-
-                                                            </tr>
-                                                            <?php
-                                                        }
-                                                    }
-                                                    ?>
-
-
-
-                                                </tbody>
-                                            </table>  
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                </a>
+                            </div>                             
                         </div>
                     </div>
 
                 </div>
+
+                <div class="widget-main ">
+                    <div id="accordion2" class="accordion">              
+
+                        <div class="accordion-group container row-fluid">
+
+
+                            <div class="accordion-body collapse" id="collapseTwo">
+                                <div class="accordion-inner">
+                                    <?php echo $this->session->flashdata('msg'); ?>
+                                    <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/country_student/'  method="post">                                            <div class=" span6">
+                                            <div class="widget-main">
+                                                <label>Upload profile picture</label>
+                                                <input multiple="" type="file" name="userfile" id="id-input-file-3" />                                                       
+                                            </div>
+                                            <div class="control-group">
+                                                <label>   Select track :</label><br>
+                                                <select id="cohort" name="cohort" >                                                            
+                                                    <?php
+                                                    if (is_array($cohorts) && count($cohorts)) {
+                                                        foreach ($cohorts as $loop) {
+                                                            ?>                        
+                                                            <option value="<?= $loop->name ?>" /><?= $loop->name ?>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <label>First name</label><br>
+                                                    <span class="span12 "><input type="text" class="span6"  id="fname" name="fname" placeholder="First name"  /></span>
+                                                    <label>Last name:</label><br> <span class="span12 "><input class="input-small span6"  type="text" id="lname" name="lname" placeholder="Last Name"  /></span>
+                                                    <label> Other name:</label> <br> <span class="span12 "><input class="input-small span6"  type="text" id="other" name="other" placeholder="Other name"  /></span>
+                                                   
+                                                </div>
+                                            </div>
+                                               <label>Primary e-mail:</label><br> <span class="span12 "> <input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
+                                                    <label>  Primary contact</label><br>  <span class="span12 ">  <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
+                                          
+
+                                        </div>
+
+                                        <div class="span6 padding-10">
+                                                    <label>  Gender:  </label><br> <span class="span12 ">  <select  data-placeholder="Choose a sex..." name="gender" id="gender">
+
+                                                            <option value="male" />male
+                                                            <option value="female" />female
+
+                                                        </select></span> 
+
+                                            <div class="control-group">
+
+                                                <div class="controls">
+                                                    <label>Date of Birth:  </label>     <span class="span12 ">    <input class="date-picker" id="dob" name="dob" type="text" data-date-format="dd-mm-yyyy" /></span>
+
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <div class="controls" id="locationField">
+                                                    <label> Location: </label>     <span class="span12 "> <input  id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input></span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <div class="controls " id="address">
+                                                        <label> Country :</label>    <div class="control-group">
+                                                            <input class="field" name="country" id="country" type="text" value="<?php echo $this->session->userdata('country'); ?>" ></input>
+
+                                                        </div>          <input class="field" id="street_number" type="hidden" disabled="true"></input>
+                                                        <input class="field" id="route"type="hidden"  disabled="true"></input>
+                                                        <input class="field" id="locality" type="hidden"     disabled="true"></input>
+                                                        <input class="field" type="hidden" id="administrative_area_level_1" disabled="true"></input>
+                                                        <input class="field" type="hidden" id="postal_code"></input>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+
+                                                <div class="controls">
+                                                    <label> Password: </label>      <span class="span12">  <input type="password" id="password1" class="span6" name="password1" /></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <label>Confirm Password:  </label>      <span class="span12">    <input type="password" class="span6" id="password2" name="password2" /></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="">
+                                                <button class="btn btn-info" type="submit">
+                                                    <i class="icon-ok bigger-110"></i>
+                                                    Submit
+                                                </button>
+
+                                                <button class="btn" type="reset">
+                                                    <i class="icon-undo bigger-110"></i>
+                                                    Reset
+                                                </button>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                    </form>	
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-group">
+
+                            <div class="accordion-body collapsed" id="collapseThree">
+                                <div class="accordion-inner">
+
+                                    <div class="row span12">
+                                        <table  id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="center">
+                                                        <label>
+                                                            <input type="checkbox" />
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </th>
+                                                    <th>Approve/activate</th>
+                                                    <th></th>
+                                                    <th>First name</th>
+                                                    <th>last name</th>
+                                                    <th>Other</th>   
+                                                    <th>email</th> 
+
+                                                    <th>Country</th>  
+                                                    <th>Contact</th> 
+                                                    <th>Cohort</th>
+
+                                                    <th></th>
+
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <?php
+                                                if (is_array($students) && count($students)) {
+                                                    foreach ($students as $loop) {
+                                                        $fname = $loop->fname;
+                                                        $lname = $loop->lname;
+                                                        $other = $loop->other;
+                                                        $email = $loop->email;
+                                                        $contact = $loop->contact;
+
+                                                        $id = $loop->id;
+                                                        ?>  
+
+                                                        <tr id="<?php echo $id; ?>" class="edit_tr">
+                                                            <td class="center ">
+                                                                <label>
+                                                                    <input type="checkbox" />
+                                                                    <span class="lbl"></span>
+                                                                </label>
+                                                            </td>
+                                                            <td >
+
+                                                                <?php
+                                                                if ($loop->status == "false") {
+                                                                    ?>
+                                                                    <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                        <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
+                                                                            <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" />
+                                                                            Active
+                                                                        </label>
+                                                                        <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
+                                                                            <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                                            Off
+                                                                        </label>
+                                                                    </div> 
+                                                                <?php } ?>
+
+                                                                <?php
+                                                                if ($loop->status == "active") {
+                                                                    ?>
+                                                                    <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                                        <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
+                                                                            <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                                            Active
+                                                                        </label>
+                                                                        <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
+                                                                            <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>"  />
+                                                                            Off
+                                                                        </label>
+                                                                    </div> 
+                                                                <?php } ?>
+
+                                                            </td>
+                                                            <td>
+                                                                <div class="profile-activity">
+                                                                    <a href="<?php echo base_url() . "index.php/student/details/" . $loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>" height="70px" width="70px"  alt="<?php echo $fname; ?>" /></a>
+                                                                </div>
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
+                                                                <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
+                                                                <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <span id="other_<?php echo $id; ?>" class="text"><?php echo $other; ?></span>
+                                                                <input type="text" value="<?php echo $other; ?>" class="editbox" id="other_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td class="edit_td">
+                                                                <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
+                                                                <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"
+                                                            </td>
+
+
+
+                                                            <td><?= $loop->country ?></td>
+
+                                                            <td class="edit_td">
+                                                                <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
+                                                                <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
+                                                            </td>
+                                                            <td><?= $loop->cohort ?></td>
+
+
+                                                            <td class="td-actions">
+
+                                                                <a href="<?php echo base_url() . "index.php/management/student/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                    <span class="red">
+                                                                        <i class="icon-trash bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </td>
+
+
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
+
+
+
+                                            </tbody>
+                                        </table>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+    </div>
 
-        <div class="row-fluid">
+    <div class="row-fluid">
 
 
 
-        </div>                
+    </div>                
 
 </div><!--/.main-content-->
 

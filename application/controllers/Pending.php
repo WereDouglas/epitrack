@@ -19,7 +19,7 @@ class Pending extends CI_Controller {
         //  var_dump($query);
   }
    if ($this->session->userdata('level') == 2) {
-        $query = $this->Md->query("SELECT * FROM pending WHERE country='".$this->session->userdata('country')."'");
+        $query = $this->Md->query("SELECT * FROM pending ");
         //  var_dump($query);
   }
         if ($query) {

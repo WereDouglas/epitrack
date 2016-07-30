@@ -62,7 +62,7 @@
                                 <li class="dropdown notifications-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-bell-o"></i>
-                                        <span class="label label-warning"><?php echo count($student_cnt_false) + count($publication_cnt_review) + count($publication_cnt_accepted); ?></span>
+                                        <span class="label label-warning"><?php echo count($present_accepted) + count($student_cnt_false) + count($publication_cnt_review) + count($publication_cnt_accepted) + count($outbreak_accepted); ?></span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li class="header">Your notifications</li>
@@ -76,15 +76,25 @@
                                                 </li>
                                                 <li>
                                                 <li>
-                                                    <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
+                                                    <a href="<?php echo base_url() . "index.php/management/publications"; ?>" target="frame">
                                                         <i class="fa fa-newspaper-o text-aqua"></i> <?php echo count($publication_cnt_review); ?> Publications pending review
                                                     </a>
 
                                                 </li>
                                                 <li>
                                                 <li>
-                                                    <a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame">
+                                                    <a href="<?php echo base_url() . "index.php/management/publications"; ?>" target="frame">
                                                         <i class="fa fa-mortar-board text-aqua"></i> <?php echo count($publication_cnt_accepted); ?> publications pending acceptance
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url() . "index.php/management/outbreaks"; ?>" target="frame">
+                                                        <i class="fa fa-road text-aqua"></i> <?php echo count($outbreak_accepted); ?> Outbreaks pending Review
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?php echo base_url() . "index.php/management/presentations"; ?>" target="frame">
+                                                        <i class="fa fa-road text-aqua"></i> <?php echo count($present_accepted); ?> Presentations pending acceptance Review
                                                     </a>
                                                 </li>
 
@@ -193,7 +203,7 @@
                         if ($this->session->userdata('level') == 2) {
                             ?>
                             <li class="header">Country</li>
-                            <li><a href="<?php echo base_url() . "index.php/management/country_report"; ?>" target="frame"><i class="fa fa-bar-chart"></i> Country Reports</a></li>
+    <!--                            <li><a href="<?php echo base_url() . "index.php/management/country_report"; ?>" target="frame"><i class="fa fa-bar-chart"></i> Country Reports</a></li>-->
                             <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i>Event & Updates</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"><i class="fa fa-users"></i> Students</a></li>
     <!--                            <li><a href="<?php echo base_url() . "index.php/management/advert"; ?>" target="frame"><i class="fa fa-circle-o"></i> Advertisement</a></li>-->
@@ -229,7 +239,19 @@
                             <li><a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame"><i class="fa fa-flag"></i> Countries</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/country_user"; ?>" target="frame"><i class="fa fa-users"></i> Users</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i> Events & Updates</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
+                          
+                             <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/field/view"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/qualifications"; ?>" target="frame"><i class="fa  fa-file-text"></i>Qualifications</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/emps"; ?>" target="frame"><i class="fa  fa-file-text"></i>Employement Records</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/surveillance"; ?>" target="frame"><i class="fa  fa-file-text"></i>Surveillance</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/outbreaks"; ?>" target="frame"><i class="fa  fa-file-text"></i>Out Breaks</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/presentations"; ?>" target="frame"><i class="fa  fa-file-text"></i>Presentations</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/publications"; ?>" target="frame"><i class="fa  fa-file-text"></i>Publications</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/studies"; ?>" target="frame"><i class="fa  fa-file-text"></i>Studies</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/courses"; ?>" target="frame"><i class="fa  fa-file-text"></i>Courses</a></li>
+
+
 
                         <?php } ?>                       
 

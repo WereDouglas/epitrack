@@ -49,7 +49,7 @@
                                         <div class="control-group">
 
                                             <div class="controls">
-                                                <span class="span12 ">Study name:<input type="text" class="span12"  id="organisation" name="name"   /></span>
+                                                <span class="span12 ">Study name:<input type="text" class="span12"  id="name" name="name"   /></span>
                                                 <div style="margin-bottom:20px">
                                                     <label class="label-top">Date of Study Onset</label>
                                                     <input name="onset" id="onset" class="easyui-datebox control-group" >
@@ -115,7 +115,10 @@
                                         if (is_array($study) && count($study)) {
                                             foreach ($study as $loop) {
                                                 $name = $loop->name;
+                                                 $dos = $loop->dos;
+                                                 $onset = $loop->onset;
                                                 $findings = $loop->findings;
+                                                 $dissemination = $loop->dissemination;
                                                 $id = $loop->id;
                                                 ?>  
 
@@ -131,9 +134,21 @@
                                                         <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                                                         <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
                                                     </td>
-                                                    <td><?= $loop->onset ?></td>
-                                                    <td><?= $loop->dissemination ?></td>
+                                                       <td class="edit_td">
 
+                                                        <span id="onset_<?php echo $id; ?>" class="text"><?php echo $onset; ?></span>
+                                                        <input class="span10 date-picker editbox" id="onset_input_<?php echo $id; ?>" value="<?php echo $onset; ?>"   type="text" name="date" data-date-format="yyyy-mm-dd" />
+                                                        <span class="add-on">
+                                                            <i class="icon-calendar"></i>
+                                                        </span>
+                                                    </td>
+                                                    <td class="edit_td">
+                                                        <span id="dissemination_<?php echo $id; ?>" class="text"><?php echo $dissemination; ?></span>
+                                                        <input class="span10 date-picker editbox" id="dissemination_input_<?php echo $id; ?>" value="<?php echo $dissemination; ?>"   type="text" name="date" data-date-format="yyyy-mm-dd" />
+                                                        <span class="add-on">
+                                                            <i class="icon-calendar"></i>
+                                                        </span>                                                        
+                                                    </td>
                                                     <td class="edit_td">
                                                         <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
                                                         <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
@@ -462,23 +477,20 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $(".edit_tr").click(function ()
         {
             var ID = $(this).attr('id');
-            $("#organisation" + ID).hide();
-            $("#organisation_input_" + ID).show();
+            $("#name" + ID).hide();
+            $("#name_input_" + ID).show();
 
-            $("#position" + ID).hide();
-            $("#position_input_" + ID).show();
+            $("#onset" + ID).hide();
+            $("#onset_input_" + ID).show();
 
-            $("#country" + ID).hide();
-            $("#country_input_" + ID).show();
+         
 
+            $("#dissemination" + ID).hide();
+            $("#dissemination_input_" + ID).show();
 
-            $("#location" + ID).hide();
-            $("#location_input_" + ID).show();
-
-            $("#sector" + ID).hide();
-            $("#sector_input_" + ID).show();
-            $("#contact" + ID).hide();
-            $("#contact_input_" + ID).show();
+            $("#findings" + ID).hide();
+            $("#findings_input_" + ID).show();
+          
 
 
 
@@ -486,37 +498,34 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         }).change(function ()
         {
             var ID = $(this).attr('id');
-            var organisation = $("#organisation_input_" + ID).val();
-            var position = $("#position_input_" + ID).val();
-            var country = $("#country_input_" + ID).val();
-            var location = $("#location_input_" + ID).val();
-            var sector = $("#sector_input_" + ID).val();
-            var contact = $("#contact_input_" + ID).val();
+            var name = $("#name_input_" + ID).val();
+            var onset = $("#onset_input_" + ID).val();
+          
+            var dissemination = $("#dissemination_input_" + ID).val();
+            var findings = $("#findings_input_" + ID).val();
+        
 
-            var dataString = 'id=' + ID + '&organisation=' + organisation + '&position=' + position + '&country=' + country + '&location=' + location + '&sector=' + sector + '&contact=' + contact;
-            $("#organisation_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#position_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#country_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#location_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#sector_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-            $("#contact_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-
-            if (organisation.length > 0 && contact.length > 0)
+            var dataString = 'id=' + ID + '&name=' + name + '&onset=' + onset  + '&dissemination=' + dissemination + '&findings=' + findings ;
+            $("#name_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#onset_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+             $("#dissemination_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#findings_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            if (name.length > 0 && onset.length > 0)
             {
 
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url() . "index.php/student/employment/update/"; ?>",
+                    url: "<?php echo base_url() . "index.php/student/study/update/"; ?>",
                     data: dataString,
                     cache: false,
                     success: function (html)
                     {
-                        $("#organisation_" + ID).html(organisation);
-                        $("#position_" + ID).html(position);
-                        $("#country_" + ID).html(country);
-                        $("#location_" + ID).html(location);
-                        $("#sector_" + ID).html(sector);
-                        $("#contact_" + ID).html(contact);
+                        $("#name_" + ID).html(name);
+                        $("#onset_" + ID).html(onset);
+                      
+                        $("#dissemination_" + ID).html(dissemination);
+                        $("#findings_" + ID).html(findings);
+                      
 
                     }
                 });

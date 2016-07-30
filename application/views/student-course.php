@@ -27,10 +27,7 @@
 
                     </div>
                 </div>
-
             </div>
-
-
 
             <div class="widget-main ">
                 <div id="accordion2" class="accordion">
@@ -52,7 +49,7 @@
                                                 </div>
                                                 <label for="form-field-9">Course objective</label>
 
-                                                <textarea class="span12 limited" id="form-field-9" name="findings" data-maxlength="50"></textarea>
+                                                <textarea class="span12 limited" id="form-field-9" name="objective" data-maxlength="50"></textarea>
 
 
                                                 <div style="margin-bottom:20px">

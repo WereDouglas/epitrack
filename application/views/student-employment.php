@@ -310,7 +310,7 @@
                                                     <label>Location</label>
                                                     <div class="control-group">  
                                                         <input type="text" class="span10" id="location" name="location"  /></div>
-                                                    <label>Contact</label>  <div class="control-group">   <input type="text" class="span10"  id="contact" name="contact"   /></div>
+                                                    <label>Contact</label>  <div class="control-group">   <input type="number" class="span10"  id="contact" name="contact"   /></div>
                                                     <label>Sector</label>  <div class="control-group">   <input type="text" class="span10"  id="sector" name="sector"   /></div>
 
                                                     <div style="margin-bottom:20px">
@@ -674,7 +674,7 @@
                                                     </td>
                                                     <td class="edit_td">
                                                         <span id="contacts_<?php echo $id; ?>" class="text"><?php echo $contacts; ?></span>
-                                                        <input type="text" value="<?php echo $contacts; ?>" class="editbox" id="contacts_input_<?php echo $id; ?>"
+                                                        <input type="number" value="<?php echo $contacts; ?>" class="editbox" id="contacts_input_<?php echo $id; ?>"
                                                     </td>
 
                                                     <td><?= $loop->created ?> </td>

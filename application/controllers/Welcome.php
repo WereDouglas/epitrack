@@ -280,6 +280,21 @@ class Welcome extends CI_Controller {
         } else {
             $data['present_cnt_accepted'] = array();
         }
+        $query = $this->Md->query("SELECT * FROM outbreak where verified = 'false' AND country = '".$this->session->userdata('country')."'");
+        //  var_dump($query);
+        if ($query) {
+            $data['outbreak_accepted'] = $query;
+        } else {
+            $data['outbreak_accepted'] = array();
+        }
+        
+         $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no' AND country = '".$this->session->userdata('country')."'");
+        //  var_dump($query);
+        if ($query) {
+            $data['present_accepted'] = $query;
+        } else {
+            $data['present_accepted'] = array();
+        }
 
 
         $this->load->view('center_page', $data);

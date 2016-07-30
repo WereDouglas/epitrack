@@ -7,6 +7,57 @@
         <!-- /.timeline-label -->
         <!-- timeline item -->
         <li>
+            
+            <i class="fa fa-male bg-blue"></i>
+
+            <?php
+            if (is_array($fields)) {
+                foreach ($fields as $loop) {
+                    ?>    
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> <strong><?= $loop->dos; ?></strong> </span>
+                        <h3 class="timeline-header"><a href="#"><?= $loop->notes . ' ' ?></a>  <?= $loop->fname. ' '.$loop->lname; ?></h3>
+                        <div class="timeline-body">
+                            <?= $loop->name; ?><br>
+                            <a class="btn bg-aqua" href="<?php echo base_url() . "field/".$loop->file; ?>" >Download</a>
+
+                        </div>
+                       
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+           
+        </li>
+        
+         <li>
+            
+            <i class="fa fa-database bg-blue"></i>
+
+            <?php
+            if (is_array($outbreaks)) {
+                foreach ($outbreaks as $loop) {
+                    ?>    
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> <strong><?= $loop->dos; ?></strong>  <?= $loop->author; ?></span>
+                        <h3 class="timeline-header"><a href="#"><?= $loop->findings . ' ' ?></a>  <?= $loop->verfied; ?></h3>
+                        <div class="timeline-body">
+                            <?= $loop->etiology; ?>
+
+                        </div>
+                       
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+           
+        </li>
+        
+        
+        <li>
+            
             <i class="fa fa-newspaper-o bg-blue"></i>
 
             <?php
@@ -21,7 +72,7 @@
 
                         </div>
                         <div class="timeline-footer">
-                            <a href="<?php echo base_url() . "publications/" . $loop->file; ?>">view</a>
+                            <a class="btn bg-aqua" href="<?php echo base_url() . "publications/" . $loop->file; ?>">Download</a>
 
                         </div>
                     </div>
@@ -41,7 +92,7 @@
                             <?= $loop->abstract; ?>
                         </div>
                         <div class="timeline-footer">
-                            <a href="<?php echo base_url() . "publications/" . $loop->file; ?>">view</a>
+                            <a class="btn bg-aqua" href="<?php echo base_url() . "publications/" . $loop->file; ?>">Download</a>
 
                         </div>
                     </div>
@@ -100,7 +151,7 @@
                             <?= $loop->summary; ?>
                         </div>
                         <div class="timeline-footer">
-                            <a href="<?php echo base_url() . "publications/" . $loop->file; ?>">view</a>
+                            <a class="btn-sm btn-flat" href="<?php echo base_url() . "publications/" . $loop->file; ?>">view</a>
                         </div>
                     </div>
                     <?php

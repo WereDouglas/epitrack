@@ -38,12 +38,26 @@ class Management extends CI_Controller {
 
         $studentID = $this->uri->segment(3);
 
-        $query = $this->Md->query("SELECT * FROM qualification INNER JOIN student ON qualification.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        $query = $this->Md->query("SELECT *,qualification.id AS id FROM qualification INNER JOIN student ON qualification.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
         if ($query) {
             $data['qualifications'] = $query;
         } else {
             $data['qualifications'] = array();
         }
+
+        if ($this->session->userdata('level') == 1) {
+
+
+            $query = $this->Md->query("SELECT *,qualification.id AS id FROM qualification INNER JOIN student ON qualification.studentID=student.id  ORDER BY student.fname");
+            if ($query) {
+                $data['qualifications'] = $query;
+            } else {
+                $data['qualifications'] = array();
+            }
+        }
+
+
+
         $this->load->view('view-qualifications', $data);
     }
 
@@ -52,11 +66,20 @@ class Management extends CI_Controller {
 
         $studentID = $this->uri->segment(3);
 
+
         $query = $this->Md->query("SELECT * FROM employment INNER JOIN student ON employment.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
         if ($query) {
             $data['records'] = $query;
         } else {
             $data['records'] = array();
+        }
+        if ($this->session->userdata('level') == 1) {
+            $query = $this->Md->query("SELECT * FROM employment INNER JOIN student ON employment.studentID=student.id ORDER BY student.fname");
+            if ($query) {
+                $data['records'] = $query;
+            } else {
+                $data['records'] = array();
+            }
         }
         $this->load->view('view-employement', $data);
     }
@@ -66,11 +89,19 @@ class Management extends CI_Controller {
 
         $studentID = $this->uri->segment(3);
 
-        $query = $this->Md->query("SELECT * FROM surveillance INNER JOIN student ON surveillance.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        $query = $this->Md->query("SELECT *,surveillance.id AS id FROM surveillance INNER JOIN student ON surveillance.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
         if ($query) {
             $data['survey'] = $query;
         } else {
             $data['survey'] = array();
+        }
+        if ($this->session->userdata('level') == 1) {
+            $query = $this->Md->query("SELECT *,surveillance.id AS id FROM surveillance INNER JOIN student ON surveillance.studentID=student.id  ORDER BY student.fname");
+            if ($query) {
+                $data['survey'] = $query;
+            } else {
+                $data['survey'] = array();
+            }
         }
         $this->load->view('view-surveillance', $data);
     }
@@ -85,6 +116,14 @@ class Management extends CI_Controller {
         } else {
             $data['out'] = array();
         }
+        if ($this->session->userdata('level') == 1) {
+            $query = $this->Md->query("SELECT * FROM outbreak INNER JOIN student ON outbreak.studentID=student.id  ORDER BY student.fname");
+            if ($query) {
+                $data['out'] = $query;
+            } else {
+                $data['out'] = array();
+            }
+        }
         $this->load->view('view-outbreaks', $data);
     }
 
@@ -92,12 +131,22 @@ class Management extends CI_Controller {
         //get($field,$value,$table)
 
 
-        $query = $this->Md->query("SELECT * FROM presentation INNER JOIN student ON presentation.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        $query = $this->Md->query("SELECT * ,presentation.id AS id FROM presentation INNER JOIN student ON presentation.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
         if ($query) {
             $data['presentations'] = $query;
         } else {
             $data['presentations'] = array();
         }
+
+        if ($this->session->userdata('level') == 1) {
+            $query = $this->Md->query("SELECT * ,presentation.id AS id FROM presentation INNER JOIN student ON presentation.studentID=student.id  ORDER BY student.fname");
+            if ($query) {
+                $data['presentations'] = $query;
+            } else {
+                $data['presentations'] = array();
+            }
+        }
+
         $this->load->view('view-presentations', $data);
     }
 
@@ -105,11 +154,20 @@ class Management extends CI_Controller {
         //get($field,$value,$table)
 
         $studentID = $this->uri->segment(3);
-        $query = $this->Md->query("SELECT * FROM publication INNER JOIN student ON publication.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        $query = $this->Md->query("SELECT *,publication.id AS id FROM publication INNER JOIN student ON publication.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
         if ($query) {
             $data['publications'] = $query;
         } else {
             $data['publications'] = array();
+        }
+        if ($this->session->userdata('level') == 1) {
+
+            $query = $this->Md->query("SELECT *,publication.id AS id FROM publication INNER JOIN student ON publication.studentID=student.id  ORDER BY student.fname");
+            if ($query) {
+                $data['publications'] = $query;
+            } else {
+                $data['publications'] = array();
+            }
         }
         $this->load->view('view-publications', $data);
     }
@@ -124,6 +182,14 @@ class Management extends CI_Controller {
         } else {
             $data['study'] = array();
         }
+        if ($this->session->userdata('level') == 1) {
+            $query = $this->Md->query("SELECT * FROM study INNER JOIN student ON study.studentID=student.id  ORDER BY student.fname");
+            if ($query) {
+                $data['study'] = $query;
+            } else {
+                $data['study'] = array();
+            }
+        }
         $this->load->view('view-studies', $data);
     }
 
@@ -137,6 +203,14 @@ class Management extends CI_Controller {
         } else {
             $data['outs'] = array();
         }
+        if ($this->session->userdata('level') == 1) {
+            $query = $this->Md->query("SELECT * FROM course INNER JOIN student ON course.studentID=student.id  ORDER BY student.fname");
+            if ($query) {
+                $data['outs'] = $query;
+            } else {
+                $data['outs'] = array();
+            }
+        }
         $this->load->view('view-courses', $data);
     }
 
@@ -146,7 +220,7 @@ class Management extends CI_Controller {
         $name = $this->session->userdata('name');
         $id = $this->session->userdata('id');
 
-        if ($this->session->userdata('level') == 1) {
+        if ($this->session->userdata('level') == 1 || $this->session->userdata('level') == 2) {
 
             $query = $this->Md->get('reciever', $name, 'chat');
             //  var_dump($query);
@@ -155,7 +229,15 @@ class Management extends CI_Controller {
             } else {
                 $data['chats'] = array();
             }
-            $query = $this->Md->query("SELECT * FROM outbreak where country = '" . $cty . "'");
+            $query = $this->Md->query("SELECT * FROM fields INNER JOIN student ON fields.studentID = student.id where location = '" . $cty . "' ORDER BY fields.id ASC LIMIT 10");
+            //  var_dump($query);
+            if ($query) {
+                $data['fields'] = $query;
+            } else {
+                $data['fields'] = array();
+            }
+
+            $query = $this->Md->query("SELECT * FROM outbreak where country = '" . $cty . "' AND confirm ='no'");
             //  var_dump($query);
             if ($query) {
                 $data['outbreaks'] = $query;
@@ -616,16 +698,16 @@ class Management extends CI_Controller {
                 $file = $data['file_name'];
                 $email = $this->input->post('email');
 
-                $student = array('image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false');
+                $student = array('image' => $file, 'country' => $country, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false');
                 $file_id = $this->Md->save($student, 'student');
-                ;
+
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
                                                  information saved</strong>									
 						</div>');
 
-                redirect('/management/student', 'refresh');
+                redirect('/management/country_student', 'refresh');
             }
         }
         $query = $this->Md->show('cohort');
@@ -741,7 +823,7 @@ class Management extends CI_Controller {
                 $gender = $this->input->post('gender');
                 $dob = date('Y-m-d', strtotime($this->input->post('dob')));
                 $country = $this->input->post('country');
-                if ($this->session->userdata('level') == 1) {
+                if ($this->input->post('country') == "") {
 
                     $country = $this->session->userdata('country');
                 }
@@ -751,7 +833,8 @@ class Management extends CI_Controller {
                 $file = $data['file_name'];
                 $email = $this->input->post('email');
                 if ($this->session->userdata('level') > 0) {
-                    $student = array('image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false');
+
+                    $student = array('country' => $country, 'image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false');
                     $file_id = $this->Md->save($student, 'student');
 
                     $this->session->set_flashdata('msg', '<div class="alert alert-success">
@@ -832,7 +915,6 @@ class Management extends CI_Controller {
 
                 // read the file from disk
                 readfile($file);
-
             }
         }
     }

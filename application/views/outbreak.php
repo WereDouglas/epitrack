@@ -318,11 +318,11 @@
 
                                                 </div>
                                                 <div class="controls">
-                                                    <span class="span12 ">Number of cases:<input type="text" class="span12"  id="max" name="max" /></span>
+                                                    <span class="span12 ">Number of cases:<input type="number" class="span12"  id="max" name="max" /></span>
 
                                                 </div>
                                                 <div class="controls">
-                                                    <span class="span12 ">Number of deaths:<input type="text" class="span12"  id="max" name="min" /></span>
+                                                    <span class="span12 ">Number of deaths:<input type="number" class="span12"  id="max" name="min" /></span>
 
                                                 </div>
                                                 <label for="id-date-picker-1">Date of Study Onset</label>
@@ -527,13 +527,18 @@
                                                 <td><?= $loop->dos ?></td>
                                                 <td class="edit_td">
                                                     <span id="max_<?php echo $id; ?>" class="text"><?php echo $max; ?></span>
-                                                    <input type="text" value="<?php echo $max; ?>" class="editbox" id="max_input_<?php echo $id; ?>"
+                                                    <input type="number" value="<?php echo $max; ?>" class="editbox" id="max_input_<?php echo $id; ?>"
                                                 </td>
                                                 <td class="edit_td">
                                                     <span id="min_<?php echo $id; ?>" class="text"><?php echo $min; ?></span>
-                                                    <input type="text" value="<?php echo $min; ?>" class="editbox" id="min_input_<?php echo $id; ?>"
+                                                    <input type="number" value="<?php echo $min; ?>" class="editbox" id="min_input_<?php echo $id; ?>"
                                                 </td>
-                                                <td><?= $loop->verified ?></td>
+                                                <td>
+                                                    
+                                                
+                                                 <p  class="text-danger"><?= $loop->verified ?></p>
+                                                
+                                                </td>
 
                                                 <td class="td-actions">
 

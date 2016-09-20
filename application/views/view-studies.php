@@ -16,6 +16,7 @@
                     </th>
                     <th>#</th>
                     <th>Student name</th>
+                    <th>Program</th>
                     <th>Cohort</th>
                     <th>Name</th>
                     <th>Onset</th>
@@ -49,6 +50,9 @@
                             </td>
                             <td class="">
                                 <?= $loop->fname . ' ' . $loop->lname . ' ' . $loop->other ?>
+                            </td>
+                            <td class="center ">
+                                <?php echo $loop->country ?>
                             </td>
                              <td class="">
                                 <?= $loop->cohort ?>

@@ -98,7 +98,7 @@
 
                 <div class="widget-main ">
                     <div id="accordion2" class="accordion">              
-
+<div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
                         <div class="accordion-group container row-fluid">
 
 
@@ -124,6 +124,20 @@
                                                     ?>
                                                 </select>
                                             </div>
+                                            <span class="span12 align-right"> Complete: <select  data-placeholder="Date" name="complete" id="complete">
+
+                                                    <option value="true" />true
+                                                    <option value="false" />false
+
+                                                </select></span>  
+                                            <div class="controls">
+                                                <span class="span12 align-right">  Date of completion:   <input class="date-picker" id="date_complete" name="date_complete" type="text" data-date-format="dd-mm-yyyy" /></span>
+
+                                            </div>
+                                            <label>Comments</label><br>
+                                            <span class="span12 "><input type="text" class="span6"  id="comment" name="comment" placeholder="Comment"  /></span>
+
+
 
                                             <div class="control-group">
                                                 <div class="controls">
@@ -131,22 +145,22 @@
                                                     <span class="span12 "><input type="text" class="span6"  id="fname" name="fname" placeholder="First name"  /></span>
                                                     <label>Last name:</label><br> <span class="span12 "><input class="input-small span6"  type="text" id="lname" name="lname" placeholder="Last Name"  /></span>
                                                     <label> Other name:</label> <br> <span class="span12 "><input class="input-small span6"  type="text" id="other" name="other" placeholder="Other name"  /></span>
-                                                   
+
                                                 </div>
                                             </div>
-                                               <label>Primary e-mail:</label><br> <span class="span12 "> <input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
-                                                    <label>  Primary contact</label><br>  <span class="span12 ">  <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
-                                          
+                                            <label>Primary e-mail:</label><br> <span class="span12 "> <input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
+                                            <label>  Primary contact</label><br>  <span class="span12 ">  <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
+
 
                                         </div>
 
                                         <div class="span6 padding-10">
-                                                    <label>  Gender:  </label><br> <span class="span12 ">  <select  data-placeholder="Choose a sex..." name="gender" id="gender">
+                                            <label>  Gender:  </label><br> <span class="span12 ">  <select  data-placeholder="Choose a sex..." name="gender" id="gender">
 
-                                                            <option value="male" />male
-                                                            <option value="female" />female
+                                                    <option value="male" />male
+                                                    <option value="female" />female
 
-                                                        </select></span> 
+                                                </select></span> 
 
                                             <div class="control-group">
 
@@ -212,7 +226,7 @@
                         </div>
 
                         <div class="accordion-group">
-
+                            <div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
                             <div class="accordion-body collapsed" id="collapseThree">
                                 <div class="accordion-inner">
 
@@ -236,6 +250,9 @@
                                                     <th>Country</th>  
                                                     <th>Contact</th> 
                                                     <th>Cohort</th>
+                                                    <th>Comment</th>
+                                                    <th>Date of completion</th>
+                                                    <th>Comments</th>
 
                                                     <th></th>
 
@@ -326,8 +343,9 @@
                                                                 <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
                                                             </td>
                                                             <td><?= $loop->cohort ?></td>
-
-
+                                                            <td id="complete:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->complete; ?></span></td>
+                                                            <td id="date_complete:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->date_complete; ?></span></td>
+                                                            <td id="comments:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->comments; ?></span></td>
                                                             <td class="td-actions">
 
                                                                 <a href="<?php echo base_url() . "index.php/management/student/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
@@ -793,4 +811,32 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         $("#example1").DataTable();
 
     });
+</script>
+<script>
+    $(document).ready(function () {
+        $(function () {
+            //acknowledgement message
+            var message_status = $("#status");
+            $("td[contenteditable=true]").blur(function () {
+                var field_id = $(this).attr("id");
+                var value = $(this).text();
+                $.post('<?php echo base_url() . "index.php/student/updater/"; ?>', field_id + "=" + value, function (data) {
+                    if (data != '')
+                    {
+                        message_status.show();
+                        message_status.text(data);
+                        //hide the message
+                        setTimeout(function () {
+                            message_status.hide()
+                        }, 4000);
+                    }
+                });
+            });
+
+        });
+    });
+
+
+
+
 </script>

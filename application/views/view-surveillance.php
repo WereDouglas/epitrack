@@ -16,6 +16,7 @@
                     </th>
                     <th>#</th>
                     <th>Name</th>
+                     <th>Program</th>
                     <th>Cohort</th>
                     <th>Name/Title</th>
                     <th>Type</th>
@@ -37,6 +38,7 @@
                         $type = $loop->type;
                         $region = $loop->region;
                         $verified = $loop->verified;
+                        $finding = $loop->finding;
                         $id = $loop->id;
                         ?>  
 
@@ -54,6 +56,9 @@
                             </td>
                             <td class="">
                                 <?= $loop->fname . ' ' . $loop->lname . ' ' . $loop->other ?>
+                            </td>
+                            <td class="">
+                                <?= $loop->country ?>
                             </td>
                              <td class="">
                                 <?= $loop->cohort ?>

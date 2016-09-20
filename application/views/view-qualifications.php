@@ -16,6 +16,7 @@
                     </th>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Program</th>
                     <th>Cohort</th>
                     <th>Qualification</th>
                     <th>institute</th>
@@ -52,7 +53,10 @@
                             <td class="">
                                 <?= $loop->fname . ' ' . $loop->lname . ' ' . $loop->other ?>
                             </td>
-                             <td class="">
+                            <td class="center ">
+                                <?php echo $loop->country ?>
+                            </td>
+                            <td class="">
                                 <?= $loop->cohort ?>
                             </td>
 
@@ -139,12 +143,12 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             async: false,
             success: function (data) {
                 alert('Information updated!')
-                 location.reload();
+                location.reload();
             }
 
         });
         alert('Information updated!')
-         location.reload();
+        location.reload();
         return false;
     });
 
@@ -156,7 +160,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         Popup($(elem).html());
     }
 
-    function Popup(data) 
+    function Popup(data)
     {
         var mywindow = window.open('', 'my div', 'height=400,width=600');
         mywindow.document.write('<html><head><title>my div</title>');

@@ -15,6 +15,7 @@
                     </th>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Program</th>
                     <th>Cohort</th>
                     <th>Title</th>
                     <th>Event type</th>
@@ -53,6 +54,9 @@
                             </td>
                             <td class="">
                                 <?= $loop->fname . ' ' . $loop->lname . ' ' . $loop->other ?>
+                            </td>
+                             <td class="center ">
+                                <?php echo $loop->country ?>
                             </td>
                              <td class="">
                                 <?= $loop->cohort ?>

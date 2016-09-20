@@ -240,8 +240,11 @@
                             <li><a href="<?php echo base_url() . "index.php/management/country_user"; ?>" target="frame"><i class="fa fa-users"></i> Users</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i> Events & Updates</a></li>
                           
-                             <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/field/view"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
+                            <li class="header">Reports</li>
+                              <li><a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"><i class="fa fa-users"></i> Students</a></li>
+
+                             <li><a href="<?php echo base_url() . "index.php/field/view"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/qualifications"; ?>" target="frame"><i class="fa  fa-file-text"></i>Qualifications</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/emps"; ?>" target="frame"><i class="fa  fa-file-text"></i>Employement Records</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/surveillance"; ?>" target="frame"><i class="fa  fa-file-text"></i>Surveillance</a></li>

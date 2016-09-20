@@ -14,26 +14,35 @@
                             <input type="text"  id="name" name="name" placeholder="cohort III 2015" /> 
                         </div>
                         <label> Select track </label>
-                       
-                        <div class="control-group">
-                        <select id="track" name="track" >                                                            
-                            <?php
-                            if (is_array($tracks) && count($tracks)) {
-                                foreach ($tracks as $loop) {
-                                    ?>                        
-                                    <option value="<?= $loop->track ?>" /><?= $loop->track ?>
-                                <?php
-                                }
-                            }
-                            ?>
-                        </select>
-                        </div>
-                        <label>Year </label>
-                       
-                         <div class="control-group">
-                             <input type="text"  id="years" name="years" placeholder="<?php echo date('Y'); ?>" /> 
 
-                         </div>
+                        <div class="control-group">
+                            <select id="track" name="track" >                                                            
+                                <?php
+                                if (is_array($tracks) && count($tracks)) {
+                                    foreach ($tracks as $loop) {
+                                        ?>                        
+                                        <option value="<?= $loop->track ?>" /><?= $loop->track ?>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <label>Start year </label>
+
+                        <div class="control-group">
+                            <input type="text"  id="years" name="years" placeholder="<?php echo date('Y'); ?>" /> 
+
+                        </div>
+                        <label>End year </label>
+
+                        <div class="control-group">
+                            <input type="text"  id="end" name="end" placeholder="<?php echo date('Y') + 2; ?>" /> 
+
+                        </div>
+                        <label> Country :</label>    <div class="control-group">
+                            <input class="field" name="country" id="country" type="text" value="<?php echo $this->session->userdata('country'); ?>" ></input>
+
                     </span>
                 </label>
 
@@ -57,9 +66,9 @@
         <hr>   
     <?php } ?>
     <h4>Cohort list</h4>
-<?php echo $this->session->flashdata('msg'); ?>                                             
+    <?php echo $this->session->flashdata('msg'); ?>                                             
     <div class="alert alert-info">Select a field to edit the content</div>                     
-
+<div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
     <table id="example1" class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
@@ -72,7 +81,9 @@
 
                 <th>NAME</th>
                 <th>TRACK</th>
-                <th>YEAR</th>                                                    
+                <th>YEAR</th>
+                <th>END</th> 
+                <th>COUNTRY</th>    
                 <th>created on</th>
                 <th></th>
             </tr>
@@ -98,9 +109,11 @@
                             <span id="cohort_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                             <input type="text" value="<?php echo $name; ?>" class="editbox" id="cohort_input_<?php echo $id; ?>"
                         </td>
-                        <td><?= $loop->track ?></td>
-                        <td><?= $loop->year ?></td>
-
+                        <td id="track:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->track; ?></td>                     
+                         <td id="year:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->year; ?></td>
+                     
+                        <td id="end:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->end; ?></td>
+                        <td id="country:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->country; ?></td>
                         <td><?= $loop->created ?></td>
 
                         <td class="td-actions">
@@ -112,7 +125,7 @@
                             </a>
                         </td>
                     </tr>
-                <?php
+                    <?php
                 }
             }
             ?>
@@ -186,6 +199,34 @@
         });
 
     });
+
+
+
+</script>
+<script>
+    $(document).ready(function () {
+        $(function () {
+            //acknowledgement message
+            var message_status = $("#status");
+            $("td[contenteditable=true]").blur(function () {
+                var field_id = $(this).attr("id");
+                var value = $(this).text();
+                $.post('<?php echo base_url() . "index.php/management/cohort_updater/"; ?>', field_id + "=" + value, function (data) {
+                    if (data != '')
+                    {
+                        message_status.show();
+                        message_status.text(data);
+                        //hide the message
+                        setTimeout(function () {
+                            message_status.hide()
+                        }, 4000);
+                    }
+                });
+            });
+
+        });
+    });
+
 
 
 

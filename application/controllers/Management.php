@@ -468,7 +468,7 @@ class Management extends CI_Controller {
 						</div>');
                 redirect('/management/cohort', 'refresh');
             }
-            $cohort = array('name' => $name, 'track' => $track, 'year' => $startyear, 'created' => date('Y-m-d'));
+            $cohort = array('name' => $name, 'track' => $track, 'year' => $startyear, 'end' => $this->input->post('end'), 'country' => $this->input->post('country'), 'created' => date('Y-m-d'));
             if ($this->session->userdata('level') == 1) {
                 $this->Md->save($cohort, 'cohort');
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">                               
@@ -834,7 +834,7 @@ class Management extends CI_Controller {
                 $email = $this->input->post('email');
                 if ($this->session->userdata('level') > 0) {
 
-                    $student = array('country' => $country, 'image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false');
+                    $student = array('country' => $country, 'image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false', 'complete' => $this->input->post('complete'), 'date_complete' => $this->input->post('date_complete'), 'comments' => $this->input->post('comment'));
                     $file_id = $this->Md->save($student, 'student');
 
                     $this->session->set_flashdata('msg', '<div class="alert alert-success">
@@ -1448,6 +1448,34 @@ class Management extends CI_Controller {
         }
 
         $this->load->view('advert', $data);
+    }
+
+    public function cohort_updater() {
+        
+        $this->load->helper(array('form', 'url'));
+
+        if (!empty($_POST)) {
+
+            foreach ($_POST as $field_name => $val) {
+                //clean post values
+                $field_id = strip_tags(trim($field_name));
+                $val = strip_tags(trim(mysql_real_escape_string($val)));
+                //from the fieldname:user_id we need to get user_id
+                $split_data = explode(':', $field_id);
+                $user_id = $split_data[1];
+                $field_name = $split_data[0];
+                if (!empty($user_id) && !empty($field_name) && !empty($val)) {
+                    //update the values
+                    $student = array($field_name => $val);
+                    $this->Md->update($user_id, $student, 'cohort');
+                    echo "Updated";
+                } else {
+                    echo "Invalid Requests";
+                }
+            }
+        } else {
+            echo "Invalid Requests";
+        }
     }
 
 }

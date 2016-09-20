@@ -55,6 +55,7 @@ class Student extends CI_Controller {
         $this->Md->update($id, $student, 'student');
         $this->session->set_flashdata('msg', '<div class="alert alert-info"> <strong>   Information updated	</strong><div>');
     }
+   
 
     public function updater() {
         $this->load->helper(array('form', 'url'));

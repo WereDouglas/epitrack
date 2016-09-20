@@ -17,6 +17,7 @@
                         </label>
                     </th>
                     <th>STUDENT NAME</th>
+                     <th>PROGRAM</th>
                     <th>EMAIL</th>
                     <th>COHORT</th>
                     <th>DOWNLOAD REPORT</th>
@@ -47,6 +48,9 @@
                             </td>
                             <td class="center ">
                                 <?php echo $loop->fname . ' ' . $loop->lname; ?>
+                            </td>
+                             <td class="center ">
+                                <?php echo $loop->country ?>
                             </td>
                             <td class="center ">
                                 <?php echo $loop->email ?>

@@ -104,9 +104,7 @@
             <div class="row-fluid">
                 <div class="span12 widget-container-span">
 
-                    <div class="">
-
-                        <div class="">
+                   
                             <div class="btn-toolbar ">
                                 <div class="btn-group">
                                     <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
@@ -133,9 +131,7 @@
 
                                 </div><!--/btn-group-->
                             </div>
-                        </div>
-
-                    </div>
+                   
 
 
 
@@ -174,7 +170,7 @@
                                                         ?>
                                                     </select>
                                                 </div>
-                                                 
+
                                                 <div class="control-group">
 
                                                     <div class="controls">

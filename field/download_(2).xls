@@ -1,0 +1,39 @@
+;filename=exportData.xlsx;<table class="scroll table jobs table-striped table-bordered bootstrap-datatable datatable" name="datatable" id="datatable" style=" width: auto;">
+             <thead>
+                <tr>  
+                <th>NAME</th>
+                    <th>DATE</th>
+                    <th>CHECK IN</th>
+                    <th>CHECK OUT</th> 
+                     <th>PERIOD WORKED</th> 
+                      <th>OVERTIME</th> 
+                    <th>CREATED</th>
+                                                                                        
+                </tr>
+            </thead>  <tbody><tr><td>Mr Michael Nkanika </td>
+                    <td>2016-09-01</td>
+                    <td>09:36</td>
+                    <td>10:41</td>
+                    <td>01:04:59 <a class="text-aqua">0.08Hours</a></td>
+                    <td> <a class="text-yellow">-7.92Hours</a> </td>
+                    <td>2016-09-28 11:47:32</td>
+                    </tr>
+                  <tr><td>Mr Michael Nkanika </td>
+                    <td>2016-09-02</td>
+                    <td>08:36</td>
+                    <td>08:36</td>
+                    <td>-1:00:-1 <a class="text-aqua">-1Hours</a></td>
+                    <td> <a class="text-yellow">-9Hours</a> </td>
+                    <td>2016-09-28 11:47:32</td>
+                    </tr>
+                  <tr><td></td>
+                    <td></td>
+                    <td></td>
+                    <td>TOTALS</td>
+                    <td><a class="text-aqua"><strong>-0.92 </strong></a> Hours</td>
+                        
+                    <td><strong><a class="text-red">-9</a></strong> Hours</td>
+                    <td></td>
+                    </tr>
+                    
+                   </tbody>   </table>

@@ -104,7 +104,7 @@ class Welcome extends CI_Controller {
                         } else {
                             $data['events'] = array();
                         }
-                       
+
                         $query = $this->Md->show('student');
                         //  var_dump($query);
                         if ($query) {
@@ -113,7 +113,7 @@ class Welcome extends CI_Controller {
                             $data['students'] = array();
                         }
 
-                        $query = $this->Md->query("SELECT * FROM student where status = 'false' AND country = '".$this->session->userdata('country')."'");
+                        $query = $this->Md->query("SELECT * FROM student where status = 'false' AND country = '" . $this->session->userdata('country') . "'");
                         //  var_dump($query);
                         if ($query) {
                             $data['student_cnt_false'] = $query;
@@ -121,14 +121,14 @@ class Welcome extends CI_Controller {
                             $data['student_cnt_false'] = array();
                         }
 
-                        $query = $this->Md->query("SELECT * FROM publication where verified = 'false' AND country = '".$this->session->userdata('country')."'");
+                        $query = $this->Md->query("SELECT * FROM publication where verified = 'false' AND country = '" . $this->session->userdata('country') . "'");
                         //  var_dump($query);
                         if ($query) {
                             $data['publication_cnt_review'] = $query;
                         } else {
                             $data['publication_cnt_review'] = array();
                         }
-                        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no' AND country = '".$this->session->userdata('country')."'");
+                        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no' AND country = '" . $this->session->userdata('country') . "'");
                         //  var_dump($query);
                         if ($query) {
                             $data['publication_cnt_accepted'] = $query;
@@ -136,7 +136,7 @@ class Welcome extends CI_Controller {
                             $data['publication_cnt_accepted'] = array();
                         }
 
-                        $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no' AND country = '".$this->session->userdata('country')."'");
+                        $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no' AND country = '" . $this->session->userdata('country') . "'");
                         //  var_dump($query);
                         if ($query) {
                             $data['present_cnt_accepted'] = $query;
@@ -144,9 +144,8 @@ class Welcome extends CI_Controller {
                             $data['present_cnt_accepted'] = array();
                         }
                         if ($status != 'false') {
-                            
+
                             $this->load->view('center_page', $data);
-                            
                         } else {
                             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
@@ -192,7 +191,7 @@ class Welcome extends CI_Controller {
                             );
                             $this->session->set_userdata($newdata);
 
-                            if ($this->session->userdata('level') > 0) {
+                            if ($this->session->userdata('level') > 0 && $res->status == 'active') {
                                 $cty = $this->session->userdata('country');
                                 $country = $this->Md->get('name', $cty, 'country');
                                 foreach ($country as $res) {
@@ -202,6 +201,9 @@ class Welcome extends CI_Controller {
 
                                 redirect('welcome/management/', 'refresh');
                                 return;
+                            } else {
+                                $this->session->set_flashdata('msg', '<div class="alert alert-error"> <strong>You are not an active user</strong></div>');
+                                redirect('welcome/register', 'refresh');
                             }
 
 
@@ -250,7 +252,7 @@ class Welcome extends CI_Controller {
         } else {
             $data['pubs'] = array();
         }
-        $query = $this->Md->query("SELECT * FROM student where status = 'false' AND country = '".$this->session->userdata('country')."'");
+        $query = $this->Md->query("SELECT * FROM student where status = 'false' AND country = '" . $this->session->userdata('country') . "'");
         //  var_dump($query);
         if ($query) {
             $data['student_cnt_false'] = $query;
@@ -258,14 +260,14 @@ class Welcome extends CI_Controller {
             $data['student_cnt_false'] = array();
         }
 
-        $query = $this->Md->query("SELECT * FROM publication where verified = 'false' AND country = '".$this->session->userdata('country')."'");
+        $query = $this->Md->query("SELECT * FROM publication where verified = 'false' AND country = '" . $this->session->userdata('country') . "'");
         //  var_dump($query);
         if ($query) {
             $data['publication_cnt_review'] = $query;
         } else {
             $data['publication_cnt_review'] = array();
         }
-        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no' AND country = '".$this->session->userdata('country')."'");
+        $query = $this->Md->query("SELECT * FROM publication where accepted = 'no' AND country = '" . $this->session->userdata('country') . "'");
         //  var_dump($query);
         if ($query) {
             $data['publication_cnt_accepted'] = $query;
@@ -273,22 +275,22 @@ class Welcome extends CI_Controller {
             $data['publication_cnt_accepted'] = array();
         }
 
-        $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no' AND country = '".$this->session->userdata('country')."'");
+        $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no' AND country = '" . $this->session->userdata('country') . "'");
         //  var_dump($query);
         if ($query) {
             $data['present_cnt_accepted'] = $query;
         } else {
             $data['present_cnt_accepted'] = array();
         }
-        $query = $this->Md->query("SELECT * FROM outbreak where verified = 'false' AND country = '".$this->session->userdata('country')."'");
+        $query = $this->Md->query("SELECT * FROM outbreak where verified = 'false' AND country = '" . $this->session->userdata('country') . "'");
         //  var_dump($query);
         if ($query) {
             $data['outbreak_accepted'] = $query;
         } else {
             $data['outbreak_accepted'] = array();
         }
-        
-         $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no' AND country = '".$this->session->userdata('country')."'");
+
+        $query = $this->Md->query("SELECT * FROM presentation where accepted = 'no' AND country = '" . $this->session->userdata('country') . "'");
         //  var_dump($query);
         if ($query) {
             $data['present_accepted'] = $query;

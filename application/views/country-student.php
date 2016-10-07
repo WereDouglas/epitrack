@@ -68,7 +68,7 @@
     <div class="col-xs-12">
 
         <h2>Students</h2>
-
+        <?php echo $this->session->flashdata('msg'); ?>
         <div class="row-fluid">
             <div class="span12 widget-container-span">
 
@@ -98,13 +98,13 @@
 
                 <div class="widget-main ">
                     <div id="accordion2" class="accordion">              
-<div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+                        <div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
                         <div class="accordion-group container row-fluid">
 
 
                             <div class="accordion-body collapse" id="collapseTwo">
                                 <div class="accordion-inner">
-                                    <?php echo $this->session->flashdata('msg'); ?>
+
                                     <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/country_student/'  method="post">                                            <div class=" span6">
                                             <div class="widget-main">
                                                 <label>Upload profile picture</label>
@@ -124,15 +124,24 @@
                                                     ?>
                                                 </select>
                                             </div>
-                                            <span class="span12 align-right"> Complete: <select  data-placeholder="Date" name="complete" id="complete">
+                                            <label>Course Completion:</label>
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <select  data-placeholder="Date" name="complete" id="complete">
 
-                                                    <option value="true" />true
-                                                    <option value="false" />false
+                                                        <option value="true" />true
+                                                        <option value="false" />false
 
-                                                </select></span>  
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="controls">
-                                                <span class="span12 align-right">  Date of completion:   <input class="date-picker" id="date_complete" name="date_complete" type="text" data-date-format="dd-mm-yyyy" /></span>
-
+                                                <label>  Date of completion:  </label>
+                                                <div class="control-group">
+                                                    <div class="controls">
+                                                        <input class="date-picker" id="date_complete" name="date_complete" type="text" data-date-format="dd-mm-yyyy" /></span>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <label>Comments</label><br>
                                             <span class="span12 "><input type="text" class="span6"  id="comment" name="comment" placeholder="Comment"  /></span>
@@ -172,6 +181,11 @@
                                             <div class="control-group">
                                                 <div class="controls" id="locationField">
                                                     <label> Location: </label>     <span class="span12 "> <input  id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input></span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <div class="controls" id="locationField">
+                                                    <label> Supervisor email: </label>     <span class="span12 "> <input class="form-group" id="supervisor" name="supervisor" placeholder="Enter your supervisor's email" type="text"></input></span>
                                                 </div>
                                             </div>
                                             <div class="control-group">
@@ -250,10 +264,10 @@
                                                     <th>Country</th>  
                                                     <th>Contact</th> 
                                                     <th>Cohort</th>
-                                                    <th>Comment</th>
+                                                    <th>Completed</th>
                                                     <th>Date of completion</th>
                                                     <th>Comments</th>
-
+                                                    <th>password reset</th>
                                                     <th></th>
 
                                                 </tr>
@@ -346,6 +360,15 @@
                                                             <td id="complete:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->complete; ?></span></td>
                                                             <td id="date_complete:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->date_complete; ?></span></td>
                                                             <td id="comments:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->comments; ?></span></td>
+                                                            <td>
+
+                                                                <a href="<?php echo base_url() . "index.php/student/reset/" . $loop->id; ?>" class="tooltip-info qualification" data-rel="tooltip" title="verify">
+                                                                    <span class="red">
+                                                                        <i class="icon-lock bigger-120 text-danger"></i>Reset   </span>
+                                                                </a>
+
+
+                                                            </td>
                                                             <td class="td-actions">
 
                                                                 <a href="<?php echo base_url() . "index.php/management/student/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
@@ -838,5 +861,26 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
 
 
+
+</script>
+<script>
+    $('.qualification').click(function (e) {
+        updateURL = $(this).attr("href");
+        e.preventDefault();//in this way you have no redirect
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: updateURL,
+            async: false,
+            success: function (data) {
+                alert('Password reset please check mail for the new password!')
+                location.reload();
+            }
+
+        });
+        alert('Password reset please check mail for the new password!')
+        location.reload();
+        return false;
+    });
 
 </script>

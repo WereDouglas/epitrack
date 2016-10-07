@@ -1,39 +1,20 @@
-<?php require_once(APPPATH . 'views/css-page.php'); ?>    
-<style>
-table.zebra-style {
-	font-family:"Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-	text-align:left;
-	border:1px solid #ccc;
-	margin-bottom:25px;
-	width:90%
-}
-table.zebra-style th {
-	color: #444;
-	font-size: 13px;
-	font-weight: normal;
-	padding: 10px 8px;
-}
-table.zebra-style td {
-	color: #777;
-	padding: 8px;
-	font-size:13px;
-}
-table.zebra-style tr.odd {
-	background:#f2f2f2;
-}
-body {
-	background:#fafafa;
-}
-.container {
-	width: 800px;
-	border: 1px solid #C4CDE0;
-	border-radius: 2px;
-	margin: 0 auto;
-	height: 1300px;
-	background:#fff;
-	padding-left:10px;
-}
-#status { padding:10px; background:#88C4FF; color:#000; font-weight:bold; font-size:12px; margin-bottom:10px; display:none; width:90%; }
+<?php require_once(APPPATH . 'views/css-page.php'); ?>  
+<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
+
+<style type="text/css" media="screen">
+
+    table{
+        border-collapse:collapse;
+        border:0px solid #FF0000;
+    }
+
+    table td{
+        border:0px solid #FF0000;
+    }
+
+    table tr{
+        border:0px solid #FF0000;
+    }
 </style>
 <div class="col-xs-12">
     <section >
@@ -61,152 +42,154 @@ body {
                 <span class="profile-picture">
                     <img id="avatar" height="100px" width="120px" class="editable" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
                 </span>
+
             </div>
-     
+
             <!--PAGE CONTENT ENDS-->
         </div><!--/.span-->
-<!--<a href="#" class="btn btn-default btn-primary">Vertical View</a>-->
-<!--        <table id="datatable-buttons" class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                   
-                    <th>FIRST NAME</th>
-                    <th>LAST NAME</th>
-                    <th>CONTACT</th>
-                    <th>COUNTRY</th>
-                    <th>EMAIL</th>
-                    <th>RESET PASSWORD</th>
-                    <th>CREATED:</th>
-                    <th>ACTION</th>
-                </tr>
-            </thead>
 
+        <?php
+        if (is_array($bio) && count($bio)) {
+            foreach ($bio as $loop) {
+                $id = $loop->id;
+                $fname = $loop->fname;
+                $lname = $loop->lname;
+                $other = $loop->other;
+                $email = $loop->email;
+                $gender = $loop->gender;
+                $dob = $loop->dob;
+                $country = $loop->country;
+
+                $image = $loop->image;
+                $password = $loop->password;
+                $cohort = $loop->cohort;
+                $contact = $loop->contact;
+                $submitted = $loop->submitted;
+                ?>  
+
+
+                <?php
+            }
+        }
+        ?>
+
+  <div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+
+          
+        <table class="table zebra-style span8">
 
             <tbody>
+
+
                 <?php
                 if (is_array($bio) && count($bio)) {
                     foreach ($bio as $loop) {
-                        $id = $loop->id;
-                        $fname = $loop->fname;
-                        $lname = $loop->lname;
-                        $other = $loop->other;
-                        $email = $loop->email;
-                        $gender = $loop->gender;
-                        $dob = $loop->dob;
-                        $country = $loop->country;
-                       
-                        $image = $loop->image;
-                        $password = $loop->password;
-                        $cohort = $loop->cohort;
-                        $contact = $loop->contact;
-                         $submitted = $loop->submitted;
                         ?>  
-                        <tr id="<?php echo $id; ?>" class="edit_tr">
-                            
-                            <td class="edit_td">
-                                <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
-                                <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"
-                            </td>
-                            <td class="edit_td">
-                                <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
-                                <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"
-                            </td>
 
-                            <td class="edit_td">
-                                <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
-                                <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
-
-                            </td>
-                            <td class="edit_td">
-                                 <?php echo $country; ?>
-                            </td>
-                            <td >
-                                <?php echo $email; ?>
-                            </td>      
-                            <td>
-                                <a href="#"  value="<?php echo $loop->id; ?>"  id="myLink" onclick="NavigateToSite(this)" class="tooltip-error text-danger" data-rel="tooltip" title="reset">
-                                    <span class="red">
-                                        <i class="icon-lock bigger-120 text-danger"></i>
-                                        Reset
-                                    </span>
-                                </a>
-                            </td>
-
-                            <td class="edit_td">
-                                 <?php echo $submitted; ?>
-                            </td>   
-
-                            <td class="center">
-                                <a class="btn-danger btn-small icon-remove" href="<?php echo base_url() . "index.php/user/delete/" . $id; ?>"></a>
-                            </td>
+                        <tr class="odd">
+        <!--                            <td><?php echo $loop->id; ?></td>-->
 
                         </tr>
+                        <tr>
+                            <td>FIRST NAME:</td>
+                            <td id="fname:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->fname; ?></td>
+
+                            <td>LAST NAME:</td>
+                            <td id="lname:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->lname; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>OTHER NAME:</td>
+                            <td id="other:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->other; ?></td>
+
+                            <td>CONTACT:</td>
+                            <td id="contact:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->contact; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>EMAIL:</td>
+                            <td id="email:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->email; ?></td>
+
+                            <td>DATE OF BIRTH:</td>
+                            <td id="dob:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->dob; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>PASSWORD REST</td>
+                            <td>
+
+                                <a href="<?php echo base_url() . "index.php/student/reset/" . $loop->id; ?>" class="tooltip-info qualification" data-rel="tooltip" title="verify">
+                                    <span class="red">
+                                        <i class="icon-lock bigger-120 text-danger"></i>Reset   </span>
+                                </a>
+
+
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr> 
+                        <tr>
+                            <td>
+                                <form id="identicalForm"  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/student/update_password'  method="post">                                       
+
+
+                                    <h4>Change password</h4>
+                                    <div class="form-group">
+                                        <label for="email">Password:</label>
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="" />                                                   
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">Confirm password:</label>
+                                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" value="" />
+
+                                    </div>  
+
+                                    <input type="hidden" name="userID" id="userID" value="<?php echo $id; ?>" />     
+                                    <button id="send" class="btn btn-default" type="submit" >Change password</button>
+
+
+                                </form>
+                            </td>
+                            <td>
+                               
+                            </td>
+                            <td></td>
+                            <td> 
+                                <form  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/student/update_image'  method="post">                                       
+                                    <h4>New profile picture</h4>
+                                    <div class="form-group">
+                                        <input type="file"  class="form-control" name="userfile" id="userfile" />
+                                    </div>  
+                                    <div class="form-group">
+                                        <div id="imagePreview" ></div> 
+                                    </div>                
+                                    <input type="hidden" class="form-control" name="userID" id="userID" value="<?php echo $id; ?>" />                                                   
+                                    <input type="hidden" name="namer" id="namer" value="<?php echo $fname . $lname; ?>" />
+                                    <button id="send"  class="btn btn-default" type="submit" >Update picture</button>
+
+
+                                </form></td>
+                        </tr>
+
                         <?php
                     }
                 }
                 ?>
 
             </tbody>
-        </table>-->
-<table class="table zebra-style span8">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Other name</th>
-        <th>Contact</th>
-        <th>Email</th>
-        <th>Date of Birth</th>
-        <th>Password</th>
-      </tr>
-    </thead>
-    <tbody>
-        
-        
-         <?php
-                if (is_array($bio) && count($bio)) {
-                    foreach ($bio as $loop) {
-                        
-                        ?>  
-        
-     <tr class="odd">
-        <td><?php echo $loop->id;?></td>
-        <td id="fname:<?php echo $loop->id;?>" contenteditable="true"><?php echo $loop->fname;?></td>
-        <td id="lname:<?php echo $loop->id;?>" contenteditable="true"><?php echo $loop->lname;?></td>
-        <td id="other:<?php echo $loop->id;?>" contenteditable="true"><?php echo $loop->other;?></td>
-        <td id="contact:<?php echo $loop->id;?>" contenteditable="true"><?php echo $loop->contact;?></td>
-         <td id="email:<?php echo $loop->id;?>" contenteditable="true"><?php echo $loop->email;?></td>
-         <td id="dob:<?php echo $loop->id;?>" contenteditable="true"><?php echo $loop->dob;?></td>
-         <td>
-             <a href="#"  value="<?php echo $loop->id; ?>"  id="myLink" onclick="NavigateToSite(this)" class="tooltip-error text-danger" data-rel="tooltip" title="reset">
-                                    <span class="red">
-                                        <i class="icon-lock bigger-120 text-danger"></i>
-                                        Reset
-                                    </span>
-                                </a>
-             
-         </td>
-      </tr>
-        
-           <?php
-                    }
-                }
-                ?>
-     
-    </tbody>
- </table>
- <br>
-</div>
-</div>
-</div>
+        </table>
+        <br>
+        </div>
+        </div>
+        </div>
 
 
 
-</div>
+        </div>
 
 
-</section>
+    </section>
 </div><!--/.page-content-->
 
 <script type="text/javascript">
@@ -224,6 +207,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
     if ("ontouchend" in document)
         document.write("<script src='<?= base_url(); ?>assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
 <script src="<?= base_url(); ?>assets/js/bootstrap.min.js"></script>
+<script src="<?= base_url(); ?>js/validator.js"></script>
 
 <!--page specific plugin scripts-->
 
@@ -250,6 +234,25 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
 <script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#userfile").on("change", function ()
+        {
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader)
+                return; // no file selected, or no FileReader support
+
+            if (/^image/.test(files[0].type)) { // only image file
+                var reader = new FileReader(); // instance of the FileReader
+                reader.readAsDataURL(files[0]); // read the local file
+
+                reader.onloadend = function () { // set image data as background of div
+                    $("#imagePreview").css("background-image", "url(" + this.result + ")");
+                }
+            }
+        });
+    });
+</script>
 
 
 <script type="text/javascript">
@@ -287,7 +290,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             var name = $("#country_input_" + ID).val();
             var details = $("#details_input_" + ID).val();
             var contact = $("#contact_input_" + ID).val();
-           
+
             var address = $("#address_input_" + ID).val();
 
 
@@ -298,7 +301,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             $("#details_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif"  />'); // Loading image
             $("#email_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif"  />');
             $("#contact_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif"  />');
-          
+
             $("#country_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif"  />');
             if (name.length > 0)
             {
@@ -312,9 +315,9 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                         $("#fname_" + ID).html(fname);
                         $("#lname_" + ID).html(lname);
                         $("#details_" + ID).html(details);
-                        $("#contact_" + ID).html(contact);                     
-                      
-                       
+                        $("#contact_" + ID).html(contact);
+
+
 
 
                     }
@@ -364,6 +367,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
     });
 </script>
+
 <script>
 
     function NavigateToSite(ele) {
@@ -380,7 +384,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
 </script>
 <script type="text/javascript">
-  
+
     $("a").click(function () {
         $("table").each(function () {
             var $this = $(this);
@@ -405,42 +409,87 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
     });
 </script>
 <script>
-$(function(){
-	//acknowledgement message
-    var message_status = $("#status");
-    $("td[contenteditable=true]").blur(function(){
-        var field_id = $(this).attr("id") ;
-        var value = $(this).text() ;
-        $.post('<?php echo base_url() . "index.php/student/updater/"; ?>' , field_id + "=" + value, function(data){
-            if(data != '')
-			{
-				message_status.show();
-				message_status.text(data);
-				//hide the message
-				setTimeout(function(){message_status.hide()},1000);
-			}
+    $(function () {
+        //acknowledgement message
+        var message_status = $("#status");
+        $("td[contenteditable=true]").blur(function () {
+            var field_id = $(this).attr("id");
+            var value = $(this).text();
+            $.post('<?php echo base_url() . "index.php/student/updater/"; ?>', field_id + "=" + value, function (data) {
+                if (data != '')
+                {
+                    message_status.show();
+                    message_status.text(data);
+                    //hide the message
+                    setTimeout(function () {
+                        message_status.hide()
+                    }, 1000);
+                }
+            });
         });
+
+
+        jQuery('.s_download').click(function () {
+            var semail = jQuery("#itzurkarthi_email").val();
+            if (semail == '')
+            {
+                alert('Enter Email');
+                return false;
+            }
+            var str = "sub_email=" + semail
+            jQuery.ajax({
+                type: "POST",
+                url: "download.php",
+                data: str,
+                cache: false,
+                success: function (htmld) {
+                    jQuery('#down_update').html(htmld);
+                }
+            });
+        });
+
     });
-	
-	
-	 jQuery('.s_download').click(function(){
-			var semail = jQuery("#itzurkarthi_email").val();
-			if(semail == '')
-			{
-				alert('Enter Email');
-				return false;
-			}
-			var str = "sub_email="+semail
-			jQuery.ajax({
-				type: "POST",
-				url: "download.php",
-				data: str,
-				cache: false,
-				success: function(htmld){
-						jQuery('#down_update').html(htmld);
-				}
-			});
-	  });
-	
+</script>
+<script>
+    $('.qualification').click(function (e) {
+        updateURL = $(this).attr("href");
+        e.preventDefault();//in this way you have no redirect
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: updateURL,
+            async: false,
+            success: function (data) {
+                alert('Password reset please check mail for the new password!')
+                location.reload();
+            }
+
+        });
+        alert('Password reset please check mail for the new password!')
+        location.reload();
+        return false;
+    });
+
+</script>
+<script>
+$(document).ready(function() {
+    $('#identicalForm').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            confirmPassword: {
+                validators: {
+                    identical: {
+                        field: 'password',
+                        message: 'The password and its confirm are not the same'
+                    }
+                }
+            }
+        }
+    });
 });
 </script>

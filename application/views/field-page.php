@@ -390,7 +390,7 @@
 
                                                     </td>
                                                     <td class="center ">
-                                                        <a href="<?php echo base_url() . "filed/" . $loop->file; ?>">
+                                                        <a href="<?php echo base_url() . "field/" . $loop->file; ?>">
                                                             <?php echo $link ?>
                                                         </a>
                                                     </td>

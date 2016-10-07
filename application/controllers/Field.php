@@ -29,7 +29,7 @@ class Field extends CI_Controller {
     public function view() {
 
         $studentID = $this->session->userdata('id');
-        $query = $this->Md->query('SELECT * FROM fields INNER JOIN student ON fields.studentID=student.id');
+        $query = $this->Md->query("SELECT * FROM fields INNER JOIN student ON fields.studentID=student.id WHERE student.country='".$this->session->userdata('country')."'");
         if ($query) {
             $data['fd'] = $query;
         } else {
@@ -55,7 +55,7 @@ class Field extends CI_Controller {
     }
 
     public function update() {
-        
+
         $this->load->helper(array('form', 'url'));
         $id = $this->input->post('id');
         $field = array('name' => $this->input->post('name'), 'location' => $this->input->post('location'), 'notes' => $this->input->post('notes'));
@@ -65,14 +65,14 @@ class Field extends CI_Controller {
     }
 
     public function save() {
-
+        
+        $this->load->library('email');
         $this->load->helper(array('form', 'url'));
 
         $studentID = $this->session->userdata('id');
         $name = $this->input->post('name');
         $notes = $this->input->post('notes');
         $location = $this->input->post('location');
-
         if ($name != "") {
             $file_element_name = 'userfile';
             $config['upload_path'] = 'field/';
@@ -91,7 +91,22 @@ class Field extends CI_Controller {
                 $publication = array('file' => $file, 'name' => $name, 'dos' => date("y-m-d"), 'location' => $location, 'notes' => $notes, 'studentID' => $studentID);
                 $this->Md->save($publication, 'fields');
 
-                // redirect('/student/publication', 'refresh');
+                $name = $this->Md->query_cell("SELECT fname FROM student WHERE id ='" . $studentID . "'", 'fname');
+                $email = $this->Md->query_cell("SELECT supervisor FROM student WHERE id ='" . $studentID . "'", 'supervisor');
+
+                $body = $name .' has submitted a field study download file from this link '.'http://199.231.187.134:8080/epitrack-master/field/'.$file.' ' . " Please click the link below to access your epitrack account 199.231.187.134:8080/epitrack-master/";
+                $from = "noreply@afenet.net";
+                $subject = "Field study submission";
+                if ($email != "") {
+                    $this->email->from($from, 'AFENET Epitrack system');
+                    $this->email->to($email);
+                    $this->email->subject($subject);
+                    $this->email->message($body);
+                    $this->email->send();
+                    echo $this->email->print_debugger();
+                    echo "Email has been sent";
+                    //return;
+                }
 
                 $query = $this->Md->get('studentID', $studentID, 'fields');
                 if ($query) {

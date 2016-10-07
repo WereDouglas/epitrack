@@ -56,8 +56,6 @@ class Management extends CI_Controller {
             }
         }
 
-
-
         $this->load->view('view-qualifications', $data);
     }
 
@@ -67,14 +65,14 @@ class Management extends CI_Controller {
         $studentID = $this->uri->segment(3);
 
 
-        $query = $this->Md->query("SELECT * FROM employment INNER JOIN student ON employment.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        $query = $this->Md->query("SELECT * ,employment.id AS id FROM employment INNER JOIN student ON employment.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
         if ($query) {
             $data['records'] = $query;
         } else {
             $data['records'] = array();
         }
         if ($this->session->userdata('level') == 1) {
-            $query = $this->Md->query("SELECT * FROM employment INNER JOIN student ON employment.studentID=student.id ORDER BY student.fname");
+            $query = $this->Md->query("SELECT *,employment.id AS id FROM employment INNER JOIN student ON employment.studentID=student.id ORDER BY student.fname");
             if ($query) {
                 $data['records'] = $query;
             } else {
@@ -110,14 +108,14 @@ class Management extends CI_Controller {
         //get($field,$value,$table)
 
         $studentID = $this->uri->segment(3);
-        $query = $this->Md->query("SELECT * FROM outbreak INNER JOIN student ON outbreak.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        $query = $this->Md->query("SELECT *,outbreak.id AS id FROM outbreak INNER JOIN student ON outbreak.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
         if ($query) {
             $data['out'] = $query;
         } else {
             $data['out'] = array();
         }
         if ($this->session->userdata('level') == 1) {
-            $query = $this->Md->query("SELECT * FROM outbreak INNER JOIN student ON outbreak.studentID=student.id  ORDER BY student.fname");
+            $query = $this->Md->query("SELECT *,outbreak.id AS id FROM outbreak INNER JOIN student ON outbreak.studentID=student.id  ORDER BY student.fname");
             if ($query) {
                 $data['out'] = $query;
             } else {
@@ -601,9 +599,25 @@ class Management extends CI_Controller {
     }
 
     public function student() {
-
+        $this->load->library('email');
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
+
+        $body = $fname . ' ' . $lname . ' Welcome to the AFENET EPITRACK SYSTEM' . " Please click the link below to access your epitrack account 199.231.187.134:8080/epitrack-master/";
+
+        $from = "noreply@afenet.net";
+        $subject = "Registration";
+        if ($email != "") {
+
+            $this->email->from($from, 'AFENET Epitrack system');
+            $this->email->to($email);
+            $this->email->subject($subject);
+            $this->email->message($body);
+            $this->email->send();
+            echo $this->email->print_debugger();
+            echo "email has been sent";
+            //return;
+        }
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
@@ -639,13 +653,9 @@ class Management extends CI_Controller {
             $this->Md->update($id, $student, 'student');
         }
 
-
-        $this->load->helper(array('form', 'url'));
-
         $fname = $this->input->post('fname');
         $lname = $this->input->post('lname');
         $password = $this->input->post('password1');
-
 
         if ($fname != "" && $lname != "") {
 
@@ -655,23 +665,17 @@ class Management extends CI_Controller {
             $key = $email;
 
             $password = $this->encrypt->encode($password, $key);
-
             $get_result = $this->Md->check($email, 'email', 'student');
 
             if (!$get_result) {
-                $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
                                                  Email already in use	</strong>									
 						</div>');
                 redirect('/management/student', 'refresh');
             }
 
-
             $file_element_name = 'userfile';
-
-
-
             $config['upload_path'] = 'uploads/';
             // $config['upload_path'] = '/uploads/';
             $config['allowed_types'] = '*';
@@ -696,15 +700,31 @@ class Management extends CI_Controller {
                 $cohort = $this->input->post('cohort');
                 $submitted = date('Y-m-d');
                 $file = $data['file_name'];
-                $email = $this->input->post('email');
 
+                $email = $this->input->post('email');
                 $student = array('image' => $file, 'country' => $country, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false');
                 $file_id = $this->Md->save($student, 'student');
+
+                $body = $fname . ' ' . $lname . ' welcome to the AFENET EPITRACK SYSTEM' . " Please click the link below to access your epitrack account 199.231.187.134:8080/epitrack-master/";
+
+                $from = "noreply@afenet.net";
+                $subject = "Registration";
+                if ($email != "") {
+
+                    $this->email->from($from, 'AFENET Epitrack system');
+                    $this->email->to($email);
+                    $this->email->subject($subject);
+                    $this->email->message($body);
+                    $this->email->send();
+                    echo $this->email->print_debugger();
+                    echo "email has been sent";
+                    //return;
+                }
 
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
-                                                 information saved</strong>									
+                                               Student  information saved email sent</strong>									
 						</div>');
 
                 redirect('/management/country_student', 'refresh');
@@ -739,6 +759,7 @@ class Management extends CI_Controller {
 
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
+        $this->load->library('email');
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
@@ -804,19 +825,15 @@ class Management extends CI_Controller {
 
 
             $file_element_name = 'userfile';
-
-
-
             $config['upload_path'] = 'uploads/';
             // $config['upload_path'] = '/uploads/';
             $config['allowed_types'] = '*';
             $config['encrypt_name'] = FALSE;
 
             $this->load->library('upload', $config);
-            if (!$this->upload->do_upload($file_element_name)) {
+            $this->upload->do_upload($file_element_name);
                 $status = 'error';
-                echo $msg = $this->upload->display_errors('', '');
-            } else {
+                echo $msg = $this->upload->display_errors('', '');         
 
                 $data = $this->upload->data();
                 $other = $this->input->post('other');
@@ -834,8 +851,22 @@ class Management extends CI_Controller {
                 $email = $this->input->post('email');
                 if ($this->session->userdata('level') > 0) {
 
-                    $student = array('country' => $country, 'image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false', 'complete' => $this->input->post('complete'), 'date_complete' => $this->input->post('date_complete'), 'comments' => $this->input->post('comment'));
+                    $student = array('country' => $country, 'image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false', 'complete' => $this->input->post('complete'), 'supervisor' => $this->input->post('supervisor'), 'date_complete' => $this->input->post('date_complete'), 'comments' => $this->input->post('comment'));
                     $file_id = $this->Md->save($student, 'student');
+
+                    $body = $fname . ' ' . $lname . ' welcome to the AFENET EPITRACK SYSTEM' . " Please click the link below to access your epitrack account 199.231.187.134:8080/epitrack-master/";
+                    $from = "noreply@afenet.net";
+                    $subject = "Registration";
+                    if ($email != "") {
+                        $this->email->from($from, 'AFENET Epitrack system');
+                        $this->email->to($email);
+                        $this->email->subject($subject);
+                        $this->email->message($body);
+                        $this->email->send();
+                        echo $this->email->print_debugger();
+                        echo "email has been sent";
+                        //return;
+                    }
 
                     $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
@@ -852,7 +883,7 @@ class Management extends CI_Controller {
 
                     redirect('/management/country_student', 'refresh');
                 }
-            }
+            
         }
         $query = $this->Md->show('cohort');
         //  var_dump($query);
@@ -1056,6 +1087,7 @@ class Management extends CI_Controller {
 
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
+        $this->load->library('email');
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
@@ -1137,6 +1169,22 @@ class Management extends CI_Controller {
                 $user = array('fname' => $fname, 'lname' => $lname, 'level' => $level, 'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'false');
                 $file_id = $this->Md->save($user, 'user');
 
+                $body = $fname . ' ' . $lname . ' welcome to the AFENET EPITRACK SYSTEM' . " Please click the link below to access your epitrack account 199.231.187.134:8080/epitrack-master/";
+                $email = $email;
+                $from = "noreply@afenet.net";
+                $subject = "Registration";
+                if ($email != "") {
+
+                    $this->email->from($from, 'AFENET Epitrack system');
+                    $this->email->to($email);
+                    $this->email->subject($subject);
+                    $this->email->message($body);
+                    $this->email->send();
+                    echo $this->email->print_debugger();
+                    echo "email has been sent";
+                    //return;
+                }
+
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
@@ -1207,6 +1255,7 @@ class Management extends CI_Controller {
 
     public function country_user() {
 
+        $this->load->library('email');
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
 
@@ -1222,7 +1271,6 @@ class Management extends CI_Controller {
             redirect('/management/country_user', 'refresh');
         }
 
-
         if ($action == 'update') {
 
             $this->load->helper(array('form', 'url'));
@@ -1237,7 +1285,6 @@ class Management extends CI_Controller {
             $this->Md->update($id, $user, 'user');
         }
 
-
         $this->load->helper(array('form', 'url'));
 
         $fname = $this->input->post('fname');
@@ -1247,18 +1294,15 @@ class Management extends CI_Controller {
 
         if ($fname != "" && $lname != "") {
 
-
             $email = $this->input->post('email');
             $password = $password;
             $key = $email;
-
             $password = $this->encrypt->encode($password, $key);
 
             $get_result = $this->Md->check($email, 'email', 'user');
 
             if (!$get_result) {
-                $this->session->set_flashdata('msg', '<div class="alert alert-error">
-                                                   
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
                                                  Email already in use	</strong>									
 						</div>');
@@ -1269,11 +1313,26 @@ class Management extends CI_Controller {
             $contact = $this->input->post('contact');
             $submitted = date('Y-m-d');
 
-            $email = $this->input->post('email');
             if ($this->session->userdata('level') > 0) {
                 $user = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'country' => $country, 'password' => $password, 'contact' => $contact, 'registered' => date('Y-m-d H:i:s'), 'status' => 'false');
                 $file_id = $this->Md->save($user, 'user');
+                // $this->load->library('email');
+                $today = date('Y-m-d');
+                $body = $fname . ' ' . $lname . ' welcome to the AFENET EPITRACK SYSTEM' . " Please click the link below to access your epitrack account 199.231.187.134:8080/epitrack-master/";
+                $email = $email;
+                $from = "noreply@afenet.net";
+                $subject = "Registration";
+                if ($email != "") {
 
+                    $this->email->from($from, 'AFENET Epitrack system');
+                    $this->email->to($email);
+                    $this->email->subject($subject);
+                    $this->email->message($body);
+                    $this->email->send();
+                    echo $this->email->print_debugger();
+                    echo "email has been sent";
+                    //return;
+                }
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
@@ -1451,7 +1510,7 @@ class Management extends CI_Controller {
     }
 
     public function cohort_updater() {
-        
+
         $this->load->helper(array('form', 'url'));
 
         if (!empty($_POST)) {

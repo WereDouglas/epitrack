@@ -26,6 +26,8 @@
                     <th>Contact</th>
 
                     <th>Created</th>
+                     <th>verified</th>
+                    <th>Verified</th>
 
                 </tr>
             </thead>
@@ -41,6 +43,10 @@
                         $sector = $loop->sector;
                         $contact = $loop->contact;
                         $created = $loop->created;
+                        if($loop->verified!=""){
+                        $verified = $loop->verified ;
+                        }
+                        else{ $verified = "false";}
 
                         $id = $loop->id;
                         ?>  
@@ -88,6 +94,25 @@
                             </td>
 
                             <td><?= $loop->created ?></td>
+                            <td>
+                                
+                                <?php if ($verified =="false"){?>
+                                <strong> <p  class="text-danger"><?= $verified ?></p></strong>
+                                <?php }else{?>
+                                 <strong> <p  class=" text-green"><?= $verified ?></p></strong>
+                                 <?php }?>
+                                
+                                
+                            </td>
+
+                            <td class="td-actions">
+
+                                <a href="<?php echo base_url() . "index.php/student/verify_qualification/" . $loop->id . "/" . $verified . "/" . "employment"; ?>" class="tooltip-info qualification" data-rel="tooltip" title="verify">
+                                    <span class="red">
+                                        <i class="icon-briefcase bigger-120"></i>
+                                    </span>
+                                </a>
+                            </td>
 
 
                         </tr>
@@ -151,10 +176,12 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             async: false,
             success: function (data) {
                 alert('Information updated!')
+                location.reload();
             }
 
         });
         alert('Information updated!')
+        location.reload();
         return false;
     });
 

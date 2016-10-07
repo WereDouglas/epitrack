@@ -55,7 +55,6 @@ class Student extends CI_Controller {
         $this->Md->update($id, $student, 'student');
         $this->session->set_flashdata('msg', '<div class="alert alert-info"> <strong>   Information updated	</strong><div>');
     }
-   
 
     public function updater() {
         $this->load->helper(array('form', 'url'));
@@ -123,6 +122,125 @@ class Student extends CI_Controller {
         }
 
         $this->load->view('student-bio', $data);
+    }
+
+    public function generateRandomString($length = 6) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    public function reset() {
+
+        $this->load->library('email');
+        $password = $this->generateRandomString();
+        //$password = '123456';
+        $this->load->helper(array('form', 'url'));
+        $id = $this->uri->segment(3);
+        $email = $this->Md->query_cell("SELECT email FROM student WHERE id ='" . $id . "'", 'email');
+        $name = $this->Md->query_cell("SELECT fname FROM student WHERE id ='" . $id . "'", 'fname');
+
+        $new_password = $this->encrypt->encode($password, $email);
+
+        $info = array('password' => $new_password);
+        $this->Md->update_dynamic($id, 'id', 'student', $info);
+
+        $body = $name . '  ' . ' Your password has been reset to ' . $password . " Please click the link below to access your epitrack account 199.231.187.134:8080/epitrack-master/";
+
+        $from = "noreply@afenet.net";
+        $subject = "Password reset ";
+        if ($email != "") {
+
+            $this->email->from($from, 'AFENET Epitrack system');
+            $this->email->to($email);
+            $this->email->subject($subject);
+            $this->email->message($body);
+            $this->email->send();
+            echo $this->email->print_debugger();
+            echo "email has been sent";
+            //return;
+        }
+
+        echo 'INFORMATION UPDATED';
+    }
+
+    public function update_image() {
+
+        $this->load->helper(array('form', 'url'));
+        //user information
+
+        $userID = $this->input->post('userID');
+        $namer = $this->input->post('namer');
+
+        $file_element_name = 'userfile';
+        // $new_name = $userID;
+        $config['file_name'] = $userID;
+        $config['upload_path'] = 'uploads/';
+        $config['allowed_types'] = '*';
+        $config['encrypt_name'] = FALSE;
+        $config['allowed_types'] = 'jpg';
+        $config['overwrite'] = TRUE;
+
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload($file_element_name)) {
+            $status = 'error';
+            $msg = $this->upload->display_errors('', '');
+            $this->session->set_flashdata('msg', '<div class="alert alert-error"> <strong>' . $msg . '</strong></div>');
+            redirect('/student/bio/' . $namer, 'refresh');
+
+            return;
+        }
+        $data = $this->upload->data();
+        $userfile = $data['file_name'];
+        $user = array('image' => $userfile);
+        $this->Md->update_dynamic($userID, 'id', 'student', $user);
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-success">  <strong>Image updated saved</strong></div>');
+
+        redirect('/student/bio/' . $namer, 'refresh');
+    }
+
+    public function update_password() {
+
+        $this->load->helper(array('form', 'url'));
+        //user information
+
+        
+
+         $this->load->library('email');
+        $password = $this->input->post('password');
+        //$password = '123456';
+        $this->load->helper(array('form', 'url'));
+        $id = $this->input->post('userID');
+        $email = $this->Md->query_cell("SELECT email FROM student WHERE id ='" . $id . "'", 'email');
+        $name = $this->Md->query_cell("SELECT fname FROM student WHERE id ='" . $id . "'", 'fname');
+
+        $new_password = $this->encrypt->encode($password, $email);
+
+        $info = array('password' => $new_password);
+        $this->Md->update_dynamic($id, 'id', 'student', $info);
+
+        $body = $name . '  ' . ' Your password has been reset to ' . $password . " Please click the link below to access your epitrack account 199.231.187.134:8080/epitrack-master/";
+
+        $from = "noreply@afenet.net";
+        $subject = "Password reset ";
+        if ($email != "") {
+
+            $this->email->from($from, 'AFENET Epitrack system');
+            $this->email->to($email);
+            $this->email->subject($subject);
+            $this->email->message($body);
+            $this->email->send();
+            echo $this->email->print_debugger();
+            echo "email has been sent";
+            //return;
+        }
+
+        echo 'INFORMATION UPDATED';
     }
 
     public function details() {
@@ -600,7 +718,7 @@ class Student extends CI_Controller {
 
             $this->load->helper(array('form', 'url'));
             $id = $this->input->post('id');
-            $presentation = array('presenter' => $this->input->post('presenter'),'author' => $this->input->post('author'), 'eventName' => $this->input->post('eventName'), 'summary' => $this->input->post('summary'), 'title' => $this->input->post('title'), 'dos' => date('Y-m-d'), 'accepted' => $this->input->post('accepted'), 'country' => $this->input->post('country'), 'location' => $this->input->post('location'), 'eventType' => $this->input->post('eventType'), 'presentationType' => $this->input->post('presentationType'));
+            $presentation = array('presenter' => $this->input->post('presenter'), 'author' => $this->input->post('author'), 'eventName' => $this->input->post('eventName'), 'summary' => $this->input->post('summary'), 'title' => $this->input->post('title'), 'dos' => date('Y-m-d'), 'accepted' => $this->input->post('accepted'), 'country' => $this->input->post('country'), 'location' => $this->input->post('location'), 'eventType' => $this->input->post('eventType'), 'presentationType' => $this->input->post('presentationType'));
             $this->Md->update($id, $presentation, 'presentation');
             return;
         }
@@ -698,9 +816,9 @@ class Student extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $id = $this->uri->segment(3);
         $actives = $this->uri->segment(4);
-         $active = "false";
-        
-    
+        $active = "false";
+
+
         $table = $this->uri->segment(5);
         if ($actives == "true") {
             $active = "false";
@@ -755,10 +873,10 @@ class Student extends CI_Controller {
         if ($action == 'update') {
 
             $this->load->helper(array('form', 'url'));
-            
+
             $position = $this->input->post('position');
             $id = $this->input->post('id');
-            
+
 
             $study = array('name' => $this->input->post('name'), 'onset' => $this->input->post('onset'), 'dissemination' => $this->input->post('dissemination'), 'findings' => $this->input->post('findings'));
             $this->Md->update($id, $study, 'study');
@@ -1016,9 +1134,9 @@ class Student extends CI_Controller {
         }
         if ($action == 'update') {
 
-            $this->load->helper(array('form', 'url')); 
-              $id = $this->input->post('id');
-            $course = array('name' =>$this->input->post('name'), 'start' => $this->input->post('start'), 'end' => $this->input->post('end'), 'participants' => $this->input->post('participants'), 'objective' => $this->input->post('objective'), 'role' => $this->input->post('role'), 'description' => $this->input->post('description'));
+            $this->load->helper(array('form', 'url'));
+            $id = $this->input->post('id');
+            $course = array('name' => $this->input->post('name'), 'start' => $this->input->post('start'), 'end' => $this->input->post('end'), 'participants' => $this->input->post('participants'), 'objective' => $this->input->post('objective'), 'role' => $this->input->post('role'), 'description' => $this->input->post('description'));
             $this->Md->update($id, $course, 'course');
             return;
         }

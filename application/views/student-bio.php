@@ -5,17 +5,20 @@
 
     table{
         border-collapse:collapse;
-        border:0px solid #FF0000;
+        border:1px solid #ccc;
     }
 
     table td{
-        border:0px solid #FF0000;
+        border:0px solid #ccc;
+        padding: 5px;
     }
 
     table tr{
-        border:0px solid #FF0000;
+        border:1px solid #ccc;
     }
 </style>
+<div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+
 <div class="col-xs-12">
     <section >
         <div class="profile-user-info profile-user-info-striped">
@@ -42,7 +45,20 @@
                 <span class="profile-picture">
                     <img id="avatar" height="100px" width="120px" class="editable" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
                 </span>
+ <form  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/student/update_image'  method="post">                                       
 
+                                    <div class="form-group">
+                                        <input type="file"  class="form-control" name="userfile" id="userfile" />
+                                    </div>  
+                                    <div class="form-group">
+                                        <div id="imagePreview" ></div> 
+                                    </div>                
+                                    <input type="hidden" class="form-control" name="userID" id="userID" value="<?php echo $id; ?>" />                                                   
+                                    <input type="hidden" name="namer" id="namer" value="<?php echo $fname . $lname; ?>" />
+                                    <button id="send"  class="btn btn-default" type="submit" >Update picture</button>
+
+
+                                </form>
             </div>
 
             <!--PAGE CONTENT ENDS-->
@@ -73,9 +89,8 @@
         }
         ?>
 
-  <div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+        
 
-          
         <table class="table zebra-style span8">
 
             <tbody>
@@ -94,25 +109,44 @@
                             <td>FIRST NAME:</td>
                             <td id="fname:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->fname; ?></td>
 
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+
                             <td>LAST NAME:</td>
                             <td id="lname:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->lname; ?></td>
-
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>OTHER NAME:</td>
                             <td id="other:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->other; ?></td>
 
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+
                             <td>CONTACT:</td>
                             <td id="contact:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->contact; ?></td>
-
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>EMAIL:</td>
                             <td id="email:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->email; ?></td>
 
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+
                             <td>DATE OF BIRTH:</td>
                             <td id="dob:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->dob; ?></td>
-
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>PASSWORD REST</td>
@@ -129,11 +163,13 @@
                             <td></td>
                         </tr> 
                         <tr>
+                            <td> 
+                                <h4>Change password</h4>
+
+                            </td>
                             <td>
                                 <form id="identicalForm"  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/student/update_password'  method="post">                                       
 
-
-                                    <h4>Change password</h4>
                                     <div class="form-group">
                                         <label for="email">Password:</label>
                                         <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="" />                                                   
@@ -143,34 +179,25 @@
                                         <label for="pwd">Confirm password:</label>
                                         <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" value="" />
 
-                                    </div>  
-
+                                    </div> 
                                     <input type="hidden" name="userID" id="userID" value="<?php echo $id; ?>" />     
                                     <button id="send" class="btn btn-default" type="submit" >Change password</button>
-
-
                                 </form>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr> 
+                        <tr>
+                            <td>   
+                              
                             </td>
                             <td>
                                
                             </td>
                             <td></td>
-                            <td> 
-                                <form  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/student/update_image'  method="post">                                       
-                                    <h4>New profile picture</h4>
-                                    <div class="form-group">
-                                        <input type="file"  class="form-control" name="userfile" id="userfile" />
-                                    </div>  
-                                    <div class="form-group">
-                                        <div id="imagePreview" ></div> 
-                                    </div>                
-                                    <input type="hidden" class="form-control" name="userID" id="userID" value="<?php echo $id; ?>" />                                                   
-                                    <input type="hidden" name="namer" id="namer" value="<?php echo $fname . $lname; ?>" />
-                                    <button id="send"  class="btn btn-default" type="submit" >Update picture</button>
+                            <td></td>
+                        </tr> 
 
-
-                                </form></td>
-                        </tr>
 
                         <?php
                     }
@@ -472,24 +499,24 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
 </script>
 <script>
-$(document).ready(function() {
-    $('#identicalForm').formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            confirmPassword: {
-                validators: {
-                    identical: {
-                        field: 'password',
-                        message: 'The password and its confirm are not the same'
+    $(document).ready(function () {
+        $('#identicalForm').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                confirmPassword: {
+                    validators: {
+                        identical: {
+                            field: 'password',
+                            message: 'The password and its confirm are not the same'
+                        }
                     }
                 }
             }
-        }
+        });
     });
-});
 </script>

@@ -7,7 +7,7 @@ class Student extends CI_Controller {
     function __construct() {
 
         parent::__construct();
-        // error_reporting(E_PARSE);
+        error_reporting(E_PARSE);
         $this->load->model('Md');
         $this->load->library('session');
         $this->load->library('encrypt');
@@ -121,7 +121,7 @@ class Student extends CI_Controller {
             $data['cohorts'] = array();
         }
 
-        $this->load->view('student-bio', $data);
+        $this->load->view('user-details', $data);
     }
 
     public function generateRandomString($length = 6) {
@@ -209,9 +209,9 @@ class Student extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         //user information
 
-        
 
-         $this->load->library('email');
+
+        $this->load->library('email');
         $password = $this->input->post('password');
         //$password = '123456';
         $this->load->helper(array('form', 'url'));
@@ -349,6 +349,96 @@ class Student extends CI_Controller {
         $this->load->view('publication-details', $data);
     }
 
+    public function outbreak_details() {
+        //get($field,$value,$table)
+
+        $ID = $this->uri->segment(3);
+
+        $query = $this->Md->get('id', $ID, 'outbreak');
+        if ($query) {
+            $data['outbreaks'] = $query;
+        } else {
+            $data['outbreaks'] = array();
+        }
+
+        $this->load->view('outbreak-details', $data);
+    }
+
+    public function course_details() {
+        //get($field,$value,$table)
+
+        $ID = $this->uri->segment(3);
+
+        $query = $this->Md->get('id', $ID, 'course');
+        if ($query) {
+            $data['outbreaks'] = $query;
+        } else {
+            $data['outbreaks'] = array();
+        }
+
+        $this->load->view('course-details', $data);
+    }
+
+    public function field_details() {
+        //get($field,$value,$table)
+
+        $ID = $this->uri->segment(3);
+
+        $query = $this->Md->get('id', $ID, 'fields');
+        if ($query) {
+            $data['outbreaks'] = $query;
+        } else {
+            $data['outbreaks'] = array();
+        }
+
+        $this->load->view('field-details', $data);
+    }
+
+    public function presentation_details() {
+        //get($field,$value,$table)
+
+        $ID = $this->uri->segment(3);
+
+        $query = $this->Md->get('id', $ID, 'presentation');
+        if ($query) {
+            $data['outbreaks'] = $query;
+        } else {
+            $data['outbreaks'] = array();
+        }
+
+        $this->load->view('presentation-details', $data);
+    }
+
+    public function study_details() {
+        //get($field,$value,$table)
+
+        $ID = $this->uri->segment(3);
+
+        $query = $this->Md->get('id', $ID, 'study');
+        if ($query) {
+            $data['outbreaks'] = $query;
+        } else {
+            $data['outbreaks'] = array();
+        }
+
+        $this->load->view('study-details', $data);
+    }
+
+    public function surveillance_details() {
+        //get($field,$value,$table)
+
+        $ID = $this->uri->segment(3);
+
+        $query = $this->Md->get('id', $ID, 'surveillance');
+        if ($query) {
+            $data['outbreaks'] = $query;
+        } else {
+            $data['outbreaks'] = array();
+        }
+
+        $this->load->view('surveillance-details', $data);
+    }
+
     public function contact() {
 
         $this->load->helper(array('form', 'url'));
@@ -434,7 +524,6 @@ class Student extends CI_Controller {
 
         if ($action == 'delete') {
             if ($this->session->userdata('level') == 2) {
-
                 $query = $this->Md->delete($id, 'employment');
                 $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
@@ -448,9 +537,11 @@ class Student extends CI_Controller {
                                                 <strong>
                                                   Action pending review ' . $this->session->userdata('level') . '	</strong>									
 						</div>');
-                $pd = array('user' => $this->session->userdata('name'), 'country' => $this->session->userdata('country'), 'object' => 'employment', 'content' => ' ', 'action' => 'delete', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
-                $file_id = $this->Md->save($pd, 'pending');
-
+                $pd = array('user' => $this->session->userdata('name'), 'object' => 'employment', 'content' => ' ', 'action' => 'delete', 'oid' => $id, 'created' => date('Y-m-d H:i:s'), 'type' => 'student');
+                $this->Md->save($pd, 'pending');
+                
+                $pd = array('visible' => 'f');
+                $this->Md->update($id, $pd, 'employment');
                 redirect('/student/employment', 'refresh');
             }
         }
@@ -482,7 +573,7 @@ class Student extends CI_Controller {
 
 
         if ($this->input->post('organisation') != "" && $id == "") {
-            $employment = array('location' => $location, 'organisation' => $organisation, 'startDate' => $this->input->post('startDate'), 'endDate' => $this->input->post('endDate'), 'studentID' => $studentID, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'));
+            $employment = array('location' => $location, 'organisation' => $organisation, 'startDate' => $this->input->post('startDate'), 'endDate' => $this->input->post('endDate'), 'email' => $this->input->post('email'), 'studentID' => $studentID, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'),'visible'=>'t');
             $this->Md->save($employment, 'employment');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
@@ -491,8 +582,9 @@ class Student extends CI_Controller {
 
             redirect('/student/employment', 'refresh');
         }
+        $query = $this->Md->query("SELECT * FROM employment WHERE studentID ='" . $studentID . "'  AND (visible<>'f' OR visible IS NULL) ");
 
-        $query = $this->Md->get('studentID', $studentID, 'employment');
+        //   $query = $this->Md->get('studentID', $studentID, 'employment');
         if ($query) {
             $data['records'] = $query;
         } else {
@@ -500,6 +592,12 @@ class Student extends CI_Controller {
         }
 
         $this->load->view('student-employment', $data);
+    }
+     public function sectors() {
+         //SELECT name,cost FROM events GROUP BY name order by cost ASC
+        $query = $this->Md->query("SELECT sector FROM employment GROUP BY sector order by sector ASC ");
+        //$query = $this->Md->query("SELECT * FROM client");
+        echo json_encode($query);
     }
 
     public function chat() {
@@ -616,11 +714,11 @@ class Student extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'advert');
+            $query = $this->Md->delete($id, 'publication');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
-                                                 advert deleted	</strong>									
+                                                 Publication deleted	</strong>									
 						</div>');
 
             redirect('/student/publication', 'refresh');
@@ -631,7 +729,7 @@ class Student extends CI_Controller {
             $id = $this->input->post('id');
             $pub = array('title' => $this->input->post('title'), 'link' => $this->input->post('link'), 'abstract' => $this->input->post('abstract'));
             $this->Md->update($id, $pub, 'publication');
-
+            redirect('/student/publication', 'refresh');
             return;
         }
 
@@ -730,7 +828,7 @@ class Student extends CI_Controller {
         $eventType = $this->input->post('eventType');
         $presentationType = $this->input->post('presentationType');
         $location = $this->input->post('location');
-        $date = $this->input->post('date');
+        $date = trim(date('d-m-Y', strtotime($this->input->post('date'))));
         $summary = $this->input->post('summary');
         $author = $this->input->post('author');
 
@@ -861,11 +959,11 @@ class Student extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'employment');
+            $query = $this->Md->delete($id, 'study');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
-                                                 employment record  deleted	</strong>									
+                                                 study record  deleted	</strong>									
 						</div>');
 
             redirect('/student/study', 'refresh');
@@ -919,14 +1017,14 @@ class Student extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'employment');
+            $query = $this->Md->delete($id, 'qualification');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
-                                                 employment record  deleted	</strong>									
+                                                 Qualification record  deleted	</strong>									
 						</div>');
 
-            redirect('/student/study', 'refresh');
+            redirect('/student/qualification', 'refresh');
         }
         if ($action == 'update') {
             $this->load->helper(array('form', 'url'));
@@ -994,11 +1092,12 @@ class Student extends CI_Controller {
 
                 redirect('/student/surveillance', 'refresh');
             } else {
+                $id = $this->uri->segment(4);
                 $verified = 'delete';
                 $survey = array('verified' => $verified, 'created' => date('Y-m-d'));
                 $this->Md->update($id, $survey, 'surveillance');
 
-                redirect('/management/tracks', 'refresh');
+                redirect('/student/surveillance', 'refresh');
             }
         }
         if ($action == 'update') {
@@ -1036,7 +1135,9 @@ class Student extends CI_Controller {
         }
 
 
-        $query = $this->Md->get('studentID', $studentID, 'surveillance');
+        // $query = $this->Md->get('studentID', $studentID, 'surveillance');
+        $query = $this->Md->query("SELECT * FROM surveillance WHERE studentID ='" . $studentID . "' AND verified<>'delete' ");
+        //  $query = $this->Md->get('studentID', $studentID, 'surveillance');
         // var_dump($query);
         if ($query) {
             $data['survey'] = $query;
@@ -1065,8 +1166,9 @@ class Student extends CI_Controller {
 
                 redirect('/student/outbreak', 'refresh');
             } else {
+                $id = $this->uri->segment(4);
                 $verified = 'delete';
-                $out = array('verified' => $verified, 'created' => date('Y-m-d'));
+                $out = array('verified' => $verified);
                 $this->Md->update($id, $out, 'outbreak');
                 redirect('/student/outbreak', 'refresh');
             }
@@ -1083,8 +1185,8 @@ class Student extends CI_Controller {
         $name = $this->input->post('name');
         $country = $this->input->post('country');
         $region = $this->input->post('region');
-        $min = $this->input->post('min');
-        $max = $this->input->post('max');
+        $min = $this->input->post('cases');
+        $max = $this->input->post('deaths');
         $onset = $this->input->post('onset');
         $dates = $this->input->post('dates');
         $lab = $this->input->post('lab');
@@ -1103,8 +1205,9 @@ class Student extends CI_Controller {
 
             redirect('/student/outbreak', 'refresh');
         }
+        $query = $this->Md->query("SELECT * FROM outbreak WHERE studentID ='" . $studentID . "' AND verified<>'delete' ORDER BY dos DESC ");
 
-        $query = $this->Md->get('studentID', $studentID, 'outbreak');
+        // $query = $this->Md->get('studentID', $studentID, 'outbreak');
         if ($query) {
             $data['out'] = $query;
         } else {
@@ -1123,11 +1226,11 @@ class Student extends CI_Controller {
 
         if ($action == 'delete') {
             $id = $this->uri->segment(4);
-            $query = $this->Md->delete($id, 'outbreak');
+            $query = $this->Md->delete($id, 'course');
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
                                                    
                                                 <strong>
-                                                 employment record  deleted	</strong>									
+                                                 Course record  deleted	</strong>									
 						</div>');
 
             redirect('/student/course', 'refresh');
@@ -1150,7 +1253,7 @@ class Student extends CI_Controller {
         $description = $this->input->post('description');
 
         if ($this->input->post('name') != "" && $studentID != "") {
-            $course = array('name' => $name, 'studentID' => $studentID, 'start' => $start, 'end' => $end, 'participants' => $participants, 'objective' => $objective, 'role' => $role, 'description' => $description, 'dos' => date('Y-m-d'));
+            $course = array('name' => $name, 'studentID' => $studentID, 'country' => $this->input->post('country'), 'location' => $this->input->post('location'), 'start' => $start, 'end' => $end, 'participants' => $participants, 'objective' => $objective, 'role' => $role, 'description' => $description, 'dos' => date('Y-m-d'));
             $this->Md->save($course, 'course');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>

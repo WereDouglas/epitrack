@@ -2,91 +2,18 @@
 
 
 <div class="col-xs-12">
-    <h3>Studies</h3>
+    <h3><?php echo $this->session->userdata('name'); ?>'s studies</h3>
+    <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New study record</span> </a>
 
     <?php echo $this->session->flashdata('msg'); ?>
     <div class="row-fluid">
         <div class="span12 widget-container-span">
-
-            <div class="">
-
-                <div class="">
-                    <div class="btn-toolbar ">
-                        <div class="btn-group">
-                            <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
-
-                                <button class="btn btn-small btn-success">
-                                    <i class="icon-save bigger-125"></i>
-                                    Add
-                                </button></a>
-                            <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
-
-                                <button class="btn btn-small btn-danger">
-                                    <i class="icon-list bigger-110"></i>
-                                    List
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-
             <div class="widget-main ">
                 <div id="accordion2" class="accordion">              
 
                     <div class="accordion-group">
 
-
-                        <div class="accordion-body collapse" id="collapseTwo">
-                            <div class="accordion-inner">
-                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/study'  method="post">            
-
-                                    <div class="span6">  
-
-                                        <div class="control-group">
-
-                                            <div class="controls">
-                                                <span class="span12 ">Study name:<input type="text" class="span12"  id="name" name="name"   /></span>
-                                                <div style="margin-bottom:20px">
-                                                    <label class="label-top">Date of Study Onset</label>
-                                                    <input name="onset" id="onset" class="easyui-datebox control-group" >
-                                                </div>
-                                                <div style="margin-bottom:20px">
-                                                    <label class="label-top">Date of Study Dissemination</label>
-                                                    <input name="dissemination" id="dissemination" class="easyui-datebox control-group" >
-                                                </div>
-                                               
-                                                <div class="row-fluid">
-                                                    <label for="">Findings/Public Health Action*</label>
-
-                                                    <textarea class="" id="" name="findings" data-maxlength="50"></textarea>
-                                                </div>         
-                                            </div>
-                                        </div>
-                                        <div class="">
-                                            <button class="btn btn-info" type="submit">
-                                                <i class="icon-ok bigger-110"></i>
-                                                Submit
-                                            </button>
-
-                                            <button class="btn" type="reset">
-                                                <i class="icon-undo bigger-110"></i>
-                                                Reset
-                                            </button>
-                                        </div>
-
-                                    </div>
-
-                                </form>	
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-group">
-
+                        <div class="alert alert-info">Select a field to edit the content</div>                     
 
                         <div class="accordion-body collapsed" id="collapseThree">
                             <div class="accordion-inner">
@@ -104,7 +31,7 @@
                                             <th>Onset</th>
                                             <th>Dissemination</th>   
                                             <th>Findings</th>   
-                                            <th>Date of study</th> 
+
 
                                             <th></th>
                                         </tr>
@@ -115,10 +42,10 @@
                                         if (is_array($study) && count($study)) {
                                             foreach ($study as $loop) {
                                                 $name = $loop->name;
-                                                 $dos = $loop->dos;
-                                                 $onset = $loop->onset;
+                                                $dos = $loop->dos;
+                                                $onset = $loop->onset;
                                                 $findings = $loop->findings;
-                                                 $dissemination = $loop->dissemination;
+                                                $dissemination = $loop->dissemination;
                                                 $id = $loop->id;
                                                 ?>  
 
@@ -134,7 +61,7 @@
                                                         <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                                                         <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
                                                     </td>
-                                                       <td class="edit_td">
+                                                    <td class="edit_td">
 
                                                         <span id="onset_<?php echo $id; ?>" class="text"><?php echo $onset; ?></span>
                                                         <input class="span10 date-picker editbox" id="onset_input_<?php echo $id; ?>" value="<?php echo $onset; ?>"   type="text" name="date" data-date-format="yyyy-mm-dd" />
@@ -150,11 +77,27 @@
                                                         </span>                                                        
                                                     </td>
                                                     <td class="edit_td">
-                                                        <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
-                                                        <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
-                                                    </td>                                                          
+                                                        <span id="findings_<?php echo $id; ?>" class="text">
+                                                            <?php
+                                                            //echo $abstract;
+                                                            // strip tags to avoid breaking any html
+                                                            $string = strip_tags($findings);
 
-                                                    <td><?= $loop->dos ?></td>
+                                                            if (strlen($string) > 5) {
+
+                                                                // truncate string
+                                                                $stringCut = substr($string, 0, 5);
+
+                                                                // make sure it ends in a word so assassinate doesn't become ass...
+                                                                $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '... <a href="' . base_url() . "index.php/student/study_details/" . $loop->id . '">Read More</a>';
+                                                            }
+                                                            echo $string;
+                                                            ?>
+
+
+                                                        </span>
+                                                        <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
+                                                    </td>                                                   
 
                                                     <td class="td-actions">
 
@@ -180,6 +123,54 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+<div class="modal fade  col-md-12" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">NEW STUDY</h4>
+            </div>
+
+            <form  role= "form" id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/study'  method="post">            
+
+
+                <div class="control-group form">
+                    <div class="controls">
+                        <div class="form-group">
+                            <label>Study name</label>                        
+                            <input type="text" class="form-control" id="name" name="name" required  />
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date of Study Onset</label>
+                            <input name="onset" id="onset" required class="form-control easyui-datebox control-group" >
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Date of Study Dissemination</label>
+                            <input name="dissemination" required id="dissemination" class="form-control easyui-datebox control-group" >
+
+                        </div>                       
+                        <div class="form-group">
+                            <label for="">Findings/Public Health Action*</label>
+                            <textarea class="form-control" id="" name="findings" data-maxlength="50"></textarea>
+                        </div>       
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-default">Cancel</button>
+                            <button type="submit" class="btn btn-info pull-right">Submit</button>
+                        </div><!-- /.box-footer -->
+
+                    </div>
+
+                </div>
+            </form>	
         </div>
     </div>
 </div>
@@ -483,14 +474,14 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             $("#onset" + ID).hide();
             $("#onset_input_" + ID).show();
 
-         
+
 
             $("#dissemination" + ID).hide();
             $("#dissemination_input_" + ID).show();
 
             $("#findings" + ID).hide();
             $("#findings_input_" + ID).show();
-          
+
 
 
 
@@ -500,15 +491,15 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             var ID = $(this).attr('id');
             var name = $("#name_input_" + ID).val();
             var onset = $("#onset_input_" + ID).val();
-          
+
             var dissemination = $("#dissemination_input_" + ID).val();
             var findings = $("#findings_input_" + ID).val();
-        
 
-            var dataString = 'id=' + ID + '&name=' + name + '&onset=' + onset  + '&dissemination=' + dissemination + '&findings=' + findings ;
+
+            var dataString = 'id=' + ID + '&name=' + name + '&onset=' + onset + '&dissemination=' + dissemination + '&findings=' + findings;
             $("#name_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             $("#onset_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
-             $("#dissemination_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
+            $("#dissemination_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             $("#findings_" + ID).html('<img src="<?= base_url(); ?>images/loading.gif" />'); // Loading image
             if (name.length > 0 && onset.length > 0)
             {
@@ -522,10 +513,10 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                     {
                         $("#name_" + ID).html(name);
                         $("#onset_" + ID).html(onset);
-                      
+
                         $("#dissemination_" + ID).html(dissemination);
                         $("#findings_" + ID).html(findings);
-                      
+
 
                     }
                 });

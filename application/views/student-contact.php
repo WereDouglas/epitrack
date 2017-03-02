@@ -24,7 +24,7 @@
 
             <label>Contact</label>
             <div class="control-group">
-                <input type="text" class="span12" id="contact" name="contact" placeholder="250" /> 
+                <input type="text" class="span12" id="contact" name="contact" required placeholder="250" /> 
             </div>
 
             <div>                   
@@ -44,7 +44,7 @@
 
     </div>
 
-
+<br>
 
 
     <div class="alert alert-info">Select a field to edit the content</div>                     

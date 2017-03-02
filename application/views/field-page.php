@@ -48,12 +48,12 @@
 
                                     <div class="span6"> 
                                         <div class="widget-main">
-                                            <input multiple="" type="file" name="userfile" id="id-input-file-3" />
+                                            <input multiple="" type="file" required name="userfile" id="id-input-file-3" />
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label" for="form-field-username">Name</label>
                                             <div class="controls">
-                                                <input type="text" class="span12" id="title" name="name" placeholder="Name"  />
+                                                <input type="text" class="span12" required id="title" name="name" placeholder="Name"  />
                                             </div>
                                         </div>
                                         <label class="control-label" for="form-field-username">Location</label>
@@ -320,6 +320,7 @@
                                         <label for="form-field-9">Abstract/Notes</label>
 
                                         <textarea class="span12" id="form-field-9" name="notes" data-maxlength="10"></textarea>
+                                        <br>
                                         <div class="">
                                             <button class="btn btn-info" type="submit">
                                                 <i class="icon-ok bigger-110"></i>
@@ -664,7 +665,7 @@
                                                                 $stringCut = substr($string, 0, 5);
 
                                                                 // make sure it ends in a word so assassinate doesn't become ass...
-                                                                $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '... <a href="' . base_url() . "index.php/student/finding/" . $loop->id . '">Read More</a>';
+                                                                $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '... <a href="' . base_url() . "index.php/student/field_details/" . $loop->id . '">Read More</a>';
                                                             }
                                                             echo $string;
                                                             ?>

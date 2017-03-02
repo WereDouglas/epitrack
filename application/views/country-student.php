@@ -136,7 +136,7 @@
                                                 </div>
                                             </div>
                                             <div class="controls">
-                                                <label>  Date of completion:  </label>
+                                                <label>  Year of completion:  </label>
                                                 <div class="control-group">
                                                     <div class="controls">
                                                         <input class="date-picker" id="date_complete" name="date_complete" type="text" data-date-format="dd-mm-yyyy" /></span>

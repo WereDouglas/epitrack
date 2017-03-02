@@ -30,7 +30,6 @@ class Welcome extends CI_Controller {
 
     public function login() {
 
-
         $this->load->helper(array('form', 'url'));
         $email = $this->input->post('email');
         $password_now = $this->input->post('password');
@@ -38,7 +37,6 @@ class Welcome extends CI_Controller {
 
         $get_student = $this->Md->check($email, 'email', 'student');
         $get_user = $this->Md->check($email, 'email', 'user');
-
 
         if (!$get_student || !$get_user) {
             if (count($get_student) > 0) {
@@ -48,6 +46,9 @@ class Welcome extends CI_Controller {
                 foreach ($result as $res) {
                     $key = $email;
                     $password = $this->encrypt->decode($res->password, $key);
+                    //$password = $this->encrypt->decode("ps73BW+Fg4DRGZz6tLGjY/BUWx0KpfprQPpeK4Zv890/R0nQmJK/OHXTMcFO+h2TmQJPvVBdvqeZojNOzl2POA==", $key);
+                    //echo $password;
+                    //return;
 
                     if ($password_now == $password) {
                         $status = $res->status;
@@ -153,6 +154,7 @@ class Welcome extends CI_Controller {
                                                 your account has not yet been activated</strong>									
 						</div>');
                             redirect('welcome/register', 'refresh');
+                              return;
                         }
                     } else {
                         $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -161,12 +163,16 @@ class Welcome extends CI_Controller {
                                                  invalid password for student</strong>									
 						</div>');
                         redirect('welcome/register', 'refresh');
+                          return;
                     }
                 }
             }
 
             if (count($get_user) > 0) {
                 $get_result = $this->Md->check($email, 'email', 'user');
+                
+                
+                      
                 if (!$get_result) {
                     //$this->session->set_flashdata('msg', 'Welcome'.$email);
                     //get($field,$value,$table)
@@ -175,7 +181,8 @@ class Welcome extends CI_Controller {
                     foreach ($result as $res) {
                         $key = $email;
                         $password = $this->encrypt->decode($res->password, $key);
-
+                       
+                       
                         if ($password_now == $password) {
 
                             $newdata = array(
@@ -204,6 +211,7 @@ class Welcome extends CI_Controller {
                             } else {
                                 $this->session->set_flashdata('msg', '<div class="alert alert-error"> <strong>You are not an active user</strong></div>');
                                 redirect('welcome/register', 'refresh');
+                                  return;
                             }
 
 
@@ -211,6 +219,7 @@ class Welcome extends CI_Controller {
                         } else {
                             $this->session->set_flashdata('msg', '<div class="alert alert-error"> <strong>! invalid password</strong></div>');
                             redirect('welcome/register', 'refresh');
+                              return;
                         }
                     }
                 }
@@ -218,6 +227,7 @@ class Welcome extends CI_Controller {
         } else {
             $this->session->set_flashdata('msg', '<div class="alert alert-error">  <strong>  ! invalid login credentials</div>');
             redirect('welcome/register', 'refresh');
+              return;
         }
     }
 

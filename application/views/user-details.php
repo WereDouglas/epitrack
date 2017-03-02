@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/fullcalendar.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/select2.css" />
 <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-editable.css" />
-<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
+
 <link href="<?= base_url(); ?>dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 <style type="text/css" media="screen">
 
     table{
@@ -24,157 +25,205 @@
     table tr{
         border:0px solid #FF0000;
     }
+    td {
+        border-top: 0px;
+    }
 </style>
-<div class="main-content">
-    <div class="page-content">
-        <div class="row-fluid">
-            <div class="span12">
-                <!--PAGE CONTENT BEGINS-->
+<div class="row content">
+    <div class="col-md-12">    
+        <!--PAGE CONTENT BEGINS-->
 
-                <?php
-                if (is_array($bio) && count($bio)) {
-                    foreach ($bio as $loop) {
-                        $id = $loop->id;
-                        $fname = $loop->fname;
-                        $lname = $loop->lname;
-                        $other = $loop->other;
-                        $email = $loop->email;
-                        $gender = $loop->gender;
-                        $dob = $loop->dob;
-                        $country = $loop->country;
-                        $image = $loop->image;
-                        $password = $loop->password;
-                        $cohort = $loop->cohort;
-                        $contact = $loop->contact;
-                        $status = $loop->status;
-                    }
-                }
+        <?php
+        if (is_array($bio) && count($bio)) {
+            foreach ($bio as $loop) {
+                $id = $loop->id;
+                $fname = $loop->fname;
+                $lname = $loop->lname;
+                $other = $loop->other;
+                $email = $loop->email;
+                $gender = $loop->gender;
+                $dob = $loop->dob;
+                $country = $loop->country;
+                $image = $loop->image;
+                $password = $loop->password;
+                $cohort = $loop->cohort;
+                $contact = $loop->contact;
+                $status = $loop->status;
+            }
+        }
+        ?>
+
+
+        <div class="span3">
+
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12"> <span class=" status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+    </div>
+    <div class="col-md-12">  
+
+        <?php
+        if (is_array($bio) && count($bio)) {
+            foreach ($bio as $loop) {
                 ?>
-                <div class="row-fluid">
-                    <div class="span12">
-                        <div class="span3">
-                            <img  height="100px" width="120px" class="" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Custom Tabs -->
+                            <div class="nav-tabs-custom">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tab_1" data-toggle="tab"><?php echo $fname . ' ' . $lname; ?></a></li>
+                                    <li><a href="#tab_2" data-toggle="tab">Edit image</a></li>
+                                    <li><a href="#tab_3" data-toggle="tab">Edit profile information</a></li>
+                                    <li><a href="#tab_4" data-toggle="tab">Edit password</a></li>
 
-                        </div>
-                          <div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_1">
+                                       
+                                        <div class="row content">
+                                            <div class="col-md-6"> 
+                                                <img  height="150px" width="200px" class="user-image" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                DATE  OF BIRTH:<font class="blue"><?php echo $dob; ?></font><br>
+                                                GENDER :<font class="blue"> <?php echo $gender; ?></font><br>
+                                            </div>
+                                        </div>
 
-          
-                        <table class="table zebra-style span8">
+                                    </div><!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_2">
+                                        <form  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/user/update_image'  method="post">                                       
+                                            <h4>New profile picture</h4>
 
-                            <tbody>
-
-
-                                <?php
-                                if (is_array($bio) && count($bio)) {
-                                    foreach ($bio as $loop) {
-                                        ?>  
-
-                                        <tr class="odd">
-                        <!--                            <td><?php echo $loop->id; ?></td>-->
-
-                                        </tr>
-                                        <tr>
-                                            <td>FIRST NAME:</td>
-                                            <td id="fname:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->fname; ?></td>
-
-                                            <td>LAST NAME:</td>
-                                            <td id="lname:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->lname; ?></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Country</td>
-                                            <td id="country:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->country; ?></td>
-
-                                            <td>CONTACT:</td>
-                                            <td id="contact:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->contact; ?></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>EMAIL:</td>
-                                            <td id="email:<?php echo $loop->id; ?>" contenteditable="true"><?php echo $loop->email; ?></td>
-
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PASSWORD REST</td>
-                                            <td>
-
-                                                <a href="<?php echo base_url() . "index.php/user/reset/" . $loop->id; ?>" class="tooltip-info qualification" data-rel="tooltip" title="verify">
-                                                    <span class="red">
-                                                        <i class="icon-lock bigger-120 text-danger"></i>Reset   </span>
-                                                </a>
+                                            <div class="form-group">
+                                                <input type="file"   name="userfile" id="userfile" />
+                                            </div>  
+                                            <div class="form-group">
+                                                <div id="imagePreview" ></div> 
+                                            </div>                
+                                            <input type="hidden" class="form-control" name="userID" id="userID" value="<?php echo $id; ?>" />                                                   
+                                            <input type="hidden" name="namer" id="namer" value="<?php echo $fname . $lname; ?>" />
+                                            <div class=" clearfix"></div>
+                                            <button id="send"  class="btn btn-default" type="submit" >Update picture</button>
 
 
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr> 
-                                        <tr>
-                                            <td>
-                                                <form id="identicalForm"  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/user/update_password'  method="post">                                       
+                                        </form>
+                                    </div><!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_3">
+                                        <table class="table zebra-style ">
+
+                                            <tbody>
 
 
-                                                    <h4>Change password</h4>
-                                                    <div class="form-group">
-                                                        <label for="email">Password:</label>
-                                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="" />                                                   
 
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="pwd">Confirm password:</label>
-                                                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" value="" />
+                                                <tr>
+                                                    <td></td>
+                                                    <td><font class="red">(Editable)</font></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>FIRST NAME:</td>
+                                                    <td id="fname:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->fname; ?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
 
-                                                    </div>  
+                                                    <td>LAST NAME:</td>
+                                                    <td id="lname:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->lname; ?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>COUNTRY</td>
+                                                    <td id="country:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->country; ?></td>
 
-                                                    <input type="hidden" name="userID" id="userID" value="<?php echo $id; ?>" />     
-                                                    <button id="send" class="btn btn-default" type="submit" >Change password</button>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CONTACT:</td>
+                                                    <td id="contact:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->contact; ?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>EMAIL:</td>
+                                                    <td id="email:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->email; ?></td>
 
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PASSWORD REST</td>
+                                                    <td>
 
-                                                </form>
-                                            </td>
-                                            <td>
-
-                                            </td>
-                                            <td></td>
-                                            <td> 
-                                                <form  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/user/update_image'  method="post">                                       
-                                                    <h4>New profile picture</h4>
-                                                    <div class="form-group">
-                                                        <input type="file"  class="form-control" name="userfile" id="userfile" />
-                                                    </div>  
-                                                    <div class="form-group">
-                                                        <div id="imagePreview" ></div> 
-                                                    </div>                
-                                                    <input type="hidden" class="form-control" name="userID" id="userID" value="<?php echo $id; ?>" />                                                   
-                                                    <input type="hidden" name="namer" id="namer" value="<?php echo $fname . $lname; ?>" />
-                                                    <button id="send"  class="btn btn-default" type="submit" >Update picture</button>
-
-
-                                                </form></td>
-                                        </tr>
-
-                                        <?php
-                                    }
-                                }
-                                ?>
-
-                            </tbody>
-                        </table>
-                
-                    </div><!--/span-->
-
-
-                </div><!--/row-->
+                                                        <a href="<?php echo base_url() . "index.php/user/reset/" . $loop->id; ?>" class="tooltip-info qualification" data-rel="tooltip" title="verify">
+                                                            <span class="red">
+                                                                <i class="icon-lock bigger-120 text-danger"></i>Reset   </span>
+                                                        </a>
 
 
-                <!--PAGE CONTENT ENDS-->
-            </div><!--/.span-->
-        </div><!--/.row-fluid-->
-    </div><!--/.page-content-->
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr> 
+                                                <tr>
+                                                    <td>
+
+                                                    </td>
+                                                    <td>
+
+                                                    </td>
+                                                    <td></td>
+                                                    <td> 
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_4">
+                                        <b></b>
+                                        <form id="identicalForm"  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/user/update_password'  method="post">                                       
+                                            <h4>Change password</h4>
+                                            <div class="form-group">
+                                                <label for="email">Password:</label>
+                                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="" />                                                   
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pwd">Confirm password:</label>
+                                                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" value="" />
+
+                                            </div>  
+
+                                            <input type="hidden" name="userID" id="userID" value="<?php echo $id; ?>" />     
+                                            <div class=" clearfix"></div>
+                                            <hr>
+                                            <button id="send" class="btn btn-default" type="submit" >Change password</button>
 
 
+                                        </form>
+
+                                    </div>
+                                </div><!-- /.tab-content -->
+                            </div><!-- nav-tabs-custom -->
+                        </div><!-- /.col -->
+
+                    </div> <!-- /.row -->
+                </section>
+                <div class="pull-left">
+
+                </div>
+                <?php
+            }
+        }
+        ?>
+    </div><!--/.main-content-->
 </div><!--/.main-content-->
+
 <script type="text/javascript">
     window.jQuery || document.write("<script src='<?= base_url(); ?>assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");</script>
 
@@ -234,21 +283,21 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         return false;
     });
     var message_status = $("#status");
-        $("td[contenteditable=true]").blur(function () {
-            var field_id = $(this).attr("id");
-            var value = $(this).text();
-            $.post('<?php echo base_url() . "index.php/user/updater/"; ?>', field_id + "=" + value, function (data) {
-                if (data != '')
-                {
-                    message_status.show();
-                    message_status.text(data);
-                    //hide the message
-                    setTimeout(function () {
-                        message_status.hide()
-                    }, 1000);
-                }
-            });
+    $("td[contenteditable=true]").blur(function () {
+        var field_id = $(this).attr("id");
+        var value = $(this).text();
+        $.post('<?php echo base_url() . "index.php/user/updater/"; ?>', field_id + "=" + value, function (data) {
+            if (data != '')
+            {
+                message_status.show();
+                message_status.text(data);
+                //hide the message
+                setTimeout(function () {
+                    message_status.hide()
+                }, 1000);
+            }
         });
+    });
 
 
 </script>

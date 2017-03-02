@@ -1,119 +1,17 @@
 <?php require_once(APPPATH . 'views/css-page.php'); ?>
 <div class="col-xs-12">
-    <h3>Qualifications</h3>
+    <h3><?php echo $this->session->userdata('name'); ?>'s Qualifications</h3>
+    <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New qualificaion record</span> </a>
+
     <?php echo $this->session->flashdata('msg'); ?>
     <div class="row-fluid">
         <div class="span12 widget-container-span">
 
-            <div class="">
-
-                <div class="">
-                    <div class="btn-toolbar ">
-
-                        <div class="btn-group">
-                            <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
-
-                                <button class="btn btn-small btn-success">
-                                    <i class="icon-save bigger-125"></i>
-                                    Add
-                                </button></a>
-                            <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
-
-                                <button class="btn btn-small btn-danger">
-                                    <i class="icon-list bigger-110"></i>
-                                    List
-                                </button>
-                            </a>
-
-                        </div>                        
-                    </div>
-                </div>
-
-            </div>
-
-
-
+           
             <div class="widget-main ">
                 <div id="accordion2" class="accordion">              
 
-                    <div class="accordion-group">
-
-
-                        <div class="accordion-body collapse" id="collapseTwo">
-                            <div class="accordion-inner">
-                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/qualification'  method="post">            
-
-                                    <div class="span6">  
-
-                                        <div class="control-group">
-
-                                            <div class="controls">
-                                                <label>Qualification name</label>
-                                                <span class="span12 ">
-                                                    <input type="text" class="span12"  id="name" name="name"   /></span>
-
-
-                                            </div>
-                                            <div class="controls">
-
-                                                <label>Awarding Institute</label> 
-                                                <span class="span12 "><input type="text" class="span12"  id="institute" name="institute"   /></span>
-
-
-                                            </div>
-                                        </div>                                            
-
-                                    </div>
-                                    <div class="span6">  
-
-                                        <div class="control-group">
-
-                                            <div class="controls">
-                                                <div class="row-fluid">
-                                                    <label for="id-date-picker-1">Date of completion</label>
-                                                </div>
-
-                                                <div class="control-group">
-                                                    <div class="row-fluid input-append">
-                                                        <input class="span10 date-picker" id="id-date-picker-1" type="text" name="completion" data-date-format="yyyy-mm-dd" />
-                                                        <span class="add-on">
-                                                            <i class="icon-calendar"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="row-fluid">
-                                                    <label for="id-date-picker-1">Date of graduation</label>
-                                                </div>
-
-                                                <div class="control-group">
-                                                    <div class="row-fluid input-append">
-                                                        <input class="span10 date-picker" id="id-date-picker-1" type="text" name="graduation" data-date-format="yyyy-mm-dd" />
-                                                        <span class="add-on">
-                                                            <i class="icon-calendar"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="">
-                                            <button class="btn btn-info" type="submit">
-                                                <i class="icon-ok bigger-110"></i>
-                                                Submit
-                                            </button>
-
-                                            <button class="btn" type="reset">
-                                                <i class="icon-undo bigger-110"></i>
-                                                Reset
-                                            </button>
-                                        </div>
-
-                                    </div>
-
-                                </form>	
-                            </div>
-                        </div>
-                    </div>
+                  
 
                     <div class="accordion-group">
                         <div class="accordion-body collapsed" id="collapseThree">
@@ -213,6 +111,70 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+<div class="modal fade  col-md-12" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">NEW QUALIFICATION RECORD</h4>
+            </div>
+
+            <form  role= "form" id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/qualification'  method="post">            
+
+              
+              
+                <div class="control-group form">
+                    <div class="controls">
+                       <div class="controls">
+                            <label>Qualification name</label>
+                          
+                                <input required type="text" class="form-control"  id="name" name="name"   />
+                        </div>
+                        <div class="controls">
+
+                            <label>Institution</label> 
+                           <input required  type="text" class="form-control"  id="institute" name="institute"   /></span>
+
+
+                        </div>
+                     
+
+
+                        <div class="form-group">
+                            <label class="label-top">Date of completion</label>
+                            <select name="completion" class="form-control">
+                                <?php
+                                for ($i = 1950; $i < date('Y') + 1; $i++) {
+                                    echo "<option>$i</option>";
+                                }
+                                ?>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="label-top">Date of graduation</label>
+                            <select name="graduation" class="form-control">
+                                <?php
+                                for ($i = 1950; $i < date('Y') + 1; $i++) {
+                                    echo "<option>$i</option>";
+                                }
+                                ?>
+                            </select>
+              
+
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-default">Cancel</button>
+                            <button type="submit" class="btn btn-info pull-right">Submit</button>
+                        </div><!-- /.box-footer -->
+
+                    </div>
+
+                </div>
+            </form>	
         </div>
     </div>
 </div>
@@ -551,8 +513,8 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
                     {
                         $("#name_" + ID).html(name);
                         $("#institute_" + ID).html(institute);
-                          $("#graduation_" + ID).html(graduation);
-                            $("#completion_" + ID).html(completion);
+                        $("#graduation_" + ID).html(graduation);
+                        $("#completion_" + ID).html(completion);
 
                     }
                 });

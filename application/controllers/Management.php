@@ -328,7 +328,7 @@ class Management extends CI_Controller {
                 $data['present_cnt_accepted'] = array();
             }
         }
-
+//echo $this->session->userdata('level');
         $this->load->view('blank', $data);
     }
 
@@ -1117,11 +1117,12 @@ class Management extends CI_Controller {
             $lname = $this->input->post('lname');
             $id = $this->input->post('id');
             $level = $this->input->post('level');
+             $role = $this->input->post('role');
 
             $email = $this->input->post('email');
             $contact = $this->input->post('contact');
             if ($this->session->userdata('level') > 0) {
-                $user = array('fname' => $fname, 'lname' => $lname, 'level' => $level, 'email' => $email, 'contact' => $contact, 'registered' => date('Y-m-d'), 'status' => 'active');
+                $user = array('fname' => $fname, 'lname' => $lname, 'role' => $role, 'level' => $level, 'email' => $email, 'contact' => $contact, 'registered' => date('Y-m-d'), 'status' => 'active');
                 $this->Md->update($id, $user, 'user');
             }
         }
@@ -1363,7 +1364,13 @@ class Management extends CI_Controller {
         } else {
             $data['country'] = array();
         }
-
+         $query = $this->Md->show('roles');
+        //  var_dump($query);
+        if ($query) {
+            $data['roles'] = $query;
+        } else {
+            $data['roles'] = array();
+        }
 
         $this->load->view('country-user', $data);
     }

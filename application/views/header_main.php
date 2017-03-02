@@ -29,7 +29,7 @@
         <!-- bootstrap wysihtml5 - text editor -->
         <link href="<?php echo base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="<?= base_url(); ?>css/frame.css" />
-
+<link rel=icon href="<?= base_url(); ?>images/favicon.ico">
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
@@ -125,6 +125,7 @@
                                     <?php } ?>   
 
                                     <span class="hidden-xs"><?php echo $this->session->userdata('name'); ?></span>
+                                  
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -147,6 +148,7 @@
                                         <p>
                                             <?php echo $this->session->userdata('name'); ?>
                                             <small><?php echo $this->session->userdata('country'); ?></small>
+                                              <span class="hidden-xs">  <?php echo $this->session->userdata('cohort'); ?></span>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -191,7 +193,7 @@
                             <?php } ?>   </div>
                         <div class="pull-left info">
                             <small><?php echo $this->session->userdata('name'); ?></small><br>
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            <a href="#"><i class="fa fa-circle text-success"></i> <?php echo $this->session->userdata('cohort'); ?></a>
                         </div>
                     </div>                  
                     <ul class="sidebar-menu">
@@ -211,8 +213,8 @@
                             <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i> Cohorts</a></li>
                             <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
                             <li><a href="<?php echo base_url() . "index.php/field/view"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/management/qualifications"; ?>" target="frame"><i class="fa  fa-file-text"></i>Qualifications</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/management/emps"; ?>" target="frame"><i class="fa  fa-file-text"></i>Employement Records</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/qualifications"; ?>" target="frame"><i class="fa  fa-file-text"></i>Education/Qualifications</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/emps"; ?>" target="frame"><i class="fa  fa-file-text"></i>Employment Records</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/surveillance"; ?>" target="frame"><i class="fa  fa-file-text"></i>Surveillance</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/outbreaks"; ?>" target="frame"><i class="fa  fa-file-text"></i>Out Breaks</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/presentations"; ?>" target="frame"><i class="fa  fa-file-text"></i>Presentations</a></li>
@@ -238,6 +240,8 @@
                             <li><a href="<?php echo base_url() . "index.php/management/cohort"; ?>" target="frame"><i class="fa fa-user-md"></i> Cohorts</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame"><i class="fa fa-flag"></i> Countries</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/country_user"; ?>" target="frame"><i class="fa fa-users"></i> Users</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/role"; ?>" target="frame"><i class="fa fa-users"></i>Roles</a></li>
+                           
                             <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i> Events & Updates</a></li>
                           
                             <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
@@ -245,8 +249,8 @@
                               <li><a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"><i class="fa fa-users"></i> Students</a></li>
 
                              <li><a href="<?php echo base_url() . "index.php/field/view"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/management/qualifications"; ?>" target="frame"><i class="fa  fa-file-text"></i>Qualifications</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/management/emps"; ?>" target="frame"><i class="fa  fa-file-text"></i>Employement Records</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/qualifications"; ?>" target="frame"><i class="fa  fa-file-text"></i>Education/Qualifications</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/emps"; ?>" target="frame"><i class="fa  fa-file-text"></i>Employment Records</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/surveillance"; ?>" target="frame"><i class="fa  fa-file-text"></i>Surveillance</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/outbreaks"; ?>" target="frame"><i class="fa  fa-file-text"></i>Out Breaks</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/presentations"; ?>" target="frame"><i class="fa  fa-file-text"></i>Presentations</a></li>
@@ -266,7 +270,7 @@
                             <li><a href="<?php echo base_url() . "index.php/student/bio"; ?>" target="frame"><i class="fa fa-male"></i> Bio</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/contact"; ?>" target="frame"><i class="fa fa-phone"></i> Contacts</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame"><i class="fa fa-newspaper-o"></i> Employment records</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame"><i class="fa fa-mortar-board"></i> Qualification</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame"><i class="fa fa-mortar-board"></i>Education/Qualification</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame"><i class="fa fa-video-camera"></i> Surveillance</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame"><i class="fa fa-newspaper-o"></i>Publications</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame"><i class="fa  fa-university"></i> Studies</a></li>

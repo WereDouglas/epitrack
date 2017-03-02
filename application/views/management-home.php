@@ -35,15 +35,14 @@
 
 
             <div class="row-fluid">
-                <div class="span9">
-                    <div class="space"></div>
+                <div class="span12">                 
 
                     <div id="calendar"></div>
                 </div>
 
 
 
-                <div class="span3" style="overflow:scroll;">
+<!--                <div class="span3" style="overflow:scroll;">
                     <div class="widget-box ">
                         <div class="widget-header">
                             <h4 class="lighter smaller">
@@ -108,10 +107,10 @@
                                         <span class="hidden-phone">Send</span>
                                     </button>
                                 </form>
-                            </div><!--/widget-main-->
-                        </div><!--/widget-body-->
-                    </div><!--/widget-box-->
-                </div><!--/span-->
+                            </div>/widget-main
+                        </div>/widget-body
+                    </div>/widget-box
+                </div>/span-->
             </div>       
         </div><!--/widget-box-->
 

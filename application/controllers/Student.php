@@ -55,6 +55,14 @@ class Student extends CI_Controller {
         $this->Md->update($id, $student, 'student');
         $this->session->set_flashdata('msg', '<div class="alert alert-info"> <strong>   Information updated	</strong><div>');
     }
+     public function updating() {
+
+        $this->load->helper(array('form', 'url'));
+        $id = $this->input->post('id');
+        $gender = $this->input->post('gender');
+        $user = array('role' => $gender);
+        $this->Md->update($id, $user, 'user');
+    }
 
     public function updater() {
         $this->load->helper(array('form', 'url'));
@@ -121,7 +129,7 @@ class Student extends CI_Controller {
             $data['cohorts'] = array();
         }
 
-        $this->load->view('user-details', $data);
+        $this->load->view('student-profile', $data);
     }
 
     public function generateRandomString($length = 6) {
@@ -519,9 +527,9 @@ class Student extends CI_Controller {
 
         $this->load->helper(array('form', 'url'));
         $action = $this->uri->segment(3);
-        $studentID = $this->session->userdata('id');
+         $studentID = $this->session->userdata('id');
         $id = $this->uri->segment(4);
-
+       
         if ($action == 'delete') {
             if ($this->session->userdata('level') == 2) {
                 $query = $this->Md->delete($id, 'employment');
@@ -573,9 +581,12 @@ class Student extends CI_Controller {
 
 
         if ($this->input->post('organisation') != "" && $id == "") {
+             echo $studentID;
             $employment = array('location' => $location, 'organisation' => $organisation, 'startDate' => $this->input->post('startDate'), 'endDate' => $this->input->post('endDate'), 'email' => $this->input->post('email'), 'studentID' => $studentID, 'position' => $position, 'country' => $country, 'sector' => $sector, 'contact' => $contact, 'created' => date('Y-m-d'),'visible'=>'t');
             $this->Md->save($employment, 'employment');
-
+            
+           
+          //
             $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
                                                Employment information saved</strong>									
 						</div>');
@@ -1094,7 +1105,7 @@ class Student extends CI_Controller {
             } else {
                 $id = $this->uri->segment(4);
                 $verified = 'delete';
-                $survey = array('verified' => $verified, 'created' => date('Y-m-d'));
+                $survey = array('status' => $verified, 'created' => date('Y-m-d'));
                 $this->Md->update($id, $survey, 'surveillance');
 
                 redirect('/student/surveillance', 'refresh');
@@ -1136,7 +1147,7 @@ class Student extends CI_Controller {
 
 
         // $query = $this->Md->get('studentID', $studentID, 'surveillance');
-        $query = $this->Md->query("SELECT * FROM surveillance WHERE studentID ='" . $studentID . "' AND verified<>'delete' ");
+        $query = $this->Md->query("SELECT * FROM surveillance WHERE studentID ='" . $studentID . "' AND status<>'delete' ");
         //  $query = $this->Md->get('studentID', $studentID, 'surveillance');
         // var_dump($query);
         if ($query) {
@@ -1168,7 +1179,7 @@ class Student extends CI_Controller {
             } else {
                 $id = $this->uri->segment(4);
                 $verified = 'delete';
-                $out = array('verified' => $verified);
+                $out = array('status' => $verified);
                 $this->Md->update($id, $out, 'outbreak');
                 redirect('/student/outbreak', 'refresh');
             }
@@ -1177,7 +1188,8 @@ class Student extends CI_Controller {
 
             $this->load->helper(array('form', 'url'));
             $id = $this->input->post('id');
-            $out = array('name' => $this->input->post('name'), 'country' => $this->input->post('country'), 'region' => $this->input->post('region'), 'max' => $this->input->post('max'), 'min' => $this->input->post('min'), 'onset' => $this->input->post('onset'), 'dates' => $this->input->post('dates'), 'lab' => $this->input->post('lab'), 'confirm' => $this->input->post('confirm'), 'etiology' => $this->input->post('etiology'), 'findings' => $this->input->post('findings'));
+            //  $student = array($field_name => $val,'status'=>'update','verified'=>'false');
+            $out = array('name' => $this->input->post('name'), 'max' => $this->input->post('max'), 'min' => $this->input->post('min'), 'onset' => $this->input->post('onset'), 'dates' => $this->input->post('dates'),'status'=>'update','verified'=>'false');
             $this->Md->update($id, $out, 'outbreak');
             return;
         }
@@ -1196,7 +1208,7 @@ class Student extends CI_Controller {
         $findings = $this->input->post('findings');
 
         if ($this->input->post('name') != "" && $studentID != "") {
-            $outbreak = array('name' => $name, 'verified' => 'false', 'studentID' => $studentID, 'onset' => strtotime($onset), 'country' => $country, 'max' => $max, 'min' => $min, 'dates' => $dates, 'lab' => $lab, 'confirm' => $confirm, 'etiology' => $etiology, 'region' => $region, 'findings' => $findings, 'dos' => date('Y-m-d'));
+            $outbreak = array('name' => $name, 'verified' => 'false','status' => 'none' ,'studentID' => $studentID, 'onset' => strtotime($onset), 'country' => $country, 'max' => $max, 'min' => $min, 'dates' => $dates, 'lab' => $lab, 'confirm' => $confirm, 'etiology' => $etiology, 'region' => $region, 'findings' => $findings, 'dos' => date('Y-m-d'));
             $this->Md->save($outbreak, 'outbreak');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success"> <strong>
@@ -1205,7 +1217,7 @@ class Student extends CI_Controller {
 
             redirect('/student/outbreak', 'refresh');
         }
-        $query = $this->Md->query("SELECT * FROM outbreak WHERE studentID ='" . $studentID . "' AND verified<>'delete' ORDER BY dos DESC ");
+        $query = $this->Md->query("SELECT * FROM outbreak WHERE studentID ='" . $studentID . "' AND status<>'delete' ORDER BY dos DESC ");
 
         // $query = $this->Md->get('studentID', $studentID, 'outbreak');
         if ($query) {

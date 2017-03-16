@@ -16,18 +16,20 @@
                     </th>
                     <th>#</th>
                     <th>Name</th>
-                      <th>Program</th>
+                    <th>Program</th>
                     <th>Cohort</th>
                     <th>Name</th>
                     <th>Onset</th>
-                    <th>Dissemination</th> 
+
                     <th>Period</th>  
-                    <th>Findings</th>
+
                     <th>Date of study</th> 
                     <th>Cases</th> 
                     <th>Deaths</th> 
                     <th>verified</th>
-                    <th>Verified</th>
+                    <th>View</th>
+                    <th></th>
+                     <th>Pending action</th>
                 </tr>
             </thead>
 
@@ -47,7 +49,7 @@
                                     <span class="lbl"></span>
                                 </label>
                             </td>
-                              <td class="center ">
+                            <td class="center ">
                                 <div class="profile-activity">
                                     <a href="<?php echo base_url() . "index.php/student/details/" . $loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>" height="30px" width="30px"  alt="<?php echo $fname; ?>" /></a>
                                 </div>
@@ -55,10 +57,10 @@
                             <td class="">
                                 <?= $loop->fname . ' ' . $loop->lname . ' ' . $loop->other ?>
                             </td>
-                             <td class="center ">
+                            <td class="center ">
                                 <?php echo $loop->country ?>
                             </td>
-                             <td class="">
+                            <td class="">
                                 <?= $loop->cohort ?>
                             </td>
 
@@ -66,34 +68,43 @@
                                 <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                             </td>
                             <td><?= $loop->onset ?></td>
-                            <td><?= $loop->findings ?></td>
                             <td><?= $loop->dates ?></td>
-
-                            <td class="">
-                                <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
-                            </td>                                                          
-
                             <td><?= $loop->dos ?></td>
                             <td><?= $loop->max ?></td>
                             <td><?= $loop->min ?></td>
                             <td>
-                                
-                                <?php if ($loop->verified =="false"){?>
-                                <strong> <p  class="text-danger"><?= $loop->verified ?></p></strong>
-                                <?php }else{?>
-                                 <strong> <p  class=" text-green"><?= $loop->verified ?></p></strong>
-                                 <?php }?>
-                                
-                                
+
+                                <?php if ($loop->verified == "false") { ?>
+                                    <strong> <p  class="text-danger"><?= $loop->verified ?></p></strong>
+                                <?php } else { ?>
+                                    <strong> <p  class=" text-green"><?= $loop->verified ?></p></strong>
+                                <?php } ?>
+
+
+                            </td>
+                            <td>                                                   
+
+                                <a href="<?php echo base_url() . "index.php/outbreak/details/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                    View
+                                </a>
+
                             </td>
 
                             <td class="td-actions">
 
                                 <a href="<?php echo base_url() . "index.php/student/verify_qualification/" . $loop->id . "/" . $loop->verified . "/" . "outbreak"; ?>" class="tooltip-info qualification" data-rel="tooltip" title="verify">
                                     <span class="red">
-                                        <i class="icon-briefcase bigger-120"></i>
+                                        <i class="icon-briefcase bigger-120"></i>Verify
                                     </span>
                                 </a>
+                            </td>
+                             <td class="td-actions">
+                                 
+                                <?php if ($loop->status == "delete") { ?>
+                                 <strong> <a href="<?php echo base_url() . "index.php/outbreak/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip"><p  class="text-danger"><?= $loop->status ?></p></a></strong>
+                                <?php } else { ?>
+                                    <strong> <p  class=" text-green"><?= $loop->status ?></p></strong>
+                                <?php } ?>                               
                             </td>
 
                         </tr>
@@ -171,7 +182,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         Popup($(elem).html());
     }
 
-    function Popup(data) 
+    function Popup(data)
     {
         var mywindow = window.open('', 'my div', 'height=400,width=600');
         mywindow.document.write('<html><head><title>my div</title>');

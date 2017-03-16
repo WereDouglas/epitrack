@@ -5,22 +5,98 @@
     <?php
     if (is_array($outbreaks) && count($outbreaks)) {
         foreach ($outbreaks as $loop) {
+            if ($this->session->userdata('level') == "student") {
+                if ($loop->verified == "false") {
+
+                    $editable = "true";
+                } else {
+
+                    $editable = "false";
+                }
+            } else {
+                $editable = "false";
+            }
             ?>
 
             <section id='introduction'>
                 <h2 class='page-header'><a href="#introduction">OUT BREAK  :-<?php echo $loop->name; ?></a></h2>
-                <p class='lead'>
-                    <b>REGION: </b><?php echo $loop->region; ?>
-                </p>
-                COUNTRY:<?php echo $loop->country; ?>
+                <div class="col-md-12 col-sm-12 col-xs-12"> <span class=" status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
 
-                <p> <?php echo 'MIN:-' . $loop->min ?></p>
-                <p> <?php echo 'MAX:-' . $loop->max ?></p>
-                <p> <?php echo 'DATE:-' . $loop->dates ?></p>
-                <p> <?php echo 'LAB :-' . $loop->lab ?></p>
-                <p> <?php echo 'CONFIRMED:-' . $loop->confirm; ?></p>
-                <p> <?php echo 'ETIOLOGY:-' . $loop->etiology ?></p>
-                <p> <?php echo 'FINDINGS:-' . $loop->findings ?></p>
+                <table class="table zebra-style ">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td><font class="red">(Editable)</font></td>
+
+                        </tr>
+                        <tr>
+                            <td>NAME:</td>
+                            <td id="name:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->name; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>COUNTRY:</td>
+                            <td id="country:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->country; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>REGION</td>
+                            <td id="region:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->region; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>MAX NO OF DEATHS:</td>
+                            <td id="max:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->max; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>MIN NO OF DEATHS:</td>
+                            <td id="min:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->min; ?></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>DATE OF ONSET</td>
+                            <td id="onset:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->onset; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>DAY OF OUTBREAK:</td>
+                            <td id="dates:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->dates; ?></td>
+                        </tr>
+                        <tr>
+                            <td>LAB:</td>
+                            <td id="lab:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->lab; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>CONFIRMED</td>
+                            <td id="confirm:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->confirm; ?></td>
+                        </tr> 
+                        <tr>
+                            <td>ETIOLOGY</td>
+                            <td id="etiology:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->etiology; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>FINDINGS</td>
+                            <td id="findings:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->findings; ?></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>DATE OF SUBMISSION</td>
+                            <td id="dos:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->dos; ?></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>STUDY VERIFICATION</td>
+                            <td id="verified:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->verified; ?></td>
+
+                        </tr>
+                    </tbody>
+                </table>
 
             </section><!-- /#introduction -->
 
@@ -33,68 +109,31 @@
 
 </div><!--/.row-fluid-->
 
-
-</div><!--/.page-content-->
-
-
-</div><!--/.main-content-->
 <script type="text/javascript">
     window.jQuery || document.write("<script src='<?= base_url(); ?>assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");</script>
 
-<!--<![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
 
 <script type="text/javascript">
     if ("ontouchend" in document)
         document.write("<script src='<?= base_url(); ?>assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
 <script src="<?= base_url(); ?>assets/js/bootstrap.min.js"></script>
 
-<!--page specific plugin scripts-->
-
-<!--[if lte IE 8]>
-  <script src="assets/js/excanvas.min.js"></script>
-<![endif]-->
-
-<script src="<?= base_url(); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.gritter.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootbox.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.easy-pie-chart.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.hotkeys.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootstrap-wysiwyg.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/select2.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/bootstrap-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/ace-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.maskedinput.min.js"></script>
-
-<!--ace scripts-->
-
-<script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
 <script>
-    $('.qualification').click(function (e) {
-        updateURL = $(this).attr("href");
-        e.preventDefault();//in this way you have no redirect
-        $.ajax({
-            type: "GET",
-            dataType: 'json',
-            url: updateURL,
-            async: false,
-            success: function (data) {
-                alert('Information updated!')
+    var message_status = $("#status");
+    $("td[contenteditable=true]").blur(function () {
+        var field_id = $(this).attr("id");
+        var value = $(this).text();
+        $.post('<?php echo base_url() . "index.php/outbreak/updater/"; ?>', field_id + "=" + value, function (data) {
+            if (data != '')
+            {
+                message_status.show();
+                message_status.text(data);
+                //hide the message
+                setTimeout(function () {
+                    message_status.hide()
+                }, 1000);
             }
-
         });
-        alert('Information updated!')
-        return false;
     });
 
 </script>

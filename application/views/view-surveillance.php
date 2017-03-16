@@ -16,16 +16,17 @@
                     </th>
                     <th>#</th>
                     <th>Name</th>
-                     <th>Program</th>
+                    <th>Program</th>
                     <th>Cohort</th>
                     <th>Name/Title</th>
                     <th>Type</th>
                     <th>Date</th>   
                     <th>Country/Region</th>   
-                    <th>Finding</th> 
+
                     <th>Verified</th> 
                     <th>submitted</th> 
-
+                    <th></th>
+                    <th>Status</th>
                     <th></th>
                 </tr>
             </thead>
@@ -40,6 +41,7 @@
                         $verified = $loop->verified;
                         $finding = $loop->finding;
                         $id = $loop->id;
+                      
                         ?>  
 
                         <tr id="<?php echo $id; ?>" class="edit_tr">
@@ -49,7 +51,7 @@
                                     <span class="lbl"></span>
                                 </label>
                             </td>
-                              <td class="center ">
+                            <td class="center ">
                                 <div class="profile-activity">
                                     <a href="<?php echo base_url() . "index.php/student/details/" . $loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>" height="30px" width="30px"  alt="<?php echo $fname; ?>" /></a>
                                 </div>
@@ -60,7 +62,7 @@
                             <td class="">
                                 <?= $loop->country ?>
                             </td>
-                             <td class="">
+                            <td class="">
                                 <?= $loop->cohort ?>
                             </td>
 
@@ -76,17 +78,29 @@
                                 <span id="region_<?php echo $id; ?>" class="text"><?php echo $region; ?></span>
                             </td>   
 
-                            <td class="">
-                                <span id="finding_<?php echo $id; ?>" class="text"><?php echo $finding; ?></span>
-                            </td>  
                             <td><?= $loop->verified ?></td>
                             <td><?= $loop->created ?></td>
+                            <td>                                                   
+
+                                <a href="<?php echo base_url() . "index.php/surveillance/details/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                    View
+                                </a>
+
+                            </td>
+                             <td class="td-actions">
+                                 
+                                <?php if ($loop->status == "delete") { ?>
+                                 <strong> <a href="<?php echo base_url() . "index.php/surveillance/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip"><p  class="text-danger"><?= $loop->status ?></p></a></strong>
+                                <?php } else { ?>
+                                    <strong> <p  class=" text-green"><?= $loop->status ?></p></strong>
+                                <?php } ?>                               
+                            </td>
 
                             <td class="td-actions">
 
                                 <a href="<?php echo base_url() . "index.php/student/verify_qualification/" . $loop->id . "/" . $loop->verified . "/" . "surveillance"; ?>" class="tooltip-info qualification" data-rel="tooltip" title="verify">
                                     <span class="red">
-                                        <i class="icon-briefcase bigger-120"></i>
+                                      Verify<i class="icon-briefcase bigger-120"></i>
                                     </span>
                                 </a>
                             </td>
@@ -151,12 +165,12 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
             async: false,
             success: function (data) {
                 alert('Information updated!')
-                 location.reload();
+                location.reload();
             }
 
         });
         alert('Information updated!')
-          location.reload();
+        location.reload();
         return false;
     });
 
@@ -168,7 +182,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         Popup($(elem).html());
     }
 
-    function Popup(data) 
+    function Popup(data)
     {
         var mywindow = window.open('', 'my div', 'height=400,width=600');
         mywindow.document.write('<html><head><title>my div</title>');

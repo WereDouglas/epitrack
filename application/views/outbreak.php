@@ -30,14 +30,13 @@
 
                                         <th>Name</th>
                                         <th>Onset</th>
-                                        <th>Etiology</th> 
-                                        <th>Period</th>  
-                                        <th>Findings</th>
+
+                                        <th>Period</th>                                       
                                         <th>Date of study</th> 
                                         <th>Cases</th> 
                                         <th>Deaths</th> 
                                         <th>verified</th> 
-
+                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -79,30 +78,7 @@
                                                         <i class="icon-calendar"></i>
                                                     </span>
                                                 </td>
-                                                <td class="edit_td">
 
-                                                    <span id="findings_<?php echo $id; ?>" class="text">
-                                                        <?php
-                                                        //echo $abstract;
-                                                        // strip tags to avoid breaking any html
-                                                        $string = strip_tags($findings);
-
-                                                        if (strlen($string) > 5) {
-
-                                                            // truncate string
-                                                            $stringCut = substr($string, 0, 5);
-
-                                                            // make sure it ends in a word so assassinate doesn't become ass...
-                                                            $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '... <a href="' . base_url() . "index.php/student/outbreak_details/" . $loop->id . '">Read More</a>';
-                                                        }
-                                                        echo $string;
-                                                        ?>
-                                                    </span>
-                                                    <textarea type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"><?php echo $findings; ?></textarea>
-
-
-
-                                                </td>
                                                 <td class="edit_td">
                                                     <span id="dates_<?php echo $id; ?>" class="text"><?php echo $dates; ?></span>
                                                     <input class="span10 date-picker editbox" id="dates_input_<?php echo $id; ?>" value="<?php echo $dates; ?>"  type="text" name="date" data-date-format="yyyy-mm-dd" />
@@ -111,10 +87,6 @@
                                                     </span>
                                                 </td>
 
-                                                <td class="edit_td">
-                                                    <span id="findings_<?php echo $id; ?>" class="text"><?php echo $findings; ?></span>
-                                                    <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
-                                                </td>                                                          
 
                                                 <td><?= $loop->dos ?></td>
                                                 <td class="edit_td">
@@ -125,9 +97,22 @@
                                                     <span id="min_<?php echo $id; ?>" class="text"><?php echo $min; ?></span>
                                                     <input type="number" value="<?php echo $min; ?>" class="editbox" id="min_input_<?php echo $id; ?>"
                                                 </td>
+                                                <td>  
+
+                                                    <?php if ($loop->verified == "false") { ?>
+                                                        <strong> <p  class="text-danger"><?= $loop->verified ?></p></strong>
+                                                    <?php } else { ?>
+                                                        <strong> <p  class=" text-green"><?= $loop->verified ?></p></strong>
+                                                    <?php } ?>
+
+                                                   
+
+                                                </td>
                                                 <td>                                                   
 
-                                                    <p  class="text-danger"><?= $loop->verified ?></p>
+                                                    <a href="<?php echo base_url() . "index.php/outbreak/details/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="View">
+                                                        View
+                                                    </a>
 
                                                 </td>
 
@@ -135,7 +120,7 @@
 
                                                     <a href="<?php echo base_url() . "index.php/student/outbreak/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                         <span class="red">
-                                                            <i class="icon-trash bigger-120"></i>
+                                                            Delete   <i class="icon-trash bigger-120"></i>
                                                         </span>
                                                     </a>
                                                 </td>
@@ -446,26 +431,15 @@
                             <input type="number" class="form-control" id="deaths" name="deaths"  />
                         </div>   
                         <div class="form-group">
-                            <label>Date of outbreak Onset</label>  
-                            <div class="control-group">
-                                <div class="row-fluid input-append">
-                                    <input class="form-control date-picker" required id="id-date-picker-1" type="text" name="onset" data-date-format="yyyy-mm-dd" />
-                                    <span class="add-on">
-                                        <i class="icon-calendar"></i>
-                                    </span>
-                                </div>
-                            </div>
+                            <label>Date of outbreak Onset</label>                              
+                            <input class=" easyui-datebox form-control" name="onset" id="onset" style="width:100%;height:26px">                           
                         </div>
 
                         <div class="form-group"> 
                             <label>Date of notification to MOH*</label>  
                             <div class="control-group">
-                                <div class="row-fluid input-append">
-                                    <input class="span10 date-picker" id="id-date-picker-1" type="text" name="notification" data-date-format="yyyy-mm-dd" />
-                                    <span class="add-on">
-                                        <i class="icon-calendar"></i>
-                                    </span>
-                                </div>
+                                <input class=" easyui-datebox form-control" name="notification" id="onset" style="width:100%;height:26px"> 
+                                
                             </div>
                         </div> 
                         <div class="form-group">

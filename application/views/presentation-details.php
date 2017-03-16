@@ -23,21 +23,89 @@
                 <h2 class='page-header'><a href="#introduction"><?php echo $loop->title; ?></a></h2>
                 <p class='lead'>
                     <b>COUNTRY </b><?php echo $loop->country; ?>
-                </p>
+                </p>             
+                <div class="col-md-12 col-sm-12 col-xs-12"> <span class=" status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
 
-                <p> <?php echo 'Event type:-' . $loop->eventType; ?></p>
-                <p> <?php echo 'Event name:-' . $loop->eventName; ?></p>
-                <p> <?php echo 'Date:-' . $loop->date; ?></p>
-                <p> <?php echo 'Location:-' . $loop->location; ?></p>
-                <p> <?php echo 'Submission date:-' . $loop->dos; ?></p>
-                <p> <?php echo 'Accepted:-' . $loop->accepted; ?></p>
-                <p> <?php echo 'Presentation type:-' . $loop->presentationType; ?></p>
-                <p> <?php echo 'Date of submission:-' . $loop->dos; ?></p>
-                <p> <?php echo 'Accepted:-' . $loop->accepted; ?></p>
-                
-                <p> <?php echo 'Summary:-' . $loop->summary; ?></p>
-                <p> <?php echo 'Author:-' . $loop->author; ?></p>
-                <p> <?php echo 'Presenter:-' . $loop->presenter; ?></p>
+                <table class="table zebra-style ">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td><font class="red">(Editable)</font></td>
+
+                        </tr>
+                        <tr>
+                            <td>NAME:</td>
+                            <td id="eventName:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->eventName; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>TITLE:</td>
+                            <td id="title:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->title; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>EVENT TYPE:</td>
+                            <td id="eventType:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->eventType; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>PRESENTATION TYPE:</td>
+                            <td id="presentationType:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->presentationType; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>COUNTRY:</td>
+                            <td id="country:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->country; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>LOCATION:</td>
+                            <td id="location:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->location; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>SUBMISSION DATE</td>
+                            <td id="dos:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->dos; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>ACCEPTED?:</td>
+                            <td id="accepted:<?php echo $loop->id; ?>" contenteditable="false" class="editable"><?php echo $loop->accepted; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>SUMMARY:</td>
+                            <td id="summary:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->summary; ?></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>AUTHOR</td>
+                            <td id="author:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->author; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>DATE</td>
+                            <td id="date:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->date; ?></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>PRESENTED BY</td>
+                            <td id="presenter:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->presenter; ?></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>DATE OF SUBMISSION</td>
+                            <td id="submissionDate:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->submissionDate; ?></td>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
             </section><!-- /#introduction -->
 
             <!-- ============================================================= -->
@@ -89,29 +157,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
 
 <!--page specific plugin scripts-->
 
-<!--[if lte IE 8]>
-  <script src="assets/js/excanvas.min.js"></script>
-<![endif]-->
 
-<script src="<?= base_url(); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.gritter.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootbox.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.easy-pie-chart.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.hotkeys.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootstrap-wysiwyg.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/select2.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/bootstrap-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/ace-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.maskedinput.min.js"></script>
-
-<!--ace scripts-->
-
-<script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
 <script>
     $('.qualification').click(function (e) {
         updateURL = $(this).attr("href");
@@ -128,6 +174,25 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         });
         alert('Information updated!')
         return false;
+    });
+
+</script>
+<script>
+    var message_status = $("#status");
+    $("td[contenteditable=true]").blur(function () {
+        var field_id = $(this).attr("id");
+        var value = $(this).text();
+        $.post('<?php echo base_url() . "index.php/presentation/updater/"; ?>', field_id + "=" + value, function (data) {
+            if (data != '')
+            {
+                message_status.show();
+                message_status.text(data);
+                //hide the message
+                setTimeout(function () {
+                    message_status.hide()
+                }, 1000);
+            }
+        });
     });
 
 </script>

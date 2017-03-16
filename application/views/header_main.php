@@ -266,7 +266,7 @@
                         if ($this->session->userdata('level') == "student") {
                             ?>
                             <li class="header">Student</li>
-                            <li><a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame"><i class="fa fa-circle-o"></i> start</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame"><i class="fa fa-circle-o"></i>Calendar</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/bio"; ?>" target="frame"><i class="fa fa-male"></i> Bio</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/contact"; ?>" target="frame"><i class="fa fa-phone"></i> Contacts</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame"><i class="fa fa-newspaper-o"></i> Employment records</a></li>

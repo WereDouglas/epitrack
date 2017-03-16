@@ -2,23 +2,76 @@
 
 
 <div class="col-xs-12">
+   
     <?php
     if (is_array($outbreaks) && count($outbreaks)) {
         foreach ($outbreaks as $loop) {
-            ?>
+              if ($this->session->userdata('level') == "student") {
+                            if ($loop->verified == "false") {
 
+                                $editable = "true";
+                            } else {
+
+                                $editable = "false";
+                            }
+                        } else {
+                            $editable = "false";
+                        }
+            ?>
             <section id='introduction'>
                 <h2 class='page-header'><a href="#introduction">SURVEILLANCE  :-<?php echo $loop->name; ?></a></h2>
+                 <div class="col-md-12 col-sm-12 col-xs-12"> <span class=" status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+                <table class="table zebra-style ">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td><font class="red">(Editable)</font></td>
+
+                        </tr>
+                        <tr>
+                            <td>NAME:</td>
+                            <td id="name:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->name; ?></td>
+
+                        </tr>
+                     
+                        
+                        <tr>
+                            <td>LOCATION:</td>
+                            <td id="location:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->location; ?></td>
 
 
-                <p> <?php echo 'NAME:-' . $loop->name; ?></p>
-                <p> <?php echo 'VERIFIED:-' . $loop->verified ?></p>
-                <p> <?php echo 'TYPE:-' . $loop->type; ?></p>
-                <p> <?php echo 'REGION:-' . $loop->region; ?></p>
-                <p> <?php echo 'FINDING:-' . $loop->finding; ?></p>
-                <p> <?php echo 'DATE:-' . $loop->date; ?></p>
-                <p> <?php echo 'CREATED:-' . $loop->created; ?></p>
+                        </tr>
+                        <tr>
+                            <td>TYPE OF SURVEILLANCE:</td>
+                            <td id="type:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->type; ?></td>
 
+
+                        </tr>
+                        <tr>
+                            <td>REGION</td>
+                            <td id="region:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->region; ?></td>
+
+                        </tr> 
+                      
+                        <tr>
+                            <td>FINDING</td>
+                            <td id="finding:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->finding; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>DATE OF SUBMISSION</td>
+                            <td id="date:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->date; ?></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>VERIFICATION</td>
+                            <td id="verified:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->verified; ?></td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
             </section><!-- /#introduction -->
 
             <!-- ============================================================= -->
@@ -31,51 +84,14 @@
 </div><!--/.row-fluid-->
 
 
-</div><!--/.page-content-->
-
-
-</div><!--/.main-content-->
 <script type="text/javascript">
     window.jQuery || document.write("<script src='<?= base_url(); ?>assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");</script>
-
-<!--<![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
 
 <script type="text/javascript">
     if ("ontouchend" in document)
         document.write("<script src='<?= base_url(); ?>assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
 <script src="<?= base_url(); ?>assets/js/bootstrap.min.js"></script>
 
-<!--page specific plugin scripts-->
-
-<!--[if lte IE 8]>
-  <script src="assets/js/excanvas.min.js"></script>
-<![endif]-->
-
-<script src="<?= base_url(); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.gritter.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootbox.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.easy-pie-chart.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.hotkeys.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootstrap-wysiwyg.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/select2.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/bootstrap-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/ace-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.maskedinput.min.js"></script>
-
-<!--ace scripts-->
-
-<script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
 <script>
     $('.qualification').click(function (e) {
         updateURL = $(this).attr("href");
@@ -92,6 +108,25 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         });
         alert('Information updated!')
         return false;
+    });
+
+</script>
+<script>
+    var message_status = $("#status");
+    $("td[contenteditable=true]").blur(function () {
+        var field_id = $(this).attr("id");
+        var value = $(this).text();
+        $.post('<?php echo base_url() . "index.php/surveillance/updater/"; ?>', field_id + "=" + value, function (data) {
+            if (data != '')
+            {
+                message_status.show();
+                message_status.text(data);
+                //hide the message
+                setTimeout(function () {
+                    message_status.hide()
+                }, 1000);
+            }
+        });
     });
 
 </script>

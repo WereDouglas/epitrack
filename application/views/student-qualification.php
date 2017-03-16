@@ -91,7 +91,7 @@
 
                                                         <a href="<?php echo base_url() . "index.php/student/qualification/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                             <span class="red">
-                                                                <i class="icon-trash bigger-120"></i>
+                                                               Delete <i class="icon-trash bigger-120"></i>
                                                             </span>
                                                         </a>
                                                     </td>

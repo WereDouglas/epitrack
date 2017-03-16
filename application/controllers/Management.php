@@ -14,6 +14,12 @@ class Management extends CI_Controller {
     }
 
     public function index() {
+        
+        if ($this->session->userdata('name') == "") {
+            $this->session->sess_destroy();
+            redirect('welcome/logout', 'refresh');
+            return;
+        }
 
         $query = $this->Md->show('event');
         //  var_dump($query);
@@ -87,14 +93,14 @@ class Management extends CI_Controller {
 
         $studentID = $this->uri->segment(3);
 
-        $query = $this->Md->query("SELECT *,surveillance.id AS id FROM surveillance INNER JOIN student ON surveillance.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        $query = $this->Md->query("SELECT *,surveillance.status AS status,surveillance.id AS id FROM surveillance INNER JOIN student ON surveillance.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
         if ($query) {
             $data['survey'] = $query;
         } else {
             $data['survey'] = array();
         }
         if ($this->session->userdata('level') == 1) {
-            $query = $this->Md->query("SELECT *,surveillance.id AS id FROM surveillance INNER JOIN student ON surveillance.studentID=student.id  ORDER BY student.fname");
+            $query = $this->Md->query("SELECT *,surveillance.status AS status,surveillance.id AS id FROM surveillance INNER JOIN student ON surveillance.studentID=student.id  ORDER BY student.fname");
             if ($query) {
                 $data['survey'] = $query;
             } else {
@@ -108,14 +114,14 @@ class Management extends CI_Controller {
         //get($field,$value,$table)
 
         $studentID = $this->uri->segment(3);
-        $query = $this->Md->query("SELECT *,outbreak.id AS id FROM outbreak INNER JOIN student ON outbreak.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
+        $query = $this->Md->query("SELECT *,outbreak.status AS status,outbreak.id AS id FROM outbreak INNER JOIN student ON outbreak.studentID=student.id WHERE student.country= '" . $this->session->userdata('country') . "' ORDER BY student.fname");
         if ($query) {
             $data['out'] = $query;
         } else {
             $data['out'] = array();
         }
         if ($this->session->userdata('level') == 1) {
-            $query = $this->Md->query("SELECT *,outbreak.id AS id FROM outbreak INNER JOIN student ON outbreak.studentID=student.id  ORDER BY student.fname");
+            $query = $this->Md->query("SELECT *,outbreak.status AS status,outbreak.id AS id FROM outbreak INNER JOIN student ON outbreak.studentID=student.id  ORDER BY student.fname");
             if ($query) {
                 $data['out'] = $query;
             } else {
@@ -800,7 +806,13 @@ class Management extends CI_Controller {
 
         $fname = $this->input->post('fname');
         $lname = $this->input->post('lname');
-        $password = $this->input->post('password1');
+
+        if ($this->input->post('password1') == "") {
+            $password = $this->generateRandomString();
+            ;
+        } else {
+            $password = $this->input->post('password1');
+        }
 
 
         if ($fname != "" && $lname != "") {
@@ -832,58 +844,57 @@ class Management extends CI_Controller {
 
             $this->load->library('upload', $config);
             $this->upload->do_upload($file_element_name);
-                $status = 'error';
-                echo $msg = $this->upload->display_errors('', '');         
+            $status = 'error';
+            echo $msg = $this->upload->display_errors('', '');
 
-                $data = $this->upload->data();
-                $other = $this->input->post('other');
-                $gender = $this->input->post('gender');
-                $dob = date('Y-m-d', strtotime($this->input->post('dob')));
-                $country = $this->input->post('country');
-                if ($this->input->post('country') == "") {
+            $data = $this->upload->data();
+            $other = $this->input->post('other');
+            $gender = $this->input->post('gender');
+            $dob = date('Y-m-d', strtotime($this->input->post('dob')));
+            $country = $this->input->post('country');
+            if ($this->input->post('country') == "") {
 
-                    $country = $this->session->userdata('country');
+                $country = $this->session->userdata('country');
+            }
+            $contact = $this->input->post('contact');
+            $cohort = $this->input->post('cohort');
+            $submitted = date('Y-m-d');
+            $file = $data['file_name'];
+            $email = $this->input->post('email');
+            if ($this->session->userdata('level') > 0) {
+
+                $student = array('country' => $country, 'image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false', 'complete' => $this->input->post('complete'), 'supervisor' => $this->input->post('supervisor'), 'date_complete' => $this->input->post('date_complete'), 'comments' => $this->input->post('comment'));
+                $file_id = $this->Md->save($student, 'student');
+
+                $body = $fname . ' ' . $lname . ' Welcome to the AFENET EPITRACK SYSTEM' . " Please click the link below to access your epitrack account 199.231.187.134:8080/epitrack-master/" . '<br> Your password is ' . $password . ' ';
+                $from = "noreply@afenet.net";
+                $subject = "Registration";
+                if ($email != "") {
+                    $this->email->from($from, 'AFENET Epitrack system');
+                    $this->email->to($email);
+                    $this->email->subject($subject);
+                    $this->email->message($body);
+                    $this->email->send();
+                    echo $this->email->print_debugger();
+                    echo "email has been sent";
+                    //return;
                 }
-                $contact = $this->input->post('contact');
-                $cohort = $this->input->post('cohort');
-                $submitted = date('Y-m-d');
-                $file = $data['file_name'];
-                $email = $this->input->post('email');
-                if ($this->session->userdata('level') > 0) {
 
-                    $student = array('country' => $country, 'image' => $file, 'fname' => $fname, 'lname' => $lname, 'other' => $other, 'email' => $email, 'gender' => $gender, 'dob' => $dob, 'country' => $country, 'password' => $password, 'contact' => $contact, 'cohort' => $cohort, 'submitted' => date('Y-m-d H:i:s'), 'status' => 'false', 'complete' => $this->input->post('complete'), 'supervisor' => $this->input->post('supervisor'), 'date_complete' => $this->input->post('date_complete'), 'comments' => $this->input->post('comment'));
-                    $file_id = $this->Md->save($student, 'student');
-
-                    $body = $fname . ' ' . $lname . ' welcome to the AFENET EPITRACK SYSTEM' . " Please click the link below to access your epitrack account 199.231.187.134:8080/epitrack-master/";
-                    $from = "noreply@afenet.net";
-                    $subject = "Registration";
-                    if ($email != "") {
-                        $this->email->from($from, 'AFENET Epitrack system');
-                        $this->email->to($email);
-                        $this->email->subject($subject);
-                        $this->email->message($body);
-                        $this->email->send();
-                        echo $this->email->print_debugger();
-                        echo "email has been sent";
-                        //return;
-                    }
-
-                    $this->session->set_flashdata('msg', '<div class="alert alert-success">
+                $this->session->set_flashdata('msg', '<div class="alert alert-success">
                                                    
                                                 <strong>
                                                  information saved</strong>									
 						</div>');
 
-                    redirect('/management/country_student', 'refresh');
-                } else {
-                    $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
+                redirect('/management/country_student', 'refresh');
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                   
                                                 <strong>
                                                  You cannot carry out this action</strong>									
 						</div>');
 
-                    redirect('/management/country_student', 'refresh');
-                }
-            
+                redirect('/management/country_student', 'refresh');
+            }
         }
         $query = $this->Md->show('cohort');
         //  var_dump($query);
@@ -925,6 +936,16 @@ class Management extends CI_Controller {
             }
         }
         $this->load->view('country-student', $data);
+    }
+
+    public function generateRandomString($length = 6) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
     public function download() {
@@ -1117,7 +1138,7 @@ class Management extends CI_Controller {
             $lname = $this->input->post('lname');
             $id = $this->input->post('id');
             $level = $this->input->post('level');
-             $role = $this->input->post('role');
+            $role = $this->input->post('role');
 
             $email = $this->input->post('email');
             $contact = $this->input->post('contact');
@@ -1364,7 +1385,7 @@ class Management extends CI_Controller {
         } else {
             $data['country'] = array();
         }
-         $query = $this->Md->show('roles');
+        $query = $this->Md->show('roles');
         //  var_dump($query);
         if ($query) {
             $data['roles'] = $query;

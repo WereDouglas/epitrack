@@ -144,13 +144,13 @@
 
                                                   
                                                 </tr>
-                                                <tr class="edit_tr" id="<?php $loop->id; ?>">
-                                                    <td>GENDER:</td>
+                                                <tr>
+                                                    <td>GENDER:(Male/Female)</td>
                                                      <td id="gender:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->gender; ?></td>
                        
                                                 </tr>
                                                 <tr>
-                                                    <td>DATE OF BIRTH:</td>
+                                                    <td>DATE OF BIRTH(YYY-MM-DD):</td>
                                                     <td id="dob:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->dob; ?></td>
 
                                                     

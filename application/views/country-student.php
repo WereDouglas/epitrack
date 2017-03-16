@@ -68,345 +68,318 @@
     <div class="col-xs-12">
 
         <h2>Students</h2>
+        <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New study</span> </a>
+
         <?php echo $this->session->flashdata('msg'); ?>
         <div class="row-fluid">
             <div class="span12 widget-container-span">
 
-                <div class="">
+                <div class="row span12">
+                    <table  id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="center">
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </th>
+                                <th>Approve/activate</th>
+                                <th></th>
+                                <th>First name</th>
+                                <th>last name</th>
+                                <th>Other</th>   
+                                <th>email</th> 
 
-                    <div class="">
-                        <div class="btn-toolbar ">
-                            <div class="btn-group">
-                                <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
+                                <th>Country</th>  
+                                <th>Contact</th> 
+                                <th>Cohort</th>
+                                <th>Completed</th>
+                                <th>Date of completion</th>
+                                <th>Comments</th>
+                                <th>password reset</th>
+                                <th></th>
 
-                                    <button class="btn btn-small btn-success">
-                                        <i class="icon-save bigger-125"></i>
-                                        Add
-                                    </button></a>
-                                <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle collapsed">
+                            </tr>
+                        </thead>
 
-                                    <button class="btn btn-small btn-danger">
-                                        <i class="icon-list bigger-110"></i>
-                                        List
-                                    </button>
-                                </a>
-                            </div>                             
-                        </div>
-                    </div>
+                        <tbody>
+                            <?php
+                            if (is_array($students) && count($students)) {
+                                foreach ($students as $loop) {
+                                    $fname = $loop->fname;
+                                    $lname = $loop->lname;
+                                    $other = $loop->other;
+                                    $email = $loop->email;
+                                    $contact = $loop->contact;
 
-                </div>
+                                    $id = $loop->id;
+                                    ?>  
 
-                <div class="widget-main ">
-                    <div id="accordion2" class="accordion">              
-                        <div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
-                        <div class="accordion-group container row-fluid">
+                                    <tr id="<?php echo $id; ?>" class="edit_tr">
+                                        <td class="center ">
+                                            <label>
+                                                <input type="checkbox" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </td>
+                                        <td >
 
-
-                            <div class="accordion-body collapse" id="collapseTwo">
-                                <div class="accordion-inner">
-
-                                    <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/country_student/'  method="post">                                            <div class=" span6">
-                                            <div class="widget-main">
-                                                <label>Upload profile picture</label>
-                                                <input multiple="" type="file" name="userfile" id="id-input-file-3" />                                                       
-                                            </div>
-                                            <div class="control-group">
-                                                <label>   Select track :</label><br>
-                                                <select id="cohort" name="cohort" >                                                            
-                                                    <?php
-                                                    if (is_array($cohorts) && count($cohorts)) {
-                                                        foreach ($cohorts as $loop) {
-                                                            ?>                        
-                                                            <option value="<?= $loop->name ?>" /><?= $loop->name ?>
-                                                            <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <label>Course Completion:</label>
-                                            <div class="control-group">
-                                                <div class="controls">
-                                                    <select  data-placeholder="Date" name="complete" id="complete">
-
-                                                        <option value="true" />true
-                                                        <option value="false" />false
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="controls">
-                                                <label>  Year of completion:  </label>
-                                                <div class="control-group">
-                                                    <div class="controls">
-                                                        <input class="date-picker" id="date_complete" name="date_complete" type="text" data-date-format="dd-mm-yyyy" /></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <label>Comments</label><br>
-                                            <span class="span12 "><input type="text" class="span6"  id="comment" name="comment" placeholder="Comment"  /></span>
-
-
-
-                                            <div class="control-group">
-                                                <div class="controls">
-                                                    <label>First name</label><br>
-                                                    <span class="span12 "><input type="text" class="span6"  id="fname" name="fname" placeholder="First name"  /></span>
-                                                    <label>Last name:</label><br> <span class="span12 "><input class="input-small span6"  type="text" id="lname" name="lname" placeholder="Last Name"  /></span>
-                                                    <label> Other name:</label> <br> <span class="span12 "><input class="input-small span6"  type="text" id="other" name="other" placeholder="Other name"  /></span>
-
-                                                </div>
-                                            </div>
-                                            <label>Primary e-mail:</label><br> <span class="span12 "> <input type="text" class="input-small span6" id="email" name="email"  placeholder="info@gmail.com" /></span>
-                                            <label>  Primary contact</label><br>  <span class="span12 ">  <input type="text" class="input-small span6"  id="contact" name="contact"  placeholder="+2567893213394" /></span>
-
-
-                                        </div>
-
-                                        <div class="span6 padding-10">
-                                            <label>  Gender:  </label><br> <span class="span12 ">  <select  data-placeholder="Choose a sex..." name="gender" id="gender">
-
-                                                    <option value="male" />male
-                                                    <option value="female" />female
-
-                                                </select></span> 
-
-                                            <div class="control-group">
-
-                                                <div class="controls">
-                                                    <label>Date of Birth:  </label>     <span class="span12 ">    <input class="date-picker" id="dob" name="dob" type="text" data-date-format="dd-mm-yyyy" /></span>
-
-                                                </div>
-                                            </div>
-                                            <div class="control-group">
-                                                <div class="controls" id="locationField">
-                                                    <label> Location: </label>     <span class="span12 "> <input  id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input></span>
-                                                </div>
-                                            </div>
-                                            <div class="control-group">
-                                                <div class="controls" id="locationField">
-                                                    <label> Supervisor email: </label>     <span class="span12 "> <input class="form-group" id="supervisor" name="supervisor" placeholder="Enter your supervisor's email" type="text"></input></span>
-                                                </div>
-                                            </div>
-                                            <div class="control-group">
-                                                <div class="controls">
-                                                    <div class="controls " id="address">
-                                                        <label> Country :</label>    <div class="control-group">
-                                                            <input class="field" name="country" id="country" type="text" value="<?php echo $this->session->userdata('country'); ?>" ></input>
-
-                                                        </div>          <input class="field" id="street_number" type="hidden" disabled="true"></input>
-                                                        <input class="field" id="route"type="hidden"  disabled="true"></input>
-                                                        <input class="field" id="locality" type="hidden"     disabled="true"></input>
-                                                        <input class="field" type="hidden" id="administrative_area_level_1" disabled="true"></input>
-                                                        <input class="field" type="hidden" id="postal_code"></input>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="control-group">
-
-                                                <div class="controls">
-                                                    <label> Password: </label>      <span class="span12">  <input type="password" id="password1" class="span6" name="password1" /></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="control-group">
-                                                <div class="controls">
-                                                    <label>Confirm Password:  </label>      <span class="span12">    <input type="password" class="span6" id="password2" name="password2" /></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="">
-                                                <button class="btn btn-info" type="submit">
-                                                    <i class="icon-ok bigger-110"></i>
-                                                    Submit
-                                                </button>
-
-                                                <button class="btn" type="reset">
-                                                    <i class="icon-undo bigger-110"></i>
-                                                    Reset
-                                                </button>
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                    </form>	
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-group">
-                            <div class="col-md-12 col-sm-12 col-xs-12"> <span class="info-box status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
-                            <div class="accordion-body collapsed" id="collapseThree">
-                                <div class="accordion-inner">
-
-                                    <div class="row span12">
-                                        <table  id="example1" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th class="center">
-                                                        <label>
-                                                            <input type="checkbox" />
-                                                            <span class="lbl"></span>
-                                                        </label>
-                                                    </th>
-                                                    <th>Approve/activate</th>
-                                                    <th></th>
-                                                    <th>First name</th>
-                                                    <th>last name</th>
-                                                    <th>Other</th>   
-                                                    <th>email</th> 
-
-                                                    <th>Country</th>  
-                                                    <th>Contact</th> 
-                                                    <th>Cohort</th>
-                                                    <th>Completed</th>
-                                                    <th>Date of completion</th>
-                                                    <th>Comments</th>
-                                                    <th>password reset</th>
-                                                    <th></th>
-
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-                                                <?php
-                                                if (is_array($students) && count($students)) {
-                                                    foreach ($students as $loop) {
-                                                        $fname = $loop->fname;
-                                                        $lname = $loop->lname;
-                                                        $other = $loop->other;
-                                                        $email = $loop->email;
-                                                        $contact = $loop->contact;
-
-                                                        $id = $loop->id;
-                                                        ?>  
-
-                                                        <tr id="<?php echo $id; ?>" class="edit_tr">
-                                                            <td class="center ">
-                                                                <label>
-                                                                    <input type="checkbox" />
-                                                                    <span class="lbl"></span>
-                                                                </label>
-                                                            </td>
-                                                            <td >
-
-                                                                <?php
-                                                                if ($loop->status == "false") {
-                                                                    ?>
-                                                                    <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
-                                                                        <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
-                                                                            <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" />
-                                                                            Active
-                                                                        </label>
-                                                                        <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
-                                                                            <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
-                                                                            Off
-                                                                        </label>
-                                                                    </div> 
-                                                                <?php } ?>
-
-                                                                <?php
-                                                                if ($loop->status == "active") {
-                                                                    ?>
-                                                                    <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
-                                                                        <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
-                                                                            <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
-                                                                            Active
-                                                                        </label>
-                                                                        <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
-                                                                            <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>"  />
-                                                                            Off
-                                                                        </label>
-                                                                    </div> 
-                                                                <?php } ?>
-
-                                                            </td>
-                                                            <td>
-                                                                <div class="profile-activity">
-                                                                    <a href="<?php echo base_url() . "index.php/student/details/" . $loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>" height="70px" width="70px"  alt="<?php echo $fname; ?>" /></a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="edit_td">
-                                                                <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
-                                                                <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"
-                                                            </td>
-                                                            <td class="edit_td">
-                                                                <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
-                                                                <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"
-                                                            </td>
-                                                            <td class="edit_td">
-                                                                <span id="other_<?php echo $id; ?>" class="text"><?php echo $other; ?></span>
-                                                                <input type="text" value="<?php echo $other; ?>" class="editbox" id="other_input_<?php echo $id; ?>"
-                                                            </td>
-                                                            <td class="edit_td">
-                                                                <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
-                                                                <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"
-                                                            </td>
-
-
-
-                                                            <td><?= $loop->country ?></td>
-
-                                                            <td class="edit_td">
-                                                                <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
-                                                                <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
-                                                            </td>
-                                                            <td><?= $loop->cohort ?></td>
-                                                            <td id="complete:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->complete; ?></span></td>
-                                                            <td id="date_complete:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->date_complete; ?></span></td>
-                                                            <td id="comments:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->comments; ?></span></td>
-                                                            <td>
-
-                                                                <a href="<?php echo base_url() . "index.php/student/reset/" . $loop->id; ?>" class="tooltip-info qualification" data-rel="tooltip" title="verify">
-                                                                    <span class="red">
-                                                                        <i class="icon-lock bigger-120 text-danger"></i>Reset   </span>
-                                                                </a>
-
-
-                                                            </td>
-                                                            <td class="td-actions">
-
-                                                                <a href="<?php echo base_url() . "index.php/management/student/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                    <span class="red">
-                                                                        <i class="icon-trash bigger-120"></i>
-                                                                    </span>
-                                                                </a>
-                                                            </td>
-
-
-                                                        </tr>
-                                                        <?php
-                                                    }
-                                                }
+                                            <?php
+                                            if ($loop->status == "false") {
                                                 ?>
+                                                <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                    <label class="btn btn-xs btn-default" data-toggle-class="btn-success" value="<?= $loop->id; ?>">
+                                                        <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" />
+                                                        Active
+                                                    </label>
+                                                    <label class="btn btn-xs btn-danger active" data-toggle-class="btn-danger" value="<?= $loop->id; ?>">
+                                                        <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                        Off
+                                                    </label>
+                                                </div> 
+                                            <?php } ?>
+
+                                            <?php
+                                            if ($loop->status == "active") {
+                                                ?>
+                                                <div class="btn-group" data-toggle="buttons" data-toggle-default-class="btn-default">
+                                                    <label class="btn btn-xs btn-success active" data-toggle-class="btn-success">
+                                                        <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>" checked />
+                                                        Active
+                                                    </label>
+                                                    <label class="btn btn-xs btn-default " data-toggle-class="btn-danger">
+                                                        <input type="radio" name="status" id="<?= $loop->status; ?>" value="<?= $loop->id; ?>"  />
+                                                        Off
+                                                    </label>
+                                                </div> 
+                                            <?php } ?>
+
+                                        </td>
+                                        <td>
+                                            <div class="profile-activity">
+                                                <a href="<?php echo base_url() . "index.php/student/details/" . $loop->id; ?>" target="frame">    <img class="nav-user-photo"  src="<?= base_url(); ?>uploads/<?= $loop->image ?>" height="70px" width="70px"  alt="<?php echo $fname; ?>" /></a>
+                                            </div>
+                                        </td>
+                                        <td class="edit_td">
+                                            <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
+                                            <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"
+                                        </td>
+                                        <td class="edit_td">
+                                            <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
+                                            <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"
+                                        </td>
+                                        <td class="edit_td">
+                                            <span id="other_<?php echo $id; ?>" class="text"><?php echo $other; ?></span>
+                                            <input type="text" value="<?php echo $other; ?>" class="editbox" id="other_input_<?php echo $id; ?>"
+                                        </td>
+                                        <td class="edit_td">
+                                            <span id="email_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
+                                            <input type="text" value="<?php echo $email; ?>" class="editbox" id="email_input_<?php echo $id; ?>"
+                                        </td>
 
 
 
-                                            </tbody>
-                                        </table>  
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                        <td><?= $loop->country ?></td>
+
+                                        <td class="edit_td">
+                                            <span id="contact_<?php echo $id; ?>" class="text"><?php echo $contact; ?></span>
+                                            <input type="text" value="<?php echo $contact; ?>" class="editbox" id="contact_input_<?php echo $id; ?>"
+                                        </td>
+                                        <td><?= $loop->cohort ?></td>
+                                        <td id="complete:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->complete; ?></span></td>
+                                        <td id="date_complete:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->date_complete; ?></span></td>
+                                        <td id="comments:<?php echo $loop->id; ?>" contenteditable="true"><span class="red"><?php echo $loop->comments; ?></span></td>
+                                        <td>
+
+                                            <a href="<?php echo base_url() . "index.php/student/reset/" . $loop->id; ?>" class="tooltip-info qualification" data-rel="tooltip" title="verify">
+                                                <span class="red">
+                                                    <i class="icon-lock bigger-120 text-danger"></i>Reset   </span>
+                                            </a>
+
+
+                                        </td>
+                                        <td class="td-actions">
+
+                                            <a href="<?php echo base_url() . "index.php/management/student/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                <span class="red">
+                                                    <i class="icon-trash bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+
+
+                                    </tr>
+                                    <?php
+                                }
+                            }
+                            ?>
+
+
+
+                        </tbody>
+                    </table>  
                 </div>
-
             </div>
         </div>
     </div>
 
-    <div class="row-fluid">
+
+    <div class="modal fade  col-md-12" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">NEW FILED STUDY</h4>
+                </div>
+                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/country_student/'  method="post">
+
+                        <div class="row">
+                            <div class=" col-md-6">
+                                <div class="form-group">
+                                    <label>Upload profile picture</label>
+                                    <input multiple=""  class="form-control" type="file" name="userfile" id="id-input-file-3" />                                                       
+                                </div>
+                                <div class="form-group">
+                                    <label>   Select track :</label><br>
+                                    <select id="cohort"  class="form-control" name="cohort" >                                                            
+                                        <?php
+                                        if (is_array($cohorts) && count($cohorts)) {
+                                            foreach ($cohorts as $loop) {
+                                                ?>                        
+                                                <option value="<?= $loop->name ?>" /><?= $loop->name ?>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Course Completion:</label>                           
+                                    <select class="form-control"  data-placeholder="Date" name="complete" id="complete">
+
+                                        <option value="true" />true</option>
+                                        <option value="false" />false</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>  Year of completion:  </label>
+                                    <input class="date-picker form-control" id="date_complete" name="date_complete" type="text" data-date-format="dd-mm-yyyy" /></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Comments</label>
+
+                                    <input type="text" class="form-control"  id="comment" name="comment" placeholder="Comment"  /></span>
+                                </div>
+                                <div class="form-group">
+
+                                    <label>First name</label>
+                                    <input type="text" class="form-control" required="true"  id="fname" name="fname" placeholder="First name"  />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Last name:</label>
+                                    <input class="input-small form-control" required="true"   type="text" id="lname" name="lname" placeholder="Last Name"  />
+
+                                </div>
+                                   <div class="form-group">
+                                    <label> Other name:</label>
+                                    <input class="input-small form-control"  type="text" id="other" name="other" placeholder="Other name"  />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Primary e-mail:</label>
+                                    <input type="email" class="input-small form-control" required="true"  id="email" name="email"  placeholder="Email" />
+                                </div>
+
+                                
+                            </div>
+                            <div class=" col-md-6"> 
+                             
+                                <div class="form-group">
+                                    <label>  Primary contact</label> 
+                                    <input type="text" class="input-small form-control"  id="contact" name="contact"  placeholder="+2567893213394" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>  Gender:  </label>
+                                    <select  data-placeholder="Choose a sex..." name="gender" id="gender" class="form-control">
+
+                                        <option value="male" />male</option>
+                                        <option value="female" />female</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">                           
+                                    <label>Date of Birth:  </label>    
+                                    <input class="date-picker form-control" id="dob" name="dob" type="text" data-date-format="dd-mm-yyyy" />                        
+                                </div>
+                                <div class="form-group">
+                                    <div class="controls" id="locationField">
+                                        <label> Location: </label> 
+                                        <input class="form-control"  id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label> Supervisor email: </label>   
+                                    <input class="form-control" required="true"  id="supervisor" name="supervisor" placeholder="Enter your supervisor's email" type="email"></input>
+
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <div class="controls " id="address">
+                                            
+                                            <div class="form-group">
+                                                <label> Country :</label>  
+                                                <input class="field form-control" name="country" id="country" type="text" value="<?php echo $this->session->userdata('country'); ?>" ></input>
+
+                                            </div>        
+                                            <input class="field" id="street_number" type="hidden" disabled="true"></input>
+                                            <input class="field" id="route"type="hidden"  disabled="true"></input>
+                                            <input class="field" id="locality" type="hidden"     disabled="true"></input>
+                                            <input class="field" type="hidden" id="administrative_area_level_1" disabled="true"></input>
+                                            <input class="field" type="hidden" id="postal_code"></input>
 
 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">                   
+                                    <label> Password: </label> 
+                                    <input type="password" id="password1" class="form-control" name="password1" />                   
+                                </div>
 
-    </div>                
+                                <div class="form-group">                      
+                                    <label>Confirm Password:  </label>  
+                                    <input type="password" class="form-control" id="password2" name="password2" />
 
-</div><!--/.main-content-->
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-info" type="submit">
+                                        <i class="icon-ok bigger-110"></i>
+                                        Submit
+                                    </button>
+
+                                    <button class="btn" type="reset">
+                                        <i class="icon-undo bigger-110"></i>
+                                        Reset
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>                   
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!--<![endif]-->
@@ -441,265 +414,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
   <script src="assets/js/excanvas.min.js"></script>
 <![endif]-->
 
-<script src="<?= base_url(); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/chosen.jquery.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/bootstrap-timepicker.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/moment.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/daterangepicker.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootstrap-colorpicker.min.js"></script>
-
-<script src="<?= base_url(); ?>assets/js/jquery.autosize-min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.maskedinput.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootstrap-tag.min.js"></script>
-
-<!--ace scripts-->
-
-<script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
-
 <!--inline scripts related to this page-->
-
-<script type="text/javascript">
-    $(function () {
-        $('#id-disable-check').on('click', function () {
-            var inp = $('#form-input-readonly').get(0);
-            if (inp.hasAttribute('disabled')) {
-                inp.setAttribute('readonly', 'true');
-                inp.removeAttribute('disabled');
-                inp.value = "This text field is readonly!";
-            } else {
-                inp.setAttribute('disabled', 'disabled');
-                inp.removeAttribute('readonly');
-                inp.value = "This text field is disabled!";
-            }
-        });
-
-
-        $(".chzn-select").chosen();
-
-        $('[data-rel=tooltip]').tooltip({container: 'body'});
-        $('[data-rel=popover]').popover({container: 'body'});
-
-        $('textarea[class*=autosize]').autosize({append: "\n"});
-        $('textarea[class*=limited]').each(function () {
-            var limit = parseInt($(this).attr('data-maxlength')) || 100;
-            $(this).inputlimiter({
-                "limit": limit,
-                remText: '%n character%s remaining...',
-                limitText: 'max allowed : %n.'
-            });
-        });
-
-        $.mask.definitions['~'] = '[+-]';
-        $('.input-mask-date').mask('99/99/9999');
-        $('.input-mask-phone').mask('(999) 999-9999');
-        $('.input-mask-eyescript').mask('~9.99 ~9.99 999');
-        $(".input-mask-product").mask("a*-999-a999", {placeholder: " ", completed: function () {
-                alert("You typed the following: " + this.val());
-            }});
-
-
-
-        $("#input-size-slider").css('width', '200px').slider({
-            value: 1,
-            range: "min",
-            min: 1,
-            max: 6,
-            step: 1,
-            slide: function (event, ui) {
-                var sizing = ['', 'input-mini', 'input-small', 'input-medium', 'input-large', 'input-xlarge', 'input-xxlarge'];
-                var val = parseInt(ui.value);
-                $('#form-field-4').attr('class', sizing[val]).val('.' + sizing[val]);
-            }
-        });
-
-        $("#input-span-slider").slider({
-            value: 1,
-            range: "min",
-            min: 1,
-            max: 11,
-            step: 1,
-            slide: function (event, ui) {
-                var val = parseInt(ui.value);
-                $('#form-field-5').attr('class', 'span' + val).val('.span' + val).next().attr('class', 'span' + (12 - val)).val('.span' + (12 - val));
-            }
-        });
-
-
-        $("#slider-range").css('height', '200px').slider({
-            orientation: "vertical",
-            range: true,
-            min: 0,
-            max: 100,
-            values: [17, 67],
-            slide: function (event, ui) {
-                var val = ui.values[$(ui.handle).index() - 1] + "";
-
-                if (!ui.handle.firstChild) {
-                    $(ui.handle).append("<div class='tooltip right in' style='display:none;left:15px;top:-8px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
-                }
-                $(ui.handle.firstChild).show().children().eq(1).text(val);
-            }
-        }).find('a').on('blur', function () {
-            $(this.firstChild).hide();
-        });
-
-        $("#slider-range-max").slider({
-            range: "max",
-            min: 1,
-            max: 10,
-            value: 2
-        });
-
-        $("#eq > span").css({width: '90%', 'float': 'left', margin: '15px'}).each(function () {
-            // read initial values from markup and remove that
-            var value = parseInt($(this).text(), 10);
-            $(this).empty().slider({
-                value: value,
-                range: "min",
-                animate: true
-
-            });
-        });
-
-
-        $('#id-input-file-1 , #id-input-file-2').ace_file_input({
-            no_file: 'No File ...',
-            btn_choose: 'Choose',
-            btn_change: 'Change',
-            droppable: false,
-            onchange: null,
-            thumbnail: false //| true | large
-                    //whitelist:'gif|png|jpg|jpeg'
-                    //blacklist:'exe|php'
-                    //onchange:''
-                    //
-        });
-
-        $('#id-input-file-3').ace_file_input({
-            style: 'well',
-            btn_choose: 'Drop files here or click to choose',
-            btn_change: null,
-            no_icon: 'icon-cloud-upload',
-            droppable: true,
-            thumbnail: 'small'
-                    //,icon_remove:null//set null, to hide remove/reset button
-                    /**,before_change:function(files, dropped) {
-                     //Check an example below
-                     //or examples/file-upload.html
-                     return true;
-                     }*/
-                    /**,before_remove : function() {
-                     return true;
-                     }*/
-            ,
-            preview_error: function (filename, error_code) {
-                //name of the file that failed
-                //error_code values
-                //1 = 'FILE_LOAD_FAILED',
-                //2 = 'IMAGE_LOAD_FAILED',
-                //3 = 'THUMBNAIL_FAILED'
-                //alert(error_code);
-            }
-
-        }).on('change', function () {
-            //console.log($(this).data('ace_input_files'));
-            //console.log($(this).data('ace_input_method'));
-        });
-
-
-        //dynamically change allowed formats by changing before_change callback function
-        $('#id-file-format').removeAttr('checked').on('change', function () {
-            var before_change
-            var btn_choose
-            var no_icon
-            if (this.checked) {
-                btn_choose = "Drop images here or click to choose";
-                no_icon = "icon-picture";
-                before_change = function (files, dropped) {
-                    var allowed_files = [];
-                    for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
-                        if (typeof file === "string") {
-                            //IE8 and browsers that don't support File Object
-                            if (!(/\.(jpe?g|png|gif|bmp)$/i).test(file))
-                                return false;
-                        } else {
-                            var type = $.trim(file.type);
-                            if ((type.length > 0 && !(/^image\/(jpe?g|png|gif|bmp)$/i).test(type))
-                                    || (type.length == 0 && !(/\.(jpe?g|png|gif|bmp)$/i).test(file.name))//for android's default browser which gives an empty string for file.type
-                                    )
-                                continue;//not an image so don't keep this file
-                        }
-
-                        allowed_files.push(file);
-                    }
-                    if (allowed_files.length == 0)
-                        return false;
-
-                    return allowed_files;
-                }
-            } else {
-                btn_choose = "Drop files here or click to choose";
-                no_icon = "icon-cloud-upload";
-                before_change = function (files, dropped) {
-                    return files;
-                }
-            }
-            var file_input = $('#id-input-file-3');
-            file_input.ace_file_input('update_settings', {'before_change': before_change, 'btn_choose': btn_choose, 'no_icon': no_icon})
-            file_input.ace_file_input('reset_input');
-        });
-
-
-
-
-        $('#spinner1').ace_spinner({value: 0, min: 0, max: 200, step: 10, btn_up_class: 'btn-info', btn_down_class: 'btn-info'})
-                .on('change', function () {
-                    //alert(this.value)
-                });
-        $('#spinner2').ace_spinner({value: 0, min: 0, max: 10000, step: 100, icon_up: 'icon-caret-up', icon_down: 'icon-caret-down'});
-        $('#spinner3').ace_spinner({value: 0, min: -100, max: 100, step: 10, icon_up: 'icon-plus', icon_down: 'icon-minus', btn_up_class: 'btn-success', btn_down_class: 'btn-danger'});
-
-
-
-        $('.date-picker').datepicker().next().on(ace.click_event, function () {
-            $(this).prev().focus();
-        });
-        $('#id-date-range-picker-1').daterangepicker().prev().on(ace.click_event, function () {
-            $(this).next().focus();
-        });
-
-        $('#timepicker1').timepicker({
-            minuteStep: 1,
-            showSeconds: true,
-            showMeridian: false
-        })
-
-        $('#colorpicker1').colorpicker();
-        $('#simple-colorpicker-1').ace_colorpicker();
-
-
-
-
-
-        //we could just set the data-provide="tag" of the element inside HTML, but IE8 fails!
-        var tag_input = $('#form-field-tags');
-        if (!(/msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase())))
-            tag_input.tag({placeholder: tag_input.attr('placeholder')});
-        else {
-            //display a textarea for old IE, because it doesn't support this plugin or another one I tried!
-            tag_input.after('<textarea id="' + tag_input.attr('id') + '" name="' + tag_input.attr('name') + '" rows="3">' + tag_input.val() + '</textarea>').remove();
-            //$('#form-field-tags').autosize({append: "\n"});
-        }
-
-
-    });
-</script>
 <script type="text/javascript">
     $(document).ready(function ()
     {

@@ -9,9 +9,44 @@
             <section id='introduction'>
                 <h2 class='page-header'><a href="#introduction">FINDINGS  :-<?php echo $loop->name; ?></a></h2>
                
-                <p> <?php echo 'LOCATION:-' . $loop->location; ?></p>
-                <p> <?php echo 'NOTES:-' . $loop->notes; ?></p>                
-                <p> <?php echo 'Date of submission:-' . $loop->dos ?></p>
+              
+                <div class="col-md-12 col-sm-12 col-xs-12"> <span class=" status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+                <table class="table zebra-style ">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td><font class="red">(Editable)</font></td>
+
+                        </tr>
+                        <tr>
+                            <td>NAME:</td>
+                            <td id="name:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->name; ?></td>
+
+                        </tr>
+                     
+                        
+                        <tr>
+                            <td>LOCATION:</td>
+                            <td id="location:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->location; ?></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>NOTES:</td>
+                            <td id="notes:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->notes; ?></td>
+
+
+                        </tr>
+                      
+                        <tr>
+                            <td>DATE OF SUBMISSION</td>
+                            <td id="dos:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->dos; ?></td>
+
+
+                        </tr>
+                     
+                    </tbody>
+                </table>
 
             </section><!-- /#introduction -->
 
@@ -44,31 +79,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         document.write("<script src='<?= base_url(); ?>assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
 <script src="<?= base_url(); ?>assets/js/bootstrap.min.js"></script>
 
-<!--page specific plugin scripts-->
 
-<!--[if lte IE 8]>
-  <script src="assets/js/excanvas.min.js"></script>
-<![endif]-->
-
-<script src="<?= base_url(); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.gritter.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootbox.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.easy-pie-chart.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.hotkeys.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootstrap-wysiwyg.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/select2.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/bootstrap-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/ace-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.maskedinput.min.js"></script>
-
-<!--ace scripts-->
-
-<script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
 <script>
     $('.qualification').click(function (e) {
         updateURL = $(this).attr("href");
@@ -88,3 +99,23 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
     });
 
 </script>
+<script>
+    var message_status = $("#status");
+    $("td[contenteditable=true]").blur(function () {
+        var field_id = $(this).attr("id");
+        var value = $(this).text();
+        $.post('<?php echo base_url() . "index.php/field/updater/"; ?>', field_id + "=" + value, function (data) {
+            if (data != '')
+            {
+                message_status.show();
+                message_status.text(data);
+                //hide the message
+                setTimeout(function () {
+                    message_status.hide()
+                }, 1000);
+            }
+        });
+    });
+
+</script>
+

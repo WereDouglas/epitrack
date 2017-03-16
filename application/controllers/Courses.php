@@ -2,13 +2,13 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Project extends CI_Controller {
+class Courses extends CI_Controller {
 
     function __construct() {
 
         parent::__construct();
         // error_reporting(E_PARSE);
-        $this->load->model('MD');
+        $this->load->model('Md');
         $this->load->library('session');
         $this->load->library('encrypt');
         date_default_timezone_set("Africa/Nairobi");
@@ -68,15 +68,15 @@ class Project extends CI_Controller {
             $targetPath = getcwd() . '/uploads/';
             $targetFile = $targetPath . $fileName;
             move_uploaded_file($tempFile, $targetFile);
-              $id = $this->input->post('id');
+            $id = $this->input->post('id');
 // if you want to save in db,where here
 // with out model just for example
 // $this->load->database(); // load database
 // $this->db->insert('file_table',array('file_name' => $fileName));
-            $name= $fileName;
+            $name = $fileName;
             $image = array('url' => $name, 'source' => 'project', 'sid' => $id);
             $this->MD->save($image, 'image');
-            echo  '<div class="alert alert-info">
+            echo '<div class="alert alert-info">
                                                    
                                                 <strong>
                                                   Project submitted has already been submitted	</strong>									
@@ -96,7 +96,7 @@ class Project extends CI_Controller {
         } else {
             $data['project'] = array();
         }
-      $query = $this->MD->get('sid', $id, 'image');
+        $query = $this->MD->get('sid', $id, 'image');
 
         if ($query) {
             $data['images'] = $query;
@@ -108,48 +108,74 @@ class Project extends CI_Controller {
     }
 
     public function update() {
-        
+
         $this->load->helper(array('form', 'url'));
-         $id = $this->input->post('id');
+        $id = $this->input->post('id');
         $name = $this->input->post('name');
         $location = $this->input->post('location');
         $size = $this->input->post('size');
         $type = $this->input->post('type');
         $description = $this->input->post('description');
         $year = $this->input->post('year');
-    // function update($id, $data,$table)
-            $project = array('name' => $name, 'location' => $location, 'size' => $size, 'type' => $type, 'year' => $year, 'description' => $description, 'active' => 'true', 'submit' => date('Y-m-d H:m:s'));
-            $this->MD->update($id,$project, 'project');
-            $this->session->set_flashdata('msg', '<div class="alert alert-info"> <strong>
+        // function update($id, $data,$table)
+        $project = array('name' => $name, 'location' => $location, 'size' => $size, 'type' => $type, 'year' => $year, 'description' => $description, 'active' => 'true', 'submit' => date('Y-m-d H:m:s'));
+        $this->MD->update($id, $project, 'project');
+        $this->session->set_flashdata('msg', '<div class="alert alert-info"> <strong>
                                                   Information updated	</strong>									
 						</div>');
 
-            redirect('/project/edit/'.$id, 'refresh');
-            return;
-       
+        redirect('/project/edit/' . $id, 'refresh');
+        return;
+    }
+
+    public function updater() {
+        $this->load->helper(array('form', 'url'));
+
+        if (!empty($_POST)) {
+
+            foreach ($_POST as $field_name => $val) {
+                //clean post values
+                $field_id = strip_tags(trim($field_name));
+                $val = strip_tags(trim(mysql_real_escape_string($val)));
+                //from the fieldname:user_id we need to get user_id
+                $split_data = explode(':', $field_id);
+                $user_id = $split_data[1];
+                $field_name = $split_data[0];
+                if (!empty($user_id) && !empty($field_name) && !empty($val)) {
+                    //update the values
+                    $student = array($field_name => $val);
+                    $this->Md->update($user_id, $student, 'course');
+                    echo "Updated";
+                } else {
+                    echo "Invalid Requests";
+                }
+            }
+        } else {
+            echo "Invalid Requests";
+        }
     }
 
     public function delete() {
         $this->load->helper(array('form', 'url'));
         $id = $this->uri->segment(3);
-        
-        
-         
-         $results = $this->MD->query("SELECT * FROM image WHERE sid='".$id."'");
+
+
+
+        $results = $this->MD->query("SELECT * FROM image WHERE sid='" . $id . "'");
         // var_dump($result);
-         
-         foreach($results as $res){           
-        
-          //remove($id,$table,$column)
-           $this->MD->remove($res->id,'image','url');
-           //delete($id,$table);
-             $this->MD->delete($res->id,'image');
-           // echo $res->id;
-              }         
-       
-       
+
+        foreach ($results as $res) {
+
+            //remove($id,$table,$column)
+            $this->MD->remove($res->id, 'image', 'url');
+            //delete($id,$table);
+            $this->MD->delete($res->id, 'image');
+            // echo $res->id;
+        }
+
+
         $query = $this->MD->delete($id, 'project');
-        
+
         if ($this->db->affected_rows() > 0) {
             $msg = '<span style="color:red">Information Deleted </span>';
             $this->session->set_flashdata('msg', $msg);
@@ -160,13 +186,14 @@ class Project extends CI_Controller {
             redirect('/project', 'refresh');
         }
     }
-     public function image() {
+
+    public function image() {
         $id = $this->uri->segment(3);
         //remove($id,$table,$column)
-        
-        $query = $this->MD->remove($id,'image','url');
+
+        $query = $this->MD->remove($id, 'image', 'url');
         $query = $this->MD->delete($id, 'image');
-        
+
         if ($this->db->affected_rows() > 0) {
             $msg = '<span style="color:red">Information Deleted </span>';
             $this->session->set_flashdata('action', $msg);
@@ -174,7 +201,7 @@ class Project extends CI_Controller {
         } else {
             $msg = '<span style="color:red">action failed</span>';
             $this->session->set_flashdata('action', $msg);
-           redirect('/project', 'refresh');
+            redirect('/project', 'refresh');
         }
     }
 
@@ -190,7 +217,5 @@ class Project extends CI_Controller {
         else
             echo '<span style="color:#0c0"> name not in use</span>';
     }
-
-   
 
 }

@@ -9,14 +9,60 @@
 
             <section id='introduction'>
                 <h2 class='page-header'><a href="#introduction">COURSE  :-<?php echo $loop->name; ?></a></h2>
-               
-                <p> <?php echo 'Started:-' . $loop->start; ?></p>
-                <p> <?php echo 'Finished:-' . $loop->end; ?></p>
-                <p> <?php echo 'Participants:-' . $loop->participants; ?></p>
-                <p> <?php echo 'Objective :-' . $loop->objective; ?></p>
-                <p> <?php echo 'Role :-' . $loop->role; ?></p>
-                <p> <?php echo 'Description :-' . $loop->description; ?></p>
-                <p> <?php echo 'Date of submission:-' . $loop->dos ?></p>
+
+                <div class="col-md-12 col-sm-12 col-xs-12"> <span class=" status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+                <table class="table zebra-style ">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td><font class="red">(Editable)</font></td>
+
+                        </tr>
+                          <tr>
+                            <td>NAME:</td>
+                            <td id="name:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->name; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>STARTED:</td>
+                            <td id="start:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->start; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>COMPLETED:</td>
+                            <td id="end:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->end; ?></td>
+                        </tr>
+                        <tr>
+                            <td>PARTICIPANTS:</td>
+                            <td id="participants:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->participants; ?></td>
+                        </tr>
+                        <tr>
+                            <td>OBJECTIVE</td>
+                            <td id="objective:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->objective; ?></td>
+
+                        </tr> 
+
+                        <tr>
+                            <td>ROLE</td>
+                            <td id="role:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->role; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>DESCRIPTION</td>
+                            <td id="description:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->description; ?></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>DATE OF SUBMISSION</td>
+                            <td id="dos:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->dos; ?></td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+
+
 
             </section><!-- /#introduction -->
 
@@ -50,31 +96,6 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         document.write("<script src='<?= base_url(); ?>assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
 <script src="<?= base_url(); ?>assets/js/bootstrap.min.js"></script>
 
-<!--page specific plugin scripts-->
-
-<!--[if lte IE 8]>
-  <script src="assets/js/excanvas.min.js"></script>
-<![endif]-->
-
-<script src="<?= base_url(); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.gritter.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootbox.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.easy-pie-chart.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.hotkeys.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootstrap-wysiwyg.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/select2.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/bootstrap-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/ace-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.maskedinput.min.js"></script>
-
-<!--ace scripts-->
-
-<script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
 <script>
     $('.qualification').click(function (e) {
         updateURL = $(this).attr("href");
@@ -91,6 +112,26 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         });
         alert('Information updated!')
         return false;
+    });
+
+</script>
+
+<script>
+    var message_status = $("#status");
+    $("td[contenteditable=true]").blur(function () {
+        var field_id = $(this).attr("id");
+        var value = $(this).text();
+        $.post('<?php echo base_url() . "index.php/courses/updater/"; ?>', field_id + "=" + value, function (data) {
+            if (data != '')
+            {
+                message_status.show();
+                message_status.text(data);
+                //hide the message
+                setTimeout(function () {
+                    message_status.hide()
+                }, 1000);
+            }
+        });
     });
 
 </script>

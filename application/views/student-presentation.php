@@ -33,13 +33,10 @@
                                             <th>Event type</th>
                                             <th>Event name</th>
                                             <th>Presentation type</th>
-                                            <th>Summary</th>
                                             <th>Date</th>
                                             <th>Accepted</th>
                                             <th>submitted on</th>
-
-
-
+                                            <th>Details</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -98,30 +95,7 @@
                                                             <option value="Poster" />Poster
                                                         </select>
                                                     </td>  
-                                                    <td class="edit_td">
 
-                                                        <span id="summary_<?php echo $id; ?>" class="text">
-                                                            <?php
-                                                            //echo $abstract;
-                                                            // strip tags to avoid breaking any html
-                                                            $string = strip_tags($summary);
-
-                                                            if (strlen($string) > 5) {
-
-                                                                // truncate string
-                                                                $stringCut = substr($string, 0, 5);
-
-                                                                // make sure it ends in a word so assassinate doesn't become ass...
-                                                                $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '... <a href="' . base_url() . "index.php/student/presentation_details/" . $loop->id . '">Read More</a>';
-                                                            }
-                                                            echo $string;
-                                                            ?>
-                                                        </span>
-                                                        <textarea type="text" value="<?php echo $summary; ?>" class="editbox" id="summary_input_<?php echo $id; ?>"><?php echo $summary; ?></textarea>
-
-
-
-                                                    </td>
                                                     <td class="edit_td">
                                                         <span id="date_<?php echo $id; ?>" class="text"><?php echo $date; ?></span>
                                                         <input class="span10 date-picker editbox" id="date_input_<?php echo $id; ?>" value="<?php echo $date; ?>"  type="text" name="date" data-date-format="yyyy-mm-dd" />
@@ -140,11 +114,18 @@
                                                     <td class="center ">
                                                         <?php echo $loop->dos ?>
                                                     </td>
+                                                    <td class="edit_td">
+
+                                                        <a href="<?php echo base_url() . "index.php/student/presentation_details/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                            VIEW
+                                                        </a>
+
+                                                    </td>
                                                     <td class="td-actions">
 
-                                                        <a href="<?php echo base_url() . "index.php/management/country/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                        <a href="<?php echo base_url() . "index.php/student/presentation/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                             <span class="red">
-                                                                <i class="icon-trash bigger-120"></i>
+                                                                DELETE    <i class="icon-trash bigger-120"></i>
                                                             </span>
                                                         </a>
                                                     </td>
@@ -460,13 +441,9 @@
                         </div>
 
                         <div class="form-group"> 
-                            <label>Event Date</label>  
-                            <div class="row-fluid input-append">
-                                <input class="form-control date-picker" id="id-date-picker-1" type="text" required name="date" data-date-format="dd-mm-yyyy" />
-                                <span class="add-on">
-                                    <i class="icon-calendar"></i>
-                                </span>
-                            </div>
+                            <label>Event Date</label>
+                            <input class=" easyui-datebox form-control" name="date" id="date" style="width:100%;height:26px"> 
+
                         </div>
                         <div class="form-group">
                             <label>Event name</label>  
@@ -488,7 +465,7 @@
                         </div>
                         <div class="form-group">
                             <label>Abstract</label>  
-                             <textarea class="form-control" id="mytextarea" style="resize:none;" name="summary"></textarea>
+                            <textarea class="form-control" id="mytextarea" style="resize:none;" name="summary"></textarea>
                         </div>
 
 

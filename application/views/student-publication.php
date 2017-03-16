@@ -455,7 +455,7 @@
                         </div>                       
                         <div class="form-group">
                             <label>Co-author/s</label>  
-                            <input required type="number" class="form-control"  id="author" name="author"  />
+                            <input required type="Text" class="form-control"  id="author" name="author"  />
                         </div>
 
                         <div class="form-group"> 

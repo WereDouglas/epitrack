@@ -13,13 +13,9 @@
             <div class="widget-main ">
                 <div id="accordion2" class="accordion">                  
                     <div class="accordion-group">
-
-
                         <div class="accordion-body collapsed" id="collapseThree">
                             <div class="accordion-inner">
-                                <div class="alert alert-danger">Select a field to edit the content</div>                     
-
-
+                                <div class="alert alert-danger">Select a field to edit the content</div>
                                 <table id="example1" class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -34,10 +30,9 @@
                                             <th>Type</th>
                                             <th>Date</th>   
                                             <th>Country/Region</th>   
-                                            <th>Finding</th> 
-                                            <th>Verified</th> 
 
-
+                                            <th>Verified</th>
+                                            <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -61,7 +56,6 @@
                                                             <span class="lbl"></span>
                                                         </label>
                                                     </td>
-
                                                     <td class="edit_td">
                                                         <span id="name_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                                                         <input type="text" value="<?php echo $name; ?>" class="editbox" id="name_input_<?php echo $id; ?>"
@@ -339,35 +333,23 @@
                                                             <option value="Zambia" title="Zambia">Zambia</option>
                                                             <option value="Zimbabwe" title="Zimbabwe">Zimbabwe</option>
                                                         </select>
-
-
                                                     </td>   
 
-                                                    <td class="edit_td">
-                                                        <span id="finding_<?php echo $id; ?>" class="text"> <?php
-                                                            //echo $abstract;
-                                                            // strip tags to avoid breaking any html
-                                                            $string = strip_tags($finding);
 
-                                                            if (strlen($string) > 5) {
-
-                                                                // truncate string
-                                                                $stringCut = substr($string, 0, 5);
-
-                                                                // make sure it ends in a word so assassinate doesn't become ass...
-                                                                $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '... <a href="' . base_url() . "index.php/student/surveillance_details/" . $loop->id . '">Read More</a>';
-                                                            }
-                                                            echo $string;
-                                                            ?></span>
-                                                        <textarea type="text" value="<?php echo $finding; ?>" class="editbox" id="finding_input_<?php echo $id; ?>"><?php echo $finding; ?></textarea>
-                                                    </td>  
                                                     <td><?= $loop->verified ?></td>
+                                                    <td>                                                   
+
+                                                        <a href="<?php echo base_url() . "index.php/surveillance/details/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                            View
+                                                        </a>
+
+                                                    </td>
 
                                                     <td class="td-actions">
 
                                                         <a href="<?php echo base_url() . "index.php/student/surveillance/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                             <span class="red">
-                                                                <i class="icon-trash bigger-120"></i>
+                                                                Delete   <i class="icon-trash bigger-120"></i>
                                                             </span>
                                                         </a>
                                                     </td>
@@ -423,10 +405,7 @@
 
                         <div class="form-group">
                             <label >Activity date</label>
-                            <input required class="date-picker form-control" id="id-date-picker-1" type="text" name="date" data-date-format="yyyy-mm-dd" />
-                            <span class="add-on">
-                                <i class="icon-calendar"></i>
-                            </span>
+                            <input class=" easyui-datebox form-control" name="date" id="onset" style="width:100%;height:26px"> 
 
                         </div>
                         <div class="form-group">
@@ -696,7 +675,7 @@
                                 <textarea class="form-control"  id="finding" name="finding"></textarea>
                             </div>
                         </div>
-                     
+
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-default">Cancel</button>

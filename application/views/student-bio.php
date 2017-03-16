@@ -45,20 +45,18 @@
                 <span class="profile-picture">
                     <img id="avatar" height="100px" width="120px" class="editable" alt="<?php echo $fname; ?>" src="<?= base_url(); ?>uploads/<?= $image ?>" />
                 </span>
- <form  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/student/update_image'  method="post">                                       
+                <form  enctype="multipart/form-data" class="form-horizontal form-label-left"  action='<?= base_url(); ?>index.php/student/update_image'  method="post">                                       
 
-                                    <div class="form-group">
-                                        <input type="file"  class="form-control" name="userfile" id="userfile" />
-                                    </div>  
-                                    <div class="form-group">
-                                        <div id="imagePreview" ></div> 
-                                    </div>                
-                                    <input type="hidden" class="form-control" name="userID" id="userID" value="<?php echo $id; ?>" />                                                   
-                                    <input type="hidden" name="namer" id="namer" value="<?php echo $fname . $lname; ?>" />
-                                    <button id="send"  class="btn btn-default" type="submit" >Update picture</button>
-
-
-                                </form>
+                    <div class="form-group">
+                        <input type="file"  class="form-control" name="userfile" id="userfile" />
+                    </div>  
+                    <div class="form-group">
+                        <div id="imagePreview" ></div> 
+                    </div>                
+                    <input type="hidden" class="form-control" name="userID" id="userID" value="<?php echo $id; ?>" />                                                   
+                    <input type="hidden" name="namer" id="namer" value="<?php echo $fname . $lname; ?>" />
+                    <button id="send"  class="btn btn-default" type="submit" >Update picture</button>
+                </form>
             </div>
 
             <!--PAGE CONTENT ENDS-->
@@ -89,7 +87,7 @@
         }
         ?>
 
-        
+
 
         <table class="table zebra-style span8">
 
@@ -189,10 +187,10 @@
                         </tr> 
                         <tr>
                             <td>   
-                              
+
                             </td>
                             <td>
-                               
+
                             </td>
                             <td></td>
                             <td></td>

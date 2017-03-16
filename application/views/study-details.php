@@ -2,21 +2,59 @@
 
 
 <div class="col-xs-12">
-    <?php
+       <?php
     if (is_array($outbreaks) && count($outbreaks)) {
         foreach ($outbreaks as $loop) {
             ?>
 
             <section id='introduction'>
                 <h2 class='page-header'><a href="#introduction">STUDY :-<?php echo $loop->name; ?></a></h2>
-                <p class='lead'>
-                   
-                
-                <p> <?php echo 'NAME:-' . $loop->name; ?></p>
-                <p> <?php echo 'ONSET:-' . $loop->onset ?></p>
-                <p> <?php echo 'DISSEMINATION:-' . $loop->dissemination; ?></p>
-                  <p> <?php echo 'FINDINGS:-' . $loop->findings; ?></p>
-                   <p> <?php echo 'DATE OF SUBMISSION:-' . $loop->dos; ?></p>
+              <div class="col-md-12 col-sm-12 col-xs-12"> <span class=" status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+
+                <table class="table zebra-style ">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td><font class="red">(Editable)</font></td>
+
+                        </tr>
+                        <tr>
+                            <td>NAME:</td>
+                            <td id="name:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->name; ?></td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td>ONSET:</td>
+                            <td id="onset:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->onset; ?></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>DISSEMINATION:</td>
+                            <td id="dissemination:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->dissemination; ?></td>
+
+
+                        </tr>
+                       
+
+                        <tr>
+                            <td>FINDING</td>
+                            <td id="findings:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->findings; ?></td>
+
+                        </tr>
+                        <tr>
+                            <td>DATE OF SUBMISSION</td>
+                            <td id="dos:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->dos; ?></td>
+
+
+                        </tr>
+                      
+                    </tbody>
+                </table>
+
+
 
             </section><!-- /#introduction -->
 
@@ -50,31 +88,7 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         document.write("<script src='<?= base_url(); ?>assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
 <script src="<?= base_url(); ?>assets/js/bootstrap.min.js"></script>
 
-<!--page specific plugin scripts-->
 
-<!--[if lte IE 8]>
-  <script src="assets/js/excanvas.min.js"></script>
-<![endif]-->
-
-<script src="<?= base_url(); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.gritter.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootbox.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.easy-pie-chart.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.hotkeys.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/bootstrap-wysiwyg.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/select2.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/bootstrap-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/x-editable/ace-editable.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/jquery.maskedinput.min.js"></script>
-
-<!--ace scripts-->
-
-<script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
 <script>
     $('.qualification').click(function (e) {
         updateURL = $(this).attr("href");
@@ -91,6 +105,25 @@ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+
         });
         alert('Information updated!')
         return false;
+    });
+
+</script>
+<script>
+    var message_status = $("#status");
+    $("td[contenteditable=true]").blur(function () {
+        var field_id = $(this).attr("id");
+        var value = $(this).text();
+        $.post('<?php echo base_url() . "index.php/study/updater/"; ?>', field_id + "=" + value, function (data) {
+            if (data != '')
+            {
+                message_status.show();
+                message_status.text(data);
+                //hide the message
+                setTimeout(function () {
+                    message_status.hide()
+                }, 1000);
+            }
+        });
     });
 
 </script>

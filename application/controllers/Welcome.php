@@ -31,24 +31,24 @@ class Welcome extends CI_Controller {
     public function login() {
 
         $this->load->helper(array('form', 'url'));
-        $email = $this->input->post('email');
+       $email = $this->input->post('email');
         $password_now = $this->input->post('password');
-        $key = $email;
-
+       
         $get_student = $this->Md->check($email, 'email', 'student');
         $get_user = $this->Md->check($email, 'email', 'user');
+         
 
-        if (!$get_student || !$get_user) {
-            if (count($get_student) > 0) {
+        if (!$get_student && count($get_student) > 0  ) {              
 
                 $result = $this->Md->get('email', $email, 'student');
-                // var_dump($result);
+               //var_dump($result);
+               
                 foreach ($result as $res) {
-                    $key = $email;
-                    $password = $this->encrypt->decode($res->password, $key);
-                    //$password = $this->encrypt->decode("ps73BW+Fg4DRGZz6tLGjY/BUWx0KpfprQPpeK4Zv890/R0nQmJK/OHXTMcFO+h2TmQJPvVBdvqeZojNOzl2POA==", $key);
-                    //echo $password;
-                    //return;
+                  
+                   $password = $this->encrypt->decode($res->password, $this->input->post('email'));
+                    //$password = $this->encrypt->decode("ps73BW+Fg4DRGZz6tLGjY/BUWx0KpfprQPpeK4Zv890/R0nQmJK/OHXTMcFO+h2TmQJPvVBdvqeZojNOzl2POA==",$this->input->post('email'));
+                    //echo $password .'='.$password_now.' '.$email;
+                   //return;
 
                     if ($password_now == $password) {
                         $status = $res->status;
@@ -166,13 +166,12 @@ class Welcome extends CI_Controller {
                           return;
                     }
                 }
+                return;
             }
+            
 
-            if (count($get_user) > 0) {
-                $get_result = $this->Md->check($email, 'email', 'user');
-                
-                
-                      
+            if (!$get_user &&count($get_user) > 0) {
+                $get_result = $this->Md->check($email, 'email', 'user');                      
                 if (!$get_result) {
                     //$this->session->set_flashdata('msg', 'Welcome'.$email);
                     //get($field,$value,$table)
@@ -180,9 +179,9 @@ class Welcome extends CI_Controller {
                     // var_dump($result);
                     foreach ($result as $res) {
                         $key = $email;
-                        $password = $this->encrypt->decode($res->password, $key);
+                       $password = $this->encrypt->decode($res->password, $key);
                        
-                       
+                    
                         if ($password_now == $password) {
 
                             $newdata = array(
@@ -224,11 +223,7 @@ class Welcome extends CI_Controller {
                     }
                 }
             }
-        } else {
-            $this->session->set_flashdata('msg', '<div class="alert alert-error">  <strong>  ! invalid login credentials</div>');
-            redirect('welcome/register', 'refresh');
-              return;
-        }
+       
     }
 
     public function student() {
@@ -236,6 +231,12 @@ class Welcome extends CI_Controller {
     }
 
     public function management() {
+        
+         if ($this->session->userdata('country') == "") {
+            $this->session->sess_destroy();
+            redirect('welcome/logout', 'refresh');
+            return;
+        }
 
         $cty = $this->session->userdata('country');
 

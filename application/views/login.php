@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!--basic styles-->
+        <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
+
 
         <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -21,13 +23,11 @@
 
         <!--fonts-->
 
-
         <!--ace styles-->
 
         <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" />
         <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-responsive.min.css" />
         <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
-         <link rel="stylesheet" href="<?= base_url(); ?>css/mine.css" />
 
 
         <!--[if lte IE 8]>
@@ -35,7 +35,13 @@
         <![endif]-->
 
         <!--inline styles related to this page-->
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">   
+
+
+    </head>
 
     <body class="login-layout">
         <div class="main-container container-fluid">
@@ -59,7 +65,7 @@
 
                                                     <h4 class="header blue lighter bigger">
 
-                                                   Login
+                                                        Login
                                                     </h4>
 
                                                     <div class="space-6"></div>
@@ -79,8 +85,8 @@
                                                                 <i class="icon-lock"></i>
                                                             </span>
                                                         </label>
-                                                       <br>
-                                                         <?php echo $this->session->flashdata('msg'); ?>
+                                                        <br>
+                                                        <?php echo $this->session->flashdata('msg'); ?>
                                                         <div class="space"></div>
 
                                                         <div class="clearfix">
@@ -90,8 +96,8 @@
                                                                 <i class="icon-key"></i>
                                                                 Login
                                                             </button>
-                                                                <a href="<?php echo base_url() . "index.php"; ?>"   class="width-35 pull-right btn btn-small btn-grey">
-                                                                <i class="icon-cog"></i>
+                                                            <a href="<?php echo base_url() . "index.php"; ?>"   class="width-35 pull-right btn btn-small btn-grey">
+                                                                <i class="fa fa-circle"></i>
                                                                 cancel
                                                             </a>
                                                         </div>
@@ -114,11 +120,11 @@
                                                 </div>
 
                                                 <div>
-<!--                                                    <a href="#" onclick="show_box('signup-box');
-                                                            return false;" class="user-signup-link">
-                                                        I want to register
-                                                        <i class="icon-arrow-right"></i>
-                                                    </a>-->
+                                                    <!--                                                    <a href="#" onclick="show_box('signup-box');
+                                                                                                                return false;" class="user-signup-link">
+                                                                                                            I want to register
+                                                                                                            <i class="icon-arrow-right"></i>
+                                                                                                        </a>-->
                                                 </div>
                                             </div>
                                         </div><!--/widget-body-->
@@ -253,7 +259,7 @@
 
         <!--[if !IE]>-->
 
-        <script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
+        <script src="<?= base_url(); ?>js/jquery.js"></script>
 
         <!--<![endif]-->
 

@@ -238,5 +238,31 @@ class Field extends CI_Controller {
             redirect('/project', 'refresh');
         }
     }
+        public function updater() {
+        $this->load->helper(array('form', 'url'));
+
+        if (!empty($_POST)) {
+
+            foreach ($_POST as $field_name => $val) {
+                //clean post values
+                $field_id = strip_tags(trim($field_name));
+                $val = strip_tags(trim(mysql_real_escape_string($val)));
+                //from the fieldname:user_id we need to get user_id
+                $split_data = explode(':', $field_id);
+                $user_id = $split_data[1];
+                $field_name = $split_data[0];
+                if (!empty($user_id) && !empty($field_name) && !empty($val)) {
+                    //update the values
+                    $student = array($field_name => $val);
+                    $this->Md->update($user_id, $student, 'fields');
+                    echo "Updated";
+                } else {
+                    echo "Invalid Requests";
+                }
+            }
+        } else {
+            echo "Invalid Requests";
+        }
+    }
 
 }

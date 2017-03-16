@@ -30,9 +30,7 @@
                                             <th>Name</th>
                                             <th>Onset</th>
                                             <th>Dissemination</th>   
-                                            <th>Findings</th>   
-
-
+                                            <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -76,33 +74,17 @@
                                                             <i class="icon-calendar"></i>
                                                         </span>                                                        
                                                     </td>
-                                                    <td class="edit_td">
-                                                        <span id="findings_<?php echo $id; ?>" class="text">
-                                                            <?php
-                                                            //echo $abstract;
-                                                            // strip tags to avoid breaking any html
-                                                            $string = strip_tags($findings);
+                                                    <td>                                                   
 
-                                                            if (strlen($string) > 5) {
+                                                        <a href="<?php echo base_url() . "index.php/study/details/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                            View
+                                                        </a>
 
-                                                                // truncate string
-                                                                $stringCut = substr($string, 0, 5);
-
-                                                                // make sure it ends in a word so assassinate doesn't become ass...
-                                                                $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '... <a href="' . base_url() . "index.php/student/study_details/" . $loop->id . '">Read More</a>';
-                                                            }
-                                                            echo $string;
-                                                            ?>
-
-
-                                                        </span>
-                                                        <input type="text" value="<?php echo $findings; ?>" class="editbox" id="findings_input_<?php echo $id; ?>"
-                                                    </td>                                                   
-
+                                                    </td>
                                                     <td class="td-actions">
 
                                                         <a href="<?php echo base_url() . "index.php/student/study/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                            <span class="red">
+                                                            <span class="red">Delete
                                                                 <i class="icon-trash bigger-120"></i>
                                                             </span>
                                                         </a>

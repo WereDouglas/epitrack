@@ -360,7 +360,7 @@
 
                                                         <a href="<?php echo base_url() . "index.php/student/employment/delete/" . $loop->id; ?>" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                             <span class="red">
-                                                                <i class="icon-trash bigger-120"></i>
+                                                               Delete <i class="icon-trash bigger-120"></i>
                                                             </span>
                                                         </a>
                                                     </td>
@@ -760,9 +760,7 @@
       <script src="assets/js/excanvas.min.js"></script>
     <![endif]-->
 
-    <script src="<?= base_url(); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="<?= base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
-    <script src="<?= base_url(); ?>assets/js/chosen.jquery.min.js"></script>
+   
 
     <script src="<?= base_url(); ?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
     <script src="<?= base_url(); ?>assets/js/date-time/bootstrap-timepicker.min.js"></script>
@@ -770,7 +768,7 @@
     <script src="<?= base_url(); ?>assets/js/date-time/daterangepicker.min.js"></script>
     <script src="<?= base_url(); ?>assets/js/bootstrap-colorpicker.min.js"></script>
 
-    <script src="<?= base_url(); ?>assets/js/jquery.autosize-min.js"></script>
+  
     <script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
     <script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
 

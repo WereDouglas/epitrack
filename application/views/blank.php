@@ -2,16 +2,8 @@
 <div class="col-xs-12" style=" max-height: 1300px; overflow-y: scroll;">   
     <!-- The time line -->
     <ul class="timeline">
-        <!-- timeline time label -->
 
-        <!-- /.timeline-label -->
-        <!-- timeline item -->
-<!--        <li>
-            <i class="fa fa-male bg-blue"></i>
-            <div class="timeline-item">
-                <strong>FIELD WORK</strong>  
-            </div>
-
+        <li>         
             <?php
             if (is_array($fields)) {
                 foreach ($fields as $loop) {
@@ -31,11 +23,11 @@
             }
             ?>
 
-        </li>-->
+        </li>
 
         <li>
+            <i class="fa fa-clock-o bg-blue"></i>
 
-            <i class="fa fa-database bg-blue"></i>
             <div class="timeline-item">
                 <strong>OUTBREAKS</strong>  
             </div>
@@ -45,16 +37,16 @@
                 foreach ($outbreaks as $loop) {
                     ?>    
                     <div class="timeline-item">
-                         <div class="timeline-body">
-                             <h4><?= $loop->name; ?></h4>
-                        <span class="time"><i class="fa fa-clock-o"></i> <strong><?= $loop->dos; ?></strong>  <?= $loop->author; ?></span>
-                        <h3 class="timeline-header"><a href="#"><?= $loop->findings . ' ' ?></a>  <?= $loop->verfied; ?></h3>
-                       
+                        <div class="timeline-body">
+                            <h4><?= $loop->name; ?></h4>
+                            <span class="time"><i class="fa fa-clock-o"></i> <strong><?= $loop->dos; ?></strong>  <?= $loop->author; ?></span>
+                            <h3 class="timeline-header"><a href="#"><?= $loop->findings . ' ' ?></a>  <?= $loop->verfied; ?></h3>
+
 
                         </div>
 
                     </div>
-           <br>
+                    <br>
                     <?php
                 }
             }
@@ -65,7 +57,7 @@
 
         <li>
 
-            <i class="fa fa-newspaper-o bg-blue"></i>
+           <i class="fa fa-clock-o bg-blue"></i>
             <div class="timeline-item">
                 <strong>PUBLICATIONS UNDER REVIEW</strong>  
             </div>
@@ -90,7 +82,7 @@
                 }
             }
             ?>
-             <i class="fa fa-newspaper-o bg-blue"></i>
+            <i class="fa fa-clock-o bg-blue"></i>
             <div class="timeline-item">
                 <strong>PUBLICATIONS NOT ACCEPTED</strong>  
             </div>
@@ -223,10 +215,7 @@
             </div>
         </li>
 
-        <!-- END timeline item -->
-        <!-- timeline item -->
 
-        <!-- END timeline item -->
         <li>
             <i class="fa fa-clock-o bg-gray"></i>
         </li>

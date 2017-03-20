@@ -128,7 +128,7 @@
                 <h4 class="modal-title" id="myModalLabel">NEW SHORT COURSE</h4>
             </div>
 
-            <form  role= "form" id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/employment'  method="post">            
+            <form  role= "form" id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/student/course'  method="post">            
                 <div class="control-group form">
                     <div class="controls">
                         <div class="form-group">

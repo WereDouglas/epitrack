@@ -5,31 +5,17 @@
         <title>Epitrack</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <!-- Bootstrap 3.3.4 -->
-        <link href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <!-- FontAwesome 4.3.0 -->
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <!-- Ionicons 2.0.0 -->
-        <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-        <!-- Theme style -->
-        <link href="<?php echo base_url(); ?>dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-        <!-- AdminLTE Skins. Choose a skin from the css/skins
-             folder instead of downloading all of them to reduce the load. -->
+        <!-- Bootstrap 3.3.4 --><link rel="stylesheet" href="<?= base_url(); ?>css/frame.css" />
+        
+         <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
-        <!-- iCheck -->
-        <link href="<?php echo base_url(); ?>plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
-        <!-- Morris chart -->
-        <link href="<?php echo base_url(); ?>plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-        <!-- jvectormap -->
-        <link href="<?php echo base_url(); ?>plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-        <!-- Date Picker -->
-        <link href="<?php echo base_url(); ?>plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
-        <!-- Daterange picker -->
-        <link href="<?php echo base_url(); ?>plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-        <!-- bootstrap wysihtml5 - text editor -->
-        <link href="<?php echo base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="<?= base_url(); ?>css/frame.css" />
-<link rel=icon href="<?= base_url(); ?>images/favicon.ico">
+        <link href="<?php echo base_url(); ?>css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="<?php echo base_url(); ?>css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+
+
+        <link rel=icon href="<?= base_url(); ?>images/favicon.ico">
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
@@ -125,7 +111,7 @@
                                     <?php } ?>   
 
                                     <span class="hidden-xs"><?php echo $this->session->userdata('name'); ?></span>
-                                  
+
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -148,7 +134,7 @@
                                         <p>
                                             <?php echo $this->session->userdata('name'); ?>
                                             <small><?php echo $this->session->userdata('country'); ?></small>
-                                              <span class="hidden-xs">  <?php echo $this->session->userdata('cohort'); ?></span>
+                                            <span class="hidden-xs">  <?php echo $this->session->userdata('cohort'); ?></span>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -199,7 +185,7 @@
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
 
-                        <li class="active"><a href="<?php echo base_url() . "index.php/management/news"; ?>" target="frame"><i class="fa  fa-calendar"></i>Home</a></li>
+                        <li class="active"><a href="<?php echo base_url() . "index.php/management/news"; ?>" target="frame"><i class="fa fa-calendar"></i>Home</a></li>
 
                         <?php
                         if ($this->session->userdata('level') == 2) {
@@ -241,14 +227,14 @@
                             <li><a href="<?php echo base_url() . "index.php/management/country"; ?>" target="frame"><i class="fa fa-flag"></i> Countries</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/country_user"; ?>" target="frame"><i class="fa fa-users"></i> Users</a></li>
                             <li><a href="<?php echo base_url() . "index.php/role"; ?>" target="frame"><i class="fa fa-users"></i>Roles</a></li>
-                           
+
                             <li><a href="<?php echo base_url() . "index.php/management/event"; ?>" target="frame"><i class="fa  fa-calendar"></i> Events & Updates</a></li>
-                          
+
                             <li><a href="<?php echo base_url() . "index.php/pending/"; ?>" target="frame"><i class="fa  fa-calendar"></i> Pending Actions</a></li>
                             <li class="header">Reports</li>
-                              <li><a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"><i class="fa fa-users"></i> Students</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/management/country_student"; ?>" target="frame"><i class="fa fa-users"></i> Students</a></li>
 
-                             <li><a href="<?php echo base_url() . "index.php/field/view"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/field/view"; ?>" target="frame"><i class="fa  fa-file-text"></i>Field Work</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/qualifications"; ?>" target="frame"><i class="fa  fa-file-text"></i>Education/Qualifications</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/emps"; ?>" target="frame"><i class="fa  fa-file-text"></i>Employment Records</a></li>
                             <li><a href="<?php echo base_url() . "index.php/management/surveillance"; ?>" target="frame"><i class="fa  fa-file-text"></i>Surveillance</a></li>
@@ -269,11 +255,11 @@
                             <li><a href="<?php echo base_url() . "index.php/student/"; ?>" target="frame"><i class="fa fa-circle-o"></i>Calendar</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/bio"; ?>" target="frame"><i class="fa fa-male"></i> Bio</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/contact"; ?>" target="frame"><i class="fa fa-phone"></i> Contacts</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame"><i class="fa fa-newspaper-o"></i> Employment records</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame"><i class="fa fa-mortar-board"></i>Education/Qualification</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame"><i class="fa fa-video-camera"></i> Surveillance</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame"><i class="fa fa-newspaper-o"></i>Publications</a></li>
-                            <li><a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame"><i class="fa  fa-university"></i> Studies</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/employment"; ?>" target="frame"><i class="fa fa-flag"></i> Employment records</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/qualification"; ?>" target="frame"><i class="fa fa-file"></i>Education/Qualification</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/surveillance"; ?>" target="frame"><i class="fa fa-circle"></i> Surveillance</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/publication"; ?>" target="frame"><i class="fa fa-flag"></i>Publications</a></li>
+                            <li><a href="<?php echo base_url() . "index.php/student/study"; ?>" target="frame"><i class="fa  fa-road"></i> Studies</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/outbreak"; ?>" target="frame"><i class="fa fa-circle-o"></i> Outbreaks</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/presentation"; ?>" target="frame"><i class="fa fa-file"></i> Presentations</a></li>
                             <li><a href="<?php echo base_url() . "index.php/student/course"; ?>" target="frame"><i class="fa  fa-file-text"></i> Short courses</a></li>

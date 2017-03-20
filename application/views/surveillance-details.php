@@ -2,25 +2,32 @@
 
 
 <div class="col-xs-12">
-   
+
     <?php
     if (is_array($outbreaks) && count($outbreaks)) {
         foreach ($outbreaks as $loop) {
-              if ($this->session->userdata('level') == "student") {
-                            if ($loop->verified == "false") {
+            if ($this->session->userdata('level') == "student") {
+                if ($loop->verified == "false") {
 
-                                $editable = "true";
-                            } else {
+                    $editable = "true";
+                } else {
 
-                                $editable = "false";
-                            }
-                        } else {
-                            $editable = "false";
-                        }
+                    $editable = "false";
+                }
+            } else {
+                $editable = "false";
+            }
+            if ($this->session->userdata('level') == "student") {
+
+
+                $editable_ver = "false";
+            } else {
+                $editable_ver = "true";
+            }
             ?>
             <section id='introduction'>
                 <h2 class='page-header'><a href="#introduction">SURVEILLANCE  :-<?php echo $loop->name; ?></a></h2>
-                 <div class="col-md-12 col-sm-12 col-xs-12"> <span class=" status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
+                <div class="col-md-12 col-sm-12 col-xs-12"> <span class=" status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
                 <table class="table zebra-style ">
                     <tbody>
                         <tr>
@@ -30,43 +37,43 @@
                         </tr>
                         <tr>
                             <td>NAME:</td>
-                            <td id="name:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->name; ?></td>
+                            <td id="name:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->name; ?></td>
 
                         </tr>
-                     
-                        
+
+
                         <tr>
                             <td>LOCATION:</td>
-                            <td id="location:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->location; ?></td>
+                            <td id="location:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->location; ?></td>
 
 
                         </tr>
                         <tr>
                             <td>TYPE OF SURVEILLANCE:</td>
-                            <td id="type:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->type; ?></td>
+                            <td id="type:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->type; ?></td>
 
 
                         </tr>
                         <tr>
                             <td>REGION</td>
-                            <td id="region:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->region; ?></td>
+                            <td id="region:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->region; ?></td>
 
                         </tr> 
-                      
+
                         <tr>
                             <td>FINDING</td>
-                            <td id="finding:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->finding; ?></td>
+                            <td id="finding:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->finding; ?></td>
 
                         </tr>
                         <tr>
-                            <td>DATE OF SUBMISSION</td>
-                            <td id="date:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->date; ?></td>
+                            <td>DATE</td>
+                            <td id="date:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->date; ?></td>
 
 
                         </tr>
                         <tr>
                             <td>VERIFICATION</td>
-                            <td id="verified:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable;?>" class="editable"><?php echo $loop->verified; ?></td>
+                            <td id="verified:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable_ver; ?>" class="editable"><?php echo $loop->verified; ?></td>
 
 
                         </tr>
@@ -76,10 +83,10 @@
 
             <!-- ============================================================= -->
 
-            <?php
-        }
+        <?php
     }
-    ?>
+}
+?>
 
 </div><!--/.row-fluid-->
 

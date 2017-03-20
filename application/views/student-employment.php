@@ -706,6 +706,7 @@
                         <div class="form-group">
                             <label class="label-top">End year of employment:</label>
                             <select name="endDate" class="form-control">
+                                <option>To date</option>
                                 <?php
                                 for ($i = 1950; $i < date('Y') + 1; $i++) {
                                     echo "<option>$i</option>";

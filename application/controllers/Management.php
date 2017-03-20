@@ -896,7 +896,8 @@ class Management extends CI_Controller {
                 redirect('/management/country_student', 'refresh');
             }
         }
-        $query = $this->Md->show('cohort');
+       $query = $this->Md->query("SELECT * FROM cohort WHERE country = '".$this->session->userdata('country')."'");
+         
         //  var_dump($query);
         if ($query) {
             $data['cohorts'] = $query;
@@ -927,6 +928,7 @@ class Management extends CI_Controller {
                 $data['students'] = array();
             }
         } elseif ($this->session->userdata('level') == 2) {
+              
             $query = $this->Md->get('country', $this->session->userdata('country'), 'student');
             //  var_dump($query);
             if ($query) {

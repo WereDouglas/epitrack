@@ -13,11 +13,9 @@
 
         <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="<?= base_url(); ?>assets/css/font-awesome.min.css" />
-
         <!--[if IE 7]>
-          <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
-        <![endif]-->
+         <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+       <![endif]-->
 
         <!--page specific plugin styles-->
 
@@ -36,9 +34,13 @@
 
         <!--inline styles related to this page-->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style>
+            .login-layout {
+                background: #21409a;
+            }
 
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">   
+        </style>
+
 
 
     </head>

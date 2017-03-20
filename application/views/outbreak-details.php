@@ -16,6 +16,10 @@
             } else {
                 $editable = "false";
             }
+            if ($this->session->userdata('level') == "student") {
+                
+                 $editable_ver = "false";
+            }
             ?>
 
             <section id='introduction'>
@@ -92,7 +96,7 @@
                         </tr>
                         <tr>
                             <td>STUDY VERIFICATION</td>
-                            <td id="verified:<?php echo $loop->id; ?>" contenteditable="<?php echo $editable; ?>" class="editable"><?php echo $loop->verified; ?></td>
+                            <td id="verified:<?php echo $loop->id; ?>" contenteditable="<?php echo  $editable_ver; ?>" class="editable"><?php echo $loop->verified; ?></td>
 
                         </tr>
                     </tbody>

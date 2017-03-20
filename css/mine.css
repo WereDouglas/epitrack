@@ -1,5 +1,5 @@
 body {
-    color: #FFFF !important;
+    color: #FFFF;
     background: #FFFF;
     font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
     font-size: 13px;
@@ -261,10 +261,10 @@ select {
     position: fixed;
     top: 1%;
     left: 0%;
-    width: 61%;
+    width: 75%;
     z-index: 1050;
-    margin-left: 20%!important;
-    height: 100%;
+    margin-left: 15%!important;
+    height: 80%;
     overflow-y: auto; 
     top: 1%!important;
 }
@@ -289,7 +289,7 @@ select {
 html *
 {
   
-   font-family: Calibri !important;
+   font-family: Calibri;
 }
 
 

@@ -7,9 +7,9 @@
         foreach ($outbreaks as $loop) {
             ?>
             <section id='introduction'>
-                <h2 class='page-header'><a href="#introduction">FINDINGS  :-<?php echo $loop->name; ?></a></h2>
-               
-              
+                <h2 class='page-header'><a href="#introduction">FIELD WORK :-<?php echo $loop->name; ?></a></h2>
+
+
                 <div class="col-md-12 col-sm-12 col-xs-12"> <span class=" status col-md-12 col-sm-12 col-xs-12" id="status"></span></div>
                 <table class="table zebra-style ">
                     <tbody>
@@ -23,8 +23,8 @@
                             <td id="name:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->name; ?></td>
 
                         </tr>
-                     
-                        
+
+
                         <tr>
                             <td>LOCATION:</td>
                             <td id="location:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->location; ?></td>
@@ -37,20 +37,36 @@
 
 
                         </tr>
-                      
+
                         <tr>
                             <td>DATE OF SUBMISSION</td>
                             <td id="dos:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->dos; ?></td>
 
 
                         </tr>
-                     
+
                     </tbody>
                 </table>
 
             </section><!-- /#introduction -->
 
-          
+            <section id='download'>
+
+                <div class='row'>
+
+                    <div class='col-sm-6'>
+                        <div class='box box-danger'>
+                            <div class='box-header with-border'>
+                                <h3 class='box-title'>File</h3>
+                                <span class='label label-danger pull-right'><i class='fa fa-database'></i></span>
+                            </div><!-- /.box-header -->
+                            <div class='box-body'>                               
+                                <a href='<?php echo base_url() . "field/" . $loop->file; ?>' class='btn btn-danger'><i class='fa fa-download'></i> Download</a>
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </section>
             <?php
         }
     }

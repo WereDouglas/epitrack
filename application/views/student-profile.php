@@ -19,7 +19,7 @@
     }
 
     table td{
-        border:0px solid #FF0000;
+        border:0px solid #FFF;
     }
 
     table tr{
@@ -28,6 +28,7 @@
     td {
         border-top: 0px;
     }
+   
 </style>
 <div class="row content">
     <div class="col-md-12">    
@@ -130,7 +131,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>COUNTRY</td>
-                                                    <td id="country:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->country; ?></td>
+                                                    <td id="country:<?php echo $loop->id; ?>" contenteditable="false" class="editable"><?php echo $loop->country; ?></td>
 
                                                 </tr>
                                                 <tr>
@@ -140,7 +141,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>EMAIL:</td>
-                                                    <td id="email:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->email; ?></td>
+                                                    <td id="email:<?php echo $loop->id; ?>" contenteditable="false" class="editable"><?php echo $loop->email; ?></td>
 
                                                   
                                                 </tr>

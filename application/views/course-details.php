@@ -32,10 +32,7 @@
                             <td>COMPLETED:</td>
                             <td id="end:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->end; ?></td>
                         </tr>
-                        <tr>
-                            <td>PARTICIPANTS:</td>
-                            <td id="participants:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->participants; ?></td>
-                        </tr>
+                      
                         <tr>
                             <td>OBJECTIVE</td>
                             <td id="objective:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->objective; ?></td>
@@ -48,8 +45,14 @@
 
                         </tr>
                         <tr>
-                            <td>DESCRIPTION</td>
-                            <td id="description:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->description; ?></td>
+                            <td>Country</td>
+                            <td id="country:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->country; ?></td>
+
+
+                        </tr>
+                         <tr>
+                            <td>Region</td>
+                            <td id="location:<?php echo $loop->id; ?>" contenteditable="true" class="editable"><?php echo $loop->location; ?></td>
 
 
                         </tr>

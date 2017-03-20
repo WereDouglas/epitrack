@@ -68,7 +68,7 @@
     <div class="col-xs-12">
 
         <h2>Students</h2>
-        <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New study</span> </a>
+        <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New student</span> </a>
 
         <?php echo $this->session->flashdata('msg'); ?>
         <div class="row-fluid">
@@ -230,75 +230,78 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">NEW FILED STUDY</h4>
+                    <h4 class="modal-title" id="myModalLabel">NEW STUDENT</h4>
                 </div>
                 <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/management/country_student/'  method="post">
 
+                    <div class="control-group form">
                         <div class="row">
                             <div class=" col-md-6">
-                                <div class="form-group">
-                                    <label>Upload profile picture</label>
-                                    <input multiple=""  class="form-control" type="file" name="userfile" id="id-input-file-3" />                                                       
-                                </div>
-                                <div class="form-group">
-                                    <label>   Select track :</label><br>
-                                    <select id="cohort"  class="form-control" name="cohort" >                                                            
-                                        <?php
-                                        if (is_array($cohorts) && count($cohorts)) {
-                                            foreach ($cohorts as $loop) {
-                                                ?>                        
-                                                <option value="<?= $loop->name ?>" /><?= $loop->name ?>
-                                                <?php
+                                <div class="controls">
+                                    <div class="form-group">
+                                        <label>Upload profile picture</label>
+                                        <input multiple=""  class="form-control" type="file" name="userfile" id="id-input-file-3" />                                                       
+                                    </div>
+                                    <div class="form-group">
+                                        <label>   Select track :</label><br>
+                                        <select id="cohort"  class="form-control" name="cohort" >                                                            
+                                            <?php
+                                            if (is_array($cohorts) && count($cohorts)) {
+                                                foreach ($cohorts as $loop) {
+                                                    ?>                        
+                                                    <option value="<?= $loop->name ?>" /><?= $loop->name ?>
+                                                    <?php
+                                                }
                                             }
-                                        }
-                                        ?>
-                                    </select>
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Course Completion:</label>                           
+                                        <select class="form-control"  data-placeholder="Date" name="complete" id="complete">
+                                            <option value="false" />false</option>
+                                            <option value="true" />true</option>
+
+                                        </select>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>  Year of completion:  </label>
+                                        <input class="date-picker form-control" id="date_complete" name="date_complete" type="text" value="<?php echo date('d-m-Y');?>" data-date-format="dd-mm-yyyy" /></span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Comments</label>
+
+                                        <input type="text" class="form-control"  id="comment" name="comment" placeholder="Comment"  /></span>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label>First name</label>
+                                        <input type="text" class="form-control" required="true"  id="fname" name="fname" placeholder="First name"  />
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last name:</label>
+                                        <input class="input-small form-control" required="true"   type="text" id="lname" name="lname" placeholder="Last Name"  />
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Other name:</label>
+                                        <input class="input-small form-control"  type="text" id="other" name="other" placeholder="Other name"  />
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Primary e-mail:</label>
+                                        <input type="email" class="input-small form-control" required="true"  id="email" name="email"  placeholder="Email" />
+                                    </div>
+
+
                                 </div>
-
-                                <div class="form-group">
-                                    <label>Course Completion:</label>                           
-                                    <select class="form-control"  data-placeholder="Date" name="complete" id="complete">
-
-                                        <option value="true" />true</option>
-                                        <option value="false" />false</option>
-                                    </select>
-
-                                </div>
-                                <div class="form-group">
-                                    <label>  Year of completion:  </label>
-                                    <input class="date-picker form-control" id="date_complete" name="date_complete" type="text" data-date-format="dd-mm-yyyy" /></span>
-
-                                </div>
-                                <div class="form-group">
-                                    <label>Comments</label>
-
-                                    <input type="text" class="form-control"  id="comment" name="comment" placeholder="Comment"  /></span>
-                                </div>
-                                <div class="form-group">
-
-                                    <label>First name</label>
-                                    <input type="text" class="form-control" required="true"  id="fname" name="fname" placeholder="First name"  />
-
-                                </div>
-                                <div class="form-group">
-                                    <label>Last name:</label>
-                                    <input class="input-small form-control" required="true"   type="text" id="lname" name="lname" placeholder="Last Name"  />
-
-                                </div>
-                                   <div class="form-group">
-                                    <label> Other name:</label>
-                                    <input class="input-small form-control"  type="text" id="other" name="other" placeholder="Other name"  />
-
-                                </div>
-                                <div class="form-group">
-                                    <label>Primary e-mail:</label>
-                                    <input type="email" class="input-small form-control" required="true"  id="email" name="email"  placeholder="Email" />
-                                </div>
-
-                                
                             </div>
                             <div class=" col-md-6"> 
-                             
+
                                 <div class="form-group">
                                     <label>  Primary contact</label> 
                                     <input type="text" class="input-small form-control"  id="contact" name="contact"  placeholder="+2567893213394" />
@@ -314,7 +317,7 @@
                                 </div>
                                 <div class="control-group">                           
                                     <label>Date of Birth:  </label>    
-                                    <input class="date-picker form-control" id="dob" name="dob" type="text" data-date-format="dd-mm-yyyy" />                        
+                                    <input class="easyui-datebox form-control" name="dob" id="dob" style="width:100%;height:26px">
                                 </div>
                                 <div class="form-group">
                                     <div class="controls" id="locationField">
@@ -328,11 +331,11 @@
                                     <input class="form-control" required="true"  id="supervisor" name="supervisor" placeholder="Enter your supervisor's email" type="email"></input>
 
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <div class="controls">
                                         <div class="controls " id="address">
-                                            
+
                                             <div class="form-group">
                                                 <label> Country :</label>  
                                                 <input class="field form-control" name="country" id="country" type="text" value="<?php echo $this->session->userdata('country'); ?>" ></input>
@@ -372,7 +375,8 @@
                                 </div>
                             </div>
 
-                        </div>                   
+                        </div>  
+                    </div>                   
                 </form>
 
             </div>
